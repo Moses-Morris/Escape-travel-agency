@@ -1,0 +1,285 @@
+CREATE DATABASE EscapeAgency;
+USE EscapeAgency;
+
+
+-- users Table
+CREATE TABLE Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL ,
+    Email VARCHAR(255) NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Phone VARCHAR(255) NOT NULL ,
+    Country TEXT NOT NULL DEFAULT 0,
+    Location TEXT NOT NULL DEFAULT 0,
+    ProfileImg VARCHAR(255) DEFAULT 'No Image',
+    Role ENUM('customer', 'agent', 'admin', 'superadmin') DEFAULT 'customer',
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP     
+);
+
+
+-- Destinations Table
+CREATE TABLE IF NOT EXISTS Destinations (
+    DestinationID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Location VARCHAR(255) NOT NULL,
+    Country VARCHAR(255) NOT NULL,
+    Description TEXT,
+    ImageURL VARCHAR(255) NOT NULL,
+    Price INTEGER DEFAULT 0 NOT NULL,
+    RatingAVG DECIMAL(3,2) DEFAULT 0 NOT NULL, 
+    Featured BOOLEAN DEFAULT FALSE,
+    PopularityRanking INTEGER DEFAULT 0 NOT NULL,
+    Activities INTEGER DEFAULT 0 NOT NULL,
+    DistFromOrigin INTEGER DEFAULT 0 NOT NULL,  -- this is the distance of destination from Location --
+    TravelOptions ENUM ('Air', 'Water', 'Road'),
+    AgentID INTEGER DEFAULT 0 NOT NULL, -- this is the id of the agent that has posted this destination --
+    Status ENUM('approved', 'unapproved') DEFAULT 'unapproved'
+);
+
+
+-- Accomodation or Hostings Tables
+CREATE TABLE IF NOT EXISTS Accomodation (
+    HostingID INT PRIMARY KEY  AUTO_INCREMENT NOT NULL,
+    Name VARCHAR(255) NOT NULL,
+    DestinationID INT NOT NULL,
+    Type ENUM ('hotel', 'resort', 'airbnb') DEFAULT 'hotel' NOT NULL,
+    PricePerNight INT NOT NULL,   -- this is the price of the named hosting per night charges --
+    RatingAVG DECIMAL (3,2) NOT NULL DEFAULT 0,
+    ImageURL VARCHAR(255) NOT NULL,
+    Location VARCHAR(255) NOT NULL,
+    DistFromOrigin INTEGER DEFAULT 0 NOT NULL,  -- this is the distance of destination from Location --
+    Features TEXT,
+    Description TEXT NOT NULL,
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    AgentID INTEGER DEFAULT 0 NOT NULL, -- this is the id of the agent that has posted this Hosting --
+    FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID) ON DELETE CASCADE
+);
+
+
+-- Activities Table
+CREATE TABLE IF NOT EXISTS Activities (
+    ActivityID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Description TEXT NOT NULL,
+    Price INT DEFAULT 0 NOT NULL,
+    ImageURL VARCHAR(255) NOT NULL DEFAULT 0,
+    RatingAVG DECIMAL(3,2)  NOT NULL,
+    Duration VARCHAR(255) DEFAULT 1,
+    Created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- Bookings Table
+CREATE TABLE IF NOT EXISTS Bookings (
+    BookingID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    UserID INTEGER NOT NULL,
+    DestinationID INTEGER NOT NULL,
+    HostingID INTEGER NOT NULL,
+    Activities INTEGER NOT NULL,    -- this are all activities in the bookings for the destinations Though this one is in the destinations --
+    NumOfPeople INTEGER NOT NULL,    -- this is the number of people traveling to the destination --
+    BookingType VARCHAR(255) NOT NULL,   -- this is the type of of booking. eg Family, Friends, Couple, Corporate, etc --
+    StartDate VARCHAR(255) NOT NULL,
+    EndDate VARCHAR(255) NOT NULL,
+    TotalPrice INTEGER NOT NULL , -- this is the total price of the travel --
+    Status ENUM('pending', 'confirmed', 'cancelled') DEFAULT 'pending',
+    Active ENUM('active', 'expired', 'delayed', 'cancelled', 'done') DEFAULT 'active' NOT NULL,
+    Paid BOOLEAN DEFAULT FALSE NOT NULL,
+    FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (HostingID) REFERENCES Accomodation(HostingID),
+    TravelOptions INTEGER  NOT NULL
+);
+
+
+
+-- Reviews Table 
+CREATE TABLE IF NOT EXISTS Reviews (
+    ReviewID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    UserID INTEGER NOT NULL,
+    DestinationID INTEGER NOT NULL,
+    RatingAVG  DECIMAL(3,2) NOT NULL,
+    ReviewComment TEXT NOT NULL,
+    Created_at TIMESTAMP  DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+); 
+
+
+
+
+-- Events Table #Upcoming Trips 
+CREATE TABLE IF NOT EXISTS Events(
+    EventID INTEGER  PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    Name VARCHAR(255) NOT NULL,
+    Activities INTEGER NOT NULL,
+    Location VARCHAR(255) NOT NULL,
+    Country VARCHAR(255) NOT NULL,
+    DestinationID INT NOT NULL DEFAULT 0,     -- this should be given if available --
+    StartDate VARCHAR(255) NOT NULL,
+    EndDate VARCHAR(255) NOT NULL,
+    Price INTEGER NOT NULL DEFAULT 0, 
+    ImageURL VARCHAR(255) NOT NULL,
+    LikesAVG INTEGER NOT NULL DEFAULT 0,
+    Description TEXT NOT NULL,
+    Tagline VARCHAR(255) NOT NULL,     -- 5 words to be used as a tagline for the event --
+    RatingAVG DECIMAL(3,2) NOT NULL DEFAULT 0 , 
+    Created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    AgentID INTEGER DEFAULT 0 NOT NULL, -- this is the id of the agent that has posted this destination --
+    FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID)      -- This if available
+);
+
+
+
+-- Featured Table
+CREATE TABLE IF NOT EXISTS Featured (
+    FeatureID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    DestinationID INTEGER NOT NULL,
+    Name VARCHAR(255) NOT NULL,     -- this is the title of the feature  --
+    Description VARCHAR(255) NOT NULL,
+    Discount VARCHAR(255) NOT NULL DEFAULT 1,    -- this is the discount in percentage
+    StartDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, -- this is the start date --
+    EndDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, -- this is the end date  --    -- this is the validity of the featured destination  --
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID)     -- This if available
+);
+
+
+
+-- Wishlist Table  -- This is the Likes TABLE --
+CREATE TABLE IF NOT EXISTS Wishlist (
+    WishlistID INTEGER NOT NULL PRIMARY KEY  AUTO_INCREMENT,
+    UserID INTEGER NOT NULL,
+    DestinationID INTEGER NOT NULL,
+    Created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)    ,  -- This if available
+    FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID)    -- This if available
+);
+
+
+
+-- Notifications Table
+CREATE TABLE IF NOT EXISTS Notifications (
+    NotificationID INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    UserID INTEGER NOT NULL,
+    Message TEXT NOT NULL,
+    Type VARCHAR(255) NOT NULL,     -- type of notification: alert, speed, account, CRUD, etc
+    Status ENUM ('read', 'unread') DEFAULT 'unread' NOT NULL,
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    AgentID INTEGER NOT NULL DEFAULT 0,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) -- This if available
+);
+
+
+
+
+-- Discounts Table
+CREATE TABLE IF NOT EXISTS Discounts (
+    DiscountID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    DestinationID INTEGER NOT NULL,
+    Code VARCHAR(255) NOT NULL,
+    Description VARCHAR(255) NOT NULL,
+    Discount VARCHAR(255) NOT NULL DEFAULT 1,    -- this is the discount in percentage
+    DiscountName VARCHAR(255) NOT NULL,   -- this is the name of the discount eg. "valentine", "black friday", etc
+    StartDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- this is the VALIDITY STARTING date for the discount  --
+    EndDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- this is the VALIDITY ENDING date for the discount --
+    NumOfCodes INTEGER NOT NULL, -- this is the number of code coupons for the discount eg 10 times or 100times to be used for the discount --
+    Status ENUM('active', 'inactive') DEFAULT 'active' NOT NULL, -- this is the state of the ongoing discount  --
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP  NOT NULL,
+    AgentID INTEGER NOT NULL DEFAULT 0,
+    FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID),    -- This if available
+    FOREIGN KEY (AgentID) REFERENCES Agents(AgentID)
+);
+
+
+
+
+-- Payments Table
+CREATE TABLE IF NOT EXISTS Payments (
+    PaymentID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    OrderNo INTEGER NOT NULL,
+    Name TEXT NOT NULL, -- this is the company name of the payment if it is bank, the bank name --
+    UserID INTEGER NOT NULL,
+    BookingID   INTEGER NOT NULL,
+    Amount INTEGER NOT NULL,
+    PayMethod TEXT, -- this is the amount of the payment PayMethod  --
+    Status ENUM('paid', 'unpaid') DEFAULT 'unpaid' NOT NULL,
+    Active ENUM('active', 'inactive') DEFAULT 'inactive' NOT NULL,
+    TransactionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    TransactionSummary TEXT NOT NULL
+);
+
+
+
+-- Newsletter Table
+CREATE TABLE IF NOT EXISTS Newsletters (
+    NewsletterID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+    Email VARCHAR(255) NOT NULL,
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    SubscriptionStatus BOOLEAN DEFAULT TRUE,
+    Enable BOOLEAN DEFAULT FALSE     -- this is to check if notifications are enabled
+);
+
+
+
+-- Travel-Options Table
+CREATE TABLE IF NOT EXISTS TravelOptions (
+    TravelID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    BookingID  INTEGER NOT NULL,
+    DestinationID INTEGER NOT NULL,
+    AgentID INT NOT NULL,
+    TravelMode ENUM ('air', 'water', 'road', 'NONE') DEFAULT 'NONE' NOT NULL,
+    Details TEXT,
+    Prices INTEGER DEFAULT 0,
+    Status ENUM ('active', 'inactive', 'disabled') DEFAULT 'active' NOT NULL,
+    FOREIGN KEY (BookingID) REFERENCES Bookings(BookingID)  ,  -- This if available
+    FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID) , -- This if available  --
+    FOREIGN KEY (AgentID) REFERENCES Agents(AgentID)  -- This if available --
+);
+
+
+
+-- Adventure Activities Table
+CREATE TABLE IF NOT EXISTS Adventures (
+    AdventureID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    ImageURL VARCHAR(255) NOT NULL,
+    Location VARCHAR(255)  NOT NULL,
+    RatingAVG VARCHAR(255)  NOT NULL DEFAULT 0,
+    Created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+-- Blogs Table
+CREATE TABLE IF NOT EXISTS Blogs (
+    BlogID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    AuthorID INTEGER NOT NULL,   -- This could be the Agent or the UserID --
+    DestinationID INTEGER NOT NULL DEFAULT 0, -- This could be the Destination you want to attach the blog to... not a must optional --
+    BlogImage VARCHAR(255)  NOT NULL,
+    Tagline TEXT,
+    BlogTitle VARCHAR(255) NOT NULL,
+    Subtitle VARCHAR(255) NOT NULL,
+    PublishedDate TIMESTAMP  DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    BlogContent VARCHAR(255) NOT NULL, 
+    Keywords VARCHAR(255) NOT NULL,   -- These are the keywords and Hashtags --
+    FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID)  -- This if available
+);
+
+
+
+
+
+-- Create Table Agents 
+CREATE TABLE IF NOT EXISTS Agents (
+    AgentID INT PRIMARY KEY AUTO_INCREMENT,
+    CompanyName VARCHAR(255),
+    Description VARCHAR(255),
+    Keywords VARCHAR(255),
+    Country VARCHAR(255),
+    Location VARCHAR(255),
+    Established VARCHAR(255),
+    Services VARCHAR(255),
+    ProfileImg VARCHAR(255) DEFAULT 'default.jpg',
+    Phone VARCHAR(255),
+    Email  VARCHAR(255),
+    Status ENUM('active', 'inactive', 'suspended') DEFAULT 'active',
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
