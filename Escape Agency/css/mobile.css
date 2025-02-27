@@ -1,0 +1,1627 @@
+
+/*Extra Small Devices*/
+@media screen and (max-width: 480px ){
+    .hero-data h2, .hero-data h3{
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+    .hero-data h1, .hero-data h2, .hero-data h3{
+        margin: 2rem 0rem;;
+    }
+    .hero-data .enhance{
+        font-size: large;
+        font-weight: bold;
+        color: var(--primary);
+        text-decoration: underline;
+    }
+    .hero-data form div {
+        width: 100%;
+        margin-top: 1em;
+    }
+    .hero-data form div input{
+        border-radius: 4px;
+        height: 2.5rem;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+    .hero-data form div button{
+        border-radius: 3rem;
+        width: 100%;
+        border: none;
+        padding: 0.8rem;
+        background-color: var(--primary);
+        color: var(--tertiary);
+        font-size: large;
+    }
+
+
+    /*Destinations Article */
+   
+   /* General container for destination cards */
+    .destination-cards {
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap; /* Allows multiple cards if needed */
+        gap: 20px;
+    }
+    
+    /* Individual card styling */
+    .dest-1 {
+        width: 100%; /* Adjust width as needed */
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border: 2px solid var(--secondary);
+    }
+    
+    /* Image container */
+    .dest-image {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .dest-image img {
+        width: 100%;
+        height: 50vh; /* Adjust height if needed */
+        object-fit: cover;
+        filter: brightness(80%); /* Darken the image */
+        transition: filter 0.3s ease-in-out;
+    }
+    
+    .dest-image:hover img {
+        filter: brightness(60%); /* Slightly lighter on hover */
+    }
+    
+    /* Content overlay container */
+    .dest-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        color: white;
+        padding: 15px;
+    }
+    
+    /* Text content */
+    .dest-data h4 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    
+    .dest-data p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Star rating icon */
+    .dest-data p i {
+        color: gold;
+        margin-right: 5px;
+        font-size: 1rem; /* Adjust star icon size */
+    }
+    
+    /* Arrow button styling */
+    .dest-more {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background: white;
+        border-radius: 50%;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+    }
+    
+    .dest-more:hover {
+        background: #f0f0f0;
+    }
+    
+    .dest-more i {
+        font-size: 1rem;
+        color: black;
+    }
+
+    /*Activities*/
+    .adventures {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      /* Navigation styling */
+      .adventures-navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+     
+      
+      .adventures-navigation ul {
+        display: flex;
+        gap: 15px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .adventures-navigation ul li a {
+        text-decoration: none;
+        color: #f8a848;
+        font-weight: bold;
+      }
+      
+      .adventures-navigation ul li a:hover {
+        color: #d17322;
+        text-decoration: underline;
+      }
+      
+      /* Activity card container */
+      .adventures-api-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      
+      /* Individual card styling */
+      .adventures-activity {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+        width: 80%;
+      }
+      
+      
+      .adventures-activity img {
+        width: 100%;
+        height: 40vh;
+        object-fit: cover;
+        border-radius: 5px;
+        border: 1px solid var(--secondary);
+      }
+      
+      .adventure-info {
+        padding: 0px;
+        text-align: left;
+      }
+      
+      .adventure-info h6 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #f8a848;
+      }
+      
+      .adventure-info div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+      }
+      
+      .adventure-info h7 {
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+      }
+      
+      .adventure-info h7 i {
+        margin-right: 5px;
+        color: #f8a848;
+      }
+      
+      .adventure-info p {
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        margin: 0;
+      }
+      
+      .adventure-info p i {
+        margin-right: 5px;
+        color: gold; /* Star color */
+      }
+      
+      /* Pagination */
+      .adventures-api-cards {
+        display: flex;
+        overflow-x: hidden; /* Hide overflowing elements */
+        scroll-behavior: smooth; /* Smooth scrolling */
+        gap: 20px;
+        width: 100%;
+      }
+      
+      .adventures-activity {
+        flex: 0 0 100%; /* Make each card occupy the full width of the container */
+        box-sizing: border-box;
+        padding: 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: none;
+        text-align: center;
+      }
+
+
+    /*Explore */
+    .explore-img img{
+        border: 2px solid var(--secondary);
+        border-radius: 1% 80% 1% 1%;
+        width: 100%;
+        background-size: cover; /* Ensure the image covers the whole section */
+        background-position: center; /* Center the background image */
+        background-repeat: no-repeat; /* Prevent the image from repeating */    
+    }
+    .explore-data-cards{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .activities{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .activities-card .fa-solid{
+        padding: 0.5rem;
+        border: 1px solid var(--secondary);
+    }
+
+    /*Hosting*/
+    .hosting-cta img{
+        width: 100%;
+        height: 50vh;
+        object-fit: cover;
+        border-radius: 8px;
+        border:1px solid var(--secondary)
+    }
+    .hosting-options{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .hosting-option{
+        border-bottom: 2px solid var(--secondary);
+        margin-bottom: 2rem;
+    }
+    .hosting-option img{
+        border-radius: 8px;
+        border:1px solid var(--secondary)
+    }
+
+    /*Testimonials*/
+    .Testimonials{
+        padding: 15% 6%;
+    }
+    .testimonials-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap:2rem;
+    }
+
+    /*Contact*/
+    .Contact-details{
+        flex-direction: column;
+    }
+    .Contact-details form{
+        width: 100%;
+    }
+    
+    .Contact-details img{
+        width: 100%;
+        height: auto;
+
+    }
+
+    /*Footer*/
+    .footer-newsletter input{
+        width: 90%;
+    }
+
+
+
+
+
+    /*Tours and TRavel Destinations Page.*/
+
+    /*Destinations*/
+    .destinations-offer {
+        padding: 6%;
+    }
+    .destinations-offer h4{
+        color: var(--primary);
+        border-bottom: 2px solid var(--secondary);
+        width: 100%;
+    }
+    .destinations-offer-cards{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+    }
+    .destinations-offer-card{
+        padding: 3px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .destinations-offer-card img{
+        height: 50vh;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+
+    }
+    .destinations-offer-card .fa-location{
+        margin-right: 5px;
+    }
+    .destinations-offer-card .fa-star {
+        color: gold;
+        margin-right: 5px;
+        font-size: 1rem; /* Adjust star icon size */
+    }
+    .destination-offer-details, .destination-offer-more{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0rem 1rem 1rem 1rem;
+    }
+    .destination-offer-more a, .explore-destination-more a{
+        padding: 0.3rem 0.8rem;
+        text-decoration: none;
+        background-color: var(--primary);
+        border-radius: 1.2rem;
+    }
+    /*explore destinations*/
+    .explore-destinations{
+        padding: 6%;
+    }
+    .explore-destinations h3{
+        color: var(--primary);
+        border-bottom: 2px solid var(--secondary);
+    }
+    .explore-destinations-cards{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap:1rem;
+    }
+    .explore-destinations-card{
+        padding: 3px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .explore-destinations-card img{
+        height: 50vh;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .explore-destination-details{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0rem 1rem 1rem 1rem;
+    }
+    .explore-destination-details h6{
+        font-size: larger;
+        font-weight: bolder;
+    }
+    .explore-destination-more{
+        padding: 0rem 1rem 1rem 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /*Subscribe Section*/
+    .newsletter-subscription{
+        background-color: var(--lightyellow);
+        padding: 6%;
+        font-weight: 400;
+    }
+    .subscribe-form form input{
+        height: 2rem;
+        border: none;
+        padding: 0.3rem 1rem;
+        width: calc(100% - 2rem);
+        margin-top: 1rem;
+    }
+    .subscribe-form form button{
+        align-self: flex-end;
+        padding: 0.8rem;
+        background-color: var(--primary);
+        border: none;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+
+
+
+
+    /**ABOUT US PAGE*/
+
+
+    .top-hero-aboutus{
+        background-color: var(--lightyellow);
+    }
+    .top-hero-aboutus article{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .top-hero-aboutus article main{
+        font-weight: 400;
+    }
+    .top-hero-aboutus img{
+        height: 60vh;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    /*Mission and Vision*/
+    .Vision{
+        background-color: var(--tertiary);
+        padding: 6%;
+    }
+    .vision{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap:1rem;
+    }
+    .conte{
+        background-color: var(--lightyellow);
+        padding: 3%;
+        border-radius: 8px;
+    }
+
+    /*Why US*/
+    .Why-US{
+        background-color: var(--lightyellow);
+        padding: 6%;
+    }
+    .whyus div ul{
+        list-style: circle;
+    }
+    /*Why Us CTA section*/
+    .whyuscta{
+        padding: 6%;
+        margin-bottom: 2rem;
+    }
+    .whyuscta  .link-button{
+        padding: 0.5rem 1.2rem;
+        text-decoration: none;
+    }
+    .whyuscta div .link-button:first-child{
+        background-color: var(--primary);
+        border-radius: 2rem;
+        margin-right: 1rem;
+        border: 2px solid var(--primary);
+    }
+    .whyuscta div .link-button:nth-child(2){
+        border-radius: 2rem;
+        border: 2px solid var(--primary);
+    }
+    
+
+
+    /**BLOGS PAGES**/
+    .hero-data .tours{
+        background-color: var(--tertiary);
+        border-radius: 5px;
+        padding: 1% 3%;
+    }
+    .hero-data .tours h3{
+        color: var(--primary);
+        font-weight:500;
+    }
+    .hero-data .tours p{
+        color: var(--black);
+        font-weight:bolder;
+    }
+    .hero-data .tours img{
+        height: 40vh;
+        width: 100%;
+        border-radius: 5px;
+    }
+    /*Blogs*/
+    .blogs{
+        padding: 6%;
+    }
+    .blogs-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0.8rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .blog-container .blog-container-info{
+        padding: 0.8rem;
+    }
+    .blog-container img{
+        height: 40vh;
+        width: 100%;
+    }
+    .blog-container .blog-container-info .readmore-btn {
+        width: 100%;
+        text-decoration: none;
+        padding: 0.5rem;
+        background-color: var(--primary);
+    }
+
+    /*BLOG PAGE*/
+    .hero-data-blog h2{
+        color: var(--primary);
+        
+    }
+    /*Article Publication*/
+    .Article-publication .article-img{
+        height: 40vh;
+        width: calc(100% - 12%);
+        margin: 6%;
+        border-radius: 5px;
+    }
+    .article-content{
+        padding: 0% 6%;
+        display: flex;
+        align-items: center;
+    }
+    .publisher-img{
+        height: 4.2rem;
+        width: 4.2rem;
+        border-radius: 5rem;
+        margin-right: 1rem;
+    }
+    .article-writeup{
+        padding: 6%;
+    }
+
+
+
+
+    /**Events Page*/
+    .hero-data-events h1{
+        color: var(--primary);
+    }
+    .hero-data-events h3{
+        font-weight: bolder;
+    }
+    /*Events section*/
+    .hero-data-events .priest img{
+        height: 3rem;
+        margin: 2rem 0rem;
+
+    }
+    .Events{
+        padding: 6%;
+    }
+
+    .Events h4{
+        border-bottom: 2px solid var(--secondary);
+    }
+    .Events-container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+    }
+    .event{
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .event-images img{
+        height: 45vh;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .event-info{
+        padding: 0.5rem;
+        border-radius: 8px;
+        background-color: var(--tertiary);
+    }
+    .event-info-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .voice-out .fa{
+        margin-right: 1rem;
+    }
+    .event-info-bottom{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: last baseline;
+    }
+    .more-linking{
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 4rem;
+        color: var(--tertiary);
+        background-color: var(--primary);
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+
+
+    /**HOSTINGS AND STAYS PAGE**
+
+
+    .hero-pics-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+    
+    .one { grid-area: 1 / 1 / 2 / 4; }
+    .two { grid-area: 1 / 4 / 2 / 5; }
+    .three { grid-area: 1 / 5 / 2 / 6; }
+    .hero-pics-grid img{
+        height: 50vh;
+        object-fit: cover;
+        width: 100%;
+    }
+    */
+    .hosting-hero-section{
+        padding: 6%;
+        background-color: var(--lightyellow);
+    }
+    .hero-pics-grid img{
+        height: 20vh;
+        object-fit: cover;
+        width: 100%;
+        border-radius: 8px;
+    }
+    .Hosting-Listing{
+        border-bottom: 1px solid var(--secondary);
+        padding: 6%;
+        background-color: var(--lightyellow);
+    }
+    .hosting-header{
+        display: flex;
+        font-weight: 700;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--secondary);
+    }
+    .hostings-filter form div{
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+    }
+    .hostings-filter form input{
+        height: 2rem;
+        border: none;
+        padding: 0rem 0.5rem;
+        margin-right: 0.3rem;
+    }
+    .hostings-filter button{
+        color: var(--black);
+        border: none;
+        background-color: var(--primary);
+        padding: 0.5rem;
+    }
+
+    /*Hosting places*/
+    .hosting-places{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+        padding: 2rem 0rem;
+    }
+    .hosting-place{
+        border-radius: 5px;
+        background-color: var(--tertiary);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .hosting-place img{
+        height: 40vh;
+        width:99%;
+        border-radius: 5px;
+        border: 2px solid var(--secondary);
+    }
+    .hosting-place h6{
+        font-weight: 700;
+    }
+    .hosting-place-infos{
+        padding: 0.5rem;
+    }
+    .hosting-place-infos .fa-star{
+        font-size: smaller;
+        color:var(--primary);
+    }
+    .hosting-place-info{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: last baseline;
+    }
+
+
+
+    /**LOGIN Page**/
+    .loginpage{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: var(--tertiary);
+        margin: 6%;
+        padding: 0%;
+    }
+    .loginpage img{
+        height: 5vh;
+        padding: 2rem;
+    }
+    .loginpage main{
+        background-image: url("../media/pexels-josh-willink-11499-1157399.jpg");
+        background-position: center;
+        background-size: cover;
+        object-fit: cover;
+        height: 40vh;
+        margin: 0;
+        padding: 0;
+    }
+    .loginpage aside{
+        background-color: var(--tertiary);
+        padding: 6%;
+        color: var(--black);
+    }
+    .loginpage form input{
+        height: 2.2rem;
+        padding: 0.2rem 1rem;
+        outline: none;
+        border: none;
+        background-color: var(--lightyellow);
+        margin-bottom: 1rem;
+        width: calc(100% - 12%);
+    }
+    .loginpage form button{
+        padding: 0.8rem;
+        text-align: center;
+        width: 100%;
+        border: none;
+        background-color: var(--primary);
+        border-radius: 3rem;
+    }
+ 
+
+
+
+
+
+    
+
+
+
+
+}
+
+
+/*mobile*/
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .hero-data h2, .hero-data h3{
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+    .hero-data h1, .hero-data h2, .hero-data h3{
+        margin: 2rem 0rem;;
+    }
+    .hero-data .enhance{
+        font-size: large;
+        font-weight: bold;
+        color: var(--primary);
+        text-decoration: underline;
+    }
+    .hero-data form div {
+        width: 100%;
+        margin-top: 1em;
+    }
+    .hero-data form div input{
+        border-radius: 4px;
+        height: 2.5rem;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+    .hero-data form div button{
+        border-radius: 3rem;
+        width: 100%;
+        border: none;
+        padding: 0.8rem;
+        background-color: var(--primary);
+        color: var(--tertiary);
+        font-size: large;
+    }
+
+
+    /*Destinations Article */
+   
+   /* General container for destination cards */
+    .destination-cards {
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap; /* Allows multiple cards if needed */
+        gap: 20px;
+    }
+    
+    /* Individual card styling */
+    .dest-1 {
+        width: 100%; /* Adjust width as needed */
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border: 2px solid var(--secondary);
+    }
+    
+    /* Image container */
+    .dest-image {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .dest-image img {
+        width: 100%;
+        height: 50vh; /* Adjust height if needed */
+        object-fit: cover;
+        filter: brightness(80%); /* Darken the image */
+        transition: filter 0.3s ease-in-out;
+    }
+    
+    .dest-image:hover img {
+        filter: brightness(60%); /* Slightly lighter on hover */
+    }
+    
+    /* Content overlay container */
+    .dest-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        color: white;
+        padding: 15px;
+    }
+    
+    /* Text content */
+    .dest-data h4 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    
+    .dest-data p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Star rating icon */
+    .dest-data p i {
+        color: gold;
+        margin-right: 5px;
+        font-size: 1rem; /* Adjust star icon size */
+    }
+    
+    /* Arrow button styling */
+    .dest-more {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background: white;
+        border-radius: 50%;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+    }
+    
+    .dest-more:hover {
+        background: #f0f0f0;
+    }
+    
+    .dest-more i {
+        font-size: 1rem;
+        color: black;
+    }
+    /*explore*/
+    .explore-img img{
+        height: 40vh;
+        width: 95%;
+        object-fit: cover;
+    }
+
+    /*Activities*/
+    .adventures {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      /* Navigation styling */
+      .adventures-navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+     
+      
+      .adventures-navigation ul {
+        display: flex;
+        gap: 15px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .adventures-navigation ul li a {
+        text-decoration: none;
+        color: #f8a848;
+        font-weight: bold;
+      }
+      
+      .adventures-navigation ul li a:hover {
+        color: #d17322;
+        text-decoration: underline;
+      }
+      
+      /* Activity card container */
+      .adventures-api-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      
+      /* Individual card styling */
+      .adventures-activity {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+        width: 80%;
+      }
+      
+      
+      .adventures-activity img {
+        width: 100%;
+        height: 40vh;
+        object-fit: cover;
+        border-radius: 5px;
+        border: 1px solid var(--secondary);
+      }
+      
+      .adventure-info {
+        padding: 0px;
+        text-align: left;
+      }
+      
+      .adventure-info h6 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #f8a848;
+      }
+      
+      .adventure-info div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+      }
+      
+      .adventure-info h7 {
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+      }
+      
+      .adventure-info h7 i {
+        margin-right: 5px;
+        color: #f8a848;
+      }
+      
+      .adventure-info p {
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        margin: 0;
+      }
+      
+      .adventure-info p i {
+        margin-right: 5px;
+        color: gold; /* Star color */
+      }
+      
+      /* Pagination */
+      .adventures-api-cards {
+        display: flex;
+        overflow-x: hidden; /* Hide overflowing elements */
+        scroll-behavior: smooth; /* Smooth scrolling */
+        gap: 20px;
+        width: 100%;
+      }
+      
+      .adventures-activity {
+        flex: 0 0 100%; /* Make each card occupy the full width of the container */
+        box-sizing: border-box;
+        padding: 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: none;
+        text-align: center;
+      }
+
+
+    /*Explore */
+    .explore-img img{
+        border: 2px solid var(--secondary);
+        border-radius: 1% 80% 1% 1%;
+        width: 100%;
+        background-size: cover; /* Ensure the image covers the whole section */
+        background-position: center; /* Center the background image */
+        background-repeat: no-repeat; /* Prevent the image from repeating */    
+    }
+    .explore-data-cards{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .activities{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .activities-card .fa-solid{
+        padding: 0.5rem;
+        border: 1px solid var(--secondary);
+    }
+
+    /*Hosting*/
+    .hosting-cta img{
+        width: 100%;
+        height: 50vh;
+        object-fit: cover;
+        border-radius: 8px;
+        border:1px solid var(--secondary)
+    }
+    .hosting-options{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .hosting-option{
+        border-bottom: 2px solid var(--secondary);
+        margin-bottom: 2rem;
+    }
+    .hosting-option img{
+        border-radius: 8px;
+        border:1px solid var(--secondary)
+    }
+
+    /*Testimonials*/
+    .Testimonials{
+        padding: 15% 6%;
+    }
+    .testimonials-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap:2rem;
+    }
+
+    /*Contact*/
+    .Contact-details{
+        flex-direction: column;
+    }
+    .Contact-details form{
+        width: 100%;
+    }
+    
+    .Contact-details img{
+        width: 100%;
+        height: auto;
+
+    }
+
+    /*Footer*/
+    .footer-newsletter input{
+        width: 100%;
+    }
+
+
+
+
+
+    /*Tours and TRavel Destinations Page.*/
+
+    /*Destinations*/
+    .destinations-offer {
+        padding: 6%;
+    }
+    .destinations-offer h4{
+        color: var(--primary);
+        border-bottom: 2px solid var(--secondary);
+        width: 100%;
+    }
+    .destinations-offer-cards{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+    }
+    .destinations-offer-card{
+        padding: 3px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .destinations-offer-card img{
+        height: 50vh;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+
+    }
+    .destinations-offer-card .fa-location{
+        margin-right: 5px;
+    }
+    .destinations-offer-card .fa-star {
+        color: gold;
+        margin-right: 5px;
+        font-size: 1rem; /* Adjust star icon size */
+    }
+    .destination-offer-details, .destination-offer-more{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0rem 1rem 1rem 1rem;
+    }
+    .destination-offer-more a, .explore-destination-more a{
+        padding: 0.3rem 0.8rem;
+        text-decoration: none;
+        background-color: var(--primary);
+        border-radius: 1.2rem;
+    }
+    /*explore destinations*/
+    .explore-destinations{
+        padding: 6%;
+    }
+    .explore-destinations h3{
+        color: var(--primary);
+        border-bottom: 2px solid var(--secondary);
+    }
+    .explore-destinations-cards{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap:1rem;
+    }
+    .explore-destinations-card{
+        padding: 3px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .explore-destinations-card img{
+        height: 50vh;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .explore-destination-details{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0rem 1rem 1rem 1rem;
+    }
+    .explore-destination-details h6{
+        font-size: larger;
+        font-weight: bolder;
+    }
+    .explore-destination-more{
+        padding: 0rem 1rem 1rem 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /*Subscribe Section*/
+    .newsletter-subscription{
+        background-color: var(--lightyellow);
+        padding: 6%;
+        font-weight: 400;
+    }
+    .subscribe-form form input{
+        height: 2rem;
+        border: none;
+        padding: 0.3rem 1rem;
+        width: calc(100% - 2rem);
+        margin-top: 1rem;
+    }
+    .subscribe-form form button{
+        align-self: flex-end;
+        padding: 0.8rem;
+        background-color: var(--primary);
+        border: none;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+
+
+
+
+    /**ABOUT US PAGE*/
+
+
+    .top-hero-aboutus{
+        background-color: var(--lightyellow);
+    }
+    .top-hero-aboutus article{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .top-hero-aboutus article main{
+        font-weight: 400;
+    }
+    .top-hero-aboutus img{
+        height: 60vh;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    /*Mission and Vision*/
+    .Vision{
+        background-color: var(--tertiary);
+        padding: 6%;
+    }
+    .vision{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap:1rem;
+    }
+    .conte{
+        background-color: var(--lightyellow);
+        padding: 3%;
+        border-radius: 8px;
+    }
+
+    /*Why US*/
+    .Why-US{
+        background-color: var(--lightyellow);
+        padding: 6%;
+    }
+    .whyus div ul{
+        list-style: circle;
+    }
+    /*Why Us CTA section*/
+    .whyuscta{
+        padding: 6%;
+        margin-bottom: 2rem;
+    }
+    .whyuscta  .link-button{
+        padding: 0.5rem 1.2rem;
+        text-decoration: none;
+    }
+    .whyuscta div .link-button:first-child{
+        background-color: var(--primary);
+        border-radius: 2rem;
+        margin-right: 1rem;
+        border: 2px solid var(--primary);
+    }
+    .whyuscta div .link-button:nth-child(2){
+        border-radius: 2rem;
+        border: 2px solid var(--primary);
+    }
+    
+
+
+    /**BLOGS PAGES**/
+    .hero-data .tours{
+        background-color: var(--tertiary);
+        border-radius: 5px;
+        padding: 1% 3%;
+    }
+    .hero-data .tours h3{
+        color: var(--primary);
+        font-weight:500;
+    }
+    .hero-data .tours p{
+        color: var(--black);
+        font-weight:bolder;
+    }
+    .hero-data .tours img{
+        height: 40vh;
+        width: 100%;
+        border-radius: 5px;
+    }
+    /*Blogs*/
+    .blogs{
+        padding: 6%;
+    }
+    .blogs-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0.8rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .blog-container .blog-container-info{
+        padding: 0.8rem;
+    }
+    .blog-container img{
+        height: 40vh;
+        width: 100%;
+    }
+    .blog-container .blog-container-info .readmore-btn {
+        width: 100%;
+        text-decoration: none;
+        padding: 0.5rem;
+        background-color: var(--primary);
+    }
+
+    /*BLOG PAGE*/
+    .hero-data-blog h2{
+        color: var(--primary);
+        
+    }
+    /*Article Publication*/
+    .Article-publication .article-img{
+        height: 40vh;
+        width: calc(100% - 12%);
+        margin: 6%;
+        border-radius: 5px;
+    }
+    .article-content{
+        padding: 0% 6%;
+        display: flex;
+        align-items: center;
+    }
+    .publisher-img{
+        height: 4.2rem;
+        width: 4.2rem;
+        border-radius: 5rem;
+        margin-right: 1rem;
+    }
+    .article-writeup{
+        padding: 6%;
+    }
+
+
+
+
+    /**Events Page*/
+    .hero-data-events h1{
+        color: var(--primary);
+    }
+    .hero-data-events h3{
+        font-weight: bolder;
+    }
+    /*Events section*/
+    .hero-data-events .priest img{
+        height: 3rem;
+        margin: 2rem 0rem;
+
+    }
+    .Events{
+        padding: 6%;
+    }
+
+    .Events h4{
+        border-bottom: 2px solid var(--secondary);
+    }
+    .Events-container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+    }
+    .event{
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .event-images img{
+        height: 45vh;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .event-info{
+        padding: 0.5rem;
+        border-radius: 8px;
+        background-color: var(--tertiary);
+    }
+    .event-info-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .voice-out .fa{
+        margin-right: 1rem;
+    }
+    .event-info-bottom{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: last baseline;
+    }
+    .more-linking{
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 4rem;
+        color: var(--tertiary);
+        background-color: var(--primary);
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+
+
+    /**HOSTINGS AND STAYS PAGE**
+
+
+    .hero-pics-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+    
+    .one { grid-area: 1 / 1 / 2 / 4; }
+    .two { grid-area: 1 / 4 / 2 / 5; }
+    .three { grid-area: 1 / 5 / 2 / 6; }
+    .hero-pics-grid img{
+        height: 50vh;
+        object-fit: cover;
+        width: 100%;
+    }
+    */
+    .hosting-hero-section{
+        padding: 6%;
+        background-color: var(--lightyellow);
+    }
+    .hero-pics-grid img{
+        height: 20vh;
+        object-fit: cover;
+        width: 100%;
+        border-radius: 8px;
+    }
+    .Hosting-Listing{
+        border-bottom: 1px solid var(--secondary);
+        padding: 6%;
+        background-color: var(--lightyellow);
+    }
+    .hosting-header{
+        display: flex;
+        font-weight: 700;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--secondary);
+    }
+    .hostings-filter form div{
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+    }
+    .hostings-filter form input{
+        height: 2rem;
+        border: none;
+        padding: 0rem 0.5rem;
+        margin-right: 0.3rem;
+    }
+    .hostings-filter button{
+        color: var(--black);
+        border: none;
+        background-color: var(--primary);
+        padding: 0.5rem;
+    }
+
+    /*Hosting places*/
+    .hosting-places{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+        padding: 2rem 0rem;
+    }
+    .hosting-place{
+        border-radius: 5px;
+        background-color: var(--tertiary);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .hosting-place img{
+        height: 40vh;
+        width:99%;
+        border-radius: 5px;
+        border: 2px solid var(--secondary);
+    }
+    .hosting-place h6{
+        font-weight: 700;
+    }
+    .hosting-place-infos{
+        padding: 0.5rem;
+    }
+    .hosting-place-infos .fa-star{
+        font-size: smaller;
+        color:var(--primary);
+    }
+    .hosting-place-info{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: last baseline;
+    }
+
+
+
+    /**LOGIN Page**/
+    .loginpage{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: var(--tertiary);
+        margin: 6%;
+        padding: 0%;
+    }
+    .loginpage img{
+        height: 5vh;
+        padding: 2rem;
+    }
+    .loginpage main{
+        background-image: url("../media/pexels-josh-willink-11499-1157399.jpg");
+        background-position: center;
+        background-size: cover;
+        object-fit: cover;
+        height: 40vh;
+        margin: 0;
+        padding: 0;
+    }
+    .loginpage aside{
+        background-color: var(--tertiary);
+        padding: 6%;
+        color: var(--black);
+    }
+    .loginpage form input{
+        height: 2.2rem;
+        padding: 0.2rem 1rem;
+        outline: none;
+        border: none;
+        background-color: var(--lightyellow);
+        margin-bottom: 1rem;
+        width: calc(100% - 12%);
+    }
+    .loginpage form button{
+        padding: 0.8rem;
+        text-align: center;
+        width: 100%;
+        border: none;
+        background-color: var(--primary);
+        border-radius: 3rem;
+    }
+ 
+
+    
+}

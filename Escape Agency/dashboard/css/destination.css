@@ -1,0 +1,185 @@
+.destination-page-main{
+    padding: 1% 6%;
+}
+article{
+    padding: 2% 0%;
+}
+.dest-info-images{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+.dest-info-images img{
+    border-radius: 8px;
+    height: 40vh;
+}
+.dest-map{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.dest-detail-data{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.dest-detail-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.dest-description{
+    width: 100%;
+    font-weight: 400;
+}
+.dest-description a {
+    text-decoration: none;
+    color: var(--tertiary);
+    padding: 0.5rem 1.5rem;
+    background-color: var(--primary);
+    font-weight: 500;
+    border-radius: 3rem;
+}
+.gps-map-data{
+    width: 100%;
+}
+.gps-map-data img{
+    width: 20vw;
+    height: 40vh;
+    border-radius: 8px;
+    object-fit: cover;
+
+}
+
+/*Activities and Travel*/
+.travel-activities{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:2rem;
+    align-items: flex-start;
+}
+.dest-activities-info{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.2rem;
+    text-wrap: none;
+}
+.dest-activities-info div p{
+    border: 1px solid var(--secondary);
+    padding: 0.2rem;
+    border-radius: 3rem;
+    text-align: center;
+}
+.dest-travel-info{
+    width: 100%;
+    border: 1px solid var(--lightyellow);
+    border-radius: 8px;
+   display: flex;
+   flex-direction: column;
+   align-items: left;
+   gap: 0.5rem;
+   padding: 0.2rem;
+}
+.travel-type {
+    background-color: var(--lightyellow);
+    padding: 0rem 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+/*Reviews and hostings*/
+.review-hosting{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+.review-hosting main{
+    width: 70%;
+}
+.dest-client-reviews{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.review-card{
+    font-size:0.9rem;
+    border: 1px solid var(--lightyellow);
+    padding: 0.5rem;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+.review-card div:nth-child(2) p{
+    font-weight: 500;
+}
+.client-data{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center
+}
+.client-data img{
+    height: 4rem;
+    width: 4rem;
+}
+.hostings{
+    width: 25%;
+}
+.hostings-cards{
+    border: 1px solid var(--lightyellow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.3rem;
+    border-radius: 3px;
+    height: 50vh;
+    overflow-y: auto;
+}
+.hosting-place-card{
+    padding: 0.1rem 0.5rem;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--secondary);
+    padding: 0rem 0.5rem;
+    font-size: smaller;
+}
+.hosting-name-more{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:first baseline;
+}
+.hosting-name-more a {
+    font-size: smaller;
+}
+.hostings-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.hostings-info p:first-child{
+    font-weight: 700;
+}
+
+/**Destination gallery**/
+.destination-imgs{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+.destination-imgs img{
+    height: 40vh;
+    width: 20vw;
+    border-radius: 5px;
+    object-fit: cover;
+}
+.destination-imgs img:hover{
+    transition: 0.3s ease-in-out;
+    height: 60vh;
+    width: auto;
+}

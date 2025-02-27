@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+*{
+    scroll-behavior: smooth;   
+}
+body{
+    margin: 0px;
+    font-family: 'Titillium Web', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: scroll;
+    
+}
+
+
+:root{
+    --primary: #F8BF0E;
+    --secondary: #00CBE2;
+    --tertiary: #fff;
+    --black: #000;
+    --lightyellow:#fdeec0;
+}
+
+.hero{
+    background: 
+        linear-gradient(
+            to top,
+            rgb(0, 0, 0, 0.814),
+            rgba(0, 0, 0, 0.614)
+        ),
+        url('/media/pexels-asadphoto-1268855.jpg');
+    background-size: cover; /* Ensure the image covers the whole section */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100%; /* Use 100vh to ensure the hero section takes the full viewport height */
+    color: #fff;
+    
+}
+article{
+    padding:6%;
+}
+input{
+    outline: none;
+}
+.pad-5{
+    padding:5%
+}
+
+
+/*Article destinations*/
+.destinations{
+    background: 
+        linear-gradient(
+            to top,
+            rgb(0, 0, 0, 0.814),
+            rgba(0, 0, 0, 0.614)
+        ),
+        url('/media/pexels-asadphoto-1268855.jpg');
+    background-size: cover; /* Ensure the image covers the whole section */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100%;  /*Use 100vh to ensure the hero section takes the full viewport height */
+    color: #fff;
+    border-radius: 5px;
+    margin: 6%;
+}
+.destinations infos{
+    color: var(--primary);
+    font-weight: 900;
+}
+.destinations a{
+    padding: 0.6rem 3rem;
+    background-color: var(--primary);
+    text-decoration: none;
+    border-radius: 3rem;
+    font-size: smaller;
+}
+/*ADVENTURES*/
+.ADVENTURES{
+    background-color: var(--tertiary);
+}
+
+/*Explore*/
+.explore header h4{
+    color: var(--primary);
+}
+.explore aside h5{
+    color: var(--primary);
+}
+.explore-data-card{
+    text-align: center;
+    color: var(--primary);
+    border: 1px solid var(--secondary) ;
+    box-shadow: 3px 8px 8px 5px #e5e5e5;
+}
+
+/*Hosting*/
+
+.Hosting h3{
+    color: var(--primary);
+}
+
+.hosting-cta{
+    padding:5%;
+    border: 1px solid var(--secondary);
+    box-shadow: 3px 8px 8px 5px #e5e5e5;
+    border-radius: 5px;
+}
+.hosting-cta button{
+    background-color: var(--secondary);
+    padding: 0.5rem 1.5rem;
+    border:none;
+    font-size: 1rem;
+    color: var(--tertiary);
+    text-decoration: none;
+    border-radius: 5px;
+}
+.hosting-options{
+    margin-top: 2rem;
+}
+.hosting-options .hosting-option img{
+    height: 30vh;
+    object-fit: fill;
+    width: 100%;
+    
+}
+
+/*Testimonials*/
+.Testimonials{
+    background: 
+    linear-gradient(
+        to top,
+        rgb(0, 0, 0, 0.814),
+        rgba(0, 0, 0, 0.714)
+    ),
+    url('/media/pexels-quang-nguyen-vinh-222549-4078053.jpg');
+    background-size: cover; /* Ensure the image covers the whole section */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100%; /* Use 100vh to ensure the hero section takes the full viewport height */
+}
+.Testimonials h3, .Testimonials p{
+    color: var(--primary);
+}
+.client-testimonial{
+    padding: 3%;
+    background-color: var(--tertiary);
+    border-radius: 5px;
+}
+.client-testimonial p{
+    color: var(--black);
+}
+.client-testimonial p:nth-child(2){
+    font-weight: bolder;
+}
+
+/*Booking*/
+.Booking{
+    margin: 3rem 0rem;
+}
+.Booking .booking-buttons{
+    display: flex;
+    width: 100%;
+    gap:0.1rem;
+}
+.Booking .booking-buttons  a{
+    padding:0.6rem 3rem;
+    text-decoration:none;
+}
+.Booking .booking-buttons  .booknow{
+    background-color: var(--primary);
+    color:var(--tertiary);  
+    border-radius: 2rem;
+}
+.Booking .booking-buttons  .contactus{
+    color:var(--black); 
+    border: 2px solid var(--primary); 
+    border-radius: 2rem;
+}
+
+/*Contact*/
+.Contact{
+    background-color: var(--lightyellow);
+    padding: 10% 6%;
+}
+.Contact h3{
+    color: var(--primary);
+}
+.Contact-details{
+    display: flex;
+}
+.Contact-details input{
+    width: 98%;
+    outline: none;
+    height: 2.1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border: none;
+    border-bottom:1px solid var(--secondary) ;
+}
+.Contact-details form button{
+    padding: 0.8rem 2rem;
+    float: right;
+    background-color: var(--primary);
+    border:none;
+    border-radius: 3rem;
+}
+
+/*Footer*/
+footer{
+    background-color: var(--black);
+    color:white;
+    padding: 20% 10%;
+}
+footer h1{
+    color: var(--primary);
+    font-weight:900;
+}
+footer h7{
+    text-decoration: underline;
+}
+.footer-newsletter input{
+    height: 2.5rem;
+    border-radius: 3px;
+    border: none;
+    border-bottom: 1px solid var(--secondary);
+    padding: 0rem 1rem;
+}
+
+   /**BLOGS PAGES**/
+
+

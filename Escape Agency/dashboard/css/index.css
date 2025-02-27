@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+*{
+    scroll-behavior: smooth;   
+}
+body{
+    margin: 0px;
+    font-family: 'Titillium Web', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: scroll;
+    
+}
+
+
+:root{
+    --primary: #F8BF0E;
+    --secondary: #00CBE2;
+    --tertiary: #fff;
+    --black: #000;
+    --lightyellow:#fdeec0;
+}
+
+.navbar {
+    box-shadow:0px 3px 4px rgb(155, 155, 155); ;
+}
+.hero{/*
+    background: 
+        linear-gradient(
+            to top,
+            rgb(0, 0, 0, 0.814),
+            rgba(0, 0, 0, 0.614)
+        ),
+        url('/media/pexels-asadphoto-1268855.jpg');
+    background-size: cover; /* Ensure the image covers the whole section *
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100%; /* Use 100vh to ensure the hero section takes the full viewport height */
+    color: #fff;
+    background-color: var(--tertiary);
+}
+article{
+    padding:6%;
+}
+input{
+    outline: none;
+}
+.pad-5{
+    padding:5%
+}
+
+/*Dashboard*/
+.dash{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.cta-button a{
+    text-decoration: none;
+    font-weight: 400;
+}
+ a .notification-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: var(--lightyellow);
+    color: var(--black);
+    border: none;
+    text-decoration: none;
+    padding: 0.2rem;
+    border-radius: 1.5rem;
+}
+a .useraccount{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: var(--lightyellow);
+    color: var(--black);
+    border: none;
+    text-decoration: none;
+    padding: 0rem 1rem !important;
+    border-radius: 1.5rem;
+}
+
+/*Booking deatails*/
+.destination-booking{
+    padding: 0% 2%;
+    display: flex;
+    flex-direction: row;
+}
+.dest-location img{
+    height: 30vh;
+    width: 20vw;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.dest-info-form{
+    border:1px solid var(--lightyellow);
+    width: 70vw;
+    margin: 3% 3%;
+    box-shadow:0px 3px 4px rgb(155, 155, 155); 
+}
+.dest-info-form form{
+    
+    padding: 2%;
+    display: flex;
+    flex-direction: row;
+}
+.dest-info-form form input{
+    width: 30vw;
+    height: 1.3rem;
+    background-color: var(--lightyellow);
+    border: none;
+    margin: 0.2rem 0rem;
+    font-size: small;
+    padding: 0.5rem;
+}
+.dest-info-form form .nombre {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    justify-content: space-between;
+    gap: 1%;
+}
+.dest-info-form form .nombre .ports{
+    width: 15%;
+}
+.dest-info-form form .nombre .phone-number{
+    width: 84%;
+}
+.one-side, .two-side{
+    margin:2%;
+}
+.dest-summary{
+    padding:2%  4%;
+    font-weight: 400;
+    font-size:smaller;
+}
+
+.payment-summary{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0rem;
+    font-size: smaller;
+    font-weight: bold;
+}
+.proceed-checkout{
+    padding: 0% 4%;
+}
+.checkout-details {
+    border-bottom: 1px solid var(--secondary);
+}
+.checkout-details div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:2rem;
+    font-weight:400 ;
+}
+.total{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:2rem;
+    font-weight: bold;
+}
+.checkout-btn{
+    margin: 3% 0%;
+    text-align: right;
+}
+.checkout-btn a {
+    text-decoration: none;
+    color: var(--tertiary);
+    font-weight: bold;
+    background-color: var(--primary);
+    padding: 0.8rem 1rem;
+    margin-bottom: 2%;
+    font-size: smaller;
+    border-radius: 3rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Article destinations*/
+.destinations{
+    background: 
+        linear-gradient(
+            to top,
+            rgb(0, 0, 0, 0.814),
+            rgba(0, 0, 0, 0.614)
+        ),
+        url('/media/pexels-asadphoto-1268855.jpg');
+    background-size: cover; /* Ensure the image covers the whole section */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100%;  /*Use 100vh to ensure the hero section takes the full viewport height */
+    color: #fff;
+    border-radius: 5px;
+    margin: 6%;
+}
+.destinations infos{
+    color: var(--primary);
+    font-weight: 900;
+}
+.destinations a{
+    padding: 0.6rem 3rem;
+    background-color: var(--primary);
+    text-decoration: none;
+    border-radius: 3rem;
+    font-size: smaller;
+}
+/*ADVENTURES*/
+.ADVENTURES{
+    background-color: var(--lightyellow);
+}
+
+/*Explore*/
+.explore header h4{
+    color: var(--primary);
+}
+.explore aside h5{
+    color: var(--primary);
+}
+.explore-data-card{
+    text-align: center;
+    color: var(--primary);
+    border: 1px solid var(--secondary) ;
+    box-shadow: 3px 8px 8px 5px #e5e5e5;
+}
+
+/*Hosting*/
+
+.Hosting h3{
+    color: var(--primary);
+}
+
+.hosting-cta{
+    padding:5%;
+    border: 1px solid var(--secondary);
+    box-shadow: 3px 8px 8px 5px #e5e5e5;
+    border-radius: 5px;
+}
+.hosting-cta button{
+    background-color: var(--secondary);
+    padding: 0.5rem 1.5rem;
+    border:none;
+    font-size: 1rem;
+    color: var(--tertiary);
+    text-decoration: none;
+    border-radius: 5px;
+}
+.hosting-options{
+    margin-top: 2rem;
+}
+.hosting-options .hosting-option img{
+    height: 30vh;
+    object-fit: fill;
+    width: 100%;
+    
+}
+
+/*Testimonials*/
+.Testimonials{
+    background: 
+    linear-gradient(
+        to top,
+        rgb(0, 0, 0, 0.814),
+        rgba(0, 0, 0, 0.714)
+    ),
+    url('/media/pexels-quang-nguyen-vinh-222549-4078053.jpg');
+    background-size: cover; /* Ensure the image covers the whole section */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100%; /* Use 100vh to ensure the hero section takes the full viewport height */
+}
+.Testimonials h3, .Testimonials p{
+    color: var(--primary);
+}
+.client-testimonial{
+    padding: 3%;
+    background-color: var(--tertiary);
+    border-radius: 5px;
+}
+.client-testimonial p{
+    color: var(--black);
+}
+.client-testimonial p:nth-child(2){
+    font-weight: bolder;
+}
+
+/*Booking*/
+.Booking{
+    margin: 3rem 0rem;
+}
+.Booking .booking-buttons{
+    display: flex;
+    width: 100%;
+    gap:0.1rem;
+}
+.Booking .booking-buttons  a{
+    padding:0.6rem 3rem;
+    text-decoration:none;
+}
+.Booking .booking-buttons  .booknow{
+    background-color: var(--primary);
+    color:var(--tertiary);  
+    border-radius: 2rem;
+}
+.Booking .booking-buttons  .contactus{
+    color:var(--black); 
+    border: 2px solid var(--primary); 
+    border-radius: 2rem;
+}
+
+/*Contact*/
+.Contact{
+    background-color: var(--lightyellow);
+    padding: 10% 6%;
+}
+.Contact h3{
+    color: var(--primary);
+}
+.Contact-details{
+    display: flex;
+}
+.Contact-details input{
+    width: 98%;
+    outline: none;
+    height: 2.1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border: none;
+    border-bottom:1px solid var(--secondary) ;
+}
+.Contact-details form button{
+    padding: 0.8rem 2rem;
+    float: right;
+    background-color: var(--primary);
+    border:none;
+    border-radius: 3rem;
+}
+
+/*Footer*/
+footer{
+    background-color: var(--black);
+    color:white;
+    padding: 20% 10%;
+}
+footer h1{
+    color: var(--primary);
+    font-weight:900;
+}
+footer h7{
+    text-decoration: underline;
+}
+.footer-newsletter input{
+    height: 2.5rem;
+    border-radius: 3px;
+    border: none;
+    border-bottom: 1px solid var(--secondary);
+    padding: 0rem 1rem;
+}
+
+   /**DAshboard Contents**/
+   main article .dashboard main{
+    width: 20vw;
+    height: 100%;
+   }
+
+
