@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>SuperAdmin Escape Agency</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
@@ -33,7 +33,7 @@
         <ul class="nav">
           
           <li class="nav-item nav-category">
-            <span class="nav-link">ESACAPE AGENCY REPORTS</span>
+            <span class="nav-link">ESCAPE AGENCY REPORTS</span>
           </li>
           <li class="nav-item menu-items">
             <a class="nav-link" href="index.php">
@@ -62,7 +62,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="agents.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-checkbox-multiple-marked-outline"></i>
               </span>
               <span class="menu-title">Our Agents</span>
             </a>
@@ -70,7 +70,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="hostings.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-hotel"></i>
               </span>
               <span class="menu-title">Hostings</span>
             </a>
@@ -78,7 +78,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="events.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-layers"></i>
               </span>
               <span class="menu-title">Events</span>
             </a>
@@ -86,7 +86,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="payments.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-cash"></i>
               </span>
               <span class="menu-title">Payments</span>
             </a>
@@ -94,7 +94,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="activities.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-dice-5"></i>
               </span>
               <span class="menu-title">Activities</span>
             </a>
@@ -102,7 +102,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="reviews.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-filter-outline"></i>
               </span>
               <span class="menu-title">Reviews</span>
             </a>
@@ -111,7 +111,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="featured.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-lan-pending"></i>
               </span>
               <span class="menu-title">Featured</span>
             </a>
@@ -119,7 +119,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="wishlist.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-nature"></i>
               </span>
               <span class="menu-title">Wishlist</span>
             </a>
@@ -127,7 +127,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="notifications.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-bell-ring"></i>
               </span>
               <span class="menu-title">Notifications</span>
             </a>
@@ -135,7 +135,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="discounts.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-blur"></i>
               </span>
               <span class="menu-title">Discounts</span>
             </a>
@@ -144,7 +144,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="newsletters.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-bookmark-outline"></i>
               </span>
               <span class="menu-title">Newsletters</span>
             </a>
@@ -152,7 +152,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="travels.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-send"></i>
               </span>
               <span class="menu-title">Travel Options</span>
             </a>
@@ -160,7 +160,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="blogs.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-tab"></i>
               </span>
               <span class="menu-title">Blogs</span>
             </a>
@@ -168,7 +168,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="history.php">
               <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
+                <i class="mdi mdi-view-list"></i>
               </span>
               <span class="menu-title">Logs and History</span>
             </a>
@@ -190,13 +190,12 @@
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
                 <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Search products">
+                  <input type="text" class="form-control" placeholder="Search From Admin">
                 </form>
               </li>
             </ul>
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item dropdown d-none d-lg-block">
-                <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
                   <h6 class="p-3 mb-0">Projects</h6>
                   <div class="dropdown-divider"></div>
