@@ -1,3 +1,82 @@
+<?php
+
+include_once("config/connection.php");
+
+
+//LOGIN THE SUPERADMIN USER
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login']))
+{
+    $status = "OK"; //initial status
+    $msg="";
+    $email=mysqli_real_escape_string($conn,$_POST['email']); //fetching details through post method
+    $password = mysqli_real_escape_string($conn,$_POST['password']);
+    $errormsg ="";
+
+    if ( strlen($email) < 4 ){
+    $msg=$msg."Email should be more than 4 characters.<BR>";
+    $status= "NOTOK";}
+
+    if ( strlen($password) < 4 ){ //checking if password is greater then 8 or not
+    $msg=$msg."Password must be more than 4 character length<BR>";
+    $status= "NOTOK";}
+        
+    $query3 ="SELECT password FROM users WHERE (email = '" . mysqli_real_escape_string($conn,$_POST['email']) . "')";
+    $result3 = mysqli_query($conn,$query3);
+    $dbpassword=0;
+    while($row = mysqli_fetch_array($result3))
+    {
+    $dbpassword="$row[password]";
+    }   
+
+    if ($dbpassword !== $password) {
+    $msg=$msg."Password is Incorrect";
+    $status= "NOTOK";
+    }
+
+    if($status=="OK"){
+        // Retrieve username and password from database according to user's input, preventing sql injection
+        $query ="SELECT * FROM users WHERE (email = '" . mysqli_real_escape_string($conn,$_POST['email']) . "') AND (passwordHash = '" . mysqli_real_escape_string($conn,$_POST['password']) . "')";
+        
+        if ($stmt = mysqli_prepare($conn, $query)) {
+
+            /* execute query */
+            mysqli_stmt_execute($stmt);
+
+            /* store result */
+            mysqli_stmt_store_result($stmt);
+
+            $num=mysqli_stmt_num_rows($stmt);
+
+            /* close statement */
+            mysqli_stmt_close($stmt);
+        }
+        //mysqli_close($con);
+        // Check username and password match
+    else{
+            session_start();
+            // Set username session variable
+            $_SESSION['email'] =$email;
+        
+            // Jump to secured page
+            print "
+            <script language='javascript'>
+            window.location = 'index.php?email=$email';
+            </script>";   
+        }
+
+    }
+      else {
+            $errormsg= "<p class='Errors_Red'>".$msg."</p>";           
+      }
+}
+
+
+
+
+
+
+?>
+<!DOCTYPE html>
 <html lang="en"><head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -26,24 +105,34 @@
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-left mb-3">Login</h3>
                 <h4 class="card-title text-left mb-3">Escape Agency SuperAdmin</h4>
-                <form>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "utf-8"); ?>" method="post">
                   <div class="form-group">
-                    <label>Username or email *</label>
-                    <input type="text" class="form-control p_input">
+                    <label>Email *</label>
+                    <input type="text" class="form-control p_input" name="email">
                   </div>
                   <div class="form-group">
                     <label>Password *</label>
-                    <input type="text" class="form-control p_input">
+                    <input type="text" class="form-control p_input" name="password">
                   </div>
+                  <div>
+                  <?php 
+                          if($_SERVER['REQUEST_METHOD'] == 'POST' && ($errormsg != ""))
+                          {
+                          print $errormsg;
+                          print $msg;
+                          }
+                      ?> 
+
                   <div class="form-group d-flex align-items-center justify-content-between">
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input"> Remember me <i class="input-helper"></i></label>
-                    </div>
+                        <input type="checkbox" class="form-check-input"> Remember me <i class="input-helper"></i></label>    
+                      </div>
+
                     <a href="#" class="forgot-pass">Forgot password</a>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                    <button type="login" class="btn btn-primary btn-block enter-btn">Login</button>
                   </div>
                   <div class="d-flex">
                     <button class="btn btn-facebook mr-2 col">
@@ -51,7 +140,7 @@
                     <button class="btn btn-google col">
                       <i class="mdi mdi-google-plus"></i> Google plus </button>
                   </div>
-                  <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p>
+                  <p class="sign-up">Don't have an Account?<a href="register.php"> Sign Up</a></p>
                 </form>
               </div>
             </div>
