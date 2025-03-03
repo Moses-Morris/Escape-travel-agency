@@ -1,3 +1,7 @@
+<?php
+     include 'config/connection.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,19 +64,19 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="agents.php">
-              <span class="menu-icon">
-                <i class="mdi mdi-checkbox-multiple-marked-outline"></i>
-              </span>
-              <span class="menu-title">Our Agents</span>
-            </a>
-          </li>
-          <li class="nav-item menu-items">
             <a class="nav-link" href="hostings.php">
               <span class="menu-icon">
                 <i class="mdi mdi-hotel"></i>
               </span>
               <span class="menu-title">Hostings</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="agents.php">
+              <span class="menu-icon">
+                <i class="mdi mdi-checkbox-multiple-marked-outline"></i>
+              </span>
+              <span class="menu-title">Our Agents</span>
             </a>
           </li>
           <li class="nav-item menu-items">

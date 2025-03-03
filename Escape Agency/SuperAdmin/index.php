@@ -393,7 +393,7 @@
                             <th> BookingsAmount </th>
                             <th> Destination Price </th>
                             <th> Featured </th>
-                            
+                            <th> Created On </th>
                             <th> Status</th>
                             
                           </tr>
@@ -411,7 +411,9 @@
                                   $destAgent = $row['AgentID'];
                                   $destPrice = $row['Price'];
                                   $destFeature = $row['Featured'];
-                                  
+                                  $destDate1 = $row['Created_at'];
+                                  $destDate = date("d-m-Y", strtotime($destDate1));
+
                                   //check details of the destination
                                   $destDetails = mysqli_query($conn,"SELECT COUNT(*) FROM  bookings WHERE DestinationID=$destId ORDER BY StartDate");
                                   $r = mysqli_fetch_row($destDetails);
@@ -444,6 +446,7 @@
                                       
                                       <td>".$destPrice."</td>
                                       <td> ".$feature." </td>
+                                      <td> ".$destDate." </td>
                                       <td>
                                         <div class='badge badge-outline-success'>Active</div>
                                       </td>
