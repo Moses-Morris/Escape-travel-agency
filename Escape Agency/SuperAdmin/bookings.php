@@ -337,6 +337,7 @@
                                     <td> ".$start." </td>
                                     <td> ".$end." </td>
                                     <td> ". $price."</td>
+                                    
                                     <td>
                                       <div class='badge badge-outline-success'>".$state."</div>
                                     </td>

@@ -18,10 +18,44 @@
                     <div class="row">
                       <div class="col-8 col-sm-12 col-xl-8 my-auto">
                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 class="mb-0">$32123</h2>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
-                        </div>
-                        <h6 class="text-muted font-weight-normal">11.38% Since last month</h6>
+                        <?php
+                              //check details of the destination
+                              $feature = mysqli_query($conn,"SELECT COUNT(*) FROM  featured");
+                              $r = mysqli_fetch_row($feature);
+                              $nr = $r[0];
+
+                              print "<h2 class='mb-0'>". $nr."</h2>";
+                              $date = date('Y-m-d', strtotime('-30 days'));
+                              //cho $date; 
+                              //check details of the destination difference of 1 month
+
+                              $feature2 = mysqli_query($conn,"SELECT COUNT(*) FROM  featured WHERE StartDate>'$date' ");
+                              $r2 = mysqli_fetch_row($feature2);
+                              $nr2 = $r2[0];
+                              //echo  $nr2;
+
+                              $diff = $nr - $nr2;
+                              $perc = $diff * 100;
+                              if ($perc <=  1){
+                                $sperc = 1;
+                              }else{
+                                $sperc = $perc;
+                              }
+                              $currperc = $sperc / $nr;
+                              
+                              if ($currperc > 0) {
+                                $sign = "+";
+                              }else {
+                                $sign = "";
+                              }
+
+                              print "
+                                  <p class='text-success ml-4 mb-0 font-weight-medium'>".$sign."".$currperc."%</p>
+                              ";
+
+                              print "</div>
+                                  <h6 class='text-muted font-weight-normal'>".$diff." Featured This month</h6>";
+                            ?>   
                       </div>
                       <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                         <i class="icon-lg mdi mdi-format-align-left text-primary ml-auto"></i>
@@ -37,10 +71,32 @@
                     <div class="row">
                       <div class="col-8 col-sm-12 col-xl-8 my-auto">
                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 class="mb-0">$45850</h2>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+8.3%</p>
-                        </div>
-                        <h6 class="text-muted font-weight-normal"> 9.61% Since last month</h6>
+                        <?php
+                              //check details of the destination
+                              $date = date('Y-m-d', strtotime('0 days'));
+                              $activities = mysqli_query($conn,"SELECT COUNT(*) FROM  featured WHERE EndDate>'$date'");
+                              $r = mysqli_fetch_row($activities);
+                              $nr = $r[0];
+
+                              print "<h2 class='mb-0'>". $nr."</h2>";
+                              $date = date('Y-m-d', strtotime('0 days'));
+                              //cho $date; 
+                              //check details of the destination difference of 1 month
+
+                              $activities2 = mysqli_query($conn,"SELECT COUNT(*) FROM  featured WHERE EndDate>'$date' ");
+                              $r2 = mysqli_fetch_row($activities2);
+                              $nr2 = $r2[0];
+                              //echo  $nr2;
+
+                              
+
+                              print "
+                                  <p class='text-success ml-4 mb-0 font-weight-medium'>".$sign."".$currperc."%</p>
+                              ";
+
+                              print "</div>
+                                  <h6 class='text-muted font-weight-normal'>".$diff." Featured This month</h6>";
+                            ?>   
                       </div>
                       <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                         <i class="icon-lg mdi mdi-wallet-travel text-danger ml-auto"></i>
@@ -56,10 +112,25 @@
                     <div class="row">
                       <div class="col-8 col-sm-12 col-xl-8 my-auto">
                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 class="mb-0">$2039</h2>
-                          <p class="text-danger ml-2 mb-0 font-weight-medium">-2.1% </p>
-                        </div>
-                        <h6 class="text-muted font-weight-normal">2.27% Since last month</h6>
+                        <?php
+                              //check details of the destination
+                              $date = date('Y-m-d', strtotime('0 days'));
+                              $activities = mysqli_query($conn,"SELECT COUNT(*) FROM  featured WHERE EndDate<'$date'");
+                              $r = mysqli_fetch_row($activities);
+                              $nr = $r[0];
+
+                              print "<h2 class='mb-0'>". $nr."</h2>";
+                              $date = date('Y-m-d', strtotime('0 days'));
+                              
+                              
+
+                              print "
+                                  <p class='text-success ml-4 mb-0 font-weight-medium'>".$sign."".$currperc."%</p>
+                              ";
+
+                              print "</div>
+                                  <h6 class='text-muted font-weight-normal'>".$diff." Featured This month</h6>";
+                            ?>   
                       </div>
                       <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                         <i class="icon-lg mdi mdi-account-card-details text-success ml-auto"></i>
@@ -78,128 +149,84 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
-                            </th>
-                            <th> Client Name </th>
-                            <th> Order No </th>
-                            <th> Product Cost </th>
-                            <th> Project </th>
-                            <th> Payment Mode </th>
-                            <th> Start Date </th>
-                            <th> Payment Status </th>
+                           
+                            <th> Feature Name </th>
+                            <th> Discount </th>
+                            <th> Destination Name </th>
+                            <th> Starting </th>
+                            <th> Ends On </th>
+                            <th> Created By: Agent </th>
+                            <th> Status </th>
+                            <th> Actions </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
-                            </td>
-                            <td>
-                              <img src="assets/images/faces/face1.jpg" alt="image" />
-                              <span class="pl-2">Henry Klein</span>
-                            </td>
-                            <td> 02312 </td>
-                            <td> $14,500 </td>
-                            <td> Dashboard </td>
-                            <td> Credit card </td>
-                            <td> 04 Dec 2019 </td>
-                            <td>
-                              <div class="badge badge-outline-success">Approved</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
-                            </td>
-                            <td>
-                              <img src="assets/images/faces/face2.jpg" alt="image" />
-                              <span class="pl-2">Estella Bryan</span>
-                            </td>
-                            <td> 02312 </td>
-                            <td> $14,500 </td>
-                            <td> Website </td>
-                            <td> Cash on delivered </td>
-                            <td> 04 Dec 2019 </td>
-                            <td>
-                              <div class="badge badge-outline-warning">Pending</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
-                            </td>
-                            <td>
-                              <img src="assets/images/faces/face5.jpg" alt="image" />
-                              <span class="pl-2">Lucy Abbott</span>
-                            </td>
-                            <td> 02312 </td>
-                            <td> $14,500 </td>
-                            <td> App design </td>
-                            <td> Credit card </td>
-                            <td> 04 Dec 2019 </td>
-                            <td>
-                              <div class="badge badge-outline-danger">Rejected</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
-                            </td>
-                            <td>
-                              <img src="assets/images/faces/face3.jpg" alt="image" />
-                              <span class="pl-2">Peter Gill</span>
-                            </td>
-                            <td> 02312 </td>
-                            <td> $14,500 </td>
-                            <td> Development </td>
-                            <td> Online Payment </td>
-                            <td> 04 Dec 2019 </td>
-                            <td>
-                              <div class="badge badge-outline-success">Approved</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
-                            </td>
-                            <td>
-                              <img src="assets/images/faces/face4.jpg" alt="image" />
-                              <span class="pl-2">Sallie Reyes</span>
-                            </td>
-                            <td> 02312 </td>
-                            <td> $14,500 </td>
-                            <td> Website </td>
-                            <td> Credit card </td>
-                            <td> 04 Dec 2019 </td>
-                            <td>
-                              <div class="badge badge-outline-success">Approved</div>
-                            </td>
-                          </tr>
+                          <?php
+                                      $result = mysqli_query($conn,"SELECT * FROM featured ORDER BY Created_at DESC");
+                                      while($row = mysqli_fetch_array($result)){
+                                        $id = $row["FeatureID"];
+                                        $dest = $row["DestinationID"];
+                                        $name = $row["Name"];
+                                        $descr = $row["Description"];
+                                        $start = $row["StartDate"];
+                                        $end = $row["EndDate"];
+                                        $status = $row["Status"];
+                                        $agent = $row["AgentID"];
+                                        $discount = $row["Discount"];
+                                        
+                                        if ($status == 1){
+                                          $icon = "<i class='mdi mdi-check-circle  text-primary ml-auto'>Active</i>";
+                                          $button = "<a href='./Viewactivity.php' class='badge badge-outline-success'>Deactivate</a>";
+                                        }else{
+                                          $icon = "<i class='mdi mdi-window-close  text-primary ml-auto'>Inactive</i> ";
+                                          $button = "<a href='./Viewactivity.php' class='badge badge-outline-success'>Activate</a>";
+                                        }
+
+                                        
+
+                                        
+
+
+                                        //gET dest NAME
+                                        $destname = mysqli_query($conn, "SELECT * FROM destinations WHERE DestinationID = $dest");
+                                        $ddname = mysqli_fetch_array($destname);
+                                        $getddname = $ddname['Name'];
+
+                                        //gET agent anme
+                                        $agents = mysqli_query($conn, "SELECT * FROM agents WHERE AgentID = $agent");
+                                        $dd = mysqli_fetch_array($agents);
+                                        $getdd = $dd['CompanyName'];
+
+                                     
+                                        print "
+                                              <td> ".$name."</td>
+                                              <td> ".$discount."</td>
+                                              <td>
+                                                <img src='assets/images/faces/face1.jpg' alt='image' />
+                                                <span class='pl-2'>".$getddname."</span>
+                                              </td>
+                                              <td> ".$start ."</td>
+                                              <td> ".$end ."</td>
+                                              <td>
+                                                <img src='assets/images/faces/face1.jpg' alt='image' />
+                                                <span class='pl-2'>".$getdd."</span>
+                                              </td>
+                                              
+                                              <td> ".$icon."</td>
+                                              
+                                              
+                                              <td>
+                                                 ".$button."
+                                              </td>
+                                            </tr>";
+
+
+
+                                      };
+
+                                    ?>
+                          
                         </tbody>
                       </table>
                     </div>
