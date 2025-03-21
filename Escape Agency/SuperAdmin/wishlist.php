@@ -132,11 +132,12 @@
                             <th> Destination Name </th>
                             <th> Likes </th>
                             
-                            <th> Status </th>
+                            
                           </tr>
                         </thead>
                         <tbody>
-                        <?php
+                        <?php  
+                        /*
                                       $result = mysqli_query($conn, "SELECT a.WishlistID
                                                                                                     COUNT(b.DestinationID) AS DestCount, 
                                                                                                     ROUND((COUNT(b.DestinationID) / (SELECT COUNT(*) FROM destinations)) * 100, 2) AS WishPercentage
@@ -152,7 +153,9 @@
                                                               $count = $row["DestCount"];
                                                               $percent = $row["WishPercentage"];
 
-
+*/
+                                    
+                                      /*
                                                               print "
                                                               <tr>
                                                               <td>
@@ -168,7 +171,44 @@
                                                               echo "No results found.";
                                                               }
 
+                                                              }*/
+
+                                                              // Query to count likes for a specific destination
+
+                                                              $result = mysqli_query($conn,"SELECT * FROM Wishlist ORDER BY Created_at ASC");
+                                                              while($row = mysqli_fetch_array($result)){
+                                                                $id = $row["WishlistID"];
+                                                                $dest = $row["DestinationID"];
+
+                                                                 //gET dest NAME
+                                                                $destname = mysqli_query($conn, "SELECT * FROM destinations WHERE DestinationID = $dest");
+                                                                $ddname = mysqli_fetch_array($destname);
+                                                                $getddname = $ddname['Name'];
+                                                                $getddimage = $ddname['ImageURL'];
+                                                                                    
+                                                                $query = "SELECT COUNT(*) AS LikeCount FROM Wishlist WHERE DestinationID = $dest";
+
+                                                                $result2 = mysqli_query($conn, $query);
+
+                                                                if ($result2) {
+                                                                    $row = mysqli_fetch_assoc($result2);
+                                                                    $likeCount = $row['LikeCount'];
+                                                                    print "
+                                                                                <td> ".$id."</td>
+                                                                                
+                                                                                <td>
+                                                                                  <img src='assets/images/faces/face1.jpg' alt='image' />
+                                                                                  <span class='pl-2'>".$getddname."</span>
+                                                                                </td>
+                                                                                <td> ".$likeCount."</td>
+                                                                              </tr>";
+
+                                                                } else {
+                                                                    echo "Error: " . mysqli_error($conn);
+                                                                }
+
                                                               }
+
                                      
                         ?>
                           

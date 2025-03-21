@@ -28,6 +28,19 @@
 USE EscapeAgency;
 
 
+-- users Table
+CREATE TABLE Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL ,
+    Email VARCHAR(255) NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Phone VARCHAR(255) NOT NULL ,
+    Country TEXT NOT NULL DEFAULT 0,
+    Location TEXT NOT NULL DEFAULT 0,
+    ProfileImg VARCHAR(255) DEFAULT 'No Image',
+    Role ENUM('customer', 'agent', 'admin', 'superadmin') DEFAULT 'customer',
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP     
+);
 
 
 -- Destinations Table
@@ -337,4 +350,117 @@ CREATE TABLE DestinationGallery (
     Created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (DestinationID) REFERENCES Destinations(DestinationID) ON DELETE CASCADE
 );
-*/
+
+
+
+
+
+
+
+
+
+-- Create Table Agents 
+CREATE TABLE IF NOT EXISTS Agents (
+    AgentID INT PRIMARY KEY AUTO_INCREMENT,
+    CompanyName VARCHAR(255),
+    Description VARCHAR(255),
+    Keywords VARCHAR(255),
+    Country VARCHAR(255),
+    Location VARCHAR(255),
+    Established VARCHAR(255),
+    Services VARCHAR(255),
+    ProfileImg VARCHAR(255) DEFAULT 'default.jpg',
+    Phone VARCHAR(255),
+    Email  VARCHAR(255),
+    Status ENUM('active', 'inactive', 'suspended') DEFAULT 'active',
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Users with different Roles in the Agent Admin Dashboard
+CREATE TABLE AgentUsers (
+    AgentUserID INT PRIMARY KEY AUTO_INCREMENT,
+    AgentID INT NOT NULL,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL UNIQUE,
+    Phone VARCHAR(50) NOT NULL,
+    Role ENUM('admin', 'manager', 'staff') DEFAULT 'staff',
+    Status ENUM('active', 'inactive') DEFAULT 'active',
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (AgentID) REFERENCES Agents(AgentID) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE AgentTransactions (
+    TransactionID INT PRIMARY KEY AUTO_INCREMENT,
+    AgentID INT NOT NULL,
+    Amount DECIMAL(10,2) NOT NULL,
+    TransactionType ENUM('commission', 'subscription', 'service fee') NOT NULL,
+    PaymentMethod ENUM('bank transfer', 'card', 'paypal', 'mpesa') DEFAULT 'mpesa',
+    Status ENUM('completed', 'pending', 'failed') DEFAULT 'pending',
+    TransactionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (AgentID) REFERENCES Agents(AgentID) ON DELETE CASCADE
+);
+
+
+CREATE TABLE AgentReviews (
+    ReviewID INT PRIMARY KEY AUTO_INCREMENT,
+    AgentID INT NOT NULL,
+    UserID INT NOT NULL,
+    Rating DECIMAL(3,2) CHECK (Rating BETWEEN 1 AND 5) NOT NULL,
+    ReviewText TEXT NOT NULL,
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (AgentID) REFERENCES Agents(AgentID) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE AgentSubscriptions (
+    SubscriptionID INT PRIMARY KEY AUTO_INCREMENT,
+    AgentID INT NOT NULL,
+    Plan VARCHAR(255) NOT NULL,
+    Amount DECIMAL(10,2) NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL,
+    Status ENUM('active', 'expired', 'cancelled') DEFAULT 'active',
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (AgentID) REFERENCES Agents(AgentID) ON DELETE CASCADE
+);
+
+
+
+
+CREATE TABLE AgentProperties (
+    PropertyID INT PRIMARY KEY AUTO_INCREMENT,
+    AgentID INT NOT NULL,
+    Status ENUM('active', 'inactive') DEFAULT 'active',
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    RatingAVG DECIMAL(3,2) NOT NULL DEFAULT 0 , 
+    Services VARCHAR(255) NOT NULL DEFAULT ' ',
+    Features  VARCHAR(255) NOT NULL DEFAULT ' ',
+    Description TEXT,
+    Price INT DEFAULT 0,
+    Location VARCHAR(255),
+    OptionType VARCHAR(255),
+    AgentType VARCHAR(255),
+    FOREIGN KEY (AgentID) REFERENCES Agents(AgentID) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE AgentAds(
+    AdID INT PRIMARY KEY AUTO_INCREMENT,
+    AdName VARCHAR(255),
+    AgentID INT NOT NULL,
+    Keywords VARCHAR(255),
+    DiscountID INT,
+    Details TEXT,
+    DestinationID INT,
+    PosterImg VARCHAR(255),
+    FOREIGN KEY (AgentID) REFERENCES Agents(AgentID) ON DELETE CASCADE,
+    FOREIGN KEY (DiscountID) REFERENCES Discounts(DiscountID) ON DELETE CASCADE,
+    StartDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    EndDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Status ENUM('active', 'inactive') DEFAULT 'active',
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
