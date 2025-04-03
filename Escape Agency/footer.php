@@ -20,7 +20,7 @@
             </div>
             <div>
                 <div class="footer-newsletter">
-                    <h4>Subscribe to our newsletter</h4>
+                    <h4>Stay informed of new destinations</h4>
                     <form>
                         <input type="email" placeholder="travel@gmail.com">
                     </form>

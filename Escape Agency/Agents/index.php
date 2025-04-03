@@ -3,7 +3,24 @@
 <?php
     include 'base.php';
     include_once 'config/connection.php';
-   
+    $apiKey = "dead49bebc88a9825ace67e93a79efe5"; // Replace this with your actual key
+    
+
+
+
+    function getUserIP() {
+      if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+          return $_SERVER['HTTP_CLIENT_IP'];
+      } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+          return $_SERVER['HTTP_X_FORWARDED_FOR'];
+      } else {
+          return $_SERVER['REMOTE_ADDR'];
+      }
+  }
+  
+  $userIP = getUserIP();
+  //echo "User IP Address: " . $userIP;
+  
     //echo $getdd;
 ?>      
 
@@ -41,6 +58,43 @@
                     <img src="assets/images/dashboard/people.svg" alt="people">
                     <div class="weather-info">
                       <div class="d-flex">
+                        <?php
+                          
+                          /*
+                          $ip = getUserIP();
+                          $geoAPI = "http://ip-api.com/json/{$ip}";
+                          $geoData = json_decode(file_get_contents($geoAPI), true);
+                          
+                          if ($geoData['status'] === 'success') {
+                              $city = $geoData['city'];
+                              $country = $geoData['country'];
+                              $lat = $geoData['lat'];
+                              $lon = $geoData['lon'];
+                          
+                              echo "Location: $city, $country<br>";
+                              echo "Latitude: $lat, Longitude: $lon<br>";
+                          
+                              // Fetch Weather Data
+                              // Replace with your OpenWeatherMap API key
+                              $weatherAPI = "http://api.openweathermap.org/data/2.5/weather?lat={$lat}&lon={$lon}&appid={$apiKey}&units=metric";
+                              $weatherData = json_decode(file_get_contents($weatherAPI), true);
+                          
+                              if ($weatherData) {
+                                  $temperature = $weatherData['main']['temp'];
+                                  $weather = $weatherData['weather'][0]['description'];
+                                  $humidity = $weatherData['main']['humidity'];
+                          
+                                  echo "Weather: $weather<br>";
+                                  echo "Temperature: $temperature°C<br>";
+                                  echo "Humidity: $humidity%";
+                              } else {
+                                  echo "Unable to fetch weather data.";
+                              }
+                          } else {
+                              echo "Unable to fetch location.";
+                          }
+                          */
+                        ?>
                         <div>
                           <h2 class="mb-0 font-weight-normal"><i class="icon-sun me-2"></i>31<sup>C</sup></h2>
                         </div>
@@ -60,30 +114,49 @@
                       <div class="card-body">
                         <p class="mb-4">Today’s Bookings</p>
                         <?php
-                              //echo  $Company;
-                              $agents = mysqli_query($conn, "SELECT * FROM Agents WHERE CompanyName='$Company'" );
-                              $dd = mysqli_fetch_array($agents);
-                              $getdd = $dd['AgentID'];
-                              //echo $getdd;
-                                /*
-                              $result = mysqli_query($conn,"SELECT * FROM destinations WHERE AgentID=$getdd ORDER BY Created_at DESC");
-                              while($row = mysqli_fetch_array($result)){
-                                 $id = $row["DestinationID"];
-                                  
-                                 echo "bally".$id;
-                                 $sql ="SELECT COUNT(*) FROM bookings WHERE  DestinationID=$id";
-                                 $result = mysqli_query($conn,$sql);
-                                 $num = $result[0];
-                                 
-                                 $count += $num;
-                                 print "<p class='fs-30 mb-2'>$count</p>";
+                              // Ensure database connection exists
+                              if (!isset($conn)) {
+                                  die("Database connection error.");
                               }
-                              
-*/
-                              
-                            ?>
+
+                              /* Start session to get logged-in agent's ID
+                              session_start();
+                              if (!isset($_SESSION['AgentID'])) {
+                                  die("Agent is not logged in.");
+                              }
+
+                              $agentID = $_SESSION['AgentID']; // Logged-in agent ID
+                              */
+                              // Prepare the SQL query to get today's bookings
+                              $query = "SELECT COUNT(b.BookingID) AS TotalBookings
+                                        FROM Bookings b
+                                        JOIN Destinations d ON b.DestinationID = d.DestinationID
+                                        JOIN Agents a ON d.AgentID = a.AgentID
+                                        WHERE a.AgentID = ? AND DATE(b.StartDate) = CURDATE()";
+
+                              $stmt = $conn->prepare($query);
+                              if (!$stmt) {
+                                  die("Query preparation failed: " . $conn->error);
+                              }
+
+                              // Bind the agent ID to the query
+                              $stmt->bind_param("i", $agentID);
+                              $stmt->execute();
+                              $result = $stmt->get_result();
+
+                              $totalBookings = 0; // Default value
+
+                              if ($row = $result->fetch_assoc()) {
+                                  $totalBookings = $row['TotalBookings'];
+                              }
+
+                              // Display the count of bookings for the logged-in agent
+                              echo "<p class='fs-30 mb-2'>$totalBookings</p>";
+                              ?>
+
+                        
                         <p class="fs-30 mb-2"></p>
-                        <p>10.00% (30 days)</p>
+                        <p>In 24 hours</p>
                       </div>
                     </div>
                   </div>
@@ -92,21 +165,37 @@
                       <div class="card-body">
                         <p class="mb-4">Total Destinations</p>
                         <?php
-                                  $agent = mysqli_query($conn, "SELECT * FROM Agents WHERE CompanyName='$Company'" );
-                                  $dd = mysqli_fetch_array($agent);
-                                  $getdd = $dd['AgentID'];
+                                // Ensure database connection exists
+                                if (!isset($conn)) {
+                                    die("Database connection error.");
+                                }
 
-                                  $dest = mysqli_query($conn,"SELECT COUNT(*) FROM  destinations WHERE AgentID=$getdd");
-                                  $r = mysqli_fetch_row($dest);
-                                  $num = $r[0];
-                                 
-                               
-                                 print "<p class='fs-30 mb-2'>$num</p>";
-                              
-                              
+                                // Prepare the query to prevent SQL injection
+                                $query = "SELECT a.AgentID, COALESCE(COUNT(d.DestinationID), 0) AS DestCount 
+                                          FROM Agents a
+                                          LEFT JOIN Destinations d ON a.AgentID = d.AgentID
+                                          WHERE a.CompanyName = ?
+                                          GROUP BY a.AgentID";
 
-                              
-                            ?>
+                                $stmt = $conn->prepare($query);
+                                if ($stmt === false) {
+                                    die("Query preparation failed: " . $conn->error);
+                                }
+
+                                $stmt->bind_param("s", $Company);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+
+                                $value = 0; // Default value
+
+                                if ($row = $result->fetch_assoc()) {
+                                    $value = $row['DestCount'];
+                                }
+
+                                // Print the count
+                                echo "<p class='fs-30 mb-2'>$value</p>";
+                                ?>
+
                         <p>My Created Destinations</p>
                       </div>
                     </div>
@@ -116,18 +205,72 @@
                   <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                     <div class="card card-light-blue">
                       <div class="card-body">
-                        <p class="mb-4">Number of Meetings</p>
-                        <p class="fs-30 mb-2">34040</p>
-                        <p>2.00% (30 days)</p>
+                        <p class="mb-4">Paid Amount Bookings</p>
+                        <?php
+                              // Ensure database connection exists
+                              if (!isset($conn)) {
+                                  die("Database connection error.");
+                              }
+
+                              /* Start session to get logged-in agent's ID
+                              session_start();
+                              if (!isset($_SESSION['AgentID'])) {
+                                  die("Agent is not logged in.");
+                              }
+
+                              $agentID = $_SESSION['AgentID']; // Logged-in agent ID
+                              */
+                              // Prepare the SQL query to get today's bookings
+                              $query = "SELECT SUM(b.Amount) AS TotalPayments
+                                        FROM Payments b
+                                        JOIN Bookings c ON b.BookingID = c.BookingID
+                                        JOIN Destinations d ON c.DestinationID = d.DestinationID
+                                        JOIN Agents a ON d.AgentID = a.AgentID
+                                        WHERE a.AgentID = ?";
+
+                              /*$query = "SELECT COUNT(b.BookingID) AS TotalBookings
+                                        FROM Bookings b
+                                        JOIN Destinations d ON b.DestinationID = d.DestinationID
+                                        JOIN Agents a ON d.AgentID = a.AgentID
+                                        WHERE a.AgentID = ? AND DATE(b.StartDate) = CURDATE()";*/
+
+                              $stmt = $conn->prepare($query);
+                              if (!$stmt) {
+                                  die("Query preparation failed: " . $conn->error);
+                              }
+
+                              // Bind the agent ID to the query
+                              $stmt->bind_param("i", $agentID);
+                              $stmt->execute();
+                              $result = $stmt->get_result();
+
+                              $value1 = 0; // Default value
+
+                                if ($row = $result->fetch_assoc()) {
+                                    $value1 = $row['TotalPayments'];
+                                }
+
+                                // Print the count
+                                echo "<p class='fs-30 mb-2'>$value1</p>";
+                          ?>
+                        
+                        <p>Paid Destinations Bookings</p>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6 stretch-card transparent">
                     <div class="card card-light-danger">
                       <div class="card-body">
-                        <p class="mb-4">Number of Clients</p>
-                        <p class="fs-30 mb-2">47033</p>
-                        <p>0.22% (30 days)</p>
+                        <p class="mb-4">Number of Destination Events</p>
+                        <?php
+                            $agents = mysqli_query($conn,"SELECT COUNT(*) FROM  Events WHERE AgentID=$agentID ");
+                            $r = mysqli_fetch_row($agents);
+                            $nr = $r[0];
+                            //echo "$Company";
+                            // Print the count
+                            echo "<p class='fs-30 mb-2'>$nr</p>";
+                        ?>
+                        <p>Destinations with Events</p>
                       </div>
                     </div>
                   </div>

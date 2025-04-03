@@ -75,10 +75,11 @@
                     <li ><a href="#" class="x-icon-menu"><i class="fa-solid fa-xmark fa-xl"></i></a></li>
                     <li><a href="index.php#Home">Home</a></li>
                     <li><a href="tours.php">Tours</a></li>
-                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="hostings.php">Hostings</a></li>  
                     <li><a href="blogs.php">Blogs</a></li>
                     <li><a href="events.php">Activities</a></li>
-                    <li><a href="hostings.php">Hostings</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="resources.php">Resources</a></li>
                 </ul>
 
                 <div class="cta-button">

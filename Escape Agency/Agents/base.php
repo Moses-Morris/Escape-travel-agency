@@ -4,10 +4,12 @@
         
         session_start();
         $check=$_SESSION['Email'];
-        $session=mysqli_query($conn, "SELECT Email, CompanyName from Agents where Email='$check' ");
+        $session=mysqli_query($conn, "SELECT AgentID,Email, CompanyName from Agents where Email='$check' ");
         $row=mysqli_fetch_array($session);
         $login_session=$row['Email'];
         $Company = $row['CompanyName'];
+        $agentID = $row['AgentID']; 
+
         if(!isset($login_session))
         {
           echo "You Failed !!";
@@ -153,49 +155,50 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="listings.php">
         <i class="icon-bar-graph menu-icon"></i>
         <span class="menu-title">My Listings</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="services.php">
         <i class="icon-grid-2 menu-icon"></i>
         <span class="menu-title">My Services</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="payments.php">
         <i class="icon-contract menu-icon"></i>
         <span class="menu-title">My Payments</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="events.php
+      ">
         <i class="icon-head menu-icon"></i>
         <span class="menu-title">My Events</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="notifications.php">
         <i class="mdi mdi-arrow-down-bold-hexagon-outline menu-icon"></i>
         <span class="menu-title">Notifications</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="discounts.php">
         <i class="mdi mdi-barrel menu-icon"></i>
         <span class="menu-title">My Discounts and Ads</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="reviews.php">
         <i class="mdi mdi-blur-radial menu-icon"></i>
         <span class="menu-title">My Reviews</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="blogs.php">
         <i class="mdi mdi-chart-bubble menu-icon"></i>
         <span class="menu-title">My Blogs</span>
       </a>

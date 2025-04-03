@@ -432,6 +432,7 @@ CREATE TABLE AgentSubscriptions (
 
 CREATE TABLE AgentProperties (
     PropertyID INT PRIMARY KEY AUTO_INCREMENT,
+    PropertyName VARCHAR(255) NOT NULL DEFAULT ' ',
     AgentID INT NOT NULL,
     Status ENUM('active', 'inactive') DEFAULT 'active',
     Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -443,6 +444,7 @@ CREATE TABLE AgentProperties (
     Location VARCHAR(255),
     OptionType VARCHAR(255),
     AgentType VARCHAR(255),
+    ImageURL VARCHAR(255,
     FOREIGN KEY (AgentID) REFERENCES Agents(AgentID) ON DELETE CASCADE
 );
 
