@@ -1,6 +1,8 @@
 <?php
   include 'base.php';
 ?>
+
+
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
@@ -158,12 +160,30 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Search For Bookings</h4>
-                    <form class="forms-sample">
+                    <?php
+                        //Search for a booking
+                        // Search functionality
+                        if ($_SERVER["REQUEST_METHOD"] == $_POST && isset($_POST["search"])){
+                          $search = "%".trim($_POST["search"])."%"; //using sql wildcards to search for using LIKE operator
+                          $stmt = $conn->prepare("SELECT * FROM Bookings b
+                                                                            JOIN Destinations d ON b.DestinationID = d.DestinationID
+                                                                            JOIN Users a ON b.UserID = a.UserID
+                                                                            WHERE a.Email  LIKE ? OR d.Name  LIKE ?");
+                          $stmt->bind_param("ss", $search, $search);
+                          $stmt->execute();
+                          $result = $stmt->get($stmt);
+                          if($result == " "){
+                            print "Failed";
+                          }
+                          print "$result";
+                        }
+                      ?>
+                    <form class="forms-sample"  method="POST">
                       <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Destination or Client Name">
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Destination or Client Name" name="search">
                       </div>
                       
-                      <button type="submit" class="btn btn-primary mr-4 btn-lg">Submit</button>
+                      <button type="submit" class="btn btn-primary mr-4 btn-lg" >Submit</button>
                     </form>
                   </div>
                 </div>
@@ -248,6 +268,10 @@
                                     <td> ".$icon."</td>
                                     <td>
                                       <div class='badge badge-outline-success'>Active</div>
+                                      <a href='viewbooking.php?bookid=". urlencode($ID) ."' class='btn btn-primary mr-4 btn-md'>View</a>
+                                    </td>
+                                    <td>
+                                      
                                     </td>
                                   </tr>";
 
@@ -265,8 +289,11 @@
 
 
                       <!-- Second TABLE -->
+                      <h4 class="card-title">InActive Bookings</h4>
                       <div class="table-responsive">
                       <table class="table">
+                      
+                      
                         <thead>
                           <tr>
                             <th>

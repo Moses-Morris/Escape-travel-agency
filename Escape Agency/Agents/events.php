@@ -48,7 +48,7 @@
                                        $result = mysqli_query($conn,"SELECT * FROM Events
                                                                                                 WHERE AgentID = $agentID  ");
                                         while($row = mysqli_fetch_array($result)){
-                                            
+                                            $ID = $row["EventID"];
                                             $Name = $row["Name"];
                                             $desc = $row["Description"];
                                             $tag = $row["Tagline"];
@@ -88,7 +88,7 @@
                                                 <td> ".$Edate."</td>
                                                
                                                 <td>
-                                                      <a href='' type='button' class='btn btn-primary btn-rounded btn-fw'>View</a>
+                                                      <a href='viewevent.php?eventid=". urlencode($ID) ."'' type='button' class='btn btn-primary btn-rounded btn-fw'>View</a>
                                                 </td>
                                                 </tr>
                                                 ";

@@ -28,7 +28,7 @@
                             <th> Price </th>
                             <th> Services </th>
                             <th> Features </th>
-                            <th> Description </th>
+                            
                             <th> Agent Options </th>
                           </tr>
                         </thead>
@@ -63,14 +63,14 @@
                                                     <span class='pl-2'>".$Name."</span>
                                                 </td>
                                                 <td> ".$location."</td>
-                                                <td> ". $price."</td>
+                                                <td> ". $price." USD</td>
                                                 <td> ".$services."</td>
                                                 <td> ".$feat."</td>
-                                                <td> ".$desc."</td>
+                                                
                                                 <td> ".$option."</td>
                                                 
                                                 <td>
-                                                    <a href='./Viewproperty.php' type='button' class='btn btn-primary btn-fw'>View Property</a>
+                                                    <a href='viewproperty.php?propid=". urlencode($ID) ."' type='button' class='btn btn-primary btn-fw'>View Property</a>
                                                 </td>
                                                 </tr>";
 
@@ -145,14 +145,14 @@
                                     </td>
                                     <td>". $type." </td>
                                     <td> ".$location." </td>
-                                    <td> ". $price."</td>
+                                    <td> ". $price." USD</td>
                                     <td> ".$name_dest."</td>
                                     <td> ".$agentname."</td>
                                     <td>
                                       <div class='badge badge-outline-success'>Active</div>
                                     </td>
                                     <td>
-                                      <a href='./' class='badge badge-outline-success'>View More Details</a>
+                                      <a href='./viewhosting.php?hostid=". urlencode($ID) ."' class='btn btn-primary '>View More Details</a>
                                     </td>
                                   </tr>";
 

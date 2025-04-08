@@ -83,7 +83,7 @@
                                                 
                                                
                                                 <td>
-                                                      <a href='' type='button' class='btn btn-primary btn-rounded btn-fw'>View</a>
+                                                      <a href='' type='button' class='btn btn-primary btn-rounded btn-fw'>Seen</a>
                                                 </td>
                                                 </tr>
                                                 ";

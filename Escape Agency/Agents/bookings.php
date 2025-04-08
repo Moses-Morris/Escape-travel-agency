@@ -314,7 +314,7 @@
                                       <div class='badge badge-outline-success'>".$approved."</div>
                                     </td>
                                     <td>
-                                      <a href='viewbooking.php?bookid=".$ID."' type='button' class='btn btn-info btn-rounded btn-fw'>View</a>
+                                      <a href='viewbooking.php?bookid=". urlencode($ID) ."' type='button' class='btn btn-info btn-rounded btn-fw'>View</a>
                                     </td>
                                   </tr>";
 

@@ -43,7 +43,7 @@
                             <?php
                                     $result = mysqli_query($conn,"SELECT * FROM blogs WHERE Role='agent' AND AuthorID=$agentID ");
                                     while($row = mysqli_fetch_array($result)){
-                                       
+                                            $ID = $row["BlogID"];
                                             $dest = $row["DestinationID"];
                                             $img = $row["BlogImage"];
                                             $tag = $row["Tagline"];
@@ -74,7 +74,7 @@
                                                  <td> ". $stat."</td>
                                                  <td> ". $stat."</td>
                                                  <td>
-                                                      <a href='' type='button' class='btn btn-primary btn-rounded btn-fw'>View</a>
+                                                      <a href='viewblog.php?blogid=".urlencode($ID)."' type='button' class='btn btn-primary btn-rounded btn-fw'>View</a>
                                                 </td>
                                             ";
                                         

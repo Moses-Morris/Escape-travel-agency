@@ -205,7 +205,7 @@
                                         $img = $row["ImageURL"];
                                         $price = $row["Price"];
                                         $Agent = $row["AgentID"];
-                                        $travel = $row["TravelOptions"];
+                                        $travel = $row["TravelID"];
                                         
 
                                          //get the user who has placed the booking
@@ -282,7 +282,7 @@
                                         $img = $row["ImageURL"];
                                         $price = $row["Price"];
                                         $Agent = $row["AgentID"];
-                                        $travel = $row["TravelOptions"];
+                                        $travel = $row["TravelID"];
                                         
 
                                          //get the user who has placed the booking

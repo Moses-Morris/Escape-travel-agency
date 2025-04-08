@@ -48,6 +48,7 @@
                                                                                                 WHERE AgentID = $agentID  ");
                                         
                                         while($row = mysqli_fetch_array($result)){
+                                           $ID = $row["DiscountID"];
                                             $name = $row["DiscountName"];
                                             $dest = $row["DestinationID"];
                                             $code = $row["Code"];
@@ -62,7 +63,7 @@
                                             if ($Edate > $today){
                                               $it = "Running";
                                             }else{
-                                              $it = "Over";
+                                              $it = "Over/Ended";
                                             }
                                     
                                     
@@ -87,11 +88,9 @@
                                                 <td> ".$it."</td>
                                                  <td> ".$date."</td>
                                                 
-                                               <td>
-                                                      <a href='' type='button' class='btn btn-primary btn-rounded btn-fw'>View</a>
-                                                </td>
+                                               
                                                 <td>
-                                                      <a href='' type='button' class='btn btn-primary btn-rounded btn-fw'>View</a>
+                                                      <a href='viewdiscount.php?adid=". urlencode($ID) ."'' type='button' class='btn btn-primary btn-rounded btn-fw'>View</a>
                                                 </td>
                                                 </tr>
                                                 ";

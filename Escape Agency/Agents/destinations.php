@@ -221,6 +221,7 @@
                         <thead>
                           <tr>
                             <th> Destination Name </th>
+                            <th> Description </th>
                             <th> Country </th>
                             <th> Price </th>
                            
@@ -233,7 +234,7 @@
                           <?php
                                       $result = mysqli_query($conn,"SELECT * FROM Destinations d 
                                                                             JOIN Agents a ON d.AgentID = a.AgentID
-                                                                            WHERE a.AgentID = $agentID  ");
+                                                                            WHERE a.AgentID = $agentID AND d.Status='approved' ");
                                       while($row = mysqli_fetch_array($result)){
                                         $ID = $row["DestinationID"];
                                         $Name = $row["Name"];
@@ -242,9 +243,9 @@
                                         $img = $row["ImageURL"];
                                         $price = $row["Price"];
                                         $Agent = $row["AgentID"];
-                                        $travel = $row["TravelOptions"];
+                                        $travel = $row["TravelID"];
                                         $approv = $row["Status"];
-
+                                        $desc = $row["Description"];
                                         //echo "$approv";
                                         //approved or not
                                         if ($approv == "active"){
@@ -271,8 +272,9 @@
                                                 <img src='assets/images/faces/face1.jpg' alt='image' />
                                                 <span class='pl-2'>".$Name."</span>
                                               </td>
+                                               <td> ".$desc."</td>
                                               <td> ".$location.", ".$country."</td>
-                                              <td> ". $price."</td>
+                                              <td> ". $price." USD</td>
                                             
                                               <td> ".$travel."</td>
                                               <td> ".$nr2."</td>
@@ -280,9 +282,8 @@
                                                 ".$icon."
                                               </td>
                                               <td>
-                                                <a href='./Viewdestination.php' type='button' class='btn btn-primary  btn-rounded btn-fw'>View </a>
-                                                <a href='./updatedestination.php' type='button' class='btn btn-warning  btn-rounded btn-fw'>Update </a>
-                                                <a href='./deletedestination.php' type='button' class='btn btn-danger btn-rounded btn-fw'>Delete </a>
+                                                <a <a href='viewdestination.php?destid=". urlencode($ID) ."' type='button' class='btn btn-primary  btn-rounded btn-fw'>View </a>
+                                                
                                               </td>
                                             </tr>";
 
