@@ -160,34 +160,136 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Search For Bookings</h4>
+                    <form class="forms-sample mt-4" method="POST">
+                          <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Destination or Client Email" name="search" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                        </form>
+                        <br>
                     <?php
-                        //Search for a booking
-                        // Search functionality
-                        if ($_SERVER["REQUEST_METHOD"] == $_POST && isset($_POST["search"])){
-                          $search = "%".trim($_POST["search"])."%"; //using sql wildcards to search for using LIKE operator
-                          $stmt = $conn->prepare("SELECT * FROM Bookings b
-                                                                            JOIN Destinations d ON b.DestinationID = d.DestinationID
-                                                                            JOIN Users a ON b.UserID = a.UserID
-                                                                            WHERE a.Email  LIKE ? OR d.Name  LIKE ?");
-                          $stmt->bind_param("ss", $search, $search);
-                          $stmt->execute();
-                          $result = $stmt->get($stmt);
-                          if($result == " "){
-                            print "Failed";
-                          }
-                          print "$result";
+                        // Include DB connection here or above this block
+                        // Example: $conn = new mysqli("localhost", "root", "", "your_database");
+
+                        $searchResults = [];
+
+                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["search"])) {
+                            $search = "%" . trim($_POST["search"]) . "%";
+
+                            $stmt = $conn->prepare("
+                                SELECT * FROM Bookings b
+                                JOIN Destinations d ON b.DestinationID = d.DestinationID
+                                JOIN Users a ON b.UserID = a.UserID
+                                WHERE a.Email LIKE ? OR d.Name LIKE ? OR d.Country LIKE ?");
+
+                            if ($stmt) {
+                                $stmt->bind_param("sss", $search, $search, $search);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+
+                                if ($result->num_rows === 0) {
+                                    echo "<div class='alert alert-warning'>No matching bookings found.</div>";
+                                } else {
+                                    echo "<div class='alert alert-success'>Search Results:</div>";
+                                    
+                                    echo "<div class='table-responsive'>
+                                                            <table class='table'>
+                                                              <thead>
+                                                                <tr>
+                                                                  <th>
+                                                                    ID
+                                                                  </th>
+                                                                  <th> Client Name </th>
+                                                                  <th> Destination </th>
+                                                                  <th> Hosting</th>
+                                                                  <th> Type </th>
+                                                                  
+                                                                  <th> Start Date </th>
+                                                                  <th> End Date </th>
+                                                                  <th> Total Price </th>
+                                                                  <th> Paid </th>
+                                                                </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                                <tr>
+
+                                      ";
+                                    while ($row = $result->fetch_assoc()) {
+                                       
+                                        $ID = $row["BookingID"];
+                                        $Client = $row["UserID"];
+                                        $destination = $row["DestinationID"];
+                                        $Hosting = $row["HostingID"];
+                                        $Type = $row["BookingType"];
+                                        $People = $row["NumOfPeople"];
+                                        $start = $row["StartDate"];
+                                        $end = $row["EndDate"];
+                                        $price = $row["TotalPrice"];
+                                        $paid = $row["Paid"];
+                                        
+                                        //GEt the destination name
+                                        $dest_name = mysqli_query($conn,"SELECT * FROM destinations WHERE DestinationID=$destination");
+                                        $row2 = mysqli_fetch_array($dest_name);
+                                        $destinationName = $row2["Name"];
+                                        $destImage =  $row2["ImageURL"];
+
+                                        //get the Hosting name
+                                        $host_name = mysqli_query($conn,"SELECT * FROM accomodation WHERE HostingID=$Hosting");
+                                        $row3 = mysqli_fetch_array($host_name);
+                                        $HostingName = $row3["Name"];
+
+                    
+
+                                        //get the user who has placed the booking
+                                        $user_name = mysqli_query($conn,"SELECT * FROM users WHERE UserID=$Client");
+                                        $row4 = mysqli_fetch_array($user_name);
+                                        $UserName = $row4["Email"]; //use email as name
+
+
+                                        if($paid == 1){
+                                          $icon = "<i class='mdi mdi-check-circle  text-primary ml-auto'></i>";
+                                        }else{
+                                          $icon = "<i class='mdi mdi-window-close  text-primary ml-auto'></i> ";
+                                        }
+                                        print "
+                                              <td> ".$ID."</td>
+                                              <td> ".$UserName ." </td>
+                                              <td>
+                                                <img src='assets/images/faces/face1.jpg' alt='image' />
+                                                <span class='pl-2'>".$destinationName."</span>
+                                              </td>
+                                              <td> ".$HostingName." </td>
+                                              <td>". $Type." (".$People." people) </td>
+                                              <td> ".$start." </td>
+                                              <td> ".$end." </td>
+                                              <td> ". $price."</td>
+                                              <td> ".$icon."</td>
+                                              <td>
+                                                <div class='badge badge-outline-success'>Active</div>
+                                                <a href='viewbooking.php?bookid=". urlencode($ID) ."' class='btn btn-primary mr-4 btn-md'>View</a>
+                                              </td>
+                                              <td>
+                                                
+                                              </td>
+                                            </tr>";
+
+
+
+                                      };
+                                    echo "</ul>";
+                                }
+
+                                $stmt->close();
+                            } else {
+                                echo "<div class='alert alert-danger'>Query failed: " . $conn->error . "</div>";
+                            }
                         }
-                      ?>
-                    <form class="forms-sample"  method="POST">
-                      <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Destination or Client Name" name="search">
-                      </div>
-                      
-                      <button type="submit" class="btn btn-primary mr-4 btn-lg" >Submit</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
+                        ?>
+                        </tbody>
+                      </table>
+                    </div>
+                        
+                  
             <div class="row ">
               <div class="col-12 grid-margin">
                 <div class="card">
@@ -382,7 +484,8 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              
+                </div>
             </div>
               
             

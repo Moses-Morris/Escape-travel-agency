@@ -57,7 +57,7 @@
 
                               // Display the count of bookings for the logged-in agent
                               echo "<p class='fs-30 mb-2'>$totalBookings</p>";
-                              ?>
+                            ?>
 
                         <p>Bookings in 24hrs</p>
                       </div>

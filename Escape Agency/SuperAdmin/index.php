@@ -640,54 +640,37 @@
                         <div class="table-responsive">
                           <table class="table">
                             <tbody>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-us"></i>
-                                </td>
-                                <td>USA</td>
-                                <td class="text-right"> 1500 </td>
-                                <td class="text-right font-weight-medium"> 56.35% </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-de"></i>
-                                </td>
-                                <td>Germany</td>
-                                <td class="text-right"> 800 </td>
-                                <td class="text-right font-weight-medium"> 33.25% </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-au"></i>
-                                </td>
-                                <td>Australia</td>
-                                <td class="text-right"> 760 </td>
-                                <td class="text-right font-weight-medium"> 15.45% </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-gb"></i>
-                                </td>
-                                <td>United Kingdom</td>
-                                <td class="text-right"> 450 </td>
-                                <td class="text-right font-weight-medium"> 25.00% </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-ro"></i>
-                                </td>
-                                <td>Romania</td>
-                                <td class="text-right"> 620 </td>
-                                <td class="text-right font-weight-medium"> 10.25% </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-br"></i>
-                                </td>
-                                <td>Brasil</td>
-                                <td class="text-right"> 230 </td>
-                                <td class="text-right font-weight-medium"> 75.00% </td>
-                              </tr>
+                            <?php
+                              
+
+                                  $sql = "
+                                      SELECT 
+                                          d.Country,
+                                          COUNT(b.BookingID) AS total_bookings,
+                                          ROUND(COUNT(b.BookingID) * 100.0 / (SELECT COUNT(*) FROM bookings), 2) AS booking_percentage
+                                      FROM 
+                                          bookings b
+                                      JOIN 
+                                          destinations d ON b.DestinationID = d.DestinationID
+                                      GROUP BY 
+                                          d.Country
+                                      ORDER BY 
+                                          total_bookings DESC;
+                                  ";
+
+                                  $result = $conn->query($sql);
+                                  $count = 1;
+                                  while ($row = $result->fetch_assoc()) {
+                                      echo "<tr>";
+                                      echo "<td>{$count}</td>";
+                                      echo "<td>{$row['Country']}</td>";
+                                      echo "<td>{$row['total_bookings']}</td>";
+                                      echo "<td>{$row['booking_percentage']}%</td>";
+                                      echo "</tr>";
+                                      $count++;
+                                  }
+                                  ?>
+                              
                             </tbody>
                           </table>
                         </div>

@@ -47,13 +47,13 @@
                                 $stmt->execute();
                                 $result = $stmt->get_result();
 
-                                $value = 0; // Default value
+                                $value = 0; 
 
                                 if ($row = $result->fetch_assoc()) {
                                     $value = $row['DestCount'];
                                 }
 
-                                // Print the count
+                                
                                 echo "<p class='fs-30 mb-2'>$value</p>";
                                 ?>
 

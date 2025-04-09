@@ -160,18 +160,109 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Search For A Destination</h4>
-                    <form class="forms-sample">
-                      <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                      </div>
-                      
-                      <button type="submit" class="btn btn-primary mr-4 btn-lg">Submit</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
+                    <form class="forms-sample mt-4" method="POST">
+                          <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Destination or Client Email" name="search" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                        </form>
+                        <br>
+                    <?php
+                        // Include DB connection here or above this block
+                        // Example: $conn = new mysqli("localhost", "root", "", "your_database");
 
-              
+                        $searchResults = [];
+
+                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["search"])) {
+                            $search = "%" . trim($_POST["search"]) . "%";
+
+                            $stmt = $conn->prepare("
+                                SELECT * FROM Bookings b
+                                JOIN Destinations d ON b.DestinationID = d.DestinationID
+                                JOIN Users a ON b.UserID = a.UserID
+                                WHERE  d.Name LIKE ? OR d.Country LIKE ?");
+
+                            if ($stmt) {
+                                $stmt->bind_param("ss", $search, $search);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+
+                                if ($result->num_rows === 0) {
+                                    echo "<div class='alert alert-warning'>No matching bookings found.</div>";
+                                } else {
+                                    echo "<div class='alert alert-success'>Search Results:</div>";
+                                    print "<div class='table-responsive'>
+                                                  <table class='table'>
+                                                    <thead>
+                                                      <tr>
+                                                    
+                                                        <th> Destination Name </th>
+                                                        <th> Country </th>
+                                                        <th> Price </th>
+                                                        <th> Agent Name </th>
+                                                        <th> Travel </th>
+                                                        <th> Destination Bookings </th>
+                                                        <th> Actions </th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>";
+                                                      while($row = mysqli_fetch_array($result)){
+                                                        $ID = $row["DestinationID"];
+                                                        $Name = $row["Name"];
+                                                        $location = $row["Location"];
+                                                        $country = $row["Country"];
+                                                        $img = $row["ImageURL"];
+                                                        $price = $row["Price"];
+                                                        $Agent = $row["AgentID"];
+                                                        $travel = $row["TravelID"];
+                                                        
+                
+                                                         //get the user who has placed the booking
+                                                         $agent_name = mysqli_query($conn,"SELECT * FROM agents WHERE AgentID=$Agent");
+                                                         $row5 = mysqli_fetch_array($agent_name);
+                                                         $AgentName = $row5["CompanyName"]; //use email as name
+                
+                                                        //Count bookings for destination
+                                                        $dest_amt = mysqli_query($conn,"SELECT COUNT(*) FROM bookings WHERE DestinationID=$ID ");
+                                                        $r2 = mysqli_fetch_row($dest_amt);
+                                                        $nr2 = $r2[0];
+                
+                                                     
+                                                        print "
+                                                              
+                                                              
+                                                              <td>
+                                                                <img src='assets/images/faces/face1.jpg' alt='image' />
+                                                                <span class='pl-2'>".$Name."</span>
+                                                              </td>
+                                                              <td> ".$location.", ".$country."</td>
+                                                              <td> ". $price."</td>
+                                                              <td> ".$AgentName."</td>
+                                                              <td> ".$travel."</td>
+                                                              <td> ".$nr2."</td>
+                                                              <td>
+                                                                <div class='badge badge-outline-success'>Active</div>
+                                                              </td>
+                                                              <td>
+                                                                <a href='./Viewdestination.php' class='badge badge-outline-success'>View Destination</a>
+                                                              </td>
+                                                            </tr>";
+                                              
+                                    
+                                                          };
+                                                          echo "</ul>";
+                                                      }
+                      
+                                                      $stmt->close();
+                                                  } else {
+                                                      echo "<div class='alert alert-danger'>Query failed: " . $conn->error . "</div>";
+                                                  }
+                                              }
+                                              ?>
+                                              </tbody>
+                                            </table>
+                                          
             <div class="row ">
               <div class="col-12 grid-margin">
                 <div class="card">
@@ -343,6 +434,10 @@
                         <div class="table-responsive">
                           <table class="table">
                             <tbody>
+                              <?php
+                              
+                              
+                              ?>
                               <tr>
                                 <td>
                                   <i class="flag-icon flag-icon-us"></i>

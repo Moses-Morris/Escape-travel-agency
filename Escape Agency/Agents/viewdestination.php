@@ -1,9 +1,10 @@
 <?php
     include 'base.php';
 ?>
-<?php
-//The details of the Booking
-?>
+
+
+
+
 
 <!-- partial -->
 <div class="main-panel">
@@ -16,7 +17,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Destination Details</h4>
-                    <form class="forms-sample" multipart="enctype">
+                    <form class="forms-sample" enctype="multipart/form-data" action="updatedestination.php" method="post">
                       <?php
                           //get the id from url and
                           if (isset($_GET['destid']) && filter_var($_GET['destid'], FILTER_VALIDATE_INT)) {
@@ -46,7 +47,7 @@
                                         $approv = $row["Status"];
                                         $created = $row["Created_at"];
                                         $dist = $row["DistFromOrigin"];
-                                        
+                                        $avg = $row["RatingAVG"];
                                         $destDetails = "$Name -"." $location , "."$country";
                                         //echo "$approv";
                                        // echo "$desc ";
@@ -85,10 +86,12 @@
                           font-size: medium;
                         }
                       </style>
+                      <input type="hidden" name="id" value="<?php echo $id; ?>">
                       <div class="form-group">
                         <label for="Booked Destination">Destination Name</label>
                         <input type="text" class="form-control" name="destination" value="<?php echo $Name; ?>">
                       </div>
+                      
                       <div class="form-group">
                         <label for="">Description</label>
                         <input type="text" class="form-control" name="description" value="<?php echo $desc; ?>">
@@ -113,13 +116,13 @@
                       
                     
                     
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">.</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title">.</h4>
                     
                       <div class="form-group">
                         <label for="">Destination Image</label>
@@ -150,12 +153,12 @@
                       <div class="form-group">
                       <p>- You can update the destination details -</p>
                       <p>- Deactivate the Destination if you do not wish to proceed with the request -</p>
-                        <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2"  name="confirm">Update</button>
+                        <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2"  name="update" onclick="return confirm('Update this destination?')">Update</button>
                         <button type="submit" class="btn btn-danger btn-rounded btn-fw me-2" name="deactivate">Deactivate</button>
                         
                         </div>
                      
-                    </form>
+                  </form>
                     
                   </div>
                 </div>
