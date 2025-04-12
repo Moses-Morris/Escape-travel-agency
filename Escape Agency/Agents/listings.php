@@ -11,7 +11,138 @@
             <div class="row">
             <div class="col-md-12 grid-margin">
 
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">My Travel Option and Services</h4>
+                    <h6>Create new Travel Option : Travel Services For Destinations</h5>
+                    <h6>These are options that your clients can choose from when making a destination booking. It offers your client the option to choose their Traveling Choice.</h5>
+                    <h6>leave it blank to allow clients to choose from other service providers or allow Escape agency to handle it for you.</h5>
+                    <a href="" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Travel Option</a>
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+                        
+                            <th> Destination </th>
+                            
+                            <th> Travel Mode </th>
+                            <th> Details of Travel </th>
+                            <th> Price </th>
+                            <th> Created By : Agent </th>
+                            <th> Option Created On  </th>
+                            <th> Status </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                          <?php
+                                      
+                                       $result = mysqli_query($conn,"SELECT * FROM traveloptions d 
+                                                                                                JOIN Agents a ON d.AgentID = a.AgentID
+                                                                                                WHERE a.AgentID = $agentID OR a.AgentID = 0");
+                                       while($row = mysqli_fetch_array($result)){
+                                         $id = $row["TravelID"];
+                                         $book = $row["BookingID"];
+                                         $dest = $row["DestinationID"];
+                                         $date = $row["Created_at"];
+                                         $agent = $row["AgentID"];
+                                         $status = $row["Status"];
+                                         $mode = $row["TravelMode"];
+                                         $details = $row["Details"];
+                                         $price = $row["Prices"];
+                                       
+                                         
+                                         
+                                         if ($status == 'active'){
+                                           $icon = "<i class='mdi mdi-check-circle  text-primary ml-auto'>Active</i>";
+                                           $button = "<a href='./deactivy.php' class='badge badge-outline-success'>Deactivate</a>";
+                                         }else{
+                                           $icon = "<i class='mdi mdi-window-close  text-primary ml-auto'>Inactive</i> ";
+                                           $button = "<a href='./deactivy.php' class='badge badge-outline-success'>Activate</a>";
+                                         }
+ 
+                                        
+ 
+                                         
+                                         //gET dest NAME
+                                         $destname = mysqli_query($conn, "SELECT * FROM destinations WHERE DestinationID = $dest");
+                                         $ddname = mysqli_fetch_array($destname);
+                                         $getddname = $ddname['Name'];
+                                         $getddimage = $ddname['ImageURL'];
+ 
+ 
+                                          //gET agent anme
+                                          $agent = mysqli_query($conn, "SELECT * FROM agents WHERE AgentID = $agent");
+                                          $dd = mysqli_fetch_array($agent);
+                                          $getddn = $dd['CompanyName'];
+  
+                                          if (($getddn == "") || ($agent == "0")){
+                                            $company = "Escape Agency";
+                                          } else{
+                                            $company = $getddn;
+                                          }
+ 
+ 
+                                          //Get booking details
+                                          $bookings = mysqli_query($conn, "SELECT * FROM bookings WHERE BookingID = $book");
+                                          $ff = mysqli_fetch_array($bookings);
+                                          $getuser = $ff['UserID'];
+                                          $getDate = $ff['Created_at'];
+                                          
+ 
+                                          //get user
+                                           
+                                         $users = mysqli_query($conn, "SELECT * FROM users WHERE UserID = $getuser");
+                                         $dd = mysqli_fetch_array($users);
+                                         $getdd = $dd['Email'];
+ 
+ 
+                                      
+                                         print "
+                                               
+                                               <td> ".$getddname."</td>      
+                                               <td> ".$mode."</td>
+                                               <td> ".$details."</td>
+                                               <td> ".$price."</td>
+                                               <td> ".$company."</td>
+                                               <td> ".$date."</td>
+                                               <td> ".$icon."</td>
+                                               <td>
+                                                  ".$button."
+                                               </td>
+                                             </tr>";
+ 
+ 
+ 
+                                       };
+ 
 
+                                    ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                                    </div>
+                                    </div>
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">

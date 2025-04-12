@@ -214,7 +214,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">All Destinations</h4>
-                    <a href="" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Destination</a>
+                    <a href="createdestination.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Destination</a>
                     </p>
                     <div class="table-responsive">
                       <table class="table table-striped">

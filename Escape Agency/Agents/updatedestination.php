@@ -1,4 +1,16 @@
 <?php
+
+
+
+
+
+
+?>
+
+
+
+
+<?php
       //Check and fetch ID from URL
       
       /* Fetch destination details
@@ -16,7 +28,7 @@
       /* Handle form submission
       if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit']) ){
         $id = intval($_POST['id']);
- */
+ *
       // Update
       if (isset($_POST['update'])) {
           $id = intval($_POST['id']);
