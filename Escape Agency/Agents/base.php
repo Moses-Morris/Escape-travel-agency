@@ -155,6 +155,18 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="events.php">
+        <i class="icon-head menu-icon"></i>
+        <span class="menu-title">My Events</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="activities.php">
+        <i class="icon-head menu-icon"></i>
+        <span class="menu-title">My Activities</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="listings.php">
         <i class="icon-bar-graph menu-icon"></i>
         <span class="menu-title">My Listings</span>
@@ -172,13 +184,8 @@
         <span class="menu-title">My Payments</span>
       </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="events.php
-      ">
-        <i class="icon-head menu-icon"></i>
-        <span class="menu-title">My Events</span>
-      </a>
-    </li>
+    
+
     <li class="nav-item">
       <a class="nav-link" href="notifications.php">
         <i class="mdi mdi-arrow-down-bold-hexagon-outline menu-icon"></i>

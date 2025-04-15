@@ -130,10 +130,10 @@
 
           // SQL update with or without image
             if ($target_file) {
-              $stmt = $conn->prepare("UPDATE destinations SET Name=?, Description=?, Location=?, Country=?, Price=?, DistFromOrigin=?, ImageURL=? WHERE DestinationID=?");
+              $stmt = $conn->prepare("UPDATE destinations SET Name=?, Description=?, Location=?, Country=?, Price=?, DistFromOrigin=?, ImageURL=? WHERE DestinationID=? AND AgentID=$agentID");
               $stmt->bind_param("sssssdsi", $name, $desc, $location, $country, $price, $dist, $target_file, $id);
           } else {
-              $stmt = $conn->prepare("UPDATE destinations SET Name=?, Description=?, Location=?, Country=?, Price=?, DistFromOrigin=? WHERE DestinationID=?");
+              $stmt = $conn->prepare("UPDATE destinations SET Name=?, Description=?, Location=?, Country=?, Price=?, DistFromOrigin=? WHERE DestinationID=? AND AgentID=$agentID");
               $stmt->bind_param("sssssdi", $name, $desc, $location, $country, $price, $dist, $id);
           }
           
@@ -267,9 +267,10 @@
                               <div class="form-group">
                                   <p>- You can update the destination details -</p>
                                   <p>- Deactivate the Destination if you do not wish to proceed with the request -</p>
-                                  <button type="submit" name="update" class="btn btn-primary">Update</button>
-                                  <button type="submit" name="deactivate" class="btn btn-warning">Deactivate</button>
-                                  <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this destination?');">Delete</button>
+                                  <br>
+                                  <button type="submit" name="update" class="btn btn-primary btn-rounded btn-fw me-2">Update</button>
+                                  <button type="submit" name="deactivate" class="btn btn-warning btn-rounded btn-fw me-2">Deactivate</button>
+                                  <button type="submit" name="delete" class="btn btn-danger btn-rounded btn-fw me-2" onclick="return confirm('Are you sure you want to delete this destination?');">Delete</button>
                                   
                                 </div>
                      

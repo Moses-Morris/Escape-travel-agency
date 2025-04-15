@@ -4,6 +4,39 @@
 <?php
 //The details of the Booking
 ?>
+<?php
+    //get the booking id from url and
+    if (isset($_GET['bookid']) && filter_var($_GET['bookid'], FILTER_VALIDATE_INT)) {
+        $id = $_GET['bookid'];
+        //echo "Received ID: " . htmlspecialchars($id);
+    } else {
+        echo "Invalid booking ID!";
+    }
+?>
+
+<?php
+//Deactivate booking
+//get the featured details
+$feature = mysqli_query($conn,"SELECT * FROM bookings WHERE BookingID=$id");
+$row5= mysqli_fetch_array($feature);
+$status = $row5["Active"];
+echo $status;
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if(isset($_POST['deactivate'])) {
+      $value = $_POST['status'];
+      $stmt = $conn->prepare("UPDATE bookings SET Active=? WHERE BookingID = ?  AND AgentID=$agentID" );
+      $stmt->bind_param("it", $value,$id);
+      if ($stmt->execute()) {
+          $msg =  "<div class='alert alert-info'>Booking Deactivated and Cancelled.</div>";
+      } else {
+        $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
+      }
+      $stmt->close();
+  }
+}
+
+?>
+
 
 <!-- partial -->
 <div class="main-panel">
@@ -16,7 +49,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Booking Details</h4>
-                    <form class="forms-sample">
+                    <form class="forms-sample" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?bookid=' . $id; ?>" method="post" enctype="multipart/form-data">
                       <?php
                           //get the id from url and
                           if (isset($_GET['bookid']) && filter_var($_GET['bookid'], FILTER_VALIDATE_INT)) {
@@ -110,6 +143,11 @@
                           font-weight:900;
                           font-size: medium;
                         }
+                        <?php
+                            if ($msg){
+                              echo $msg;
+                            }
+                      ?>
                       </style>
                       <div class="form-group">
                         <label for="Booked Destination">Destination Booked</label>
@@ -151,15 +189,15 @@
                     
                       <div class="form-group">
                         <label for="">Starting Date</label>
-                        <input type="text" class="form-control" name="start" value="<?php echo $start; ?>">
+                        <input type="date" class="form-control" name="start" value="<?php echo $start; ?>">
                       </div>
                       <div class="form-group">
                         <label for="">Ending Date   </label>
-                        <input type="email" class="form-control" name="end" value="<?php echo $end; ?>">
+                        <input type="date" class="form-control" name="end" value="<?php echo $end; ?>">
                       </div>
                       <div class="form-group">
                         <label for="">Price : Total Amount </label>
-                        <input type="text" class="form-control"  name="price" value="<?php echo $price; ?>">
+                        <input type="number" class="form-control"  name="price" value="<?php echo $price; ?>">
                       </div>
                       <div class="form-group">
                         <label for="">Status</label>
@@ -173,10 +211,8 @@
                         <label for="">Travel Option</label>
                         <input type="text" class="form-control"  name="travel" value="<?php echo $travelDetails; ?>">
                       </div>
-                      
-                      
-                        <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2" style="float:right;" name="confirm">Confirm</button>
-                        <button type="submit" class="btn btn-danger btn-rounded btn-fw me-2" style="float:right;" name="deactivate">Deactivate</button>
+                        <button type="submit" class="btn btn-danger btn-rounded btn-fw me-2" name="deactivate">Deactivate</button>
+                        <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2"  name="confirm">Confirm</button>
                         <p>- Do not confirm yet if the client has not paid -</p>
                         <p>- Deactivate the booking if you do not wish to proceed with the request -</p>
                         
