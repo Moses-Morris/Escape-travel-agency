@@ -5,6 +5,7 @@
 //The details of the Booking
 ?>
 <?php
+//
     //get the booking id from url and
     if (isset($_GET['bookid']) && filter_var($_GET['bookid'], FILTER_VALIDATE_INT)) {
         $id = $_GET['bookid'];
