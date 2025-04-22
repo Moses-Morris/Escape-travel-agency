@@ -18,7 +18,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">My Properties and Services</h4>
+                    <h4 class="card-title">Payments</h4>
                   
                     </p>
                     <div class="table-responsive">
@@ -26,7 +26,7 @@
                         <thead>
                           <tr>
                             <th> OrderNo </th>
-                            <th> Name </th>
+                            
                             <th> ClientName </th>
                             <th> Destination </th>
                             <th> Amount </th>
@@ -78,7 +78,7 @@
                                      
                                             print "
                                                  <td> ".$ID ."</td>
-                                                <td> ". $Name."</td>
+                                                
                                                 <td> ".$UserName."</td>
                                                 <td> ".$nr3."</td>
                                                 <td> ".$amount."</td>

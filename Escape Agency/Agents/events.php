@@ -19,7 +19,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Events</h4>
-                    <a href="" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Event</a>
+                    <a href="createevent.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Event</a>
                     </p>
                     <div class="table-responsive">
                       <table class="table table-striped">
@@ -72,7 +72,7 @@
                                      
                                             print "
                                                 <td class='py-1'>
-                                                    <img src='../../assets/images/faces/face1.jpg' alt='image' />
+                                                    <img src=". $img." alt='image' />
                                                 </td>
                                                 
                                                 <td> ". $Name."</td>

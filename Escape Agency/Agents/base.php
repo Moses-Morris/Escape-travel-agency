@@ -9,7 +9,7 @@
         $login_session=$row['Email'];
         $Company = $row['CompanyName'];
         $agentID = $row['AgentID']; 
-
+        $agentType = $row['AgentType'];
         if(!isset($login_session))
         {
           echo "You Failed !!";

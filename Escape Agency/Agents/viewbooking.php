@@ -21,12 +21,13 @@
 $feature = mysqli_query($conn,"SELECT * FROM bookings WHERE BookingID=$id");
 $row5= mysqli_fetch_array($feature);
 $status = $row5["Active"];
-echo $status;
+//echo $status;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if(isset($_POST['deactivate'])) {
       $value = $_POST['status'];
-      $stmt = $conn->prepare("UPDATE bookings SET Active=? WHERE BookingID = ?  AND AgentID=$agentID" );
-      $stmt->bind_param("it", $value,$id);
+      //echo $value;
+      $stmt = $conn->prepare("UPDATE bookings SET Active = 'cancelled' WHERE BookingID = ?");
+      $stmt->bind_param("i", $id); // both are integers
       if ($stmt->execute()) {
           $msg =  "<div class='alert alert-info'>Booking Deactivated and Cancelled.</div>";
       } else {

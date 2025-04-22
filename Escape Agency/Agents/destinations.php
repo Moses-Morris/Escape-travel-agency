@@ -234,7 +234,7 @@
                           <?php
                                       $result = mysqli_query($conn,"SELECT * FROM Destinations d 
                                                                             JOIN Agents a ON d.AgentID = a.AgentID
-                                                                            WHERE a.AgentID = $agentID AND d.Status='approved' ");
+                                                                            WHERE a.AgentID = $agentID  ");
                                       while($row = mysqli_fetch_array($result)){
                                         $ID = $row["DestinationID"];
                                         $Name = $row["Name"];
@@ -248,9 +248,11 @@
                                         $desc = $row["Description"];
                                         //echo "$approv";
                                         //approved or not
-                                        if ($approv == "active"){
+                                        if ($approv === "active"){
                                           $icon = "<button class='badge badge-outline-success'>Approved</button>";
-                                        }else{
+                                        }else if($approv == " " ) {
+                                          $icon = "<button class='badge badge-outline-danger'>Not Approved</button>";
+                                        } else{
                                           $icon = "<button class='badge badge-outline-danger'>Not Approved</button>";
                                         }
 
@@ -269,7 +271,7 @@
                                               
                                               
                                               <td>
-                                                <img src='assets/images/faces/face1.jpg' alt='image' />
+                                                <img src=".$img." alt='image' />
                                                 <span class='pl-2'>".$Name."</span>
                                               </td>
                                                <td> ".$desc."</td>

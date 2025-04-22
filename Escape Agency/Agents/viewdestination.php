@@ -109,14 +109,14 @@
                   die("Invalid image format.");
               }
           }*/
-          $target_file = null;
+        $target_file = null;
 
         if (isset($_FILES['img']) && $_FILES['img']['error'] === 0) {
             $allowed = ['image/jpeg', 'image/png', 'image/gif'];
             $filetype = mime_content_type($_FILES['img']['tmp_name']);
 
             if (!in_array($filetype, $allowed)) {
-                die("<div class='alert alert-warning'>Invalid image format. Use jpg, png, or gif.</div>");
+                die("<div class='alert alert-warning '>Invalid image format. Use jpg, png, or gif.</div>");
             }
 
             $filename = uniqid() . '_' . basename($_FILES['img']['name']);
@@ -157,7 +157,10 @@
           $stmt = $conn->prepare("DELETE FROM destinations WHERE DestinationID = ? AND AgentID=$agentID" );
           $stmt->bind_param("i", $id);
           if ($stmt->execute()) {
-              echo "<div class='alert alert-success'>Destination deleted.</div>";
+              echo "<div class='col-md-6 d-flex '>
+                          Destination Deleted Sucessfully
+                              ";
+
               header("Refresh:2; url=destinations.php");
               exit;
           } else {

@@ -6,14 +6,14 @@
    if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if(isset($_POST['submit'])) {
       
-        $name = mysqli_real_escape_string($conn,$_POST['destination']);
+        $property = mysqli_real_escape_string($conn,$_POST['property']);
         $desc = mysqli_real_escape_string($conn,$_POST['desc']);
         $location = mysqli_real_escape_string($conn,$_POST['location']);
-        $country = mysqli_real_escape_string($conn,$_POST['country']);
+        $services = mysqli_real_escape_string($conn,$_POST['services']);
         $price = mysqli_real_escape_string($conn,$_POST['price']);
-        $travel = mysqli_real_escape_string($conn,$_POST['travel']);
-        $activities = mysqli_real_escape_string($conn,$_POST['activities']);
-        $dist = mysqli_real_escape_string($conn,$_POST['dist']);
+        $features = mysqli_real_escape_string($conn,$_POST['features']);
+        //$activities = mysqli_real_escape_string($conn,$_POST['activities']);
+        $option = mysqli_real_escape_string($conn,$_POST['optiontype']);
         //$img = $_POST['img'];
 
         
@@ -37,28 +37,24 @@
 
         $msg = "";
         $state = "OK";
-        $rating = 0;
-        $status = "approved";
-        $featured = 0;
-        $ranking = 0;
+        $status = "active";
+        $rating = 0.0;
+        // $agentType - the variable with type of agent getting the property
         $date =  date('Y-m-d H:i');
-        if (empty($name) || empty($desc) || empty($location) || empty($country) || empty($price) || empty($travel) || empty($activities) || empty($dist)){
-          $msg = "<div class='alert alert-danger'>Do not send empty fields: </div>";
-          $state= "NOTOK";
-        } else{
+       
           //$stmt = "INSERT INTO destinations ( Name, Description, Location, Country,   Price, RatingAVG, Featured, PopularityRanking, Activities, TravelID, DistFromOrigin, AgentID, Status, Created_at, ImageURL)  VALUES
           //('$name', '$desc', '$location', '$country', '$price', '$rating', '$rating', '$rating', '$activities', '$travel', '$dist', '$agentID',  '$status', '$date', '$target_file')";
           //$stmt->bind_params();
-          $stmt = $conn->prepare("INSERT INTO destinations ( Name, Description, Location, Country,   Price, RatingAVG, Featured, PopularityRanking, Activities, TravelID, DistFromOrigin, AgentID, Status, Created_at, ImageURL)  
-          VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" );
-          $stmt->bind_param("sssssssssssssss", $name, $desc, $location, $country, $price, $rating, $featured, $ranking,$activities, $travel, $dist, $agentID,  $status, $date,$target_file);
+          $stmt = $conn->prepare("INSERT INTO agentproperties ( PropertyName, AgentID, Status,  Created_at, RatingAVG,Services, Features,Description, Price,Location,OptionType,AgentType,ImageURL)  
+          VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)" );
+          $stmt->bind_param("sssssssssssss", $property, $agentID, $status, $date, $rating, $services, $features,$desc,$price, $location, $option, $agentType,$target_file);
           if ($stmt->execute()) {
             echo "<div class='col-md-6 d-flex '>
-                            <div class='card alert alert-success'> Destination Created Successfully. Proceeding to All Destinations
+                            <div class='card alert alert-success'> Property Created Successfully. Proceeding to All Properties
                           </div>";
             echo "<script>
                           setTimeout(function() {
-                              window.location.href = 'destinations.php';
+                              window.location.href = 'listings.php';
                           }, 3000);
                         </script>";
             //header("Refresh:2; url=destinations.php");
@@ -74,9 +70,9 @@
           }else{
             $msg =  "<div class='alert alert-info'>A New Destination is created.</div>";
             //echo "<div class='alert alert-success'>Destination Created.</div>";
-          }*/
+          }*
 
-        }
+        /
         
         /*
         if ($stmt->execute()) {
@@ -102,7 +98,7 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Create A New Destination</h4>
+                    <h4 class="card-title">Create A New Property</h4>
                     <form class="forms-sample" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" enctype="multipart/form-data">
                       
                       <style> 
@@ -117,29 +113,29 @@
                                 print $msg;
                                }
                                if($msg){
-                                print "msg";
+                                print $msg;
                                }
                         ?>
                       </style>
                       <div class="form-group ">
-                        <label for="">Destination Image</label>
+                        <label for="">Property Image</label>
                         <input type="file" class="form-control" name="img" style="height:auto; width: 30vw; background-position: center; object-fit:center;">
                        </div>
                       <div class="form-group">
-                        <label for="Booked Destination">Destination Name</label>
-                        <input type="text" class="form-control" name="destination" >
+                        <label for="Booked Destination">Property Name</label>
+                        <input type="text" class="form-control" name="property" >
                       </div>
                       <div class="form-group">
-                        <label for="">Description Of Destination</label>
-                        <input type="text" class="form-control" name="desc" >
+                        <label for="">Services</label>
+                        <input type="text" class="form-control" name="services" >
                       </div>
                       <div class="form-group">
-                        <label for="">Location</label>
-                        <input type="text" class="form-control" name="location" >
+                        <label for="">Features</label>
+                        <input type="text" class="form-control" name="features" >
                       </div>
                       <div class="form-group">
-                        <label for="">Country</label>
-                        <input type="text"  class="form-control" name="country" >
+                        <label for="">Description</label>
+                        <input type="text"  class="form-control" name="desc" >
                       </div>
 
                      
@@ -155,51 +151,18 @@
                     <h4 class="card-title">.</h4>
                     
                       <div class="form-group">
-                        <label for="">Price : Total Amount </label>
+                        <label for="">Price : Total Amount Per Night</label>
                         <input type="number" class="form-control"  name="price" >
                       </div>
                       <div class="form-group">
-                        <label for="">Travel Option</label>
-                        <input list='travels' id='travel' name='travel' placeholder='Travel Option' class='form-control'>
-                            <datalist id='travels'>
-                        <?php
-                            //Select some elements from  the database
-                            $result = mysqli_query($conn,"SELECT * FROM traveloptions
-                                                                                WHERE AgentID = $agentID AND Status='active'");
-                            while($row = mysqli_fetch_array($result)){
-                                $ID = $row["TravelID"];
-                                $mode = $row["TravelMode"];
-                                $destination = $row["DestinationID"];
-                                $price = $row["Prices"];
-                                $details = $row["Details"];
-
-                                //GEt the destination name
-                                $dest_name = mysqli_query($conn,"SELECT * FROM destinations WHERE DestinationID=$destination");
-                                $row2 = mysqli_fetch_array($dest_name);
-                                $destinationName = $row2["Name"];
-                                $destImage =  $row2["ImageURL"];
-                                $location =  $row2["Location"];
-                                $country =  $row2["Country"];
-                                $destdetails = "$destinationName -"." $location, "."$country. ";
-
-                                print "
-                                
-                                    <option value=".$ID."> ".$mode." - ".$details." at ".$price." USD To " .$destdetails." </option>
-                                    
-                                ";
-                            }
-                        
-                        ?>
-                            </datalist>
+                        <label for="">Location</label>
+                        <input type="text" class="form-control"  name="location" >
                       </div>
                       <div class="form-group">
-                        <label for="">Activities</label>
-                        <input type="text" class="form-control" name="activities" >
+                        <label for="">Type of Property</label>
+                        <input type="text" class="form-control" name="optiontype" >
                       </div>
-                      <div class="form-group">
-                        <label for="">Distance From Origin to City</label>
-                        <input type="text" class="form-control" name="dist" >
-                      </div>
+                      
                       
                         
                         <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2"  name="submit" onclick="return confirm('Are the Details correct? Review. If Okay, Proceed');">Create</button>

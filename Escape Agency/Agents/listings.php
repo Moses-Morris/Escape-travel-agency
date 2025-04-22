@@ -18,15 +18,13 @@
                     <h6>Create new Travel Option : Travel Services For Destinations</h5>
                     <h6>These are options that your clients can choose from when making a destination booking. It offers your client the option to choose their Traveling Choice.</h5>
                     <h6>leave it blank to allow clients to choose from other service providers or allow Escape agency to handle it for you.</h5>
-                    <a href="" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Travel Option</a>
+                    <a href="createtravel.php"  class="btn btn-primary btn-rounded btn-fw">Create New Travel Option</a>
                     </p>
                     <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>
                         <tr>
-                        
                             <th> Destination </th>
-                            
                             <th> Travel Mode </th>
                             <th> Details of Travel </th>
                             <th> Price </th>
@@ -148,7 +146,7 @@
                   <div class="card-body">
                     <h4 class="card-title">My Properties and Services</h4>
                     <h6>Create new Properties for Destinations : Hosting</h5>
-                    <a href="" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Property</a>
+                    <a href="createproperty.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Property</a>
                     </p>
                     <div class="table-responsive">
                       <table class="table table-striped">
@@ -221,7 +219,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Accomodation Information - Active Hostings</h4>
-                    <a href="" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Hosting</a>
+                    <a href="createhosting.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Hosting</a>
                     <div class="table-responsive">
                       <table class="table">
                         <thead>
