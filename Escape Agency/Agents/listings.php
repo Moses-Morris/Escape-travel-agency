@@ -11,7 +11,7 @@
             <div class="row">
             <div class="col-md-12 grid-margin">
 
-            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card" id="travel">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">My Travel Option and Services</h4>
@@ -108,7 +108,7 @@
                                                <td> ".$date."</td>
                                                <td> ".$icon."</td>
                                                <td>
-                                                  ".$button."
+                                                  <a href='viewtravel.php?travelid=". urlencode($id) ."' type='button' class='btn btn-primary  btn-rounded btn-fw'>View </a>
                                                </td>
                                              </tr>";
  
@@ -141,7 +141,7 @@
 
 
             
-            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card"  id="properties">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">My Properties and Services</h4>
@@ -168,7 +168,7 @@
                                                                                                 JOIN Agents a ON d.AgentID = a.AgentID
                                                                                                 WHERE a.AgentID = $agentID  ");
                                         while($row = mysqli_fetch_array($result)){
-                                            $ID = $row["PropertyID"];
+                                            $propID = $row["PropertyID"];
                                             $Name = $row["PropertyName"];
                                             $date = $row["Created_at"];
                                             $services = $row["Services"];
@@ -199,7 +199,7 @@
                                                 <td> ".$option."</td>
                                                 
                                                 <td>
-                                                    <a href='viewproperty.php?propid=". urlencode($ID) ."' type='button' class='btn btn-primary btn-fw'>View Property</a>
+                                                    <a href='viewproperty.php?propid=". urlencode($propID) ."' type='button' class='btn btn-primary btn-fw'>View Property</a>
                                                 </td>
                                                 </tr>";
 
@@ -215,7 +215,7 @@
                                     </div>
                                     </div></div></div>
 
-                  <div class="col-12 grid-margin">
+                  <div class="col-12 grid-margin" id="hostings">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Accomodation Information - Active Hostings</h4>
@@ -238,6 +238,7 @@
                           <?php
                             $result = mysqli_query($conn,"SELECT * FROM accomodation WHERE active='active' AND AgentID=$agentID");
                             while($row = mysqli_fetch_array($result)){
+                              $hostID=$row['HostingID'];
                               $name = $row['Name'];
                               $dest = $row['DestinationID'];
                               $type = $row['Type'];
@@ -281,7 +282,7 @@
                                       <div class='badge badge-outline-success'>Active</div>
                                     </td>
                                     <td>
-                                      <a href='./viewhosting.php?hostid=". urlencode($ID) ."' class='btn btn-primary '>View More Details</a>
+                                      <a href='./viewhosting.php?hostid=". urlencode($hostID) ."' class='btn btn-primary '>View More Details</a>
                                     </td>
                                   </tr>";
 

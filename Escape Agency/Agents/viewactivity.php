@@ -77,40 +77,66 @@
           $destination = $_POST['DestinationID'];
           $ratings = $_POST['ratings'];
           
-            $target_file = null;
-
-            if (isset($_FILES['img']) && $_FILES['img']['error'] === 0) {
-                $allowed = ['image/jpeg', 'image/png', 'image/gif'];
-                $filetype = mime_content_type($_FILES['img']['tmp_name']);
-
-                if (!in_array($filetype, $allowed)) {
-                    die("<div class='alert alert-warning '>Invalid image format. Use jpg, png, or gif.</div>");
-                }
-
-                $filename = uniqid() . '_' . basename($_FILES['img']['name']);
-                $target_file = "uploads/" . $filename;
-
-                if (!move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
-                    die("<div class='alert alert-warning'>Image upload failed.</div>");
-                }
-            }
-
-
-          // SQL update with or without image
-            if ($target_file) {
-              $stmt = $conn->prepare("UPDATE activities SET Name=?, Description=?, Duration=?, Price=?, Status=?, ImageURL=?, DestinationID=? WHERE ActivityID=? AND AgentID=$agentID");
-              $stmt->bind_param("ssssssss", $name, $desc, $duration, $price, $status, $target_file,$destination, $id);
-          } else {
-              $stmt = $conn->prepare("UPDATE activities SET Name=?, Description=?, Duration=?, Price=?, Status=?, DestinationID=? WHERE ActivityID=? AND AgentID=$agentID");
-              $stmt->bind_param("sssssss", $name, $desc, $duration, $price, $status, $destination, $id);
+          $uploadOk = true;
+          $target_file = $img; // default to existing image if new one is not uploaded
+          $imageUpdated = false;
+      
+          // Image upload logic
+          if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
+              $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+              $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+      
+              $fileTmpPath = $_FILES['img']['tmp_name'];
+              $originalName = $_FILES['img']['name'];
+              $fileSize = $_FILES['img']['size'];
+              $fileMimeType = mime_content_type($fileTmpPath);
+              $fileExt = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
+      
+              // Validate type and extension
+              if (!in_array($fileMimeType, $allowedMimeTypes) || !in_array($fileExt, $allowedExtensions)) {
+                  $msg = "<div class='alert alert-warning'>Invalid file type. Only JPG, PNG, or GIF allowed.</div>";
+                  $uploadOk = false;
+              }
+      
+              // Limit file size (e.g., 5MB)
+              if ($fileSize > 5 * 1024 * 1024) {
+                  $msg = "<div class='alert alert-warning'>File is too large. Max 5MB allowed.</div>";
+                  $uploadOk = false;
+              }
+      
+              // Move file if all good
+              if ($uploadOk) {
+                  $uniqueName = uniqid('img_', true) . '.' . $fileExt;
+                  $uploadDir = "uploads/";
+                  $target_file = $uploadDir . $uniqueName;
+      
+                  if (!move_uploaded_file($fileTmpPath, $target_file)) {
+                      $msg = "<div class='alert alert-danger'>Failed to move uploaded file.</div>";
+                      $uploadOk = false;
+                  } else {
+                      $imageUpdated = true;
+                  }
+              }
           }
-          
-          if ($stmt->execute()) {
-              $msg = "<div class='alert alert-success'>Activity updated successfully.</div>";
-          } else {
-              $msg = "<div class='alert alert-danger'>Update failed: {$stmt->error}</div>";
+             // Only continue if image passed or no image was uploaded
+            if ($uploadOk) {
+              if ($imageUpdated) {
+                  $stmt = $conn->prepare("UPDATE activities SET Name=?, Description=?, Duration=?, Price=?, Status=?, ImageURL=?, DestinationID=? WHERE ActivityID=? AND AgentID=?");
+                  $stmt->bind_param("sssssssii", $name, $desc, $duration, $price, $status, $target_file, $destination, $id, $agentID);
+              } else {
+                  $stmt = $conn->prepare("UPDATE activities SET Name=?, Description=?, Duration=?, Price=?, Status=?, DestinationID=? WHERE ActivityID=? AND AgentID=?");
+                  $stmt->bind_param("ssssssii", $name, $desc, $duration, $price, $status, $destination, $id, $agentID);
+              }
+
+              if ($stmt->execute()) {
+                  $msg = "<div class='alert alert-success'>Activity updated successfully.</div>";
+              } else {
+                  $msg = "<div class='alert alert-danger'>Update failed: {$stmt->error}</div>";
+              }
+
+              $stmt->close();
           }
-          $stmt->close();
+              
 
       } elseif (isset($_POST['deactivate'])) {
           $stmt = $conn->prepare("UPDATE activities SET Status = 'inactive' WHERE ActivityID = ?  AND AgentID=$agentID");
@@ -208,7 +234,7 @@
                                 </div>
                               <div class="form-group">
                                     <label for="destination">Destination Name</label>
-                                    <input list='destinations' id='destination' name='DestinationID' placeholder='Destination' class='form-control' value="<?php echo $getddname; ?> ">
+                                    <input list='destinations' id='destination' name='DestinationID' placeholder='<?php echo $getddname; ?>' class='form-control' value="<?php echo $dest; ?> ">
                                         <datalist id='destinations'>
                                             <?php
                                                 //Select some elements from  the database

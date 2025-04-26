@@ -35,6 +35,7 @@
                             <th> Status </th>
                             <th> Option </th>
                             <th> Transaction Summary </th>
+                            <th> Paid </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -48,6 +49,7 @@
                                                                                                 JOIN Agents a ON d.AgentID = a.AgentID
                                                                                                 WHERE a.AgentID = $agentID  ");
                                         while($row = mysqli_fetch_array($result)){
+                                            $payid=$row['PaymentID'];
                                             $ID = $row["OrderNo"];
                                             $Name = $row["Name"];
                                             $user = $row["UserID"];
@@ -58,8 +60,14 @@
                                             $active = $row["Active"];
                                             $date = $row["TransactionDate"];
                                             $summary = $row["TransactionSummary"];
-                                            
-                                        
+                                            //echo $status;
+                                            if ($status=="active"){
+                                                $tano = "Paid";
+                                                $icon = "<i class='mdi mdi-check-circle  text-primary ml-auto'>". $tano."</i> ";
+                                            } else{
+                                                $tano = "Not Paid";
+                                                $icon = "<i class='mdi mdi-window-close  text-primary ml-auto'>". $tano."</i> ";
+                                            }
                                                 //get the user who has placed the booking
                                             $username = mysqli_query($conn,"SELECT * FROM users WHERE UserID=$user");
                                             $row5 = mysqli_fetch_array($username);
@@ -86,12 +94,15 @@
                                                 <td> ".$date."</td>
                                                 <td> ". $status."</td>
                                                 <td> ".$active."</td>
+                                                
                                                 <td> ".$summary."</td>
+                                                
                                                 <td>
-                                                      <a href='' type='button' class='btn btn-primary btn-rounded btn-fw'>Confirm</a>
+                                                      <a href='viewpayment.php?payid=". urlencode($payid) ."''' type='button' class='btn btn-primary btn-rounded btn-fw'>View Details</a>
                                                 </td>
                                                 </tr>
                                                 ";
+                                                //<td> ".$icon."</td>
 
 
 

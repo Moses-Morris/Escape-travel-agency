@@ -5,6 +5,7 @@
 <?php
     //Create an Event
     //echo $agentID;
+    $msg = "";
    if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if(isset($_POST['submit'])) {
       
@@ -23,7 +24,7 @@
         
         $date =  date('Y-m-d H:i');
         //echo $name.$desc.$destination.$location.$country.$price.$tag.$activities.$end.$start.$target_file.$rating.$status.$likes.$date;   
-        if (empty($name) || empty($details) || empty($destination) || empty($price) ){
+        if (empty($travel) || empty($details) || empty($destination) || empty($price) ){
           $msg = "<div class='alert alert-danger'>Do not send empty fields: </div>";
           //$state= "NOTOK";
         } else{
@@ -35,11 +36,11 @@
           $stmt->bind_param("ssssssss", $booking, $destination,  $agentID, $travel, $details, $price, $status, $date);
           if ($stmt->execute()) {
             echo "<div class='col-md-6 d-flex '>
-                            <div class='card alert alert-success'> Activity Created Successfully. Proceeding to All Events
+                            <div class='card alert alert-success'> |Travel Created Successfully. Proceeding to All Travel Options
                           </div>";
             echo "<script>
                           setTimeout(function() {
-                              window.location.href = 'activities.php';
+                              window.location.href = 'listings.php#travel';
                           }, 3000);
                         </script>";
             //header("Refresh:2; url=destinations.php");
@@ -47,10 +48,11 @@
           }else{
             $msg =   "<div class='alert alert-danger'>Error: " . $stmt->error . "</div>";
           }
+          $stmt->close();
 
         }
 
-        mysqli_close($conn);
+        
         }
    }
 ?>
@@ -65,7 +67,12 @@
                   <div class="card-body">
                     <h4 class="card-title">Create A New Travel Option</h4>
                     <form class="forms-sample" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" >
-                      
+                      <?php
+
+                       if ($msg){
+                        echo $msg;
+                       }
+                      ?>
                       <style> 
                         .form-group input{
                           font-weight:900;
@@ -105,7 +112,7 @@
                     <h4 class="card-title">.</h4>
                     <div class="form-group">
                         <label for="">Booking Refence if any </label>
-                        <input type="booking" class="form-control" name="booking" placeholder="Leave it null if there is no booking associated with this travel option">
+                        <input type="booking" class="form-control" name="booking" placeholder="Input Default = 1 if there is no booking associated with this travel option">
                       </div>
                       
                       <div class="form-group">

@@ -1,6 +1,9 @@
 <?php
   include 'base.php';
 ?>
+<?php
+    //confirm payment
+?>
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
@@ -434,7 +437,7 @@
                                               <td> ".$tsummary."</td>
                                               
                                               <td>
-                                                <a href='./Viewpayment.php' class='badge badge-outline-success'>View Payment</a>
+                                                <a href='viewpayment.php' class='badge badge-outline-success'>View Payment</a>
                                               </td>
                                             </tr>";
 

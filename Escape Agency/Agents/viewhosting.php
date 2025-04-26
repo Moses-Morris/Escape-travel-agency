@@ -2,7 +2,7 @@
     include 'base.php';
 ?>
 <?php
-//The details of the Booking
+//The details of the Hosting
 ?>
 
 <!-- partial -->

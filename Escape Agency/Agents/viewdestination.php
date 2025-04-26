@@ -2,6 +2,7 @@
     include 'base.php';
 ?>
 <?php
+$msg = "";
     //get the id from url and
     if (isset($_GET['destid']) && filter_var($_GET['destid'], FILTER_VALIDATE_INT)) {
         $id = $_GET['destid'];
@@ -139,6 +140,7 @@
           
           if ($stmt->execute()) {
               $msg = "<div class='alert alert-success'>Destination updated successfully.</div>";
+              
           } else {
               $msg = "<div class='alert alert-danger'>Update failed: {$stmt->error}</div>";
           }
@@ -161,7 +163,11 @@
                           Destination Deleted Sucessfully
                               ";
 
-              header("Refresh:2; url=destinations.php");
+                              echo "<script>
+                              setTimeout(function() {
+                                  window.location.href = 'destinations.php';
+                              }, 3000);
+                            </script>";
               exit;
           } else {
             $msg =   "<div class='alert alert-danger'>Delete failed: " . $stmt->error . "</div>";

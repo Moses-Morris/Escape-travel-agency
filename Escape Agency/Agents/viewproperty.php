@@ -2,7 +2,96 @@
     include 'base.php';
 ?>
 <?php
-//The details of the Booking
+ $msg="";
+    //get the id from url and
+    if (isset($_GET['propid']) && filter_var($_GET['propid'], FILTER_VALIDATE_INT)) {
+        $id = $_GET['propid'];
+        //echo "Received ID: " . htmlspecialchars($id);
+    } else {
+        echo "Invalid ID!";
+    }
+?>
+<?php
+//Actions on Property
+ // Handle Form Actions
+ if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  if (isset($_POST['update'])) {
+      $propid = $_POST['propid'];
+      $name = $_POST['property'];
+      $desc = $_POST['description'];
+      $services = $_POST['services'];
+      $location = $_POST['location'];
+      $type = $_POST['type'];
+      $status = $_POST['icon'];
+      $price = $_POST['price'];
+      $feature = $_POST['features'];
+      $avg = $_POST['avg'];
+      $date = $_POST['date'];
+      $target_file = null;
+
+      if (isset($_FILES['img']) && $_FILES['img']['error'] === 0) {
+          $allowed = ['image/jpeg', 'image/png', 'image/gif'];
+          $filetype = mime_content_type($_FILES['img']['tmp_name']);
+
+          if (!in_array($filetype, $allowed)) {
+              die("<div class='alert alert-warning '>Invalid image format. Use jpg, png, or gif.</div>");
+          }
+
+          $filename = uniqid() . '_' . basename($_FILES['img']['name']);
+          $target_file = "uploads/" . $filename;
+
+          if (!move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
+              die("<div class='alert alert-warning'>Image upload failed.</div>");
+          }
+      }
+
+
+      // SQL update with or without image
+        if ($target_file) {
+            $stmt = $conn->prepare("UPDATE agentproperties SET PropertyName=?, AgentID=?, Status=?,   Services=?, Features=?, Description=?, Price=?, Location=?, OptionType=?, ImageURL=? WHERE PropertyID=? AND AgentID=$agentID");
+            $stmt->bind_param("sssssssssss", $name, $agentID, $status, $services, $feature,$desc, $price, $location, $agentType,  $target_file, $propid);
+        } else {
+            $stmt = $conn->prepare("UPDATE agentproperties SET PropertyName=?, AgentID=?, Status=?,   Services=?, Features=?, Description=?, Price=?, Location=?, OptionType=? WHERE PropertyID=? AND AgentID=$agentID");
+            $stmt->bind_param("ssssssssss", $name, $agentID, $status, $services, $feature,$desc, $price, $location, $agentType,   $propid);
+        }
+        
+        if ($stmt->execute()) {
+            $msg = "<div class='alert alert-success'>Agent Property updated successfully.</div>";
+        } else {
+            $msg = "<div class='alert alert-danger'>Update failed: {$stmt->error}</div>";
+        }
+        $stmt->close();
+
+  } elseif (isset($_POST['deactivate'])) {
+      $stmt = $conn->prepare("UPDATE agentproperties SET Status = 'inactive' WHERE PropertyID = ?  AND AgentID=$agentID");
+      $stmt->bind_param("i", $propid);
+      if ($stmt->execute()) {
+          $msg =  "<div class='alert alert-info'>Property deactivated.</div>";
+      } else {
+         $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
+      }
+      $stmt->close();
+  } elseif (isset($_POST['delete'])) {
+      $stmt = $conn->prepare("DELETE FROM agentproperties WHERE PropertyID = ? AND AgentID=$agentID" );
+      $stmt->bind_param("i", $propid);
+      if ($stmt->execute()) {
+          echo "<div class='col-md-6 d-flex '>
+                      Propery Deleted Sucessfully
+                          ";
+
+                          echo "<script>
+                          setTimeout(function() {
+                              window.location.href = 'properties.php';
+                          }, 3000);
+                        </script>";
+          exit;
+      } else {
+        $msg =   "<div class='alert alert-danger'>Delete failed: " . $stmt->error . "</div>";
+      }
+      $stmt->close();
+  }
+}
+
 ?>
 
 <!-- partial -->
@@ -16,14 +105,11 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Property Details</h4>
-                    <form class="forms-sample" multipart="enctype">
+                    <form class="forms-sample" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?propid=' . $id; ?>" method="post" enctype="multipart/form-data">
                       <?php
-                          //get the id from url and
-                          if (isset($_GET['propid']) && filter_var($_GET['propid'], FILTER_VALIDATE_INT)) {
-                              $id = $_GET['propid'];
-                              //echo "Received ID: " . htmlspecialchars($id);
-                          } else {
-                              echo "Invalid ID!";
+                       
+                          if($msg){
+                            print $msg;
                           }
                       ?>
 
@@ -60,9 +146,12 @@
                           font-size: medium;
                         }
                       </style>
+                   
+                      <input type="text" class="form-control" name="propid" value="<?php echo $propid; ?>" hidden>
+                      
                       <div class="form-group">
-                        <label for="Booked Destination">Destination Name</label>
-                        <input type="text" class="form-control" name="destination" value="<?php echo $Name; ?>">
+                        <label for="">Property Name</label>
+                        <input type="text" class="form-control" name="property" value="<?php echo $Name; ?>">
                       </div>
                       <div class="form-group">
                         <label for="">Description</label>
@@ -82,8 +171,8 @@
                         <input type="text" class="form-control" name="type" value="<?php echo $type; ?>">
                       </div>
                       <div class="form-group">
-                        <label for="">Featured</label>
-                        <input type="text" class="form-control" name="feature" value="<?php echo $feature; ?>">
+                        <label for="">Features</label>
+                        <input type="text" class="form-control" name="features" value="<?php echo $feature; ?>">
                       </div>
                       
                     
@@ -97,13 +186,13 @@
                     <h4 class="card-title">.</h4>
                     
                       <div class="form-group">
-                        <label for="">Destination Image</label>
-                        <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>">
+                        <label for="">Property Image</label>
+                        <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>" style="height:30vh; width:30vw; object-fit:center;background-position:center;">
                         <input type="file" class="form-control" name="img" >
                       </div>
                       <div class="form-group">
                         <label for="">Approved  By Admin </label>
-                        <input type="email" class="form-control" name="icon" value="<?php echo $icon; ?>">
+                        <input type="text" class="form-control" name="icon" value="<?php echo $icon; ?>">
                       </div>
                       <div class="form-group">
                         <label for="">Price : Total Amount </label>
@@ -122,7 +211,7 @@
                       <div class="form-group">
                       <p>- You can update the destination details -</p>
                       <p>- Deactivate the Destination if you do not wish to proceed with the request -</p>
-                        <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2"  name="confirm">Update</button>
+                        <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2"  name="update">Update</button>
                         <button type="submit" class="btn btn-danger btn-rounded btn-fw me-2" name="deactivate">Deactivate</button>
                         
                         </div>

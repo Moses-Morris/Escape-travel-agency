@@ -3,10 +3,11 @@
 ?>
 <?php
    //Create a destination
+   $msg = "";
    if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if(isset($_POST['submit'])) {
       
-        $hosting = mysqli_real_escape_string($conn,$_POST['property']);
+        $hosting = mysqli_real_escape_string($conn,$_POST['hosting']);
         $desc = mysqli_real_escape_string($conn,$_POST['desc']);
         $destination = mysqli_real_escape_string($conn,$_POST['destination']);
         $type = mysqli_real_escape_string($conn,$_POST['type']);
@@ -15,6 +16,7 @@
         $features = mysqli_real_escape_string($conn,$_POST['features']);
         //$option = mysqli_real_escape_string($conn,$_POST['optiontype']);
         //$img = $_POST['img'];
+        $dist = mysqli_real_escape_string($conn,$_POST['dist']);
 
         
         $target_file = null;
@@ -47,14 +49,14 @@
           //$stmt->bind_params();
           $stmt = $conn->prepare("INSERT INTO accomodation ( Name, DestinationID, Type, PricePerNight, RatingAVG, ImageURL, Location, DistFromOrigin, Features,active, Description, Created_at, AgentID)  
           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)" );
-          $stmt->bind_param("sssssssssssss", $property, $agentID, $status, $date, $rating, $services, $features,$desc,$price, $location, $option, $agentType,$target_file);
+          $stmt->bind_param("sssssssssssss", $hosting, $destination, $type, $price, $rating, $target_file, $location,$dist,$features, $active, $desc, $date, $agentID);
           if ($stmt->execute()) {
             echo "<div class='col-md-6 d-flex '>
-                            <div class='card alert alert-success'> Property Created Successfully. Proceeding to All Properties
+                            <div class='card alert alert-success'> Hosting Created Successfully. Proceeding to All Hostings
                           </div>";
             echo "<script>
                           setTimeout(function() {
-                              window.location.href = 'listings.php';
+                              window.location.href = 'listings.php#hostings';
                           }, 3000);
                         </script>";
             //header("Refresh:2; url=destinations.php");
@@ -81,8 +83,8 @@
             $msg =   "<div class='alert alert-danger'>Failed to Create destination: " . $stmt->error . "</div>";
         }
             */
-        //$stmt->close();
-        mysqli_close($conn);
+        $stmt->close();
+        //mysqli_close($conn);
         }
    }
 
@@ -98,7 +100,10 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Create A New Property</h4>
+                    <h4 class="card-title">Create A New Hosting</h4>
+                    <p>Remember this hostings will be used by your clients while booking destinations.</p>
+                    <p>Dont forget to specifically link them to your destinations.</p>
+                    <hr>
                     <form class="forms-sample" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" enctype="multipart/form-data">
                       
                       <style> 
@@ -107,18 +112,14 @@
                           font-size: medium;
                         }
                         <?php
-                               if($_SERVER['REQUEST_METHOD'] == 'POST' && ($state=="NOTOK")){
-                                  print $msg;
-                               } else{
-                                print $msg;
-                               }
+                              
                                if($msg){
                                 print $msg;
                                }
                         ?>
                       </style>
                       <div class="form-group ">
-                        <label for="">Property Image</label>
+                        <label for="">Hosting Image</label>
                         <input type="file" class="form-control" name="img" style="height:auto; width: 30vw; background-position: center; object-fit:center;">
                        </div>
                       <div class="form-group">
@@ -184,7 +185,7 @@
                       </div>
                       <div class="form-group">
                         <label for="">Dist From Origin: in Km</label>
-                        <input type="number" class="form-control"  name="price" >
+                        <input type="number" class="form-control"  name="dist" >
                       </div>
                     <div class="form-group">
                         <label for="">Features</label>

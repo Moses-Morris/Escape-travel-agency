@@ -3,7 +3,8 @@
 ?>
 <?php
    //Create a destination
-   if ($_SERVER["REQUEST_METHOD"] === "POST") {
+   $msg ="";
+   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['submit'])) {
       
         $property = mysqli_real_escape_string($conn,$_POST['property']);
@@ -13,7 +14,7 @@
         $price = mysqli_real_escape_string($conn,$_POST['price']);
         $features = mysqli_real_escape_string($conn,$_POST['features']);
         //$activities = mysqli_real_escape_string($conn,$_POST['activities']);
-        $option = mysqli_real_escape_string($conn,$_POST['optiontype']);
+        $optiontype = mysqli_real_escape_string($conn,$_POST['optiontype']);
         //$img = $_POST['img'];
 
         
@@ -47,14 +48,15 @@
           //$stmt->bind_params();
           $stmt = $conn->prepare("INSERT INTO agentproperties ( PropertyName, AgentID, Status,  Created_at, RatingAVG,Services, Features,Description, Price,Location,OptionType,AgentType,ImageURL)  
           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)" );
-          $stmt->bind_param("sssssssssssss", $property, $agentID, $status, $date, $rating, $services, $features,$desc,$price, $location, $option, $agentType,$target_file);
+          $stmt->bind_param("sssssssssssss", $property, $agentID, $status, $date, $rating, $services, $features,$desc,$price, $location, $optiontype, $agentType,$target_file);
           if ($stmt->execute()) {
             echo "<div class='col-md-6 d-flex '>
                             <div class='card alert alert-success'> Property Created Successfully. Proceeding to All Properties
+                          </div>
                           </div>";
             echo "<script>
                           setTimeout(function() {
-                              window.location.href = 'listings.php';
+                              window.location.href = 'listings.php#properties';
                           }, 3000);
                         </script>";
             //header("Refresh:2; url=destinations.php");
@@ -62,27 +64,8 @@
           }else{
             $msg =   "<div class='alert alert-danger'>Error: " . $stmt->error . "</div>";
           }
-          /*$stmt->bind_params();
-          if (!mysqli_query($conn,$stmt)){
-            die('Error: ' . mysqli_error($conn));
-            $state= "NOTOK";
-            $msg =   "<div class='alert alert-danger'>Failed to Create destination: " . "</div>";
-          }else{
-            $msg =  "<div class='alert alert-info'>A New Destination is created.</div>";
-            //echo "<div class='alert alert-success'>Destination Created.</div>";
-          }*
-
-        /
         
-        /*
-        if ($stmt->execute()) {
-          $msg =  "<div class='alert alert-info'>A New Destination is created.</div>";
-        } else {
-            $msg =   "<div class='alert alert-danger'>Failed to Create destination: " . $stmt->error . "</div>";
-        }
-            */
-        //$stmt->close();
-        mysqli_close($conn);
+          $stmt->close();
         }
    }
 
@@ -107,11 +90,7 @@
                           font-size: medium;
                         }
                         <?php
-                               if($_SERVER['REQUEST_METHOD'] == 'POST' && ($state=="NOTOK")){
-                                  print $msg;
-                               } else{
-                                print $msg;
-                               }
+                               
                                if($msg){
                                 print $msg;
                                }

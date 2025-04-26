@@ -284,7 +284,7 @@
                                                 ".$icon."
                                               </td>
                                               <td>
-                                                <a <a href='viewdestination.php?destid=". urlencode($ID) ."' type='button' class='btn btn-primary  btn-rounded btn-fw'>View </a>
+                                                <a href='viewdestination.php?destid=". urlencode($ID) ."' type='button' class='btn btn-primary  btn-rounded btn-fw'>View </a>
                                                 
                                               </td>
                                             </tr>";

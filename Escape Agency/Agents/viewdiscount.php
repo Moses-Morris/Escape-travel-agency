@@ -2,6 +2,16 @@
     include 'base.php';
 ?>
 <?php
+    $msg = "";
+    //get the id from url and payment
+    if (isset($_GET['adid']) && filter_var($_GET['adid'], FILTER_VALIDATE_INT)) {
+        $id = $_GET['adid'];
+        //echo "Received ID: " . htmlspecialchars($id);
+    } else {
+        echo "Invalid ID!";
+    }
+?>
+<?php
 //The details of the Booking
 ?>
 
@@ -16,7 +26,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Event Details</h4>
-                    <form class="forms-sample" multipart="enctype">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?adid=' . $id; ?>" method="post" enctype="multipart/form-data">
                       <?php
                           //get the id from url and
                           if (isset($_GET['adid']) && filter_var($_GET['adid'], FILTER_VALIDATE_INT)) {
@@ -121,7 +131,7 @@
                       </div>
                       <div class="form-group">
                         <label for="">Approved  By Admin </label>
-                        <input type="email" class="form-control" name="icon" value="<?php echo $icon; ?>">
+                        <input type="text" class="form-control" name="icon" value="<?php echo $icon; ?>">
                       </div>
                       <div class="form-group">
                         <label for="">Number of Voucher Codes</label>

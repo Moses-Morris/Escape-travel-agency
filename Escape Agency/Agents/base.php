@@ -4,7 +4,7 @@
         
         session_start();
         $check=$_SESSION['Email'];
-        $session=mysqli_query($conn, "SELECT AgentID,Email, CompanyName from Agents where Email='$check' ");
+        $session=mysqli_query($conn, "SELECT AgentID,Email, CompanyName, AgentType from Agents where Email='$check' ");
         $row=mysqli_fetch_array($session);
         $login_session=$row['Email'];
         $Company = $row['CompanyName'];
