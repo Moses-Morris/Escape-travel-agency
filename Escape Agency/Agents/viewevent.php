@@ -204,99 +204,15 @@
                           font-size: medium;
                         }
                       </style>
-                      <div class="form-group">
-                        <label for="">Event Poster</label>
-                        <br>
-                        <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>" style="height:30vh; width:30vw; background-position: center; object-fit:center;">
-                        <input type="file" class="form-control" name="img2" >
-                      </div>
-                      <div class="form-group">
-                        <label for="Booked Destination">Event Name</label>
-                        <input type="text" class="form-control" name="event" value="<?php echo $Name; ?>" >
-                      </div>
-                      <div class="form-group">
-                        <label for="">Tagline</label>
-                        <input type="text" class="form-control" name="Tagline" value="<?php echo $desc; ?>">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Description</label>
-                        <input type="text" class="form-control" name="description" value="<?php echo $desc; ?>">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Location</label>
-                        <input type="text" class="form-control"name="location" value="<?php echo $location; ?> ">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Country</label>
-                        <input type="text" class="form-control" name="country" value="<?php echo $country; ?>">
-                      </div>
-                      
-                      <div class="form-group">
-                        <label for="">Destination</label>
-                        <input type="text" class="form-control" name="destination" value="<?php echo $destdetails; ?>">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Destination Image</label>
-                        <img src="<?php echo $destImage; ?>" alt="<?php echo $destImage; ?>" style="height:auto; width: 20vw; background-position: center; object-fit:center;>
-                        <input type="file" class="form-control" name="img" >
-                      </div>
-                      <div class="form-group">
-                        <label for="">Created ON</label>
-                        <input type="text" class="form-control" name="date" value="<?php echo $created; ?>">
-                      </div>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">.</h4>
-                    <div class="form-group">
-                        <label for="">Activities</label>
-                        <input type="text" class="form-control" name="Activities" value="<?php echo $Activities; ?>">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Starting On Date</label>
-                        <input type="text" class="form-control" name="start" value="<?php echo $Start; ?> ">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Ending On Date</label>
-                        <input type="text" class="form-control" name="end" value="<?php echo $End; ?> ">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Approved  By Admin </label>
-                        <input type="text" class="form-control" name="icon" value="<?php echo $icon; ?>">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Price : Total Amount </label>
-                        <input type="text" class="form-control"  name="price" value="<?php echo $price; ?> USD">
-                      </div>
-                      
-                      <div class="form-group">
-                        <label for="">Average Likes</label>
-                        <input type="text" class="form-control" name="avglikes" value="<?php echo $likes; ?>">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Average Ratings</label>
-                        <input type="text" class="form-control" name="avgratings" value="<?php echo $rating; ?>">
-                      </div>
-                     
-                      
-                      <div class="form-group">
-                      <p>- You can update the Event details -</p>
-                      <p>- Deactivate the Event if you do not wish to proceed with the request -</p>
-                        <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2"  name="update">Update</button>
-                        <button type="submit" class="btn btn-danger btn-rounded btn-fw me-2" name="deactivate">Deactivate</button>
-                        
-                        </div>
-                     
-                    </form>
-                    
-                  </div>
-                </div>
-              </div>
+                      <?php
+                          //get the id from url and
+                          if (isset($_GET['hostid']) && filter_var($_GET['hostid'], FILTER_VALIDATE_INT)) {
+                              $id = $_GET['hostid'];
+                              //echo "Received ID: " . htmlspecialchars($id);
+                          } else {
+                              echo "Invalid ID!";
+                          }
+                      ?>
 
 
 

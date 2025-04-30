@@ -48,7 +48,7 @@
           //$stmt->bind_params();
           $stmt = $conn->prepare("INSERT INTO agentproperties ( PropertyName, AgentID, Status,  Created_at, RatingAVG,Services, Features,Description, Price,Location,OptionType,AgentType,ImageURL)  
           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)" );
-          $stmt->bind_param("sssssssssssss", $property, $agentID, $status, $date, $rating, $services, $features,$desc,$price, $location, $optiontype, $agentType,$target_file);
+          $stmt->bind_param("sisssssssssss", $property, $agentID, $status, $date, $rating, $services, $features,$desc,$price, $location, $optiontype, $agentType,$target_file);
           if ($stmt->execute()) {
             echo "<div class='col-md-6 d-flex '>
                             <div class='card alert alert-success'> Property Created Successfully. Proceeding to All Properties

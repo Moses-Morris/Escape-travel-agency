@@ -3,6 +3,7 @@
 ?>
 
 <?php
+    $msg = " ";
     //Create an Event
     //echo $agentID;
    if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -34,9 +35,9 @@
             }
         }
 
-        $msg = "";
-        $state = "OK";
-        $rating = 0;
+        
+        //$state = "OK";
+        $rating = 0.0;
         $status = "active";
         
         $date =  date('Y-m-d H:i');
@@ -50,7 +51,7 @@
           //$stmt->bind_params();
           $stmt = $conn->prepare("INSERT INTO Events (Name, Description, Price,  ImageURL, RatingAVG, Duration, Status, Created_at, DestinationID, AgentID)  
           VALUES (?,?,?,?,?,?,?,?,?,?)" );
-          $stmt->bind_param("ssssssssss", $name, $desc,  $price, $target_file, $rating, $duration,$status, $date, $destination, $agentID);
+          $stmt->bind_param("ssisssssii", $name, $desc,  $price, $target_file, $rating, $duration,$status, $date, $destination, $agentID);
           if ($stmt->execute()) {
             echo "<div class='col-md-6 d-flex '>
                             <div class='card alert alert-success'> Activity Created Successfully. Proceeding to All Events
@@ -89,6 +90,11 @@
                           font-weight:900;
                           font-size: medium;
                         }
+                        <?php
+                            if($msg){
+                              print $msg;
+                            }
+                        ?>
                         </style>
                         <div class="form-group ">
                         <label for="">Activity Image</label>
@@ -121,8 +127,8 @@
                         <input type="number" class="form-control" name="price" >
                       </div>
                       <div class="form-group">
-                        <label for="">Duration : The period or time the activity runs</label>
-                        <input type="text" class="form-control" name="duration" >
+                        <label for="">Duration : The period or time the activity runs in Days</label>
+                        <input type="number" class="form-control" name="duration" >
                       </div>
                       <div class="form-group">
                         <label for="Booked Destination">Destination Name</label>

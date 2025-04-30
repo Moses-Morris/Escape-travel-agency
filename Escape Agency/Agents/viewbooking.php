@@ -24,22 +24,46 @@ $status = $row5["Active"];
 //echo $status;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if(isset($_POST['deactivate'])) {
-      $value = $_POST['status'];
-      //echo $value;
-      $stmt = $conn->prepare("UPDATE bookings SET Active = 'cancelled' WHERE BookingID = ?");
-      $stmt->bind_param("i", $id); // both are integers
-      if ($stmt->execute()) {
-          $msg =  "<div class='alert alert-info'>Booking Deactivated and Cancelled.</div>";
-      } else {
-        $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
-      }
-      $stmt->close();
-  }
+        $value = $_POST['status'];
+        //echo $value;
+        $stmt = $conn->prepare("UPDATE bookings SET Active = 'cancelled' WHERE BookingID = ?");
+        $stmt->bind_param("i", $id); // both are integers
+        if ($stmt->execute()) {
+            $msg =  "<div class='alert alert-info'>Booking Deactivated and Cancelled.</div>";
+        } else {
+          $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
+        }
+        $stmt->close();
+    }
 }
 
 ?>
 
+<?php
+//Confirm and Accept Booking booking
+//get the booking details
+$check = mysqli_query($conn,"SELECT * FROM bookings WHERE BookingID=$id");
+$row5= mysqli_fetch_array($check);
+$active = $row5["Active"];
+$status = $row5["Status"];
+//echo $active;
+//echo  $status;
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if(isset($_POST['confirm'])) {
+        $value = $_POST['status'];
+        //echo $value;
+        $stmt = $conn->prepare("UPDATE bookings SET Active = 'active', Status='confirmed', Paid=1 WHERE BookingID = ?");
+        $stmt->bind_param("i", $id); // both are integers
+        if ($stmt->execute()) {
+            $msg =  "<div class='alert alert-info'>Booking Confirmed and Actively Waiting for Services.</div>";
+        } else {
+          $msg =   "<div class='alert alert-danger'>Failed to Confirm/Accept Booking " . $stmt->error . "</div>";
+        }
+        $stmt->close();
+    }
+}
 
+?>
 <!-- partial -->
 <div class="main-panel">
         <div class="content-wrapper">
