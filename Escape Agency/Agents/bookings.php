@@ -316,6 +316,9 @@
                                     <td>
                                       <a href='viewbooking.php?bookid=". urlencode($ID) ."' type='button' class='btn btn-info btn-rounded btn-fw'>View</a>
                                     </td>
+                                    <td>
+                                      <a href='createnotification.php?user=". urlencode($Client) ."' type='button' class='btn btn-info btn-rounded btn-fw'>Message Client</a>
+                                    </td>
                                   </tr>";
 
 

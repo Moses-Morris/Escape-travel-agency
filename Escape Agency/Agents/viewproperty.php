@@ -14,83 +14,102 @@
 <?php
 //Actions on Property
  // Handle Form Actions
- if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  if (isset($_POST['update'])) {
-      $propid = $_POST['propid'];
-      $name = $_POST['property'];
-      $desc = $_POST['description'];
-      $services = $_POST['services'];
-      $location = $_POST['location'];
-      $type = $_POST['type'];
-      $status = $_POST['icon'];
-      $price = $_POST['price'];
-      $feature = $_POST['features'];
-      $avg = $_POST['avg'];
-      $date = $_POST['date'];
-      $target_file = null;
 
-      if (isset($_FILES['img']) && $_FILES['img']['error'] === 0) {
-          $allowed = ['image/jpeg', 'image/png', 'image/gif'];
-          $filetype = mime_content_type($_FILES['img']['tmp_name']);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $propid = isset($_POST['propid']) ? intval($_POST['propid']) : 0;
+    $name = trim($_POST['property']);
+    $desc = trim($_POST['description']);
+    $services = trim($_POST['services']);
+    $location = trim($_POST['location']);
+    $type = trim($_POST['type']);
+    $status = ($_POST['icon'] === "Approved") ? "active" : "inactive";
+    $price = floatval(preg_replace("/[^0-9.]/", "", $_POST['price']));
+    $feature = trim($_POST['features']);
+    $avg = trim($_POST['avg']);
+    $date = trim($_POST['date']);
+    //$target_file = null;
 
-          if (!in_array($filetype, $allowed)) {
-              die("<div class='alert alert-warning '>Invalid image format. Use jpg, png, or gif.</div>");
-          }
+    // --- Handle Image Upload ---
+    $target_file = null;
 
-          $filename = uniqid() . '_' . basename($_FILES['img']['name']);
-          $target_file = "uploads/" . $filename;
+        if (!empty($_FILES['img']['name']) && $_FILES['img']['error'] === 0) {
+            $allowed = ['image/jpeg', 'image/png', 'image/gif'];
+            $filetype = $_FILES['img']['type']; // fallback to this if mime_content_type fails
+            $tmp_name = $_FILES['img']['tmp_name'];
 
-          if (!move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
-              die("<div class='alert alert-warning'>Image upload failed.</div>");
-          }
-      }
+            if (!in_array($filetype, $allowed)) {
+                die("<div class='alert alert-warning'>Invalid image format: $filetype. Use jpg, png, or gif.</div>");
+            }
 
+            $filename = uniqid() . '_' . basename($_FILES['img']['name']);
+            $target_file = "uploads/" . $filename;
 
-      // SQL update with or without image
-        if ($target_file) {
-            $stmt = $conn->prepare("UPDATE agentproperties SET PropertyName=?, AgentID=?, Status=?,   Services=?, Features=?, Description=?, Price=?, Location=?, OptionType=?, ImageURL=? WHERE PropertyID=? AND AgentID=$agentID");
-            $stmt->bind_param("sssssssssss", $name, $agentID, $status, $services, $feature,$desc, $price, $location, $agentType,  $target_file, $propid);
+            // Create uploads directory if not exists
+            if (!is_dir("uploads")) {
+                mkdir("uploads", 0777, true);
+            }
+
+            if (move_uploaded_file($tmp_name, $target_file)) {
+                $msg=  "<div class='alert alert-success'>Image uploaded successfully: $target_file</div>";
+            } else {
+              $msg = "<div class='alert alert-danger'>Failed to move uploaded file.</div>";
+                $target_file = null; // prevent incorrect save
+            }
         } else {
-            $stmt = $conn->prepare("UPDATE agentproperties SET PropertyName=?, AgentID=?, Status=?,   Services=?, Features=?, Description=?, Price=?, Location=?, OptionType=? WHERE PropertyID=? AND AgentID=$agentID");
-            $stmt->bind_param("ssssssssss", $name, $agentID, $status, $services, $feature,$desc, $price, $location, $agentType,   $propid);
+          $msg =  "<div class='alert alert-warning'>No image selected or upload error.</div>";
         }
-        
-        if ($stmt->execute()) {
-            $msg = "<div class='alert alert-success'>Agent Property updated successfully.</div>";
+
+    // --- Update Property ---
+    
+        if ($target_file) {
+            $stmt = $conn->prepare("UPDATE agentproperties 
+                SET PropertyName=?, AgentID=?, Status=?, Services=?, Features=?, Description=?, Price=?, Location=?, OptionType=?, ImageURL=? 
+                WHERE PropertyID=? AND AgentID=?");
+            $stmt->bind_param("ssssssssssii", $name, $agentID, $status, $services, $feature, $desc, $price, $location, $type, $target_file, $propid, $agentID);
         } else {
-            $msg = "<div class='alert alert-danger'>Update failed: {$stmt->error}</div>";
+            $stmt = $conn->prepare("UPDATE agentproperties 
+                SET PropertyName=?, AgentID=?, Status=?, Services=?, Features=?, Description=?, Price=?, Location=?, OptionType=? 
+                WHERE PropertyID=? AND AgentID=?");
+            $stmt->bind_param("ssssssssiii", $name, $agentID, $status, $services, $feature, $desc, $price, $location, $type, $propid, $agentID);
+        }
+
+        if ($stmt->execute()) {
+            $msg = "<div class='alert alert-success'>Property updated successfully.</div>";
+        } else {
+            $msg = "<div class='alert alert-danger'>Update failed: " . $stmt->error . "</div>";
         }
         $stmt->close();
-
-  } elseif (isset($_POST['deactivate'])) {
-      $stmt = $conn->prepare("UPDATE agentproperties SET Status = 'inactive' WHERE PropertyID = ?  AND AgentID=$agentID");
-      $stmt->bind_param("i", $propid);
-      if ($stmt->execute()) {
-          $msg =  "<div class='alert alert-info'>Property deactivated.</div>";
-      } else {
-         $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
+    
       }
-      $stmt->close();
-  } elseif (isset($_POST['delete'])) {
-      $stmt = $conn->prepare("DELETE FROM agentproperties WHERE PropertyID = ? AND AgentID=$agentID" );
-      $stmt->bind_param("i", $propid);
-      if ($stmt->execute()) {
-          echo "<div class='col-md-6 d-flex '>
-                      Propery Deleted Sucessfully
-                          ";
+    // --- Deactivate Property ---
+    elseif (isset($_POST['deactivate'])) {
+        $stmt = $conn->prepare("UPDATE agentproperties SET Status = 'inactive' WHERE PropertyID = ? AND AgentID = ?");
+        $stmt->bind_param("ii", $propid, $agentID);
+        if ($stmt->execute()) {
+            $msg = "<div class='alert alert-info'>Property deactivated.</div>";
+        } else {
+            $msg = "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
+        }
+        $stmt->close();
+    }
 
-                          echo "<script>
-                          setTimeout(function() {
-                              window.location.href = 'properties.php';
-                          }, 3000);
-                        </script>";
-          exit;
-      } else {
-        $msg =   "<div class='alert alert-danger'>Delete failed: " . $stmt->error . "</div>";
-      }
-      $stmt->close();
-  }
-}
+    // --- Delete Property ---
+    elseif (isset($_POST['delete'])) {
+        $stmt = $conn->prepare("DELETE FROM agentproperties WHERE PropertyID = ? AND AgentID = ?");
+        $stmt->bind_param("ii", $propid, $agentID);
+        if ($stmt->execute()) {
+            echo "<div class='alert alert-success'>Property deleted successfully.</div>";
+            echo "<script>
+                    setTimeout(function() {
+                        window.location.href = 'properties.php';
+                    }, 3000);
+                  </script>";
+            exit;
+        } else {
+            $msg = "<div class='alert alert-danger'>Delete failed: " . $stmt->error . "</div>";
+        }
+        $stmt->close();
+    }
 
 ?>
 

@@ -2,7 +2,7 @@
     include 'base.php';
 ?>
 <?php
-    $msg = "";
+    $msg = " ";
     //get the id from url and payment
     if (isset($_GET['payid']) && filter_var($_GET['payid'], FILTER_VALIDATE_INT)) {
         $id = $_GET['payid'];
@@ -80,9 +80,21 @@
             //new status now
             $statusnew = "paid";
             $activenew = "active";
-            $stmt1 = $conn->prepare("UPDATE payments SET OrderNo=?, Name=?,  Amount=?, PayMethod=?, Status=?, Active=? ,  TransactionSummary=?, Receipt=? WHERE PaymentID=? AND AgentID=?");
-            $stmt1->bind_param("isssssssss", $porder, $tname, $pamount, $pmethod, $statusnew, $activenew, $psummary, $preceipt, $ppayid, $agentID);
-
+            $stmt1 = $conn->prepare("UPDATE payments SET OrderNo=?, Name=?,  Amount=?, PayMethod=?, Status=?, Active=? ,  TransactionSummary=?, Receipt=? WHERE PaymentID=? ");
+           // $stmt1->bind_param("isisssssii", $porder, $tname, $pamount, $pmethod, $statusnew, $activenew, $psummary, $preceipt, $ppayid, $agentID);
+            // 3. Bind parameters to the placeholders, in order
+            $stmt1->bind_param("issssssss", 
+                $porder,     // i: integer
+                $tname,      // s: string
+                $pamount,    // s: string (use "d" if numeric)
+                $pmethod,    // s: string
+                $statusnew,  // s: string
+                $activenew,  // s: string
+                $psummary,   // s: string
+                $preceipt,   // s: string
+                $ppayid,     // s: string (should be int?)
+               // $agentID     // i: integer
+            );
             if ($stmt1->execute()) {
                 $msg = "<div class='alert alert-success'>Payment updated successfully. Payment Has been Confirmed. The destination should be Booked Successfully :: ".$nr3."  by ->  ".$UserName."</div>";
             } else {
@@ -105,16 +117,35 @@
 
         }elseif (isset($_POST['deactivate'])) {
             //new status now
+            $ppayid = $_POST['payid'];
             $statusnew = "unpaid";
             $activenew = "inactive";
             $receiptnew = "None";
-            $stmt1 = $conn->prepare("UPDATE payments SET OrderNo=?, Name=?,  Amount=?, PayMethod=?, Status=?, Active=? ,  TransactionSummary=?, Receipt=? WHERE PaymentID=? AND AgentID=?");
-            $stmt1->bind_param("ssssssssss", $porder, $tname, $pamount, $pmethod, $statusnew, $activenew, $psummary, $receiptnew, $ppayid, $agentID);
-
+            $summ="Pending confirmation";
+            $stmt1 = $conn->prepare("UPDATE payments SET Status=?, Active=?, Receipt=?, TransactionSummary=? WHERE PaymentID=? ");
+            /* 2. Check if the prepare() worked
+            if (!$stmt1) {
+                die("Prepare failed: " . $conn->error);
+            }*/
+            $stmt1->bind_param("ssssi",$statusnew, $activenew,  $receiptnew, $summ, $ppayid);
+            /* 3. Bind parameters to the placeholders, in order
+                $stmt1->bind_param("issssssss", 
+                $porder,     // i: integer
+                $tname,      // s: string
+                $pamount,    // s: string (use "d" if numeric)
+                $pmethod,    // s: string
+                $statusnew,  // s: string
+                $activenew,  // s: string
+                $psummary,   // s: string
+                $preceipt,   // s: string
+                $ppayid,     // s: string (should be int?)
+                //$agentID     // i: integer
+                );
+                */
             if ($stmt1->execute()) {
                 $msg =  "<div class='alert alert-info'>Payment Rejected or Not Processed. Booking Not Approved Yet</div>";
             } else {
-               $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
+               $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt1->error . "</div>";
             }
             $stmt1->close();
             
@@ -125,18 +156,18 @@
             $stmt2->bind_param("ss", $check, $booking);
 
             if ($stmt2->execute()) {
-                $msg = "<div class='alert alert-success'>Booking Updated  successfully. Payment Has been Rejected or Cancelled. The destination should be Proceeded Confirmation :: ".$nr3."  by ->  ".$UserName."</div>";
+                $msg = "<div class='alert alert-success'>Booking Suspended  successfully. Payment Has been Rejected or Cancelled. The Booking Confirmation Should be Checked :: ".$nr3."  by ->  ".$UserName."</div>";
             } else {
-                $msg = "<div class='alert alert-danger'>Update failed: {$stmt->error}</div>";
+                $msg = "<div class='alert alert-danger'>Update failed: {$stmt2->error}</div>";
             }
 
             $stmt2->close();
         
         } else {
-            $msg =   "<div class='alert alert-danger'>Failed: " . $stmt->error . "</div>";
+            $msg =   "<div class='alert alert-danger'>Failed: " . $stmt1->error . "</div>";
         }
-        $stmt1->close();
-        $stmt2->close();
+        //$stmt1->close();
+        //$stmt2->close();
 }
     
       
@@ -158,14 +189,14 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Payment Details</h4>
-                    <form class="forms-sample" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?payid=' . $payid; ?>" method="post" enctype="multipart/form-data">
+                    <form class="forms-sample" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?payid=' . $payid; ?>" method="post" >
                     <?php
                         if($msg){
                             echo $msg;
                         }
                     ?>
                     
-                    <input type="text" class="form-control" name="payid" value="<?php echo $payid; ?>" hidden>     
+                    <input type="number" class="form-control" name="payid" value="<?php echo $payid; ?>" hidden>     
                       <div class="form-group">
                         <label for="">Order Number</label>
                         <input type="text" class="form-control" name="order" value="<?php echo $ID; ?>" >
@@ -216,8 +247,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Transaction Summary</label>
-                                <input  list="summary" id="summary" type="text" class="form-control" name="summary" value="<?php echo $summary; ?>">
-                                <datalist id="summary">
+                                <input  list="summarys" id="summary" type="text" class="form-control" name="summary" placeholder="<?php echo $summary; ?>">
+                                <datalist id="summarys">
                                     <option value="Payment successful">Payment successful</option>
                                     <option value="Pending confirmation">Pending confirmation</option>
                                     <option value="Transaction completed">Transaction completed</option>
@@ -233,6 +264,7 @@
                             <div class="form-group">
                                 <label for="">Receipt Number or Details</label>
                                 <input type="text" class="form-control" name="receipt" value="<?php echo $receipt; ?>">
+                                <small>Input receipt or transaction number for easier future reference and verification.</small>
                             </div>
 
                             

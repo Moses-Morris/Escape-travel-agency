@@ -1,9 +1,123 @@
 <?php
     include 'base.php';
 ?>
-
 <?php
+$msg = " ";
     //get the id from url and
+    if (isset($_GET['blogid']) && filter_var($_GET['blogid'], FILTER_VALIDATE_INT)) {
+        $id = $_GET['blogid'];
+        //echo "Received ID: " . htmlspecialchars($id);
+    } else {
+        echo "Invalid ID!";
+    }
+
+?>
+<?php
+//Form Action
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  if (isset($_POST['update'])) {
+    // Collect POST data
+    $blogname = $_POST["blogname"];
+    $tagline = $_POST["tagline"];
+    $destination = $_POST["destination"];
+    $subtitle = $_POST["subtitle"];
+    $publish = $_POST["publish"];
+    $content = $_POST["content"];
+    $keywords = $_POST["keywords"];
+    $icon = $_POST["icon"];
+    $created = $_POST["date"];
+    //$agentID = $_SESSION['agent_id']; // Make sure this is set
+
+    // Handle image upload
+    $uploadOk = true;
+    $target_file = ""; 
+    $imageUpdated = false;
+
+    if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
+      $fileTmpPath = $_FILES['img']['tmp_name'];
+      $originalName = $_FILES['img']['name'];
+      $fileSize = $_FILES['img']['size'];
+      $fileMimeType = mime_content_type($fileTmpPath);
+      $fileExt = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
+      $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+      if (!in_array($fileMimeType, $allowedMimeTypes) || !in_array($fileExt, $allowedExtensions)) {
+        $msg = "<div class='alert alert-warning'>Invalid file type. Only JPG, PNG, or GIF allowed.</div>";
+        $uploadOk = false;
+      }
+
+      if ($fileSize > 5 * 1024 * 1024) {
+        $msg = "<div class='alert alert-warning'>File is too large. Max 5MB allowed.</div>";
+        $uploadOk = false;
+      }
+
+      if ($uploadOk) {
+        $uniqueName = uniqid('img_', true) . '.' . $fileExt;
+        $uploadDir = "uploads/";
+        $target_file = $uploadDir . $uniqueName;
+
+        if (move_uploaded_file($fileTmpPath, $target_file)) {
+          $imageUpdated = true;
+        } else {
+          $msg = "<div class='alert alert-danger'>Failed to move uploaded file.</div>";
+          $uploadOk = false;
+        }
+      }
+    }
+
+    if ($uploadOk) {
+      // Use existing image if no new one uploaded
+      if (!$imageUpdated) {
+        $existing = mysqli_query($conn, "SELECT BlogImage FROM blogs WHERE AuthorID = $agentID");
+        $row = mysqli_fetch_assoc($existing);
+        $target_file = $row['BlogImage'];
+      }
+
+      $stmt = $conn->prepare("UPDATE blogs 
+        SET Status = ?, BlogTitle = ?, BlogImage = ?, Tagline = ?, 
+            Subtitle = ?, PublishedDate = ?, BlogContent = ?, 
+            Keywords = ?, Created_at = ?
+        WHERE Role = 'agent' AND AuthorID = ?");
+
+      if ($stmt === false) {
+        die("Prepare failed: " . $conn->error);
+      }
+
+      $stmt->bind_param("sssssssssi", $icon, $blogname, $target_file, $tagline, $subtitle, $publish, $content, $keywords, $created, $agentID);
+
+      if ($stmt->execute()) {
+        $msg = "<div class='alert alert-success'>Blog updated successfully.</div>";
+      } else {
+        $msg = "<div class='alert alert-danger'>Update failed: " . $stmt->error . "</div>";
+      }
+
+      $stmt->close();
+    }
+  } elseif (isset($_POST['deactivate'])) {
+    //$agentID = $_SESSION['agent_id']; // Ensure this is defined
+    $stmt = $conn->prepare("UPDATE blogs SET Status = 'inactive' , Published=0 WHERE Role = 'agent' AND AuthorID = ?");
+    $stmt->bind_param("i", $agentID);
+    $stmt->execute();
+    $stmt->close();
+    $msg = "<div class='alert alert-warning'>Blog deactivated.</div>";
+  }elseif (isset($_POST['activate'])) {
+    $today =  date('Y-m-d H:i');
+    $stmt = $conn->prepare("UPDATE blogs SET Status = 'active', PublishedDate='$today' WHERE Role = 'agent' AND AuthorID = ?");
+    $stmt->bind_param("i", $agentID);
+    if ($stmt->execute()) {
+        $msg =  "<div class='alert alert-info'>Blog Activated. It is running Succesfully.</div>";
+    } else {
+       $msg =   "<div class='alert alert-danger'>Failed to Activate: " . $stmt->error . "</div>";
+    }
+    $stmt->close();
+
+}
+}
+
+?>
+<?php
+    /*get the id from url and
     if (isset($_GET['blogid']) && filter_var($_GET['blogid'], FILTER_VALIDATE_INT)) {
         $id = $_GET['blogid'];
         //echo "Received ID: " . htmlspecialchars($id);
@@ -20,7 +134,7 @@
 
         }
     }
-    //update the blog
+    /*update the blog
     else if(isset($_GET['update']) && filter_var($_GET['update'], FILTER_VALIDATE_INT)){
         $id = $_GET['update'];
         // Delete Image
@@ -54,6 +168,7 @@
     else {
         echo "Invalid ID!";
     }
+        */
 ?>
 <!-- partial -->
 <div class="main-panel">
@@ -66,11 +181,15 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Blog Details</h4>
-                    <form class="forms-sample"  enctype="multipart/form-data" method="POST">
-                      
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?blogid=' . $id; ?>" method="post" enctype="multipart/form-data">
+                      <?php
+                        if($msg){
+                          print $msg;
+                        }
+                      ?>
 
                         <?php
-                                    $result = mysqli_query($conn,"SELECT * FROM blogs WHERE Role='agent' AND AuthorID=$agentID ");
+                                    $result = mysqli_query($conn,"SELECT * FROM blogs WHERE BlogID=$id ");
                                     while($row = mysqli_fetch_array($result)){
                                             $ID = $row["BlogID"];
                                             $dest = $row["DestinationID"];
@@ -88,28 +207,37 @@
                                             $dest = mysqli_query($conn,"SELECT * FROM destinations WHERE DestinationID=$dest ");
                                             $r3 = mysqli_fetch_array($dest);
                                             $nr3 = $r3["Name"];
+
+                                             
+                                            if ($stat == "active"){
+                                              $icon = "Active and Published";
+                                              $todobutton = "<button type='submit' class='btn btn-primary btn-rounded btn-fw me-2' name='deactivate'>Deactivate</button>";
+                                          }else{
+                                              $icon = "Inactive and Not Published";
+                                              $todobutton = "<button type='submit' class='btn btn-primary btn-rounded btn-fw me-2' name='activate'>Activate</button>";
+                                          }   
                                     }
                                     ?>
 
 
 
 
-<style> 
+                      <style> 
                             .form-group input{
                             font-weight:900;
                             font-size: medium;
                             }
                       </style>
-                      
+                      <div class="form-group">
+                        <label for="">Blog Image</label>
+                        <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>" style="height:30vh; width: 30vw; background-position: center; object-fit:center;">
+                        <input type="file" class="form-control" name="img" >
+                      </div>
                       <div class="form-group">
                         <label for="Booked Destination">Blog Name</label>
                         <input type="text" class="form-control" name="blogname" value="<?php echo $title; ?>">
                       </div>
-                      <div class="form-group">
-                        <label for="">Blog Image</label>
-                        <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>">
-                        <input type="file" class="form-control" name="img" >
-                      </div>
+                      
                       <div class="form-group">
                         <label for="">Blog Tagline</label>
                         <input type="text" class="form-control" name="tagline" value="<?php echo $tag; ?>">
@@ -149,7 +277,7 @@
                       </div>
                       <div class="form-group">
                         <label for="">Status of The Blog </label>
-                        <input type="email" class="form-control" name="icon" value="<?php echo $stat; ?>">
+                        <input type="text" class="form-control" name="icon" value="<?php echo $icon; ?>">
                       </div>
      
                       
@@ -162,9 +290,11 @@
                       <div class="form-group">
                       <p>- You can update the Event details -</p>
                       <p>- Deactivate the Event if you do not wish to proceed with the request -</p>
-                      <a href="?update=<?php echo $id; ?>" onclick="return confirm('Are you sure You want to Update?')" class="btn btn-warning btn-rounded btn-fw me-2"  name="update">Update</a>
-                        <a href="?delete=<?php echo $id; ?>" onclick="return confirm('Are you sure You want to delete?')" class="btn btn-danger btn-rounded btn-fw me-2"  name="delete">Delete</a>
+                        <button onclick="return confirm('Are you sure You want to Update?')" class="btn btn-warning btn-rounded btn-fw me-2"  name="update">Update</a>
                         
+                        <?php
+                            echo $todobutton;
+                        ?>
                         </div>
                      
                     </form>

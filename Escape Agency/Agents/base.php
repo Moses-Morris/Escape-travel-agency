@@ -179,6 +179,12 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="discounts.php">
+        <i class="mdi mdi-barrel menu-icon"></i>
+        <span class="menu-title">My Discounts and Ads</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="payments.php">
         <i class="icon-contract menu-icon"></i>
         <span class="menu-title">My Payments</span>
@@ -192,12 +198,7 @@
         <span class="menu-title">Notifications</span>
       </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="discounts.php">
-        <i class="mdi mdi-barrel menu-icon"></i>
-        <span class="menu-title">My Discounts and Ads</span>
-      </a>
-    </li>
+    
     <li class="nav-item">
       <a class="nav-link" href="reviews.php">
         <i class="mdi mdi-blur-radial menu-icon"></i>

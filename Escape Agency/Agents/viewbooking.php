@@ -1,43 +1,18 @@
 <?php
     include 'base.php';
 ?>
+
 <?php
-//The details of the Booking
-?>
-<?php
-//
-    //get the booking id from url and
+     $msg = " ";
+    //get the id from url and
     if (isset($_GET['bookid']) && filter_var($_GET['bookid'], FILTER_VALIDATE_INT)) {
         $id = $_GET['bookid'];
         //echo "Received ID: " . htmlspecialchars($id);
     } else {
-        echo "Invalid booking ID!";
+        echo "Invalid ID!";
     }
 ?>
 
-<?php
-//Deactivate booking
-//get the featured details
-$feature = mysqli_query($conn,"SELECT * FROM bookings WHERE BookingID=$id");
-$row5= mysqli_fetch_array($feature);
-$status = $row5["Active"];
-//echo $status;
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if(isset($_POST['deactivate'])) {
-        $value = $_POST['status'];
-        //echo $value;
-        $stmt = $conn->prepare("UPDATE bookings SET Active = 'cancelled' WHERE BookingID = ?");
-        $stmt->bind_param("i", $id); // both are integers
-        if ($stmt->execute()) {
-            $msg =  "<div class='alert alert-info'>Booking Deactivated and Cancelled.</div>";
-        } else {
-          $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
-        }
-        $stmt->close();
-    }
-}
-
-?>
 
 <?php
 //Confirm and Accept Booking booking
@@ -46,6 +21,11 @@ $check = mysqli_query($conn,"SELECT * FROM bookings WHERE BookingID=$id");
 $row5= mysqli_fetch_array($check);
 $active = $row5["Active"];
 $status = $row5["Status"];
+
+//get the featured details
+$feature = mysqli_query($conn,"SELECT * FROM bookings WHERE BookingID=$id");
+$row5= mysqli_fetch_array($feature);
+$status = $row5["Active"];
 //echo $active;
 //echo  $status;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -60,7 +40,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           $msg =   "<div class='alert alert-danger'>Failed to Confirm/Accept Booking " . $stmt->error . "</div>";
         }
         $stmt->close();
-    }
+    }elseif(isset($_POST['deactivate'])) {
+      //Deactivate booking
+      $value = $_POST['status'];
+      //echo $value;
+      $stmt = $conn->prepare("UPDATE bookings SET Active = 'cancelled' WHERE BookingID = ?");
+      $stmt->bind_param("i", $id); // both are integers
+      if ($stmt->execute()) {
+          $msg =  "<div class='alert alert-info'>Booking Deactivated and Cancelled.</div>";
+      } else {
+        $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
+      }
+      $stmt->close();
+  }
 }
 
 ?>
@@ -76,14 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                   <div class="card-body">
                     <h4 class="card-title">Booking Details</h4>
                     <form class="forms-sample" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?bookid=' . $id; ?>" method="post" enctype="multipart/form-data">
-                      <?php
-                          //get the id from url and
-                          if (isset($_GET['bookid']) && filter_var($_GET['bookid'], FILTER_VALIDATE_INT)) {
-                              $id = $_GET['bookid'];
-                              //echo "Received ID: " . htmlspecialchars($id);
-                          } else {
-                              echo "Invalid ID!";
-                          }
+                    <?php
+                            if ($msg){
+                              print $msg;
+                            }
                       ?>
 
                       <?php
@@ -169,11 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                           font-weight:900;
                           font-size: medium;
                         }
-                        <?php
-                            if ($msg){
-                              echo $msg;
-                            }
-                      ?>
+                        
                       </style>
                       <div class="form-group">
                         <label for="Booked Destination">Destination Booked</label>
@@ -192,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input type="text" class="form-control" name="type" value="<?php echo $Type; ?>">
                       </div>
                       <div class="form-group">
-                        <label for="">Travel Option</label>
+                        <label for="">Travel Option : <?php echo $travelDetails; ?></label>
                         <input type="text" class="form-control" name="travel" value="<?php echo $travel; ?>">
                       </div>
                       <div class="form-group">
@@ -238,7 +222,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input type="text" class="form-control"  name="travel" value="<?php echo $travelDetails; ?>">
                       </div>
                         <button type="submit" class="btn btn-danger btn-rounded btn-fw me-2" name="deactivate">Deactivate</button>
-                        <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2"  name="confirm">Confirm</button>
+                        <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2"  name="confirm">Confirm Booking</button>
                         <p>- Do not confirm yet if the client has not paid -</p>
                         <p>- Deactivate the booking if you do not wish to proceed with the request -</p>
                         

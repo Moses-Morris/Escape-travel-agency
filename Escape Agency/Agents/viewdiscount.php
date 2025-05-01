@@ -11,8 +11,116 @@
         echo "Invalid ID!";
     }
 ?>
+
 <?php
-//The details of the Booking
+//The details of Discounted Ads
+  $today = date('Y-m-d');
+
+  $result = mysqli_query($conn,"SELECT * FROM Discounts
+                                                          WHERE AgentID = $agentID  ");
+  
+  while($row = mysqli_fetch_array($result)){
+      $ID = $row["DiscountID"];
+      $name = $row["DiscountName"];
+      $dest = $row["DestinationID"];
+      $code = $row["Code"];
+      $desc = $row["Description"];
+      $discount = $row["Discount"];
+      $active = $row["Status"];
+      $Sdate = $row['StartDate'];
+      $Edate = $row['EndDate'];
+      $num = $row['NumOfCodes'];
+      $date = $row["Created_at"];
+      
+      if ($Edate > $today){
+        $it = "Running";
+      }else{
+        $it = "Over/Ended";
+      }
+
+      if ($active == "active"){
+          $icon = "Approved and Running";
+          $todobutton = "<button type='submit' class='btn btn-primary btn-rounded btn-fw me-2' name='deactivate'>Deactivate</button>";
+      }else{
+          $icon = "Not approved";
+          $todobutton = "<button type='submit' class='btn btn-primary btn-rounded btn-fw me-2' name='activate'>Activate</button>";
+      }   
+
+
+      
+        //Get destination through destinations
+        $dest = mysqli_query($conn,"SELECT * FROM destinations WHERE DestinationID=$dest ");
+        $r3 = mysqli_fetch_array($dest);
+        $nr3 = $r3["Name"];
+  }
+?>
+<?php
+//Actions on the Discounts
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  if (isset($_POST['update'])) {
+      $name = $_POST['discount'];
+      $desc = $_POST['description'];
+      $disamnt = $_POST['discountamt'];
+      $code = $_POST['code'];
+      $start = $_POST['start'];
+      $end = $_POST['end'];
+      $destination = $_POST['destination'];
+      $status= $_POST['icon'];
+      $numv = $_POST['numv'];
+      $date = $_POST['date'];
+     
+      
+      $stmt = $conn->prepare("UPDATE discounts SET Code=?,  Description=?,  Discount=?, DiscountName=?, StartDate=?, EndDate=? , NumOfCodes=?
+               WHERE DiscountID=? AND AgentID=$agentID");
+      $stmt->bind_param("ssssssii", $code, $desc, $disamnt,  $name, $start, $end, $numv, $id);
+        
+      
+      if ($stmt->execute()) {
+          $msg = "<div class='alert alert-success'>Discount updated successfully.</div>";
+          
+      } else {
+          $msg = "<div class='alert alert-danger'>Update failed: {$stmt->error}</div>";
+      }
+      $stmt->close();
+        /*}*/
+
+      } elseif (isset($_POST['deactivate'])) {
+          $stmt = $conn->prepare("UPDATE discounts SET Status = 'inactive' WHERE DiscountID = ?  AND AgentID=$agentID");
+          $stmt->bind_param("i", $id);
+          if ($stmt->execute()) {
+              $msg =  "<div class='alert alert-info'>Discount deactivated. It can no longer be used and is not active.</div>";
+          } else {
+             $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
+          }
+          $stmt->close();
+      } elseif (isset($_POST['activate'])) {
+
+        $stmt = $conn->prepare("UPDATE discounts SET Status = 'active' WHERE DiscountID = ?  AND AgentID=$agentID");
+        $stmt->bind_param("i", $id);
+        if ($stmt->execute()) {
+            $msg =  "<div class='alert alert-info'>Discount Activated. It is running Succesfully.</div>";
+        } else {
+           $msg =   "<div class='alert alert-danger'>Failed to Activate: " . $stmt->error . "</div>";
+        }
+        $stmt->close();
+      
+      
+      
+      }elseif (isset($_POST['delete'])) {
+        $deleted_on =   date('Y-m-d H:i');
+        $stmt = $conn->prepare("UPDATE discounts SET Deleted='$deleted_on' WHERE DiscountID = ?  AND AgentID=$agentID");
+          $stmt->bind_param("i", $id);
+          if ($stmt->execute()) {
+              $msg =  "<div class='alert alert-info'>Discount deleted. It can no longer be used and is not visible to the client.</div>";
+          } else {
+             $msg =   "<div class='alert alert-danger'>Failed to delete: " . $stmt->error . "</div>";
+          }
+          $stmt->close();
+      }
+    }
+
+
+
 ?>
 
 <!-- partial -->
@@ -25,7 +133,7 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Event Details</h4>
+                    <h4 class="card-title">Discount Details</h4>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?adid=' . $id; ?>" method="post" enctype="multipart/form-data">
                       <?php
                           //get the id from url and
@@ -35,53 +143,14 @@
                           } else {
                               echo "Invalid ID!";
                           }
+
                       ?>
 
-
-                                <?php
-                                       $today = date('Y-m-d');
-
-                                       $result = mysqli_query($conn,"SELECT * FROM Discounts
-                                                                                                WHERE AgentID = $agentID  ");
-                                        
-                                        while($row = mysqli_fetch_array($result)){
-                                            $ID = $row["DiscountID"];
-                                            $name = $row["DiscountName"];
-                                            $dest = $row["DestinationID"];
-                                            $code = $row["Code"];
-                                            $desc = $row["Description"];
-                                            $discount = $row["Discount"];
-                                            $active = $row["Status"];
-                                            $Sdate = $row['StartDate'];
-                                            $Edate = $row['EndDate'];
-                                            $num = $row['NumOfCodes'];
-                                            $date = $row["Created_at"];
-                                           
-                                            if ($Edate > $today){
-                                              $it = "Running";
-                                            }else{
-                                              $it = "Over/Ended";
-                                            }
-
-                                            if ($active == "active"){
-                                                $icon = "Approved and Running";
-                                            }else{
-                                                $icon = "Not approved";
-                                            }
-                                    
-                                    
-                                            
-                                             //Get destination through destinations
-                                             $dest = mysqli_query($conn,"SELECT * FROM destinations WHERE DestinationID=$dest ");
-                                             $r3 = mysqli_fetch_array($dest);
-                                             $nr3 = $r3["Name"];
-                                        }
-                                     ?>
-
-
-
-
-
+                      <?php
+                          if($msg){
+                            print $msg;
+                          }
+                      ?>
                         <style> 
                             .form-group input{
                             font-weight:900;
@@ -101,8 +170,8 @@
                         <input type="text" class="form-control"name="destination" value="<?php echo $nr3; ?> ">
                       </div>
                       <div class="form-group">
-                        <label for="">Discount Amount</label>
-                        <input type="text" class="form-control" name="discount" value="<?php echo $discount; ?>">
+                        <label for="">Discount Amount : Format -> e.g 20%</label>
+                        <input type="text" class="form-control" name="discountamt" value="<?php echo $discount; ?>">
                       </div>
                       
                       <div class="form-group">
@@ -135,7 +204,7 @@
                       </div>
                       <div class="form-group">
                         <label for="">Number of Voucher Codes</label>
-                        <input type="text" class="form-control"  name="num" value="<?php echo $num; ?> ">
+                        <input type="number" class="form-control"  name="numv" value="<?php echo $num; ?> ">
                       </div>
                       
                       <div class="form-group">
@@ -145,11 +214,14 @@
                      
                       
                       <div class="form-group">
-                      <p>- You can update the Event details -</p>
-                      <p>- Deactivate the Event if you do not wish to proceed with the request -</p>
-                        <button type="submit" class="btn btn-primary btn-rounded btn-fw me-2"  name="confirm">Update</button>
-                        <button type="submit" class="btn btn-danger btn-rounded btn-fw me-2" name="deactivate">Deactivate</button>
-                        
+                      <p>- You can update the Discount details -</p>
+                      <p>- Deactivate the Discount if you do not wish to proceed with the discount -</p>
+                      <p>- Delete the Discount if you do not wish to proceed with the discount. Remember this allows to make discounts on specific destinations. -</p>
+                        <button type="submit" class="btn btn-success btn-rounded btn-fw me-2"  name="update">Update</button>
+                        <?php
+                            echo $todobutton;
+                        ?>
+                        <button type="submit" class="btn btn-danger btn-rounded btn-fw me-2" name="delete">Delete</button>
                         </div>
                      
                     </form>

@@ -36,7 +36,7 @@
       $type = $row['Type'];
       $rating = $row['RatingAVG'];
       $location = $row['Location'];
-      $feat = $row['Features'];
+      $feature = $row['Features'];
       $active = $row['active'];
       $desc = $row['Description'];
       $created = $row['Created_at'];
@@ -76,34 +76,55 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $dist = $_POST['dist'];
       $date = $_POST['date'];
       $type =  $_POST['type'];
-      $target_file = $_POST['hostingimg']; 
-
-        if (isset($_FILES['img']) && $_FILES['img']['error'] === 0) {
+      $target_file =  null;
+      /*
+      if (isset($_FILES['hostingimg']) && $_FILES['hostingimg']['error'] === 0){
             $allowed = ['image/jpeg', 'image/png', 'image/gif'];
-            $filetype = mime_content_type($_FILES['img']['tmp_name']);
+            $filetype = mime_content_type($_FILES['hostingimg']['tmp_name']);
 
             if (!in_array($filetype, $allowed)) {
                 die("<div class='alert alert-warning '>Invalid image format. Use jpg, png, or gif.</div>");
             }
 
-            $filename = uniqid() . '_' . basename($_FILES['img']['name']);
+            $filename = uniqid() . '_' . basename($_FILES['hostingimg']['name']);
             $target_file = "uploads/" . $filename;
 
-            if (!move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
+            if (!move_uploaded_file($_FILES['hostingimg']['tmp_name'], $target_file)) {
                 die("<div class='alert alert-warning'>Image upload failed.</div>");
             }
         }
 
-
+        $updateMode = isset($_GET['hostid']);
+       $eventID = $updateMode ? intval($_GET['hostid']) : null;
           // SQL update with or without image
+          if ($updateMode) {*/
+
+
+          if (isset($_FILES['hostingimg']) && $_FILES['hostingimg']['error'] === 0) {
+            $allowed = ['image/jpeg', 'image/png', 'image/gif'];
+            $filetype = mime_content_type($_FILES['hostingimg']['tmp_name']);
+        
+            if (!in_array($filetype, $allowed)) {
+                die("<div class='alert alert-warning'>Invalid image format. Use jpg, png, or gif.</div>");
+            }
+        
+            $filename = uniqid() . '_' . basename($_FILES['hostingimg']['name']);
+            $target_file = "uploads/" . $filename;
+        
+            if (!move_uploaded_file($_FILES['hostingimg']['tmp_name'], $target_file)) {
+                die("<div class='alert alert-warning'>Image upload failed.</div>");
+            } else {
+                $img = $target_file; // ✅ Update this variable for form display and DB
+            }
+        }
             if ($target_file) {
-              $stmt = $conn->prepare("UPDATE accomodation SET Name=?, DestinationID=?, Type=?,  PricePerNight=?, RatingAVG=?, ImageURL=?, Location=? , DistFromOrigin=?, Features=?, active=?, Description=?, Created_at=?
+              $stmt = $conn->prepare("UPDATE accomodation SET Name=?,  Type=?,  PricePerNight=?, RatingAVG=?, ImageURL=?, Location=? , DistFromOrigin=?, Features=?, active=?, Description=?, Created_at=?
                WHERE HostingID=? AND AgentID=$agentID");
-              $stmt->bind_param("sisddssissssii", $name, $destination, $type, $price, $rating, $target_file,  $location,   $dist, $feat, $active,  $desc, $created, $id, $agentID);
+              $stmt->bind_param("sisdsssisssi", $name,  $type, $price, $rating, $target_file,  $location,   $dist, $feature, $active,  $desc, $created, $id);
           } else {
-              $stmt = $conn->prepare("UPDATE accomodation SET Name=?, DestinationID=?, Type=?,  PricePerNight=?, RatingAVG=?, ImageURL=?, Location=? , DistFromOrigin=?, Features=?, active=?, Description=?, Created_at=?
+              $stmt = $conn->prepare("UPDATE accomodation SET Name=?, Type=?,  PricePerNight=?, RatingAVG=?, Location=? , DistFromOrigin=?, Features=?, active=?, Description=?, Created_at=?
                WHERE HostingID=? AND AgentID=$agentID");
-              $stmt->bind_param("sisddssissssii", $name, $destination, $type, $price, $rating, $target_file,  $location,   $dist, $feat, $active,  $desc, $created, $id, $agentID);
+              $stmt->bind_param("ssddssisssi", $name,  $type, $price, $rating,   $location,   $dist, $feature, $active,  $desc, $created, $id);
           }
           
           if ($stmt->execute()) {
@@ -113,6 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               $msg = "<div class='alert alert-danger'>Update failed: {$stmt->error}</div>";
           }
           $stmt->close();
+        /*}*/
 
       } elseif (isset($_POST['deactivate'])) {
           $stmt = $conn->prepare("UPDATE accomodation SET active = 'inactive' WHERE HostingID = ?  AND AgentID=$agentID");
@@ -178,11 +200,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         }
                       </style>
                       <div class="form-group">
-                        <label for="Booked Destination">Hosting Place Name</label>
+                        <label for="">Hosting Place Name</label>
                         <input type="text" class="form-control" name="hosting" value="<?php echo $name; ?>">
                       </div>
                       <div class="form-group">
-                        <label for="Booked Destination">Hosting Place Image</label>
+                        <label for="">Hosting Place Image</label>
                         <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>" style="height:auto; width: 30vw; background-position: center; object-fit:center;">
                         <input type="file" class="form-control" name="hostingimg" value="<?php echo $img; ?>">
                       </div>
@@ -197,7 +219,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                       
                       <div class="form-group">
                         <label for="">Features</label>
-                        <input type="text" class="form-control" name="feature" value="<?php echo $feat; ?>">
+                        <input type="text" class="form-control" name="feature" value="<?php echo $feature; ?>">
                       </div>
                       <div class="form-group">
                         <label for="">Price Per Night </label>

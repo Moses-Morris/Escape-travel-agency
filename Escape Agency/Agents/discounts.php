@@ -19,7 +19,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">My Discounts</h4>
-                    <a href="" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Discounts</a>
+                    <a href="creatediscount.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Discounts</a>
                     </p>
                     <div class="table-responsive">
                       <table class="table table-striped">
@@ -45,7 +45,7 @@
                                        $today = date('Y-m-d');
 
                                        $result = mysqli_query($conn,"SELECT * FROM Discounts
-                                                                                                WHERE AgentID = $agentID  ");
+                                                                                                WHERE AgentID = $agentID AND Deleted=0 ");
                                         
                                         while($row = mysqli_fetch_array($result)){
                                            $ID = $row["DiscountID"];

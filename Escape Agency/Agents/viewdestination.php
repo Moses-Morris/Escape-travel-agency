@@ -211,7 +211,7 @@ $msg = "";
                       ?>
                       <div class="form-group ">
                                 <label for="">Destination Image</label>
-                                <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>" style="height:auto; width: 30vw; background-position: center; object-fit:center;">
+                                <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>" style="height:20vw; width: 30vw; background-position: center; object-fit:center;">
                                 <input type="file" class="form-control" name="img" >
                               </div>
                       <div class="form-group">

@@ -1,12 +1,11 @@
 <?php
     include 'base.php';
 ?>
-<?php
 
-?>
 <?php
     //Create an Event
     //echo $agentID;
+    $msg = " ";
    if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if(isset($_POST['submit'])) {
       
@@ -91,7 +90,11 @@
                   <div class="card-body">
                     <h4 class="card-title">Create A New Event</h4>
                     <form class="forms-sample" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" enctype="multipart/form-data">
-                      
+                      <?php
+                        if($msg){
+                          echo $msg;
+                        }
+                      ?>
                       <style> 
                         .form-group input{
                           font-weight:900;

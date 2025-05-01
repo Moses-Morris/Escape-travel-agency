@@ -49,12 +49,12 @@
           //$stmt = "INSERT INTO destinations ( Name, Description, Location, Country,   Price, RatingAVG, Featured, PopularityRanking, Activities, TravelID, DistFromOrigin, AgentID, Status, Created_at, ImageURL)  VALUES
           //('$name', '$desc', '$location', '$country', '$price', '$rating', '$rating', '$rating', '$activities', '$travel', '$dist', '$agentID',  '$status', '$date', '$target_file')";
           //$stmt->bind_params();
-          $stmt = $conn->prepare("INSERT INTO Events (Name, Description, Price,  ImageURL, RatingAVG, Duration, Status, Created_at, DestinationID, AgentID)  
+          $stmt = $conn->prepare("INSERT INTO activities (Name, Description, Price,  ImageURL, RatingAVG, Duration, Status, Created_at, DestinationID, AgentID)  
           VALUES (?,?,?,?,?,?,?,?,?,?)" );
           $stmt->bind_param("ssisssssii", $name, $desc,  $price, $target_file, $rating, $duration,$status, $date, $destination, $agentID);
           if ($stmt->execute()) {
             echo "<div class='col-md-6 d-flex '>
-                            <div class='card alert alert-success'> Activity Created Successfully. Proceeding to All Events
+                            <div class='card alert alert-success'> Activity Created Successfully. Proceeding to All Activities
                           </div>";
             echo "<script>
                           setTimeout(function() {

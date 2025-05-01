@@ -19,15 +19,16 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">My Blogs</h4>
-                    <a href="" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Blog</a>
+                    <a href="createblog.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Blog</a>
                     </p>
                     <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>
                           <tr>
+                          <th>BlogImg</th>
                             <th>Blog Title</th>
                             <th>Destination</th>
-                            <th>BlogImg</th>
+                            
                             <th>Tag</th>
                             
                             <th>Subtitle</th>
@@ -61,9 +62,12 @@
                                             $nr3 = $r3["Name"];
 
                                             print "
-                                                    <td> ". $title."</td>
+                                                 <td>
+                                                    <img src= ". $img." >
+                                                  </td>
+                                                  <td> ". $title."</td>
                                                  <td> ". $nr3."</td>
-                                                 <td> ". $img."</td>
+                                                 
                                                  <td> ". $tag."</td>
                                                  
                                                  <td> ". $subtitle."</td>
@@ -76,7 +80,7 @@
                                                  <td>
                                                       <a href='viewblog.php?blogid=".urlencode($ID)."' type='button' class='btn btn-primary btn-rounded btn-fw'>View</a>
                                                 </td>
-                                            ";
+                                                </tr>                                            ";
                                         
                                     }
 
