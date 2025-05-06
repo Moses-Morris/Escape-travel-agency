@@ -3,3 +3,5 @@ This is a travel agency app built for Travel agency company called Escape Tours 
 
 
 ##Started working on user on May
+##Encountered Design structure issues of the api.
+
