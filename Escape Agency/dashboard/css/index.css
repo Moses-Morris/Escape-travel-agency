@@ -72,7 +72,9 @@ input{
 a .useraccount{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
     background-color: var(--lightyellow);
     color: var(--black);
     border: none;
@@ -167,7 +169,7 @@ a .useraccount{
     margin: 3% 0%;
     text-align: right;
 }
-.checkout-btn a {
+.checkout-btn  button {
     text-decoration: none;
     color: var(--tertiary);
     font-weight: bold;
@@ -176,6 +178,10 @@ a .useraccount{
     margin-bottom: 2%;
     font-size: smaller;
     border-radius: 3rem;
+    border: none;
+}
+.checkout-btn  button :hover{
+    cursor:pointer
 }
 
 

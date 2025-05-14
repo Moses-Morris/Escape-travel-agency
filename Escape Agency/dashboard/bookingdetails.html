@@ -30,7 +30,7 @@
     <!---->
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="css/destination.css">
-    
+    <link rel="stylesheet" href="css/booking.css">
 
     
 
@@ -55,10 +55,10 @@
 
 
 </head>
-<body>
+<body class="bookingdetails">
 
     <!---------------------------The top section with header--------------------------------------------------->
-    <section class="hero">
+    <section class="hero ">
         <!---Header Nav-->
         <header>
             <nav class="navbar">
@@ -113,93 +113,334 @@
                 </aside>
                 <main>
                     <div class="dest-info-form">
-                        <form>
-                            <div class="one-side">
-                                <h6>Fill in this form with your details</h6>
-                                <div>
-                                    <input type="text" placeholder="Full names">
+                        <form id="bookingForm" method="POST" action="process_booking.php">
+                            <div id="step1">
+                                <h3> Travel Account Details</h3>
+                                <div class="splitform">
+                                    
+                                    <div class="one-side">
+                                        
+                                        <div>
+                                            <input type="text" placeholder="Full names">
+                                        </div>
+                                        <div>
+                                            <input type="text" placeholder="Email">
+                                        </div>
+                                        
+                                        <div class="">
+                                            
+                                            <input type="number" placeholder="Country Code and Your Phone number" >
+                                        </div>
+            
+                                    </div>
+                                    <div class="two-side">
+                                        
+                                        <div>
+                                            <input type="text" placeholder="Type of Travel : Friends, Family, Group, Couple">
+                                        </div>
+                                        <div>
+                                            <input type="text" placeholder="Country">
+                                        </div>
+                                        <div>
+                                            <input type="text" placeholder="Location">
+                                        </div>
+                                        
+                                        
+                                    </div>
                                 </div>
-                                <div>
-                                    <input type="text" placeholder="email">
+                                
+                                <div class="checkout-btn">
+                                    <button   type="button" onclick="nextStep(1)">
+                                        Proceed 
+                                        <i class="fa fa-arrow-right"></i>
+                                    </button>
                                 </div>
-                                <div>
-                                    <input type="text" placeholder="Country">
-                                </div>
-                                <div class="nombre">
-                                    <input type="number" placeholder="+254" class="ports">
-                                    <input type="number" placeholder="Your Phone number" class="phone-number">
-                                </div>
+                            </div>
+                           
+                            <!-- Step 2: Select Activities -->
+                            <div id="step2" style="display:none;" >
+                                <div class="step2">
+                                    <div class="select-activities">
+                                        <h3>Select Your Activities</h3>
+                                        <div class="all-activities-cards">
+                                            <div class="activity-card">
+                                                <img src="media/pexels-carmen-cobo-338021-1103808.jpg" alt="">
+                                                <div class="activity-details">
+                                                    <div class="activity-top">
+                                                        <h4>Hiking at top of mountain</h4>
+                                                        <span class="type"></span>
+                                                    </div>
+                                                    <p>Price : 100$ - 400$</p>
+                                                    <div class="activity-bottom">
+                                                        <div>
+                                                            <i class="fa fa-star"></i>
+                                                            <p>4.5</p>
+                                                        </div>
+                                                        <div>
+                                                            <button>
+                                                                + Add
+                                                            </button>
+                                                        </div>
+                                                    </div>
     
+                                                </div>
+    
+                                            </div>
+    
+                                            <div class="activity-card">
+                                                <img src="media/pexels-carmen-cobo-338021-1103808.jpg" alt="">
+                                                <div class="activity-details">
+                                                    <div class="activity-top">
+                                                        <h4>Hiking at top</h4>
+                                                        <span class="type"></span>
+                                                    </div>
+                                                    <p>Price : 100$ - 400$</p>
+                                                    <div class="activity-bottom">
+                                                        <div>
+                                                            <i class="fa fa-star"></i>
+                                                            <p>4.5</p>
+                                                        </div>
+                                                        <div>
+                                                            <button>
+                                                                + Add
+                                                            </button>
+                                                        </div>
+                                                    </div>
+    
+                                                </div>
+    
+                                            </div>
+                                            
+    
+                                            <div class="activity-card">
+                                                <img src="media/pexels-carmen-cobo-338021-1103808.jpg" alt="">
+                                                <div class="activity-details">
+                                                    <div class="activity-top">
+                                                        <h4>Hiking at top</h4>
+                                                        <span class="type"></span>
+                                                    </div>
+                                                    <p>Price : 100$ - 400$</p>
+                                                    <div class="activity-bottom">
+                                                        <div>
+                                                            <i class="fa fa-star"></i>
+                                                            <p>4.5</p>
+                                                        </div>
+                                                        <div>
+                                                            <button>
+                                                                + Add
+                                                            </button>
+                                                        </div>
+                                                    </div>
+    
+                                                </div>
+    
+                                            </div>
+    
+    
+    
+                                        </div>
+                                    </div>
+                                    <div class="jj">
+                                        <div class="one-side">
+                                            
+                                            <div>
+                                                <input type="text" placeholder="Activity">
+                                            </div>
+                                            <div class="checkout-btn">
+                                                <button  type="button" onclick="prevStep(2)">
+                                                    Previous Details
+                                                    <i class="fa fa-arrow-left"></i>
+                                                </button>
+                                                <button   type="button" onclick="nextStep(2)">
+                                                    Proceed 
+                                                    <i class="fa fa-arrow-right"></i>
+                                                </button>
+    
+                                            </div>
+                                            
+                                    
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="two-side">
-                                <h6>Fill in this form with your Travel details</h6>
-                                <div>
-                                    <input type="text" placeholder="Type of Travel : Friends, Family, Group, Couple">
+                            
+                           
+
+                            <!-- Step 3: Select Hosting -->
+                            <div id="step3" style="display:none;">
+                                <h3>Select Hosting</h3>
+                                <div class="host-ti">
+                                    <div class="select-activities">
+                                        <div class="all-activities-cards">
+                                            <div class="activity-card">
+                                                <img src="media/pexels-carmen-cobo-338021-1103808.jpg" alt="">
+                                                <div class="activity-details">
+                                                    <div class="activity-top">
+                                                        <h4>Zulu house</h4>
+                                                        <span class="type">AirBnB</span>
+                                                    </div>
+                                                    <p>Price : 100$ - 400$</p>
+                                                    <div class="activity-bottom">
+                                                        <div>
+                                                            <i class="fa fa-star"></i>
+                                                            <p>4.5</p>
+                                                        </div>
+                                                        <div>
+                                                            <button>
+                                                                + Reserve
+                                                            </button>
+                                                        </div>
+                                                    </div>
+    
+                                                </div>
+    
+                                            </div>
+    
+                                            <div class="activity-card">
+                                                <img src="media/pexels-carmen-cobo-338021-1103808.jpg" alt="">
+                                                <div class="activity-details">
+                                                    <div class="activity-top">
+                                                        <h4>Maskani</h4>
+                                                        <span class="type">Resort</span>
+                                                    </div>
+                                                    <p>Price : 100$ - 400$ Per night</p>
+                                                    <div class="activity-bottom">
+                                                        <div>
+                                                            <i class="fa fa-star"></i>
+                                                            <p>4.5</p>
+                                                        </div>
+                                                        <div>
+                                                            <button>
+                                                                + Reserve
+                                                            </button>
+                                                        </div>
+                                                    </div>
+    
+                                                </div>
+    
+                                            </div>
+                                            
+    
+                                            <div class="activity-card">
+                                                <img src="media/pexels-carmen-cobo-338021-1103808.jpg" alt="">
+                                                <div class="activity-details">
+                                                    <div class="activity-top">
+                                                        <h4>Top Villa</h4>
+                                                        <span class="type">Hotel</span>
+                                                    </div>
+                                                    <p>Price : 100$ - 400$</p>
+                                                    <div class="activity-bottom">
+                                                        <div>
+                                                            <i class="fa fa-star"></i>
+                                                            <p>4.5</p>
+                                                        </div>
+                                                        <div>
+                                                            <button>
+                                                                + Reserve
+                                                            </button>
+                                                        </div>
+                                                    </div>
+    
+                                                
+    
+                                            </div>
+                                            </div>
+                                            
+                                            </div>
+    
+                                        </div>
+                                        <div>
+                                            <div class="one-side">
+                                                <h3>Select Your Hosting Option</h3>
+                                                <div>
+                                                    <input type="number" placeholder="Number Of People">
+                                                </div>
+                                                <div>
+                                                    <input type="date" placeholder="Starting From">
+                                                </div>
+                                                <div>
+                                                    <input type="date" placeholder="Check Out On">
+                                                </div>
+                                                <div>
+                                                    <div class="checkout-btn">
+                                                        <button  type="button" onclick="prevStep(3)">
+                                                            Previous 
+                                                            <i class="fa fa-arrow-left"></i>
+                                                        </button>
+                                                        <button   type="button" onclick="nextStep(3)">
+                                                            Proceed 
+                                                            <i class="fa fa-arrow-right"></i>
+                                                        </button>
+                
+                                                    </div>
+                                                </div>
+                                        
+                                            </div>
+                                    </div>
+                                    
                                 </div>
-                                <div>
-                                    <input type="text" placeholder="Number of People">
+                                
+                            </div>
+
+
+
+
+                            <!-- Step 4: Select Travel -->
+                            <div id="step4" style="display:none;">
+                                <h3>Select Travel Option</h3>
+                                <div class="travel-split">
+                                    <div>
+                                        <img src="media/pexels-freestockpro-1008155.jpg">
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <select type="text" placeholder="Check Out On" name="travel" id="travel" onchange="updateTotal()">
+                                                <option value="">sdfghjk</option>
+                                            </select>
+                                        </div>
+                                        <div class="checkout-btn">
+                                            <button  type="button" onclick="prevStep(4)">
+                                                Previous to Hosting
+                                                <i class="fa fa-arrow-left"></i>
+                                            </button>
+                                            <button   type="button" onclick="nextStep(4)">
+                                                Proceed
+                                                <i class="fa fa-arrow-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label for="From"><small>From</small></label>
-                                    <input type="date" placeholder="From" >
-                                    <label for="To"><small>To</small></label>
-                                    <input type="date" placeholder="To">
-                                </div>
-                                <div>
-                                    <input type="text" placeholder="Choose Hosting According to Price and Location">
+                                
+                                   
+                                
+                                
+                            </div>
+
+                            
+                            <!-- Step 5: Review and Confirm -->
+                            <div id="step5" style="display:none;">
+                                <h3>Review Your Booking :Payment Summary</h3>
+                                <p><strong>Destination:</strong> <?= $_SESSION['booking']['destination'] ?></p>
+                                <p><strong>Activities:</strong> <?= implode(", ", $_SESSION['booking']['activities']) ?></p>
+                                <p><strong>Hosting:</strong> <?= $_SESSION['booking']['hosting'] ?></p>
+                                <p><strong>Travel Option:</strong> <?= $_SESSION['booking']['travel'] ?></p>
+                                <hr>
+                                <p><strong>Total Amount:</strong> $<span id="totalAmount"><?= $_SESSION['booking']['total'] ?></span></p>
+                                <!--button type="button" onclick="prevStep(5)">Previous</button-->
+                                <div class="checkout-btn">
+                                    <button  type="button" onclick="prevStep(5)">
+                                        Proceed to checkout
+                                        <i class="fa fa-arrow-left"></i>
+                                    </button>
                                 </div>
                             </div>
+
+
+
                         </form>
-                        <div class="dest-summary">
-                            <h4>Payment and Booking Summary</h4>
-                            <div class="payment-summary">
-                                <div class="">
-                                    <i class="fa fa-edit"></i>
-                                    <p>Family Travel</p>
-                                </div>
-                                <div class="">
-                                    <i class="fa fa-edit"></i>
-                                    <p>6 Members</p>
-                                </div>
-                                <div class="">
-                                    <i class="fa fa-edit"></i>
-                                    <p>1 week</p>
-                                </div>
-                                <div class="">
-                                    <i class="fa fa-edit"></i>
-                                    <p>12th August - 19th August</p>
-                                </div>
-                                <div class="">
-                                    <i class="fa fa-edit"></i>
-                                    <p>1 Apartment</p>
-                                </div>
-                                <div class="">
-                                    <i class="fa fa-edit"></i>
-                                    <p>Villa Rosa</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="proceed-checkout">
-                            <div class="checkout-details">
-                                <div>
-                                    <p>Destination</p>
-                                    <p>USD 900</p>
-                                </div>
-                                <div>
-                                    <p>Hosting</p>
-                                    <p>USD 900</p>
-                                </div>
-                            </div>
-                            <div class="total">
-                                <p>Total</p>
-                                <p>USD : 1800</p>
-                            </div>
-                            <div class="checkout-btn">
-                                <a href="">
-                                    Proceed To Checkout
-                                    <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </div>
+                        
+                        
+                            
                         </div>
                     </div>
                 </main>
@@ -268,7 +509,7 @@
     <script src="js/nav.js"></script>
     <script src="js/pagination.js"></script>
     <script src="js/gsap.js"></script>
-    
+    <script src="js/script.js"></script>
     
     
     </body>

@@ -1,0 +1,905 @@
+
+/*Extra Small Devices*/
+@media screen and (max-width: 480px ){
+    .bookingdetails .destination-booking{
+        display: flex;
+        flex-direction: column;
+        margin: 0.5rem;
+    }
+    .destination-booking .dest-location img{
+        width: 100%;
+    }
+    .dest-info-form{
+        margin: 0%;
+        width: 100%;
+    }
+    .dest-info-form form{
+        display: flex;
+        flex-direction: column;
+    }
+    .dest-info-form form  input {
+        width: 96%;
+        height: 2rem;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        font-weight: 400;
+        color: black;
+        
+    }
+   
+    /*Select activities*/
+    .step2 input{
+        width: 96%;
+        
+    }
+    .step2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+    }
+    .all-activities-cards{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 0.8rem;
+        height: 50vh;
+        padding: 0.3rem;
+        border: 1px solid var(--lightyellow);
+        overflow-y: scroll;
+    }
+    .activity-card{
+        border:1px solid var(--lightyellow);
+        height: 100%;
+        padding: 0.2rem;
+        border-radius: 5px;
+        box-shadow:0px 3px 4px rgb(155, 155, 155); 
+    }
+    .activity-card img{
+        height: 25vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 5px;
+    }
+    .activity-details{
+        padding: 0rem 0.2rem;
+    }
+    .activity-top{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .activity-bottom{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .activity-bottom div button{
+        text-decoration: none;
+        color: var(--tertiary);
+        font-weight: bold;
+        background-color: var(--primary);
+        padding: 0.8rem 1rem;
+        margin-bottom: 2%;
+        font-size: smaller;
+        border-radius: 3rem;
+        border: none;
+    }
+    .type{
+        border:0.5px solid black;
+        padding: 0.1rem;
+    }
+
+
+    /*travel*/
+    .dest-info-form form select {
+        width:100%;
+        height: 2.8rem;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        font-weight: 400;
+        color: black;
+        outline: none;
+        background-color: var(--lightyellow);
+        border-color: none;
+    }
+    #step4 img{
+        height: 30vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+    }
+   
+
+
+
+    /*footer-newsletter*/
+    .footer-newsletter input{
+        width: 90%;
+    }
+}
+
+
+/*mobile*/
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .bookingdetails .destination-booking{
+        display: flex;
+        flex-direction: column;
+        margin: 0.5rem;
+    }
+    .destination-booking .dest-location img{
+        width: 100%;
+    }
+    .dest-info-form{
+        margin: 0%;
+        width: 100%;
+    }
+    .dest-info-form form{
+        display: flex;
+        flex-direction: column;
+    }
+    .dest-info-form form  input {
+        width: 96%;
+        height: 2rem;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        font-weight: 400;
+        color: black;
+        
+    }
+   
+    /*Select activities*/
+    .step2 input{
+        width: 96%;
+        
+    }
+    .step2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+    }
+    .all-activities-cards{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+        height: 50vh;
+        padding: 0.3rem;
+        border: 1px solid var(--lightyellow);
+        overflow-y: scroll;
+    }
+    .activity-card{
+        border:1px solid var(--lightyellow);
+        height: 100%;
+        padding: 0.2rem;
+        border-radius: 5px;
+        box-shadow:0px 3px 4px rgb(155, 155, 155); 
+    }
+    .activity-card img{
+        height: 25vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 5px;
+    }
+    .activity-details{
+        padding: 0rem 0.2rem;
+    }
+    .activity-top{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .activity-bottom{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .activity-bottom div button{
+        text-decoration: none;
+        color: var(--tertiary);
+        font-weight: bold;
+        background-color: var(--primary);
+        padding: 0.8rem 1rem;
+        margin-bottom: 2%;
+        font-size: smaller;
+        border-radius: 3rem;
+        border: none;
+    }
+    .type{
+        border:0.5px solid black;
+        padding: 0.1rem;
+    }
+
+
+    /*travel*/
+    .dest-info-form form select {
+        width:100%;
+        height: 2.8rem;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        font-weight: 400;
+        color: black;
+        outline: none;
+        background-color: var(--lightyellow);
+        border-color: none;
+    }
+    #step4 img{
+        height: 30vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+    }
+   
+
+
+
+    /*footer-newsletter*/
+    .footer-newsletter input{
+        width: 90%;
+    }
+    
+}
+
+
+
+/*small tablets*/
+@media screen and (min-width: 768px) and (max-width: 991px) { 
+    .destination-booking aside{
+        width: 25%;
+    }
+    .bookingdetails .destination-booking main{
+        display: grid;
+        grid-template-rows: repeat(2,1fr);
+        place-items: center;
+        gap: 1rem;
+        margin: 0.5rem;
+        margin-left: 2rem;
+        width: 70%;
+
+    }
+    .dest-info-form{
+        width: 100%;
+    }
+    #step1{
+        width: 100%;
+    }
+    .destination-booking .dest-location img{
+        width: 100%;
+    }
+    .dest-info-form{
+        margin: 0%;
+        width: 100%;
+    }
+    
+    .dest-info-form form  input {
+        width: 99%;
+        height: 1.6rem;
+        margin-bottom: 0.8rem;
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: rgb(88, 52, 52);
+        
+    }
+    .splitform{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+  
+   
+    /*Select activities*/
+    .step2 input{
+        width: 100%;
+        
+    }
+    .step2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+    }
+    .all-activities-cards{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        height: 42vh;
+        padding: 0.3rem;
+        border: 1px solid var(--lightyellow);
+        overflow-y: scroll;
+    }
+    .activity-card{
+        border:1px solid var(--lightyellow);
+        height: 40vh;
+        padding: 0.2rem;
+        border-radius: 5px;
+        box-shadow:0px 3px 4px rgb(155, 155, 155); 
+    }
+    .activity-card img{
+        height: 10vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 5px;
+    }
+    .activity-details{
+        padding: 0rem 0.2rem;
+    }
+    .activity-top{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .activity-bottom{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .activity-bottom div button{
+        text-decoration: none;
+        color: var(--tertiary);
+        font-weight: bold;
+        background-color: var(--primary);
+        padding: 0.8rem 1rem;
+        margin-bottom: 2%;
+        font-size: smaller;
+        border-radius: 3rem;
+        border: none;
+    }
+    .type{
+        border:0.5px solid black;
+        padding: 0.1rem;
+    }
+
+
+    /*travel*/
+    #step4{
+        width: 100%;
+    }
+    .dest-info-form form select {
+        width:100%;
+        height: 2.8rem;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        font-weight: 400;
+        color: black;
+        outline: none;
+        background-color: var(--lightyellow);
+        border: none;
+    }
+    #step4 img{
+        height: 30vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 8px;
+    }
+   .travel-split{
+        display: flex;
+        flex-direction: row;
+       justify-content: space-evenly;
+       gap: 2rem;
+   }
+   .travel-split div{
+    width: 100%;
+   }
+   #step5{
+    width: 100%;
+   }
+
+
+
+    /*footer-newsletter*/
+    .footer-newsletter input{
+        width: 90%;
+    }
+    
+}
+
+
+
+/* Large Tablets Laptops*/
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .destination-booking aside{
+        width: 25%;
+    }
+    .bookingdetails .destination-booking main{
+        display: grid;
+        grid-template-rows: repeat(2,1fr);
+        place-items: center;
+        gap: 1rem;
+        margin-top: 1.8rem;
+        margin-left: 2rem;
+        width: 75%;
+
+    }
+    .dest-info-form{
+        width: 100%;
+        
+    }
+    #step1{
+        width: 100%;
+    }
+    .destination-booking .dest-location img{
+        width: 100%;
+    }
+    .dest-info-form{
+        margin: 0%;
+        width: 100%;
+    }
+    
+    .dest-info-form form  input {
+        width: 100%;
+        height: 1.6rem;
+        margin-bottom: 0.8rem;
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: rgb(88, 52, 52);
+        
+    }
+    .splitform{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+  
+   
+    /*Select activities*/
+    .step2 input{
+        width: 100%;
+        
+    }
+    .step2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+    }
+    .all-activities-cards{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        height: 42vh;
+        padding: 0.3rem;
+        border: 1px solid var(--lightyellow);
+        overflow-y: scroll;
+    }
+    .activity-card{
+        border:1px solid var(--lightyellow);
+        height: 40vh;
+        
+        padding: 0.2rem;
+        border-radius: 5px;
+        box-shadow:0px 3px 4px rgb(155, 155, 155); 
+    }
+    .activity-card img{
+        height: 10vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 5px;
+    }
+    .activity-details{
+        padding: 0rem 0.2rem;
+    }
+    .activity-top{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .activity-bottom{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .activity-bottom div button{
+        text-decoration: none;
+        color: var(--tertiary);
+        font-weight: bold;
+        background-color: var(--primary);
+        padding: 0.8rem 1rem;
+        margin-bottom: 2%;
+        font-size: smaller;
+        border-radius: 3rem;
+        border: none;
+    }
+    .type{
+        border:0.5px solid black;
+        padding: 0.1rem;
+    }
+
+
+    /*travel*/
+    #step4{
+        width: 100%;
+    }
+    .dest-info-form form select {
+        width:100%;
+        height: 2.8rem;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        font-weight: 400;
+        color: black;
+        outline: none;
+        background-color: var(--lightyellow);
+        border: none;
+    }
+    #step4 img{
+        height: 30vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 8px;
+    }
+   .travel-split{
+        display: flex;
+        flex-direction: row;
+       justify-content: space-evenly;
+       gap: 1.5rem;
+   }
+   .travel-split div{
+    width: 100%;
+   }
+   #step5{
+    width: 100%;
+   }
+
+
+}
+
+
+
+/*Desktops*/
+@media (min-width:1200px) and (max-width: 1919px) {
+
+    .destination-booking aside{
+        width: 25%;
+    }
+    .bookingdetails .destination-booking main{
+        display: grid;
+        grid-template-rows: repeat(2,1fr);
+        place-items: center;
+        gap: 1rem;
+        margin-top: 1.8rem;
+        margin-left: 2rem;
+        width: 75%;
+
+    }
+    .dest-info-form{
+        width: 100%;
+        
+    }
+    #step1{
+        width: 100%;
+    }
+    .destination-booking .dest-location img{
+        width: 100%;
+    }
+    .dest-info-form{
+        margin: 0%;
+        width: 100%;
+    }
+    
+    .dest-info-form form  input {
+        width: 100%;
+        height: 1.8rem;
+        margin-bottom: 0.8rem;
+        font-size:1rem;
+        font-weight: 400;
+        color: rgb(88, 52, 52);
+        
+    }
+    .splitform{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+  
+   
+    /*Select activities*/
+    .step2 {
+        display: flex;
+        flex-direction: row;
+       
+        gap: 1rem;
+        align-items: center;
+        width: 100;
+    }
+    .step2 input{
+        width: 100%;
+    }
+    .select-activities{
+        width: 100%;
+
+    }
+    .one-side input{
+        width: 30vw !important;
+    }
+
+    .all-activities-cards{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        height: 42vh;
+        padding: 0.8rem;
+        border: 1px solid var(--lightyellow);
+        overflow-y: scroll;
+    }
+    .activity-card{
+        border:1px solid var(--lightyellow);
+        height: 40vh;
+        
+        padding: 0.2rem;
+        border-radius: 5px;
+        box-shadow:0px 3px 4px rgb(155, 155, 155); 
+    }
+    .activity-card img{
+        height: 10vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 5px;
+    }
+    .activity-details{
+        padding: 0rem 0.2rem;
+    }
+    .activity-top{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+    .activity-top h4{
+        font-weight: 500;
+    }
+    .activity-bottom{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .activity-bottom div button{
+        text-decoration: none;
+        color: var(--tertiary);
+        font-weight: bold;
+        background-color: var(--primary);
+        padding: 0.8rem 1rem;
+        margin-bottom: 2%;
+        font-size: smaller;
+        border-radius: 3rem;
+        border: none;
+    }
+    .type{
+        border:0.5px solid black;
+        padding: 0.1rem;
+        font-size: smaller;
+    }
+    /*step3*/
+    .host-ti{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    /*travel*/
+    #step4{
+        width: 100%;
+    }
+    .dest-info-form form select {
+        width:100%;
+        height: 2.8rem;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        font-weight: 400;
+        color: black;
+        outline: none;
+        background-color: var(--lightyellow);
+        border: none;
+    }
+    #step4 img{
+        height: 30vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 8px;
+    }
+   .travel-split{
+        display: flex;
+        flex-direction: row;
+       justify-content: space-evenly;
+       gap: 1.5rem;
+   }
+   .travel-split div{
+    width: 100%;
+   }
+   #step5{
+    width: 100%;
+   }
+
+
+
+}
+
+
+
+/*Extra Large Screens.*/
+@media (min-width: 1920px) {
+    .destination-booking aside{
+        width: 25%;
+    }
+    .bookingdetails .destination-booking main{
+        display: grid;
+        grid-template-rows: repeat(2,1fr);
+        place-items: center;
+        gap: 1rem;
+        margin-top: 1.8rem;
+        margin-left: 2rem;
+        width: 75%;
+
+    }
+    .dest-info-form{
+        width: 100%;
+        
+    }
+    #step1{
+        width: 100%;
+    }
+    .destination-booking .dest-location img{
+        width: 100%;
+    }
+    .dest-info-form{
+        margin: 0%;
+        width: 100%;
+    }
+    
+    .dest-info-form form  input {
+        width: 100%;
+        height: 1.8rem;
+        margin-bottom: 0.8rem;
+        font-size:1rem;
+        font-weight: 400;
+        color: rgb(88, 52, 52);
+        
+    }
+    .splitform{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+  
+   
+    /*Select activities*/
+    .step2 {
+        display: flex;
+        flex-direction: row;
+       
+        gap: 1rem;
+        align-items: center;
+        width: 100;
+    }
+    .step2 input{
+        width: 100%;
+    }
+    .select-activities{
+        width: 100%;
+
+    }
+    .one-side input{
+        width: 30vw !important;
+    }
+
+    .all-activities-cards{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        height: 42vh;
+        padding: 0.3rem;
+        border: 1px solid var(--lightyellow);
+        overflow-y: scroll;
+    }
+    .activity-card{
+        border:1px solid var(--lightyellow);
+        height: 40vh;
+        
+        padding: 0.2rem;
+        border-radius: 5px;
+        box-shadow:0px 3px 4px rgb(155, 155, 155); 
+    }
+    .activity-card img{
+        height: 10vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 5px;
+    }
+    .activity-details{
+        padding: 0rem 0.2rem;
+    }
+    .activity-top{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+    .activity-top h4{
+        font-weight: 500;
+    }
+    .activity-bottom{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .activity-bottom div button{
+        text-decoration: none;
+        color: var(--tertiary);
+        font-weight: bold;
+        background-color: var(--primary);
+        padding: 0.8rem 1rem;
+        margin-bottom: 2%;
+        font-size: smaller;
+        border-radius: 3rem;
+        border: none;
+    }
+    .type{
+        border:0.5px solid black;
+        padding: 0.1rem;
+    }
+    /*step3*/
+    .host-ti{
+        display:flex ;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2%;
+    }
+
+    /*travel*/
+    #step4{
+        width: 100%;
+    }
+    .dest-info-form form select {
+        width:100%;
+        height: 2.8rem;
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        font-weight: 400;
+        color: black;
+        outline: none;
+        background-color: var(--lightyellow);
+        border: none;
+    }
+    #step4 img{
+        height: 30vh;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 8px;
+    }
+   .travel-split{
+        display: flex;
+        flex-direction: row;
+       justify-content: space-evenly;
+       gap: 1.5rem;
+   }
+   .travel-split div{
+    width: 100%;
+   }
+   #step5{
+    width: 100%;
+   }
+
+
+}
