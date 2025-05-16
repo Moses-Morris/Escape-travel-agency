@@ -21,19 +21,28 @@
                 <h4>Travel With Us</h4>
                 <p>Travel with Us without worrying about
                     Visa: Register with Us.</p>
-                <form action="user/controllers/UserController.php" method="POST" enctype="multipart/form-data">
-                    <div>
+                <form action="User/auth/register.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+                    
+                <div>
                         <input type="text" placeholder="Name" name="name">
                     </div>
-                    <div class="error"><?= $errors['name'] ?? '' ?></div>
+                    
                     <div>
-                        <input type="text" placeholder="email" name="email">
+                        <input type="email" placeholder="email" name="email">
                     </div>
                     <div>
                         <input type="password" placeholder="password" name="password">
                     </div>
                     <div>
-                        <input type="text" placeholder="Location" name="location">
+                        <label>Country</label>
+                        <script type="text/javascript" src="js/countries.js"></script>
+                        <select onchange="print_state('state',this.selectedIndex);" id="country" name ="country"></select>
+                    </div>
+                    <div>
+                        <label>Location/State</label>
+                        <select name="location" id ="state" placeholder="Location"></select>
+                        <script language="javascript">print_country("country");</script>
+                        
                     </div>
                     <div>
                         <input type="number" placeholder="Phone" name="phone">
@@ -43,9 +52,8 @@
                     </div>
                     <div>
                         <?php
-                            if($_SERVER['REQUEST_METHOD'] == 'POST' && ($errormsg != ""))
-                            {
-                            print "<p class='Errors_Red'>".$errormsg."</p>";
+                            if (isset($_GET['msg'])) {
+                                echo htmlspecialchars($_GET['msg']);
                             }
                         ?>
                     </div>
@@ -60,11 +68,12 @@
 
     </section>
 
+    <!---jquery --->
+    <script src="js/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script>
 
 
 
 
 <?php
     include 'footer.php';
-
 ?>

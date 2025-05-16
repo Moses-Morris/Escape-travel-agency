@@ -9,7 +9,12 @@ body{
     overflow-y: scroll;
     
 }
-
+button:hover{
+    cursor: pointer;
+}
+a:hover{
+    cursor: pointer;
+}
 
 :root{
     --primary: #F8BF0E;

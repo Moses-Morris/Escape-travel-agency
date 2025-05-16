@@ -229,7 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             }
                       </style>
                       <div class="form-group">
-                        <label for="">Blog Image</label>
+                        <label for="blog">Blog Image</label><br>
                         <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>" style="height:30vh; width: 30vw; background-position: center; object-fit:center;">
                         <input type="file" class="form-control" name="img" >
                       </div>

@@ -2,7 +2,8 @@
 
 include_once("config/connection.php");
 
-
+$errormsg = " "; 
+$msg = " ";
 //LOGIN THE SUPERADMIN USER
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login']))
 {
@@ -10,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login']))
     $msg="";
     $email=mysqli_real_escape_string($conn,$_POST['email']); //fetching details through post method
     $password = mysqli_real_escape_string($conn,$_POST['password']);
-    $errormsg ="";
+    $errormsg =" ";
 
     if ( strlen($email) < 4 ){
     $msg=$msg."Email should be more than 4 characters.<BR>";

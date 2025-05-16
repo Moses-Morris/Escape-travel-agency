@@ -76,6 +76,13 @@
         justify-content: space-between;
         align-items: center;
     }
+    .activity-bottom .plus{
+        display:flex !important;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0.5em;
+    }
     .activity-bottom div button{
         text-decoration: none;
         color: var(--tertiary);

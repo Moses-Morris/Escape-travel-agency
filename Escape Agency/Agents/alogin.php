@@ -1,6 +1,6 @@
 <?php
  include_once 'config/connection.php';
-
+ $msg = " ";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $magaca = $_POST["email"];
     $furaha = $_POST["password"];
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else
     {
       header('Location: alogin.php');
-      
+      $msg = " No logins";
     }
   
     /*if ($user && password_verify($password, $user["Password"])) {
@@ -72,6 +72,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <h4>Hello! let's get started</h4>
                 <h6 class="font-weight-light">Sign in to continue.</h6>
+                <?php
+                  if($msg){
+                    print $msg;
+                  }
+                ?>
                 <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
                 <form class="pt-3"   action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" >
                   <div class="form-group">

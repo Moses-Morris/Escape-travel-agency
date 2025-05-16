@@ -1,4 +1,20 @@
+
 <?php
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "escapeagency";
+
+// Create connection
+$mysqli = mysqli_connect($host, $user, $password, $dbname);
+
+// Check connection
+if (!$mysqli) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+?>
+<?php
+/*
 class Database {
     private $host = 'localhost';
     private $db_name = 'escapeagency';
@@ -20,4 +36,5 @@ class Database {
         return $this->conn;
     }
 }
+    */
 ?>

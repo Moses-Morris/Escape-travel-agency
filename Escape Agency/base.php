@@ -1,6 +1,11 @@
 
 
+<?php
+session_start(); // Always start session to access session variables
+include('User/config/connection.php');
 
+//include('User/auth/usersession.php');
+?>
 
 <!DOCTYPE html>
 <html prefix="og: https://ogp.me/ns#" lang="en">
@@ -55,6 +60,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 
+    <!--------Google Translate
+    <div id="google_translate_element" align="right">
+    </div>
+    <script type="text/javascript">
+            function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+            }
+    </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+     --------->
+
 </head>
 <body>
 
@@ -80,12 +95,33 @@
                     <li><a href="events.php">Activities</a></li>
                     <li><a href="about.php">About Us</a></li>
                     <li><a href="resources.php">Resources</a></li>
+                    
                 </ul>
 
                 <div class="cta-button">
-                    <a href="login.php">
-                        <button class="login">Book Now</button>
-                    </a>
+                
+                    <?php
+                        // Check if the user is logged in by checking session variables
+                        
+                        
+                        if (isset($_SESSION['username'])) {
+                            // User is logged in
+                            echo "<a href='./User/auth/logout.php'>Logout</a>";
+                            echo "<a class='useraccount'>
+                                            <i class='fa fa-user'></i>
+                                            <p>".$_SESSION['username']."</p>       
+                                        </a>";
+
+                            
+                        } else {
+                            // Not logged in
+                            echo "<a href='login.php'>
+                                            <button class='login'>Book Now</button>
+                                        </a>";
+                        }
+                    
+                    ?>
+                    
                 </div>
             </nav>
         </header>

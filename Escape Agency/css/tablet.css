@@ -1735,6 +1735,15 @@
         margin-bottom: 1rem;
         width: calc(100% - 12%);
     }
+    .loginpage form select{
+        height: 2.2rem !important;
+        padding: 0.2rem 1rem;
+        outline: none;
+        border: none;
+        background-color: var(--lightyellow);
+        margin-bottom: 1rem;
+        width: calc(100% - 12%);
+    }
     .loginpage form button{
         padding: 0.8rem;
         text-align: center;

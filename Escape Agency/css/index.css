@@ -9,7 +9,12 @@ body{
     overflow-y: scroll;
     
 }
-
+button:hover{
+    cursor: pointer;
+}
+a:hover{
+    cursor: pointer;
+}
 
 :root{
     --primary: #F8BF0E;
@@ -26,7 +31,7 @@ body{
             rgb(0, 0, 0, 0.814),
             rgba(0, 0, 0, 0.614)
         ),
-        url('media/pexels-asadphoto-1268855.jpg');
+        url('../media/pexels-asadphoto-1268855.jpg');
     background-size: cover; /* Ensure the image covers the whole section */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -53,7 +58,7 @@ input{
             rgb(0, 0, 0, 0.814),
             rgba(0, 0, 0, 0.614)
         ),
-        url('/media/pexels-asadphoto-1268855.jpg');
+        url('../media/pexels-asadphoto-1268855.jpg');
     background-size: cover; /* Ensure the image covers the whole section */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -131,7 +136,7 @@ input{
         rgb(0, 0, 0, 0.814),
         rgba(0, 0, 0, 0.714)
     ),
-    url('/media/pexels-quang-nguyen-vinh-222549-4078053.jpg');
+    url('../media/pexels-quang-nguyen-vinh-222549-4078053.jpg');
     background-size: cover; /* Ensure the image covers the whole section */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -227,4 +232,39 @@ footer h7{
 
    /**BLOGS PAGES**/
 
+/**CTA BUTTON*/
+/*Borrowed from dashboard index.css line 77*/
 
+.cta-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    
+}
+.cta-button .useraccount{
+    background-color: var(--lightyellow);
+    color: var(--black);
+    border: none;
+    text-decoration: none;
+    padding: 0rem 1rem !important;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:0.5rem;
+    text-align: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+
+.loginpage form select{
+    height: 2.5rem !important;
+    padding: 0.2rem 0rem;
+    outline: none;
+    border: none;
+    background-color: var(--lightyellow);
+    margin-bottom: 1rem;
+    width: calc(100% - 5%);
+}

@@ -63,12 +63,15 @@ header{
     text-decoration: none;
     color: black;
     transition: color 0.3s;
+    font-size: xx-large;
+    
 }
 
 .nav-links a:hover {
     color: black;
     font-weight: 600;
     transition: color 0.3s;
+
 }
 
 
@@ -79,13 +82,27 @@ header{
 
 
 /*CTA Button top*/
-
+.cta-button a  .useraccount{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    background-color: var(--lightyellow);
+    color: var(--black);
+    border: none;
+    text-decoration: none;
+    padding: 0rem 1rem !important;
+    border-radius: 1.5rem;
+    letter-spacing: 1px;
+    font-size: 1px;
+}
 .cta-button a button{
-    padding: 0.5rem 2rem;
+    padding: 0.7rem 2rem;
     border-radius: 24px;
     cursor: pointer;
     font-weight: 500;
-    font-size:14px;
+    font-size:16px;
     letter-spacing: 1px;
 }
 .cta-button .login{
@@ -255,7 +272,7 @@ header{
         order: 3;
     }
     .nav-links li a {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     
 }

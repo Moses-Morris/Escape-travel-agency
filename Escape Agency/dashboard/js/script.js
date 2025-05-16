@@ -4,12 +4,18 @@ function nextStep(step) {
     document.getElementById('step' + currentStep).style.display = 'none';
     currentStep = step + 1;
     document.getElementById('step' + currentStep).style.display = 'block';
+    
+    // Scroll to top of next step
+    currentStep.scrollIntoView({ behavior: 'smooth' });
 }
 
 function prevStep(step) {
     document.getElementById('step' + currentStep).style.display = 'none';
     currentStep = step - 1;
     document.getElementById('step' + currentStep).style.display = 'block';
+
+    // Scroll to top of next step
+    currentStep.scrollIntoView({ behavior: 'smooth' });
 }
 
 function updateTotal() {
