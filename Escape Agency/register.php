@@ -34,6 +34,9 @@
                         <input type="password" placeholder="password" name="password">
                     </div>
                     <div>
+                        <input type="password" placeholder="Repeat Password" name="confirmPassword">
+                    </div>
+                    <div>
                         <label>Country</label>
                         <script type="text/javascript" src="js/countries.js"></script>
                         <select onchange="print_state('state',this.selectedIndex);" id="country" name ="country"></select>
@@ -51,14 +54,16 @@
                         <input type="file" placeholder="Image" name="image">
                     </div>
                     <div>
-                        <?php
-                            if (isset($_GET['msg'])) {
-                                echo htmlspecialchars($_GET['msg']);
-                            }
-                        ?>
+                        <small style="color:red; font-weight:600;">
+                            <?php
+                                if (isset($_GET['msg'])) {
+                                    echo htmlspecialchars($_GET['msg']);
+                                }
+                            ?>
+                        </small>
                     </div>
                     <div>
-                        <button name="register">Register</button>
+                        <button  type="submit" name="submit">Register</button>
                         <p>Already have an Account? <a href="login.php">Login Here</a></p>
 
                     </div>

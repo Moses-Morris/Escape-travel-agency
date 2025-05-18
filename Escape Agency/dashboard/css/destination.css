@@ -183,3 +183,18 @@ article{
     height: 60vh;
     width: auto;
 }
+
+/*Dashboard user destinations-offer*/
+.destinations-offer{
+    padding: 0% !important;
+    margin-bottom: 4% !important;
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .destinations-offer-card img {
+        height: 40vh;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+}

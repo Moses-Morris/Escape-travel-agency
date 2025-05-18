@@ -107,7 +107,7 @@ include('User/config/connection.php');
                         if (isset($_SESSION['username'])) {
                             // User is logged in
                             echo "<a href='./User/auth/logout.php'>Logout</a>";
-                            echo "<a class='useraccount'>
+                            echo "<a class='useraccount' href='dashboard/dashboard.html'>
                                             <i class='fa fa-user'></i>
                                             <p>".$_SESSION['username']."</p>       
                                         </a>";
