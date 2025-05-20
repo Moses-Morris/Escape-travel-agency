@@ -447,6 +447,7 @@
                                 <hr>
                                 <p><strong>Total Amount:</strong> $<span id="totalAmount"><?= $_SESSION['booking']['total'] ?></span></p>
                                 <!--button type="button" onclick="prevStep(5)">Previous</button-->
+                                <a href="">Remember to read this guide on recommended documents : travel_documents_advice.php</a>
                                 <div class="checkout-btn">
                                     <button  type="button" onclick="prevStep(5)">
                                         <i class="fa fa-arrow-left"></i>
@@ -472,7 +473,20 @@
         </section>
 
     </main>
-
+    
+    <div class="links-container">
+        <span class="advice-link" onclick="openPopup('international')">🌍 For International Travelers</span>
+        <a href="local_travel_advice.php" target="_blank" class="advice-link">🇰🇪 For Local (Kenyan) Travelers</a>
+    </div>
+        <!-- Popup Container -->
+    <div id="popupOverlay" class="popup-overlay">
+        <div class="popup-content" id="popupContent">
+        <!-- Content loaded dynamically -->
+        <h1>Step 5: Required Travel Documents</h1>
+        <p>Before you finalize your travel booking, please review the document requirements based on your travel type:</p>
+      
+        </div>
+    </div>
 
 
 
@@ -535,6 +549,7 @@
     <script src="js/gsap.js"></script>
     <script src="js/script.js"></script>
     <script src="js/pass.js"></script>
+    <script src="js/popup.js"></script>
     
     
     </body>
