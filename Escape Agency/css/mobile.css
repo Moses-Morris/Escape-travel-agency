@@ -1,9 +1,13 @@
 
 /*Extra Small Devices*/
 @media screen and (max-width: 480px ){
-    .hero-data h2, .hero-data h3{
+    .hero-data h2{
         font-size: 1.2rem;
         font-weight: 500;
+    }
+    .hero-data h3{
+        font-weight: 400;
+        font-size: 1rem;
     }
     .hero-data h1, .hero-data h2, .hero-data h3{
         margin: 2rem 0rem;;
@@ -25,7 +29,7 @@
         outline: none;
         font-size: 1rem;
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
     .hero-data form div button{
         border-radius: 3rem;
@@ -816,9 +820,13 @@
 
 /*mobile*/
 @media screen and (min-width: 481px) and (max-width: 767px) {
-    .hero-data h2, .hero-data h3{
+    .hero-data h2{
         font-size: 1.2rem;
         font-weight: 500;
+    }
+    .hero-data h3{
+        font-weight: 400;
+        font-size: 1rem;
     }
     .hero-data h1, .hero-data h2, .hero-data h3{
         margin: 2rem 0rem;;
@@ -840,7 +848,7 @@
         outline: none;
         font-size: 1rem;
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
     .hero-data form div button{
         border-radius: 3rem;

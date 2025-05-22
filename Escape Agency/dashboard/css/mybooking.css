@@ -1,0 +1,589 @@
+/*Extra Small Devices*/
+@media screen and (max-width: 480px ){
+    .destinations-offer{
+        padding: 2rem;
+    }
+    .destinations-offer article {
+        padding: 0.3rem;
+        box-shadow: 0px 3px 4px rgb(155, 155, 155);
+        border-radius: 3px;
+        margin-bottom: 3rem;
+    }
+    .destinations-offer article aside{
+        padding: 0.5rem;
+        border-radius: 3px;
+        /*box-shadow: 0px 3px 4px rgb(155, 155, 155);*/
+    }
+    .top-banner-img img{
+        width: 100%;
+        border-radius: 8px;
+        height: 20vh;
+        object-fit: cover;
+    }
+    .dest-details img{
+        width: 80vw;
+        border-radius: 8px;
+    }
+   .dest-details-info .dest-details, .host-details, .travel-details{
+    padding: 0.2rem 0.5rem;
+    border-top: 2px solid var(--lightyellow);
+   }
+   .dest-details-info p bold{
+    font-weight: 700;
+   }
+   .dest-details-info img{
+    display: none;
+   }
+   .pay-details .pay-info{
+    border-top: 2px solid var(--lightyellow);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   }
+   .total-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: larger;
+   }
+   .status .status-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details .status-info{
+    padding: 0.2rem 0.5rem;
+    background-color: var(--darkgreen);
+    color: var(--tertiary);
+    border-radius: 2rem;
+   }
+   .status-details-pay{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details-not{
+    color: black;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 2rem;
+
+   }
+   .link-to-pays-2{
+    color: black;
+    padding: 0.8rem 2rem ;
+    border: 1px solid black;
+    border-radius: 2rem;
+    text-decoration: none;
+    text-align: center;
+    background-color: var(--primary);
+    border: none;
+   }
+}
+
+
+/*mobile*/
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .destinations-offer{
+        padding: 2rem;
+    }
+    .destinations-offer article {
+        padding: 0.3rem;
+        box-shadow: 0px 3px 4px rgb(155, 155, 155);
+        border-radius: 3px;
+        margin-bottom: 3rem;
+        width: 75vw;
+    }
+    .destinations-offer article aside{
+        padding: 0.3rem;
+        border-radius: 3px;
+        /*box-shadow: 0px 3px 4px rgb(155, 155, 155);*/
+    }
+    .top-banner-img img{
+        width: 100%;
+        border-radius: 8px;
+        height: 20vh;
+        object-fit: cover;
+    }
+    .dest-details img{
+        width: 80vw;
+        border-radius: 8px;
+    }
+   .dest-details-info .dest-details, .host-details, .travel-details{
+    padding: 0.2rem 0.5rem;
+    border-top: 2px solid var(--lightyellow);
+   }
+   .dest-details-info p bold{
+    font-weight: 700;
+   }
+   .dest-details-info img{
+    display: none;
+   }
+   .pay-details .pay-info{
+    border-top: 2px solid var(--lightyellow);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   }
+   .total-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: larger;
+   }
+   .status .status-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details .status-info{
+    padding: 0.2rem 0.5rem;
+    background-color: var(--darkgreen);
+    color: var(--tertiary);
+    border-radius: 2rem;
+   }
+   .status-details-pay{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details-not{
+    color: black;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 2rem;
+
+   }
+   .link-to-pays-2{
+    color: black;
+    padding: 0.8rem 2rem ;
+    border: 1px solid black;
+    border-radius: 2rem;
+    text-decoration: none;
+    text-align: center;
+    background-color: var(--primary);
+    border: none;
+   }
+}
+
+
+
+/*small tablets*/
+@media screen and (min-width: 768px) and (max-width: 991px) { 
+    .destinations-offer{
+        padding: 2rem;
+    }
+    .destinations-offer article {
+        padding: 0.3rem;
+        box-shadow: 0px 3px 4px rgb(155, 155, 155);
+        border-radius: 3px;
+        margin-bottom: 3rem;
+        width: 70vw;
+    }
+    .destinations-offer article aside{
+        padding: 0.3rem;
+        border-radius: 3px;
+        /*box-shadow: 0px 3px 4px rgb(155, 155, 155);*/
+    }
+    .top-banner-img img{
+        width: 100%;
+        border-radius: 8px;
+        height: 20vh;
+        object-fit: cover;
+    }
+    .dest-details img{
+        width: 80vw;
+        border-radius: 8px;
+    }
+   .dest-details-info .dest-details, .host-details, .travel-details{
+    padding: 0.2rem 0.5rem;
+    border-top: 2px solid var(--lightyellow);
+   }
+   .dest-details-info p bold{
+    font-weight: 700;
+   }
+   .dest-details-info img{
+    display: none;
+   }
+   .pay-details .pay-info{
+    border-top: 2px solid var(--lightyellow);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   }
+   .total-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: larger;
+   }
+   .status .status-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details .status-info{
+    padding: 0.2rem 0.5rem;
+    background-color: var(--darkgreen);
+    color: var(--tertiary);
+    border-radius: 2rem;
+   }
+   .status-details-pay{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details-not{
+    color: black;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 2rem;
+    margin-left: 2rem;
+   }
+   .link-to-pays-2{
+    color: black;
+    padding: 0.8rem 2rem ;
+    border: 1px solid black;
+    border-radius: 2rem;
+    text-decoration: none;
+    text-align: center;
+    background-color: var(--primary);
+    border: none;
+ 
+   }
+}
+/* Large Tablets Laptops*/
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .destinations-offer{
+        padding: 2rem;
+    }
+    .destinations-offer article {
+        padding: 0.3rem;
+        box-shadow: 0px 3px 4px rgb(155, 155, 155);
+        border-radius: 3px;
+        margin-bottom: 3rem;
+        width: 70vw;
+    }
+    .destinations-offer article aside{
+        padding: 0.3rem;
+        border-radius: 3px;
+        /*box-shadow: 0px 3px 4px rgb(155, 155, 155);*/
+    }
+    .top-banner-img img{
+        width: 100%;
+        border-radius: 8px;
+        height: 20vh;
+        object-fit: cover;
+    }
+    .dest-details img{
+        width: 80vw;
+        border-radius: 8px;
+    }
+   .dest-details-info .dest-details, .host-details, .travel-details{
+    padding: 0.2rem 0.5rem;
+    border-top: 2px solid var(--lightyellow);
+   }
+   .dest-details-info p bold{
+    font-weight: 700;
+   }
+   .dest-details-info img{
+    display: none;
+   }
+   .pay-details .pay-info{
+    border-top: 2px solid var(--lightyellow);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   }
+   .total-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: larger;
+   }
+   .status .status-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details .status-info{
+    padding: 0.2rem 0.5rem;
+    background-color: var(--darkgreen);
+    color: var(--tertiary);
+    border-radius: 2rem;
+   }
+   .status-details-pay{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details-not{
+    color: black;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 2rem;
+    margin-left: 2rem;
+   }
+   .link-to-pays-2{
+    color: black;
+    padding: 0.8rem 2rem ;
+    border: 1px solid black;
+    border-radius: 2rem;
+    text-decoration: none;
+    text-align: center;
+    background-color: var(--primary);
+    border: none;
+ 
+   }
+}
+
+
+
+/*Desktops*/
+@media (min-width:1200px) and (max-width: 1919px) {
+    .destinations-offer{
+        padding: 2rem;
+    }
+    .destinations-offer article{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 2rem;
+        width: 100%;
+    }
+    .destinations-offer article main{
+        padding: 0.5rem;
+        box-shadow: 0px 3px 4px rgb(155, 155, 155);
+        border-radius: 3px;
+        margin-bottom: 3rem;
+        width: 45vw;
+    }
+    .destinations-offer article aside{
+        padding: 0.5rem 0.7rem;
+        border-radius: 3px;
+        box-shadow: 0px 3px 4px rgb(155, 155, 155);
+        width: 25vw;
+        max-height: 70vh;
+    }
+    .top-banner-img img{
+        width: 100%;
+        border-radius: 8px;
+        height: 20vh;
+        object-fit: cover;
+    }
+
+    .dest-details img{
+        width: 80vw;
+        border-radius: 8px;
+        
+    }
+   .dest-details-info .dest-details, .host-details, .travel-details{
+    padding: 0.2rem 0.5rem;
+    border-top: 2px solid var(--lightyellow);
+   }
+   .dest-details-info p bold{
+    font-weight: 700;
+   }
+   .dest-details-info img{
+    display: none;
+    width: 20%;
+
+   }
+   .pay-details .pay-info{
+    border-top: 2px solid var(--lightyellow);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   }
+   .total-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+     color: var(--primary);
+    font-weight: 700;
+    font-size: larger;
+   }
+   .status .status-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details .status-info{
+    padding: 0.2rem 0.5rem;
+    background-color: var(--darkgreen);
+    color: var(--tertiary);
+    border-radius: 2rem;
+   }
+   .status-details-pay{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details-not{
+    color: black;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 2rem;
+    margin-left: 2rem;
+   }
+   .link-to-pays-2{
+    color: black;
+    padding: 0.8rem 2rem ;
+    border: 1px solid black;
+    border-radius: 2rem;
+    text-decoration: none;
+    text-align: center;
+    background-color: var(--primary);
+    border: none;
+   }
+}
+
+
+/*Extra Large Screens.*/
+@media (min-width: 1920px) {
+    .destinations-offer{
+        padding: 2rem;
+    }
+    .destinations-offer article{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 2rem;
+        width: 100%;
+    }
+    .destinations-offer article main{
+        padding: 0.5rem;
+        box-shadow: 0px 3px 4px rgb(155, 155, 155);
+        border-radius: 3px;
+        margin-bottom: 3rem;
+        width: 45vw;
+    }
+    .destinations-offer article aside{
+        padding: 0.5rem 0.7rem;
+        border-radius: 3px;
+        box-shadow: 0px 3px 4px rgb(155, 155, 155);
+        width: 25vw;
+        max-height: 70vh;
+    }
+    .top-banner-img img{
+        width: 100%;
+        border-radius: 8px;
+        height: 20vh;
+        object-fit: cover;
+    }
+
+    .dest-details img{
+        width: 80vw;
+        border-radius: 8px;
+        
+    }
+   .dest-details-info .dest-details, .host-details, .travel-details{
+    padding: 0.2rem 0.5rem;
+    border-top: 2px solid var(--lightyellow);
+   }
+   .dest-details-info p bold{
+    font-weight: 700;
+   }
+   .dest-details-info img{
+    display: none;
+    width: 20%;
+
+   }
+   .pay-details .pay-info{
+    border-top: 2px solid var(--lightyellow);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   }
+   .total-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+     color: var(--primary);
+    font-weight: 700;
+    font-size: larger;
+   }
+   .status .status-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details .status-info{
+    padding: 0.2rem 0.5rem;
+    background-color: var(--darkgreen);
+    color: var(--tertiary);
+    border-radius: 2rem;
+   }
+   .status-details-pay{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--lightyellow);
+    align-items: center;
+    width: 100%;
+   }
+   .status-details-not{
+    color: black;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 2rem;
+    margin-left: 2rem;
+   }
+   .link-to-pays-2{
+    color: black;
+    padding: 0.8rem 2rem ;
+    border: 1px solid black;
+    border-radius: 2rem;
+    text-decoration: none;
+    text-align: center;
+    background-color: var(--primary);
+    border: none;
+   }
+}

@@ -89,7 +89,7 @@ include('User/config/connection.php');
                 <ul class="nav-links">
                     <li ><a href="#" class="x-icon-menu"><i class="fa-solid fa-xmark fa-xl"></i></a></li>
                     <li><a href="index.php#Home">Home</a></li>
-                    <li><a href="tours.php">Tours</a></li>
+                    <li><a href="tours.php">Destinations</a></li>
                     <li><a href="hostings.php">Hostings</a></li>  
                     <li><a href="blogs.php">Blogs</a></li>
                     <li><a href="events.php">Activities</a></li>
@@ -107,7 +107,7 @@ include('User/config/connection.php');
                         if (isset($_SESSION['username'])) {
                             // User is logged in
                             echo "<a href='./User/auth/logout.php'>Logout</a>";
-                            echo "<a class='useraccount' href='dashboard/dashboard.html'>
+                            echo "<a class='useraccount' href='dashboard/dashboard.php'>
                                             <i class='fa fa-user'></i>
                                             <p>".$_SESSION['username']."</p>       
                                         </a>";

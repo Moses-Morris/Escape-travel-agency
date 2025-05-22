@@ -2,6 +2,7 @@
 
 *{
     scroll-behavior: smooth;   
+    transition-duration: 1s;
 }
 body{
     margin: 0px;
@@ -22,6 +23,7 @@ a:hover{
     --tertiary: #fff;
     --black: #000;
     --lightyellow:#fdeec0;
+    --darkgreen: #01971F;
 }
 
 .navbar {
@@ -37,10 +39,10 @@ a:hover{
         url('/media/pexels-asadphoto-1268855.jpg');
     background-size: cover; /* Ensure the image covers the whole section *
     background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    height: 100%; /* Use 100vh to ensure the hero section takes the full viewport height */
-    color: #fff;
-    background-color: var(--tertiary);
+    background-repeat: no-repeat !important; /* Prevent the image from repeating */
+    height: 100% !important; /* Use 100vh to ensure the hero section takes the full viewport height */
+    color: #fff !important;
+    background-color: var(--tertiary) !important;
 }
 article{
     padding:6%;
@@ -374,7 +376,7 @@ footer h1{
     font-weight:900;
 }
 footer h7{
-    text-decoration: underline;
+    text-decoration: none
 }
 .footer-newsletter input{
     height: 2.5rem;
@@ -389,5 +391,6 @@ footer h7{
     width: 20vw;
     height: 100%;
    }
+
 
 

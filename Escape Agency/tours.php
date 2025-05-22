@@ -5,7 +5,7 @@
             <main>
                 <h1><span class="enhance">Tours and Destinations</span></h1>
                 <h2>Search For Places and Destinations; Book tours.</h2>
-                <form>
+                <form class="background-color-type">
                     <div>
                         <input type="text" placeholder="location">
                     </div>

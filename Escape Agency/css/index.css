@@ -2,6 +2,7 @@
 
 *{
     scroll-behavior: smooth;   
+    transition-duration: 1s;
 }
 body{
     margin: 0px;

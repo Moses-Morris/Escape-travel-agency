@@ -1,11 +1,12 @@
 /*Desktops*/
 @media (min-width:1200px) and (max-width: 1919px) {
-  .hero-data h2, .hero-data h3{
-    font-weight: 500;
-}
-.hero-data h1, .hero-data h2, .hero-data h3{
+
+.hero-data h1, .hero-data h2{
     margin: 2rem 0rem;
     font-weight: bold;
+}
+.hero-data h3{
+    font-weight: 400;
 }
 .hero-data .enhance{
     font-size: larger;
@@ -14,16 +15,22 @@
     text-decoration: underline;
 }
 .hero-data form{
-    width: 60vw;
+    width: 70vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 1.5%;
+    
+}
+.background-color-type{
+    background-color: black;
+    border-radius: 4px;
+    padding: 1rem 0.8rem ;   
 }
 .hero-data form div {
     width: 90%;
-    margin-top: 1em;
+    margin-top: 0em;
 }
 .hero-data form div input{
     border-radius: 3px;
@@ -31,8 +38,11 @@
     border: none;
     outline: none;
     font-size: 1rem;
-    width: 100%;
-    text-align: center;
+    width: 95%;
+    text-align: left;
+    padding-left: 0.5rem;
+    color: black;
+    
 }
 .hero-data form div button{
    border-radius: 3rem;
@@ -935,13 +945,16 @@ gap: 1rem;
     .pad-5{
         padding: 10%;
     }
-    .hero-data h2, .hero-data h3{
-        font-weight: 500;
-    }
-    .hero-data h1, .hero-data h2, .hero-data h3{
+   
+ 
+    .hero-data h1, .hero-data h2{
         margin: 2rem 0rem;
         font-weight: bold;
     }
+    .hero-data h3{
+        font-weight: 400;
+    }
+
     .hero-data .enhance{
         font-size: larger;
         font-weight: bold;
@@ -955,10 +968,16 @@ gap: 1rem;
         justify-content: space-between;
         align-items: center;
         gap: 1.5%;
+        
+    }
+    .background-color-type{
+        background-color: black;
+        border-radius: 4px;
+        padding: 1rem 0.8rem ;   
     }
     .hero-data form div {
         width: 90%;
-        margin-top: 1em;
+        margin-top: 0em;
     }
     .hero-data form div input{
         border-radius: 3px;
@@ -966,8 +985,11 @@ gap: 1rem;
         border: none;
         outline: none;
         font-size: 1rem;
-        width: 100%;
-        text-align: center;
+        width: 95%;
+        text-align: left;
+        padding-left: 0.5rem;
+        color: black;
+        
     }
     .hero-data form div button{
        border-radius: 3rem;

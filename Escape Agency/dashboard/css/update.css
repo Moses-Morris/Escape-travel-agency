@@ -1,0 +1,31 @@
+.dashboard-menu-left{
+    width: 15vw;
+    
+}
+.destination-booking{
+    width:90vw;
+    margin-right: 0% !important;
+    
+} 
+.dest-info-form{
+    width: 100%;
+
+}
+.no-padding{
+    overflow-y: hidden;
+}
+.topheader{
+    padding-left: 3rem;
+}
+/* Responsive */
+@media (max-width: 842px) {
+    .dashboard-menu-left{
+        width: 15vw;
+    }
+    .destination-booking{
+        width: 70vw;
+    } 
+    .topheader{
+        padding-left: 1rem;
+    }
+}

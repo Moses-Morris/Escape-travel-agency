@@ -30,6 +30,7 @@
     <!---->
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="./css/destination.css">
+    <link rel="stylesheet" href="css/mybooking.css">
     
 
     
@@ -161,83 +162,91 @@
             </main>
             <aside class="dashboard-content">
                 <div>
-                    <h5>My Destinations <i class="fa chevron-right"></i></h5>
+                    <h5>My Bookings <i class="fa chevron-right"></i></h5>
                 </div>
-
                 <!--Content-->
-                <!--------------------------Destinations on Offer Section------------------------------------------------------------>
-                <section class="destinations-offer">
-                    <h4>Destinations on offer</h4>
-                    <div class="destinations-offer-cards">
-                        <div class="destinations-offer-card">
-                            <img src="media/pexels-pierre-blache-651604-3073666.jpg">
-                            <div class="destination-offer-details">
-                                <h7><i class="fa fa-location"></i>NewYork</h7>
-                                <h3>USD 500</h3>
+                <!--------------------------Booked Destinations------------------------------------------------------------>
+                <div class="destinations-offer">
+                   <!---loop for each destination-->
+                    <div class="article">
+                        <main>
+                            <div class="top-banner-img">
+                                <img src="media/pexels-heyho-7746574.jpg" alt="">
                             </div>
-                            <div class="destination-offer-more">
-                                <h8><i class="fa fa-star"></i>4.3</h8>
-                                <a href="" class="linkbutton">
-                                    Explore Now
+                            <div class="dest-details-info">
+                                <div class="dest-details">
+                                    <div>
+                                        <p><bold>Destination Name : </bold> Grand Canyon</p>
+                                        <p><bold>Destination Location : </bold> Arizona, USA</p>
+                                        <p><bold>Destination Activities : </bold> Swimming, Dancing</p>
+                                        <p><bold>Dates from - To : </bold>2025-07-01 - 2025-07-10</p>
+                                        <p><bold>Number of People : </bold>2  <bold>Type Of Booking : </bold>Family</p>
+                                    </div>
+                                    <div>
+                                        <img src="media/pexels-asadphoto-1268855.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="host-details">
+                                    <p><bold>Hosting Name : </bold> Grand Hotel</p>
+                                    <p><bold>Hosting Location : </bold> Arizona, USA</p>
+                                </div>
+                                <div class="travel-details">
+                                    <p><bold>Travel Option : </bold> air - direct flight from mombasa</p>
+                                </div>
+                            </div>
+                            <div class="checkout-btn">
+                                <button  type="button" >
+                                    Update
                                     <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="destinations-offer-card">
-                            <img src="media/pexels-pixabay-210243.jpg">
-                            <div class="destination-offer-details">
-                                <h7><i class="fa fa-location"></i>Tanzania</h7>
-                                <h3>USD 900</h3>
-                            </div>
-                            <div class="destination-offer-more">
-                                <h8><i class="fa fa-star"></i>4.3</h8>
-                                <a href="" class="linkbutton">
-                                    Explore Now
+                                   
+                                </button> 
+                                <button  type="button" >
+                                    Cancel
                                     <i class="fa fa-arrow-right"></i>
-                                </a>
+                                    
+                                </button> 
                             </div>
-                        </div>
-                        <div class="destinations-offer-card">
-                            <img src="media/pexels-efrain-alonso-1702385-3584283.jpg">
-                            <div class="destination-offer-details">
-                                <h7><i class="fa fa-location"></i>Japan</h7>
-                                <h3>USD 1500</h3>
+                        </main>
+                        <aside>
+                            <h4>Total</h4>
+                            <div>
+                                <div class="pay-details">
+                                    <div class="pay-info">
+                                        <p>Destination</p>
+                                        <p><bold>USD 500</bold></p>
+                                    </div>
+                                    <div class="pay-info">
+                                        <p>Hosting </p>
+                                        <p><bold>USD 500</bold></p>
+                                    </div>
+                                    <div class="pay-info">
+                                        <p>Travel and Other Fees</p>
+                                        <p><bold>USD 500</bold></p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="destination-offer-more">
-                                <h8><i class="fa fa-star"></i>4.6</h8>
-                                <a href="" class="linkbutton">
-                                    Explore Now
-                                    <i class="fa fa-arrow-right"></i>
-                                </a>
+                            <div class="total-details">
+                                <h4>Total Amount</h4>
+                                <h4>400 USD</h4>
                             </div>
-                        </div>
-                        <div class="destinations-offer-card">
-                            <img src="media/pexels-icon0-209740.jpg">
-                            <div class="destination-offer-details">
-                                <h7><i class="fa fa-location"></i>China</h7>
-                                <h3>USD 500</h3>
+                            <div class="status">
+                                <div class="status-details">
+                                    <p>Status</p>
+                                    <p class="status-info">active</p>
+                                </div>
+                                <div class="status-details">
+                                    <p >Status</p>
+                                    <div class="status-details-pay">
+                                        <p class="status-details-not">Not Paid</p>
+                                        <a href="" class="link-to-pays-2">Pay Now</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="destination-offer-more">
-                                <h8><i class="fa fa-star"></i>4.8</h8>
-                                <a href="" class="linkbutton">
-                                    Explore Now
-                                    <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
 
+                        </aside>
+                     </div>
                     </div>
-                </section>
-
-                <!--------------------------Destinations on Offer Section------------------------------------------------------------>
-                <section class="destinations-offer">
-                    <h4>Destinations Liked</h4>
-                </section>
-
-                
-
-
-
+                </div>
             </aside>
         </article>
     </main>

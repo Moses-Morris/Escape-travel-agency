@@ -7,7 +7,7 @@
                 <h1>Upcoming Events and Activities</h1>
                 <h2>Your Gateway to Unforgettable and Stressfree <span>Travel</span> and <span>Adventures</span></h2>
                 <h3>Stay updated with our upcoming travel events, promotions, and exclusive Activities.</h3>
-                <form>
+                <form class="background-color-type">
                     <div>
                         <input type="text" placeholder="Location">
                     </div>

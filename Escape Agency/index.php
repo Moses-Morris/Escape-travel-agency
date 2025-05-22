@@ -5,8 +5,13 @@
             <main>
                 <h1>Escape Tiredness with <span class="enhance">Escape Travel Agency</span></h1>
                 <h2>Your Gateway to Unforgettable and Stressfree <span class="enhance">Travel</span> and <span class="enhance">Adventures</span></h2>
-                <h3>Discover and book your next Escape with Us.</h3>
-                <form>
+                <h3>
+                Join us on meticulously planned tours designed to create unforgettable memories. 
+                <br>Whether you’re looking for solo adventures, romantic getaways, or family trips, we have something for everyone.
+                <br>Discover and book your next Escape with Us.
+            </h3>
+                
+                <form class="background-color-type">
                     <div>
                         <input list="locations" id="location" name="location" placeholder="Location">
                         <datalist id="locations">
