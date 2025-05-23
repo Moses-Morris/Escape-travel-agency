@@ -7,9 +7,9 @@
                 </div>
                 <!--Content-->
                 <!--------------------------Booked Destinations------------------------------------------------------------>
-                <div class="destinations-offer">
+                <div class="destinations-offer" >
                    <!---loop for each destination-->
-                    <article class="article">
+                    <article class="article" style="padding:0% !important">
                         <main>
                             <div class="top-banner-img">
                                 <img src="media/pexels-heyho-7746574.jpg" alt="">

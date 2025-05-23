@@ -97,6 +97,9 @@ input{
     border: 1px solid var(--secondary) ;
     box-shadow: 3px 8px 8px 5px #e5e5e5;
 }
+.explore-data-card h5{
+    font-size: larger;
+}
 
 /*Hosting*/
 

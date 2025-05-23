@@ -24,7 +24,7 @@
     
 }
 .background-color-type{
-    background-color: black;
+    background-color: var(--lightyellow);
     border-radius: 4px;
     padding: 1rem 0.8rem ;   
 }
@@ -42,7 +42,7 @@
     text-align: left;
     padding-left: 0.5rem;
     color: black;
-    
+    border-bottom: 1px solid grey;
 }
 .hero-data form div button{
    border-radius: 3rem;
@@ -337,7 +337,7 @@ gap: 1rem;
 
 /*Testimonials*/
 .Testimonials{
-    padding: 15% 6%;
+    padding: 5% 6%;
 }
 .testimonials-info {
     display: flex;
@@ -778,26 +778,26 @@ gap: 1rem;
 
 .hosting-hero-section{
     padding: 1% 6%;
-    background-color: var(--lightyellow);
+    background-color: var(--tertiary);
 }
 .hero-pics-grid{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  
+  gap: 1rem;
 }
 .hero-pics-grid .one{
   flex: 1;
-  width: 100%;
+  width: 28vw;
 }
 .hero-pics-grid .two{
   flex:1 ;
-  width: 100%;
+  width:28vw;
 }
 .hero-pics-grid .three{
   flex: 1;
-  width: 100%;
+  width: 28vw;
 }
 .hero-pics-grid img{
     object-fit: cover;
@@ -807,8 +807,9 @@ gap: 1rem;
 }
 .Hosting-Listing{
     border-bottom: 1px solid var(--secondary);
-    padding: 6%;
-    background-color: var(--lightyellow);
+    padding: 1% 6%;
+    background-color: var(--tertiary);
+    margin-bottom: 4%;
 }
 .hosting-header{
     display: flex;
@@ -825,8 +826,10 @@ gap: 1rem;
 .hostings-filter form input{
     height: 2rem;
     border: none;
-    padding: 0rem 0.5rem;
+    padding: 0.2rem 0.5rem;
     margin-right: 0.3rem;
+    background-color: var(--lightyellow);
+    width: 25vw;
 }
 .hostings-filter button{
     color: var(--black);
@@ -849,9 +852,9 @@ gap: 1rem;
 }
 .hosting-place img{
     height: 40vh;
-    width:99%;
+    width:100%;
     border-radius: 5px;
-    border: 2px solid var(--secondary);
+    
 }
 .hosting-place h6{
     font-weight: 700;
@@ -971,7 +974,7 @@ gap: 1rem;
         
     }
     .background-color-type{
-        background-color: black;
+        background-color: var(--lightyellow);
         border-radius: 4px;
         padding: 1rem 0.8rem ;   
     }
@@ -989,7 +992,7 @@ gap: 1rem;
         text-align: left;
         padding-left: 0.5rem;
         color: black;
-        
+        border-bottom: 1ps solid grey;
     }
     .hero-data form div button{
        border-radius: 3rem;
@@ -1733,36 +1736,39 @@ gap: 1rem;
         padding: 1% 6%;
         background-color: var(--lightyellow);
     }
-    .hero-pics-grid{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      align-items: center;
-      
-    }
-    .hero-pics-grid .one{
-      flex: 1;
+   
+.hero-pics-grid{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-pics-grid .one{
+    flex: 1;
+    width: 28vw;
+  }
+  .hero-pics-grid .two{
+    flex:1 ;
+    width:28vw;
+  }
+  .hero-pics-grid .three{
+    flex: 1;
+    width: 28vw;
+  }
+  .hero-pics-grid img{
+      object-fit: cover;
       width: 100%;
-    }
-    .hero-pics-grid .two{
-      flex:1 ;
-      width: 100%;
-    }
-    .hero-pics-grid .three{
-      flex: 1;
-      width: 100%;
-    }
-    .hero-pics-grid img{
-        object-fit: cover;
-        width: 100%;
-        border-radius: 8px;
-        height: 45vh;
-    }
-    .Hosting-Listing{
-        border-bottom: 1px solid var(--secondary);
-        padding: 6%;
-        background-color: var(--lightyellow);
-    }
+      border-radius: 8px;
+      height: 45vh;
+  }
+  .Hosting-Listing{
+      border-bottom: 1px solid var(--secondary);
+      padding: 1% 6%;
+      background-color: var(--tertiary);
+      margin-bottom: 2%;
+  }
+
     .hosting-header{
         display: flex;
         font-weight: 700;
@@ -1778,8 +1784,9 @@ gap: 1rem;
     .hostings-filter form input{
         height: 2rem;
         border: none;
-        padding: 0rem 0.5rem;
+        padding: 0.8rem 0.5rem;
         margin-right: 0.3rem;
+        width: 25vw;
     }
     .hostings-filter button{
         color: var(--black);
@@ -1793,7 +1800,7 @@ gap: 1rem;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 1rem;
-        padding: 0.5rem 0rem;
+        padding: 0.5rem 1rem;
     }
     .hosting-place{
         border-radius: 5px;

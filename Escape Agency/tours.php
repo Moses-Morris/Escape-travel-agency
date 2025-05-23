@@ -35,9 +35,9 @@
 
 
     <!--------------------------Destinations on Offer Section------------------------------------------------------------>
-    <section class="destinations-offer">
+    <section class="destinations-offer" id="dest-id">
         <h4>Destinations on offer</h4>
-        <div class="destinations-offer-cards">
+        <div class="destinations-offer-cards" >
             <div class="destinations-offer-card">
                 <img src="media/pexels-pierre-blache-651604-3073666.jpg">
                 <div class="destination-offer-details">
@@ -46,7 +46,7 @@
                 </div>
                 <div class="destination-offer-more">
                     <h8><i class="fa fa-star"></i>4.3</h8>
-                    <a href="" class="linkbutton">
+                    <a href="destinationinfo.php" class="linkbutton">
                         Explore Now
                         <i class="fa fa-arrow-right"></i>
                     </a>

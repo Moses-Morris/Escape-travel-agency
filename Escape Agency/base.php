@@ -36,8 +36,7 @@ include('User/config/connection.php');
     <link rel="stylesheet" href="css/tablet.css">
     <link rel="stylesheet" href="css/large.css">
     <link rel="stylesheet" href="css/nav.css">
-    
-
+    <!---->
     
 
     <!---------------------------Icon Linking---------------------------------------------->
@@ -98,8 +97,20 @@ include('User/config/connection.php');
                     
                 </ul>
 
-                <div class="cta-button">
                 
+                <div class="cta-button dash">
+                    <?php
+                    /*
+                     if (isset($_SESSION['username'])) {
+                        echo "
+                             <a href=''>
+                               <button type='button' class='notification-btn'>
+                                   <i class='fa fa-notification'></i>
+                               </button>
+                             </a>
+                              ";
+                     }*/
+                    ?>
                     <?php
                         // Check if the user is logged in by checking session variables
                         

@@ -1,3 +1,11 @@
+
+<?php
+session_start(); // Always start session to access session variables
+include('User/config/connection.php');
+
+//include('User/auth/usersession.php');
+?>
+
 <!DOCTYPE html>
 <html prefix="og: https://ogp.me/ns#" lang="en">
 <head>
@@ -22,15 +30,16 @@
 
 
     <!---------------------------CSS Linking---------------------------------------------->
+    <link rel="stylesheet" href="dashboard/css/index.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="../css/mobile.css">
-    <link rel="stylesheet" href="../css/tablet.css">
-    <link rel="stylesheet" href="../css/large.css">
-    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/tablet.css">
+    <link rel="stylesheet" href="css/large.css">
+    <link rel="stylesheet" href="css/nav.css">
     <!---->
-    <link rel="stylesheet" href="./css/dashboard.css">
-    <link rel="stylesheet" href="css/destination.css">
-    <link rel="stylesheet" href="css/destinationinfo.css">
+    <link rel="stylesheet" href="dashboard/css/dashboard.css">
+    <link rel="stylesheet" href="dashboard/css/destination.css">
+    <link rel="stylesheet" href="dashboard/css/destinationinfo.css">
     
 
     
@@ -59,7 +68,7 @@
 <body>
 
     <!---------------------------The top section with header--------------------------------------------------->
-    <section class="hero">
+    <section class="hero" style="background:none; !important">
         <!---Header Nav-->
         <header>
             <nav class="navbar">
@@ -73,26 +82,59 @@
 
                 <ul class="nav-links">
                     <li ><a href="#" class="x-icon-menu"><i class="fa-solid fa-xmark fa-xl"></i></a></li>
-                    <li><a href="index.html#Home">Home</a></li>
-                    <li><a href="tours.html">Tours</a></li>
-                    <li><a href="about.html#About">About Us</a></li>
-                    <li><a href="blogs.html">Blogs</a></li>
-                    <li><a href="events.html#resources">Activities</a></li>
-                    <li><a href="hostings.html#faqs">Hostings</a></li>
+                    <li><a href="index.php#Home">Home</a></li>
+                    <li><a href="tours.php">Destinations</a></li>
+                    <li><a href="hostings.php">Hostings</a></li>  
+                    <li><a href="blogs.php">Blogs</a></li>
+                    <li><a href="events.php">Activities</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                    <li><a href="resources.php">Resources</a></li>
+                    
                 </ul>
 
                 <div class="cta-button dash">
-                    <a href="">
-                        <button type="button" class="notification-btn">
-                            <i class="fa fa-notification"></i>
-                        </button>
-                    </a>
-                    <a href="login.html">
-                        <button class="useraccount">
-                            <p>user@gmail.com</p>
-                            <i class="fa fa-user"></i>
-                        </button>
-                    </a>
+                    <?php
+                    /*
+                     if (isset($_SESSION['username'])) {
+                        echo "
+                             <a href=''>
+                               <button type='button' class='notification-btn'>
+                                   <i class='fa fa-notification'></i>
+                               </button>
+                             </a>
+                              ";
+                     }*/
+                    ?>
+                    
+                    <div class="cta-button">
+                
+                    <?php
+                        // Check if the user is logged in by checking session variables
+                        
+                        
+                        if (isset($_SESSION['username'])) {
+                            // User is logged in
+                            echo "<a href='User/auth/logout.php'>Logout</a>";
+                            echo "<a class='useraccount' href='dashboard/dashboard.php'>
+                                            <i class='fa fa-user'></i>
+                                            <p>".$_SESSION['username']."</p>       
+                                        </a>";
+
+                            
+                        } else {
+                            /* Not logged in
+                            session_unset();
+                            session_destroy();
+                            header("Location: ../login.php?msg=" . urlencode("Session expired. Please login again."));
+                            exit();*/
+                            echo "<a href='login.php'>
+                                            <button class='login'>Book Now</button>
+                                        </a>";
+                        }
+                    
+                    ?>
+                    
+                </div>
                 </div>
             </nav>
         </header>
@@ -140,7 +182,7 @@
                     <div class="dest-description">
                         <p>Wait for confirmation on the Dashboard. Escape Agency also provides a list of documents needed
                             For the adventure and everything needed for the trip. It listed on the Dashboard</p>
-                        <a href="">
+                        <a href="bookingdetails.php">
                             Book Now
                             <i class="fa fa-arrow-right"></i>
                         </a>

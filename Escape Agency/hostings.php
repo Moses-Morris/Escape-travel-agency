@@ -54,9 +54,9 @@
                             <h5>Company Hotel Villas, China</h5>
                             <p><bold>$100 - $400 per night</bold></p>
                         </div>
-                        <div class="more-linking">
+                        <a class="more-linking" href="hostinginfo.php">
                             <i class="fa fa-arrow-right fa-xl"></i>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -72,9 +72,9 @@
                             <h5>Company Hotel Villas, China</h5>
                             <p><bold>$100 - $400 per night</bold></p>
                         </div>
-                        <div class="more-linking">
+                        <a class="more-linking">
                             <i class="fa fa-arrow-right fa-xl"></i>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -90,9 +90,9 @@
                             <h5>Company Hotel Villas, China</h5>
                             <p><bold>$100 - $400 per night</bold></p>
                         </div>
-                        <div class="more-linking">
+                        <a class="more-linking">
                             <i class="fa fa-arrow-right fa-xl"></i>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -108,9 +108,9 @@
                             <h5>Company Hotel Villas, China</h5>
                             <p><bold>$100 - $400 per night</bold></p>
                         </div>
-                        <div class="more-linking">
+                        <a class="more-linking">
                             <i class="fa fa-arrow-right fa-xl"></i>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

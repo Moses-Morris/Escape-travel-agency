@@ -28,7 +28,7 @@
         
     }
     .background-color-type{
-        background-color: black;
+        background-color: var(--lightyellow);
         border-radius: 4px;
         padding: 1rem 0.8rem ;   
     }
@@ -46,7 +46,7 @@
         text-align: left;
         padding-left: 0.5rem;
         color: black;
-        
+        border-bottom: 1px solid grey;
     }
     .hero-data form div button{
         border-radius: 3rem;
@@ -902,12 +902,10 @@
 /* Large Tablets Laptops*/
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .hero-data h2{
-        
         font-weight: 500;
     }
     .hero-data h3{
         font-weight: 400;
-        
     }
     .hero-data h1, .hero-data h2, .hero-data h3{
         margin: 2rem 0rem;;
@@ -928,7 +926,7 @@
         
     }
     .background-color-type{
-        background-color: black;
+        background-color: var(--lightyellow);
         border-radius: 4px;
         padding: 1rem 0.8rem ;   
     }
@@ -946,7 +944,7 @@
         text-align: left;
         padding-left: 0.5rem;
         color: black;
-        
+        border-bottom: 1px solid grey;
     }
     .hero-data form div button{
         border-radius: 3rem;

@@ -340,7 +340,7 @@
                         travel. We have got you!!
                         from luxury resorts to budget-friendly hostels.</p>
                     <img src="media/pexels-pixabay-164595.jpg">
-                    <button> <a href="">View all Hostings</a> </button>
+                    <button> <a href="hostings.php">View all Hostings</a> </button>
                     
                 </div>
 
@@ -380,7 +380,14 @@
                 Clear information on pricing for various packages and services.
             </p>
             <div class="booking-buttons">
-                <a href="" class="booknow">Book Now</a>
+                <?php
+                    if(isset($_SESSION['username'])){
+                        $link = "tours.php#dest-id";
+                    }else{
+                        $link = "login.php";
+                    }
+                ?>
+                <a href="<?php echo $link ?>" class="booknow">Book Now</a>
                 <a href="" class="contactus">Contact Us</a>
             </div>
         </section>

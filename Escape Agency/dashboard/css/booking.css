@@ -37,6 +37,13 @@
   .popup-close:hover {
     background: #c0392b;
   }
+  .plus{
+    display: flex;
+    flex-direction:row;
+    justify-content:space-around;
+    align-items: center;
+}
+
 /*Extra Small Devices*/
 @media screen and (max-width: 480px ){
     .bookingdetails .destination-booking{
@@ -710,6 +717,12 @@
         display:flex ;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
+    }
+    .plus{
+        display: flex;
+        flex-direction:row;
+        justify-content:space-around;
         align-items: center;
     }
     .activity-bottom div button{

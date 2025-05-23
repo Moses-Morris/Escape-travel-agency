@@ -1,7 +1,7 @@
 /*Extra Small Devices*/
 @media screen and (max-width: 480px ){
     .destinations-offer{
-        padding: 2rem;
+        padding: 0rem;
     }
     .destinations-offer article {
         padding: 0.3rem;
@@ -94,7 +94,7 @@
 /*mobile*/
 @media screen and (min-width: 481px) and (max-width: 767px) {
     .destinations-offer{
-        padding: 2rem;
+        padding: 0rem;
     }
     .destinations-offer article {
         padding: 0.3rem;
@@ -189,7 +189,7 @@
 /*small tablets*/
 @media screen and (min-width: 768px) and (max-width: 991px) { 
     .destinations-offer{
-        padding: 2rem;
+        padding: 0rem;
     }
     .destinations-offer article {
         padding: 0.3rem;
@@ -282,7 +282,7 @@
 /* Large Tablets Laptops*/
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .destinations-offer{
-        padding: 2rem;
+        padding: 0rem;
     }
     .destinations-offer article {
         padding: 0.3rem;
@@ -378,7 +378,7 @@
 /*Desktops*/
 @media (min-width:1200px) and (max-width: 1919px) {
     .destinations-offer{
-        padding: 2rem;
+        padding: 0rem;
     }
     .destinations-offer article{
         display: flex;
@@ -485,7 +485,7 @@
 /*Extra Large Screens.*/
 @media (min-width: 1920px) {
     .destinations-offer{
-        padding: 2rem;
+        padding: 0rem;
     }
     .destinations-offer article{
         display: flex;

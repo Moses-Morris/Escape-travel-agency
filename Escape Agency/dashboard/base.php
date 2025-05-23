@@ -37,7 +37,7 @@ include('../User/config/connection.php');
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/destination.css">
-    <link rel="stylesheet" href="css/mybooking.css">
+    <link rel="stylesheet" href="./css/mybooking.css">
 
 
     
