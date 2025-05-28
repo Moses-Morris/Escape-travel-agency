@@ -685,7 +685,7 @@
     */
     .hosting-hero-section{
         padding: 6%;
-        background-color: var(--lightyellow);
+        background-color: var(--tertiary);
     }
     .hero-pics-grid img{
         height: 20vh;
@@ -1510,7 +1510,7 @@
     */
     .hosting-hero-section{
         padding: 6%;
-        background-color: var(--lightyellow);
+        background-color: var(--tertiary);
     }
     .hero-pics-grid img{
         height: 20vh;
@@ -1551,7 +1551,7 @@
     /*Hosting places*/
     .hosting-places{
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         padding: 2rem 0rem;
     }

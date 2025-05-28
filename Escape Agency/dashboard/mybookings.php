@@ -36,11 +36,10 @@
                                 </div>
                             </div>
                             <div class="checkout-btn">
-                                <button  type="button" >
+                                <a  type="button" href="updatebooking.php">
                                     Update
                                     <i class="fa fa-arrow-right"></i>
-                                   
-                                </button> 
+                                   </a> 
                                 <button  type="button" >
                                     Cancel
                                     <i class="fa fa-arrow-right"></i>
