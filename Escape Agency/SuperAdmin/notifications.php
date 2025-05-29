@@ -219,9 +219,7 @@
                                               <td> ".$icon."</td>
                                               
                                               
-                                              <td>
-                                                 ".$button."
-                                              </td>
+                                              
                                             </tr>";
 
 

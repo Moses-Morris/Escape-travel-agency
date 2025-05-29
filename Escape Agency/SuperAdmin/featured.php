@@ -177,10 +177,10 @@
                                         
                                         if ($status == 1){
                                           $icon = "<i class='mdi mdi-check-circle  text-primary ml-auto'>Active</i>";
-                                          $button = "<a href='PHP_Codes/featuredactivate.php?i=".urlencode($id)."  type='button' class='btn btn-danger btn-rounded btn-fw'>Deactivate  </a>";
+                                          $button = "<a href='PHP_Codes/featuredeactivate.php?i=".urlencode($id)."  type='button' class='btn btn-danger btn-rounded btn-fw'>Deactivate  </a>";
                                         }else{
                                           $icon = "<i class='mdi mdi-window-close  text-primary ml-auto'>Inactive</i> ";
-                                          $button = "<a href='PHP_Codes/featureactivate.php?i=".urlencode($id)."  type='button' class='btn btn-danger btn-rounded btn-fw'>Activate</a>";
+                                          $button = "<a href='PHP_Codes/featureeactivate.php?i=".urlencode($id)."  type='button' class='btn btn-danger btn-rounded btn-fw'>Activate</a>";
                                         }
 
                                         

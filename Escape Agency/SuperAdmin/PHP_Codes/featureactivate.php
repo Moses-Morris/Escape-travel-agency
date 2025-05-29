@@ -31,7 +31,7 @@
             <?php
                  echo "<script>
                  setTimeout(function() {
-                     window.location.href = 'notifications.php';
+                     window.location.href = '../featured.php';
                  }, 3000);
              </script>";
              echo "<center><bold>Message Seen.<bold></center>";

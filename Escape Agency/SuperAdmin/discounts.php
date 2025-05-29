@@ -235,10 +235,10 @@
                                               <td> ".$company  ."</td>
                                               <td> ".$icon."</td>
                                               
-                                              
                                               <td>
-                                                 ".$button."
-                                              </td>
+                                                      <a href='viewdiscount.php?adid=". urlencode($id) ."'' type='button' class='btn btn-primary btn-rounded btn-fw'>View</a>
+                                                </td>
+                                              
                                             </tr>";
 
 
