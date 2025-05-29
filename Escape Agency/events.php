@@ -50,7 +50,10 @@
                 <div class="event-info">
                     <div class="event-info-top">
                         <h3>WildBeast Migration</h3>
-                        <i class="fa fa-heart  fa-2xl"></i>
+                        <div style="text-align:center;">
+                                <i class="fa fa-heart fa-2xl heart-btn" data-event-id="1"></i>
+                                <span class="favorite-count" id="count-1">0</span>
+                            </div>
                     </div>
                     <div>
                         <p>A perfect view of the biggest
@@ -71,7 +74,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="event">
                 <div class="event-images">
                     <img src="media/pexels-valdemaras-d-784301-3871773.jpg">
@@ -80,7 +83,10 @@
                     <div class="event-info-top">
                         <h3>Aurora Borealis Viewing
                             Experience</h3>
-                        <i class="fa fa-heart  fa-2xl"></i>
+                            <div style="text-align:center;">
+                                <i class="fa fa-heart fa-2xl heart-btn" data-event-id="1"></i>
+                                <span class="favorite-count" id="count-2">0</span>
+                            </div>
                     </div>
                     <div>
                         <p>Experience the magic of the
@@ -109,7 +115,10 @@
                 <div class="event-info">
                     <div class="event-info-top">
                         <h3>Venice Carnival</h3>
-                        <i class="fa fa-heart  fa-2xl"></i>
+                        <div style="text-align:center;">
+                                <i class="fa fa-heart fa-2xl heart-btn" data-event-id="1"></i>
+                                <span class="favorite-count" id="count-3">0</span>
+                            </div>
                     </div>
                     <div>
                         <p>Extravagance of Venice Carnival,

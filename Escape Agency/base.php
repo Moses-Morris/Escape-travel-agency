@@ -36,6 +36,7 @@ include('User/config/connection.php');
     <link rel="stylesheet" href="css/tablet.css">
     <link rel="stylesheet" href="css/large.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/events.css">
     <!---->
     
 

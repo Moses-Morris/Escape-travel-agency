@@ -144,7 +144,7 @@ include('User/config/connection.php');
     <main class="destination-page-main">
         <!--destination images-->
         <div class="dest-detail-info">
-            <h3><i class="fa fa-location"></i>Mt Kilimanjaro</h3>
+            <h3><i class="fa fa-location-dot"></i> Mt Kilimanjaro</h3>
         </div>
         <section class="destination-images">
             <div class="dest-info-images">
@@ -238,7 +238,7 @@ include('User/config/connection.php');
                         </div>
                         <div class="travel-type">
                             <p>Flights</p>
-                            <i class="fa fa-aeroplane"></i>
+                            <i class="fa-solid fa-plane-circle-check"></i>
                         </div>
                     </div>
                 </aside>

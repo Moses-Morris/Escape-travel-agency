@@ -21,50 +21,50 @@
 
     <!---------------------------Hostings section--------------------------------------------------->
     <section class="hosting-hero-section">
-        <div class="hosting-details-top-info">
+        <div class="hosting-details-top-info one">
             <h1>Prime Luxury Suites </h1>
-            <span>
-                <i class="fa fa-location fa-xl"></i>
-                <p>Arizona</p>
-            </span>
+            <div class="host-loc">
+                <div><i class="fa-solid fa-location-dot"></i></div>
+                <div><p>Arizona</p></div>
+            </div>
         </div>
         <div class="hosting-details-all">
             <div class="left-side-hosting">
                 <div class="hosting-small-images">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
+                    <img src="media/pexels-julieaagaard-2467285.jpg" alt="">
+                    <img src="media/pexels-julieaagaard-2467285.jpg" alt="">
+                    <img src="media/pexels-julieaagaard-2467285.jpg" alt="">
                 </div>
                 <div class="hosting-main-image">
-                    <img src="" alt="">
+                    <img src="media/pexels-carmen-cobo-338021-1103808.jpg" alt="">
                 </div>
             </div>
-            <div class="left-side-hosting">
-                <div class="hosting-details-left">
+            <div class="right-side-hosting">
+                <div class="hosting-details-right">
                     <div class="hosting-details-top-info">
                         <h1>Prime Luxury Suites </h1>
-                        <span>
-                            <i class="fa fa-location fa-xl"></i>
-                            <p>Arizona</p>
-                        </span>
+                        <div class="host-loc">
+                            <div><i class="fa-solid fa-location-dot"></i> </div>
+                            <div><p>     Arizona</p></div>
+                        </div>
                     </div>
                     <div>
                         <p><bold>Destination : </bold> Grand Canyon</p>
                         <p><bold>Distance From Destination : </bold> 4 Km</p>
                         <p><bold>Description : </bold> Luxury Hotel in Arizona</p>
-                        <p><bold><i class="fa fa-likes fa-xl"></i> : </bold> 1,400likes</p>
+                        <p><bold><i class="fa-solid fa-heart"></i>  </bold> 1,400 likes</p>
                     </div>
-                    <div>
+                    <div class="jana">
                         <span class="badge-identity">Hotel</span>
                     </div>
                 </div>
-                <div class="hosting-details-right">
+                <div class="hosting-details-right checkmatespoint">
                     <h1>Price Per Night</h1>
-                    <h4>400 USD</h4>
+                    <h2>400 USD</h2>
                 </div>
             </div>
         </div>
-        <div>
+        <div class="host-feat">
             <h4>Most Popular Features</h4>
             <p>Free Wifi, Swimming Pool, Morning Breakfast, Kitchen, Balcony </p>
         </div>
@@ -75,7 +75,7 @@
     <section class="Hosting-Listing">
         <div class="hosting-header">
             <div>
-                <h7>Hostings </h7>
+                <h7>Similar Hostings </h7>
             </div>
             <div class="hostings-filter">
                 <form>

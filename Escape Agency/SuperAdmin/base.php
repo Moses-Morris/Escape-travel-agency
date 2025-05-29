@@ -1,5 +1,6 @@
 <?php
-     include 'config/connection.php';
+    include 'config/connection.php';
+    $agentID = "mia@example.com";
 ?>
 
 <!DOCTYPE html>

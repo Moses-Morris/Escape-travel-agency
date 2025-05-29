@@ -272,3 +272,12 @@ footer h7{
     margin-bottom: 1rem;
     width: calc(100% - 5%);
 }
+
+
+
+.hosting-details-top-info .host-loc{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;   
+    align-items: center;
+}

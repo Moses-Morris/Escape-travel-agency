@@ -172,7 +172,7 @@
                           <?php
                                       $result = mysqli_query($conn,"SELECT * FROM events ORDER BY Created_at DESC ");
                                       while($row = mysqli_fetch_array($result)){
-                                       
+                                       $ID = $row['EventID'];
                                         $Name = $row["Name"];
                                         $location = $row["Location"];
                                         $country = $row["Country"];
@@ -212,7 +212,7 @@
                                               
                                               
                                       <td>
-                                        <img src='assets/images/faces/face1.jpg' alt='image' />
+                                        <img src='../uploads".$img."' alt='image' />
                                         <span class='pl-2'>".$Name."</span>
                                       </td>
                                       <td> ".$location.", ".$country."</td>
@@ -226,7 +226,7 @@
                                         <a href='./' class='badge badge-outline-success'>".$icon."</a>
                                       </td>
                                       <td>
-                                        <a href='./Viewdestination.php' class='badge badge-outline-success'>View More</a>
+                                        <a href='viewevent.php?eventid=". urlencode($ID) ."'' type='button' class='btn btn-primary btn-rounded btn-fw'>View More On Event</a>
                                       </td>
                                     </tr>";
 

@@ -156,95 +156,110 @@
                 </div>
               </div>
             </div>
-            <div class="row ">
-              <div class="col-12 grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">All running Activities</h4>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
+            
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">All Activities</h4>
+        <a href="createactivity.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Activity</a>
+        </p>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th> Activity Name </th>
+                
+                <th> Description </th>
+                
+                <th> Price </th>
+                <th> Duration </th>
+                <th> Rating </th>
+                <th> Destination Reference </th>
+                <th> Date Created </th>
+                <th> Status </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <?php
+                    $result = mysqli_query($conn,"SELECT * FROM activities  ORDER BY Created_at ASC");
+                    while($row = mysqli_fetch_array($result)){
+                    $id = $row["ActivityID"];
+                    $Name = $row["Name"];
+                    $desc = $row["Description"];
+                    $img = $row["ImageURL"];
+                    $amount = $row["Price"];
+                    $dest = $row["DestinationID"];
+                    $agent = $row["AgentID"];
+                    $duration = $row["Duration"];
+                    $status = $row["Status"];
+                    $rating = $row['RatingAVG'];
+                    $date = $row['Created_at'];
+                    
+                    if ($status == "active"){
+                        $icon = "<i class='mdi mdi-check-circle  text-primary ml-auto'>Running</i>";
+                        
+                    }else{
+                        $icon = "<i class='mdi mdi-window-close  text-primary ml-auto'>Inactive</i> ";
+                    }
+
+                    
+
+                    //gET agent anme
+                    $agents = mysqli_query($conn, "SELECT * FROM agents WHERE AgentID = $agent");
+                    $dd = mysqli_fetch_array($agents);
+                    $getdd = $dd['CompanyName'];
+
+
+                    //gET dest NAME
+                    $destname = mysqli_query($conn, "SELECT * FROM destinations WHERE DestinationID = $dest");
+                    $ddname = mysqli_fetch_array($destname);
+                    $getddname = $ddname['Name'];
+
+                    
+                    
+                    print "
                             
-                            <th> Activity Name </th>
-                            <th> Details </th>
-                            <th> Activity Duration</th>
-                            <th> Cost </th>
-                            <th> Destination </th>
-                            <th> Created By : Agent </th>
-                            <th> Status </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                                      $result = mysqli_query($conn,"SELECT * FROM activities ORDER BY Created_at DESC");
-                                      while($row = mysqli_fetch_array($result)){
-                                        $id = $row["ActivityID"];
-                                        $Name = $row["Name"];
-                                        $desc = $row["Description"];
-                                        $img = $row["ImageURL"];
-                                        $amount = $row["Price"];
-                                        $dest = $row["DestinationID"];
-                                        $agent = $row["AgentID"];
-                                        $duration = $row["Duration"];
-                                        $status = $row["Status"];
-                                        
-                                        if ($status == "active"){
-                                          $icon = "<i class='mdi mdi-check-circle  text-primary ml-auto'>Running</i>";
-                                          
-                                        }else{
-                                          $icon = "<i class='mdi mdi-window-close  text-primary ml-auto'>Inactive</i> ";
-                                        }
+                            <td>
+                            <img src=".$img." alt='image' />
+                            <span class='pl-2'>".$Name."</span>
+                            </td>
+                            
+                            
+                            <td>". $desc."</td>
+                            
+                            <td> ".$amount ."</td>
+                            <td> ".$duration."</td>
+                            <td> ".$rating."</td>
+                            <td> ".$getddname."</td>
 
-                                        
-
-                                        //gET agent anme
-                                        $agents = mysqli_query($conn, "SELECT * FROM agents WHERE AgentID = $agent");
-                                        $dd = mysqli_fetch_array($agents);
-                                        $getdd = $dd['CompanyName'];
-
-
-                                        //gET dest NAME
-                                        $destname = mysqli_query($conn, "SELECT * FROM destinations WHERE DestinationID = $dest");
-                                        $ddname = mysqli_fetch_array($destname);
-                                        $getddname = $ddname['Name'];
-
-                                        
-                                     
-                                        print "
-                                              
-                                              <td>
-                                                <img src='assets/images/faces/face1.jpg' alt='image' />
-                                                <span class='pl-2'>".$Name."</span>
-                                              </td>
-                                              
-                                              <td> ".$getddname."</td>
-                                              <td> ".$duration."</td>
-                                              <td> ".$amount ."</td>
-                                              <td> ".$getddname."</td>
-                                              <td> ".$getdd."</td>
-                                              <td> ".$icon."</td>
-                                              
-                                              
-                                              <td>
-                                                <a href='./Viewactivity.php' class='badge badge-outline-success'>View Activity</a>
-                                              </td>
-                                            </tr>";
+                            
+                            <td> ".$date."</td>
+                            <td> ".$icon."</td>
+                            
+                            
+                            <td>
+                            <a href='viewactivity.php?actid=". urlencode($id) ."'' class='badge badge-outline-success'>View Activity</a>
+                            </td>
+                        </tr>";
 
 
 
-                                      };
+                    };
 
-                                    ?>
+                                    
                           
-                          
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                        ?>
+              
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
 <?php

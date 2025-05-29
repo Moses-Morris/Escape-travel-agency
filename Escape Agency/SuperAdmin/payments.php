@@ -385,6 +385,7 @@
                           <?php
                                       $result = mysqli_query($conn,"SELECT * FROM payments ORDER BY TransactionDate DESC");
                                       while($row = mysqli_fetch_array($result)){
+                                        $payid=$row['PaymentID'];
                                         $orderno = $row["OrderNo"];
                                         $Name = $row["Name"];
                                         $user = $row["UserID"];
@@ -425,7 +426,7 @@
                                               <td> ".$orderno."</td>
                                               <td> ". $Name."</td>
                                               <td>
-                                                <img src='assets/images/faces/face1.jpg' alt='image' />
+                                                <img src='../uploads/".$getimg."' alt='".$getimg."' />
                                                 <span class='pl-2'>".$getaa."</span>
                                               </td>
                                               
@@ -437,7 +438,7 @@
                                               <td> ".$tsummary."</td>
                                               
                                               <td>
-                                                <a href='viewpayment.php' class='badge badge-outline-success'>View Payment</a>
+                                                <a href='viewpayment.php?payid=". urlencode($payid) ."''' type='button' class='btn btn-primary btn-rounded btn-fw'>View Pay Details</a>
                                               </td>
                                             </tr>";
 

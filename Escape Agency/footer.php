@@ -40,7 +40,7 @@
 
         </div>
     </footer>
-
+    <script src="js/likescount.js" ></script>
 
     </body>
     </html>

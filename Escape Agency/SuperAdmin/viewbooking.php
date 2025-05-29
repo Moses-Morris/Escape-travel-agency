@@ -1,10 +1,61 @@
 <?php
     include 'base.php';
 ?>
+
 <?php
-//The details of the Booking
+     $msg = " ";
+    //get the id from url and
+    if (isset($_GET['bookid']) && filter_var($_GET['bookid'], FILTER_VALIDATE_INT)) {
+        $id = $_GET['bookid'];
+        //echo "Received ID: " . htmlspecialchars($id);
+    } else {
+        echo "Invalid ID!";
+    }
 ?>
 
+
+<?php
+//Confirm and Accept Booking booking
+//get the booking details
+$check = mysqli_query($conn,"SELECT * FROM bookings WHERE BookingID=$id");
+$row5= mysqli_fetch_array($check);
+$active = $row5["Active"];
+$status = $row5["Status"];
+
+//get the featured details
+$feature = mysqli_query($conn,"SELECT * FROM bookings WHERE BookingID=$id");
+$row5= mysqli_fetch_array($feature);
+$status = $row5["Active"];
+//echo $active;
+//echo  $status;
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if(isset($_POST['confirm'])) {
+        $value = $_POST['status'];
+        //echo $value;
+        $stmt = $conn->prepare("UPDATE bookings SET Active = 'active', Status='confirmed', Paid=1 WHERE BookingID = ?");
+        $stmt->bind_param("i", $id); // both are integers
+        if ($stmt->execute()) {
+            $msg =  "<div class='alert alert-info'>Booking Confirmed and Actively Waiting for Services.</div>";
+        } else {
+          $msg =   "<div class='alert alert-danger'>Failed to Confirm/Accept Booking " . $stmt->error . "</div>";
+        }
+        $stmt->close();
+    }elseif(isset($_POST['deactivate'])) {
+      //Deactivate booking
+      $value = $_POST['status'];
+      //echo $value;
+      $stmt = $conn->prepare("UPDATE bookings SET Active = 'cancelled' WHERE BookingID = ?");
+      $stmt->bind_param("i", $id); // both are integers
+      if ($stmt->execute()) {
+          $msg =  "<div class='alert alert-info'>Booking Deactivated and Cancelled.</div>";
+      } else {
+        $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
+      }
+      $stmt->close();
+  }
+}
+
+?>
 <!-- partial -->
 <div class="main-panel">
         <div class="content-wrapper">
@@ -16,7 +67,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Booking Details</h4>
-                    <form class="forms-sample">
+                    <form class="forms-sample" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?bookid=' . $id; ?>" method="post" enctype="multipart/form-data">
                       <?php
                           //get the id from url and
                           if (isset($_GET['bookid']) && filter_var($_GET['bookid'], FILTER_VALIDATE_INT)) {
@@ -24,6 +75,9 @@
                               //echo "Received ID: " . htmlspecialchars($id);
                           } else {
                               echo "Invalid ID!";
+                          }
+                          if ($msg){
+                            print $msg;
                           }
                       ?>
 
@@ -163,7 +217,7 @@
                       </div>
                       <div class="form-group">
                         <label for="">Ending Date   </label>
-                        <input type="email" class="form-control" name="end" value="<?php echo $end; ?>">
+                        <input type="date" class="form-control" name="end" value="<?php echo $end; ?>">
                       </div>
                       <div class="form-group">
                         <label for="">Price : Total Amount </label>

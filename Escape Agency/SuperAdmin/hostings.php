@@ -143,11 +143,13 @@
                   </div>
                 </div>
               </div>
-            <div class="row ">
-              <div class="col-12 grid-margin">
+              <div class="row">
+            <div class="col-md-12 grid-margin">
+            <div class="col-12 grid-margin" id="hostings">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Accomodation Information - Active Hostings</h4>
+                    <a href="createhosting.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Hosting</a>
                     <div class="table-responsive">
                       <table class="table">
                         <thead>
@@ -164,8 +166,9 @@
                         <tbody>
                           <tr>
                           <?php
-                            $result = mysqli_query($conn,"SELECT * FROM accomodation WHERE active='active'");
+                            $result = mysqli_query($conn,"SELECT * FROM accomodation WHERE active='active' ");
                             while($row = mysqli_fetch_array($result)){
+                              $hostID=$row['HostingID'];
                               $name = $row['Name'];
                               $dest = $row['DestinationID'];
                               $type = $row['Type'];
@@ -176,7 +179,7 @@
                               $agent = $row['AgentID'];
 
                               //Get image of agent 
-                              $agentimg = mysqli_query($conn,"SELECT * FROM  agents  WHERE AgentID=$agent AND Status='active'");
+                              $agentimg = mysqli_query($conn,"SELECT * FROM  agents  WHERE  Status='active'");
                               $a_img = mysqli_fetch_array($agentimg);
                               $image_agent = $a_img['ProfileImg'];
                               $name_agent = $a_img['CompanyName'];
@@ -197,19 +200,19 @@
                               print "
                               
                                     <td>
-                                      <img src='assets/images/faces/face1.jpg' alt='image' />
+                                      <img src='".$img."' alt='image' />
                                       <span class='pl-2'>".$name."</span>
                                     </td>
                                     <td>". $type." </td>
                                     <td> ".$location." </td>
-                                    <td> ". $price."</td>
+                                    <td> ". $price." USD</td>
                                     <td> ".$name_dest."</td>
                                     <td> ".$agentname."</td>
                                     <td>
                                       <div class='badge badge-outline-success'>Active</div>
                                     </td>
                                     <td>
-                                      <a href='./' class='badge badge-outline-success'>View More Details</a>
+                                      <a href='./viewhosting.php?hostid=". urlencode($hostID) ."' class='btn btn-primary '>View More Details</a>
                                     </td>
                                   </tr>";
 
@@ -224,7 +227,205 @@
                   </div>
                 </div>
               </div>
-            </div>
+            <div class="col-lg-12 grid-margin stretch-card" id="travel">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">My Travel Option and Services</h4>
+                    <h6>Create new Travel Option : Travel Services For Destinations</h5>
+                    <h6>These are options that your clients can choose from when making a destination booking. It offers your client the option to choose their Traveling Choice.</h5>
+                    <h6>leave it blank to allow clients to choose from other service providers or allow Escape agency to handle it for you.</h5>
+                    <a href="createtravel.php"  class="btn btn-primary btn-rounded btn-fw">Create New Travel Option</a>
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th> Destination </th>
+                            <th> Travel Mode </th>
+                            <th> Details of Travel </th>
+                            <th> Price </th>
+                            <th> Created By : Agent </th>
+                            <th> Option Created On  </th>
+                            <th> Status </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                          <?php
+                                      
+                                       $result = mysqli_query($conn,"SELECT * FROM traveloptions ");
+                                       while($row = mysqli_fetch_array($result)){
+                                         $id = $row["TravelID"];
+                                         $book = $row["BookingID"];
+                                         $dest = $row["DestinationID"];
+                                         $date = $row["Created_at"];
+                                         $agent = $row["AgentID"];
+                                         $status = $row["Status"];
+                                         $mode = $row["TravelMode"];
+                                         $details = $row["Details"];
+                                         $price = $row["Prices"];
+                                       
+                                         
+                                         
+                                         if ($status == 'active'){
+                                           $icon = "<i class='mdi mdi-check-circle  text-primary ml-auto'>Active</i>";
+                                           $button = "<a href='./deactivy.php' class='badge badge-outline-success'>Deactivate</a>";
+                                         }else{
+                                           $icon = "<i class='mdi mdi-window-close  text-primary ml-auto'>Inactive</i> ";
+                                           $button = "<a href='./deactivy.php' class='badge badge-outline-success'>Activate</a>";
+                                         }
+ 
+                                        
+ 
+                                         
+                                         //gET dest NAME
+                                         $destname = mysqli_query($conn, "SELECT * FROM destinations WHERE DestinationID = $dest");
+                                         $ddname = mysqli_fetch_array($destname);
+                                         $getddname = $ddname['Name'];
+                                         $getddimage = $ddname['ImageURL'];
+ 
+ 
+                                          //gET agent anme
+                                          $agent = mysqli_query($conn, "SELECT * FROM agents WHERE AgentID = $agent");
+                                          $dd = mysqli_fetch_array($agent);
+                                          $getddn = $dd['CompanyName'];
+  
+                                          if (($getddn == "") || ($agent == "0")){
+                                            $company = "Escape Agency";
+                                          } else{
+                                            $company = $getddn;
+                                          }
+ 
+ 
+                                          //Get booking details
+                                          $bookings = mysqli_query($conn, "SELECT * FROM bookings WHERE BookingID = $book");
+                                          $ff = mysqli_fetch_array($bookings);
+                                          $getuser = $ff['UserID'];
+                                          $getDate = $ff['Created_at'];
+                                          
+ 
+                                          //get user
+                                           
+                                         $users = mysqli_query($conn, "SELECT * FROM users WHERE UserID = $getuser");
+                                         $dd = mysqli_fetch_array($users);
+                                         $getdd = $dd['Email'];
+ 
+ 
+                                      
+                                         print "
+                                               
+                                               <td> ".$getddname."</td>      
+                                               <td> ".$mode."</td>
+                                               <td> ".$details."</td>
+                                               <td> ".$price."</td>
+                                               <td> ".$company."</td>
+                                               <td> ".$date."</td>
+                                               <td> ".$icon."</td>
+                                               <td>
+                                                  <a href='viewtravel.php?travelid=". urlencode($id) ."' type='button' class='btn btn-primary  btn-rounded btn-fw'>View </a>
+                                               </td>
+                                             </tr>";
+ 
+ 
+ 
+                                       };
+ 
+
+                                    ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                                    </div>
+                                    </div>
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            <div class="col-lg-12 grid-margin stretch-card"  id="properties">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">My Properties and Services</h4>
+                    <h6>Create new Properties for Destinations : Hosting</h5>
+                    <a href="createproperty.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Property</a>
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th> PropertyName </th>
+                            <th> Location </th>
+                            <th> Price </th>
+                            <th> Services </th>
+                            <th> Features </th>
+                            
+                            <th> Agent Options </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                          <?php
+                                       $result = mysqli_query($conn,"SELECT * FROM agentproperties   ");
+                                        while($row = mysqli_fetch_array($result)){
+                                            $propID = $row["PropertyID"];
+                                            $Name = $row["PropertyName"];
+                                            $date = $row["Created_at"];
+                                            $services = $row["Services"];
+                                            $feat = $row["Features"];
+                                            $desc = $row["Description"];
+                                            $price = $row["Price"];
+                                            $location = $row["Location"];
+                                            $services = $row["Services"];
+                                            $option = $row["OptionType"];
+                                            $image = $row["ImageURL"];
+                                        
+                                      
+                                    
+
+                                     
+                                            print "
+                                                
+                                                
+                                                <td>
+                                                    <img src='".$image."' alt='image' />
+                                                    <span class='pl-2'>".$Name."</span>
+                                                </td>
+                                                <td> ".$location."</td>
+                                                <td> ". $price." USD</td>
+                                                <td> ".$services."</td>
+                                                <td> ".$feat."</td>
+                                                
+                                                <td> ".$option."</td>
+                                                
+                                                <td>
+                                                    <a href='viewproperty.php?propid=". urlencode($propID) ."' type='button' class='btn btn-primary btn-fw'>View Property</a>
+                                                </td>
+                                                </tr>";
+
+
+
+                                      };
+
+                                    ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                                    </div>
+                                    </div></div></div>
               
             
             <div class="row">

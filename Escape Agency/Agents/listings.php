@@ -10,7 +10,88 @@
         <div class="content-wrapper">
             <div class="row">
             <div class="col-md-12 grid-margin">
+            <div class="col-12 grid-margin" id="hostings">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Accomodation Information - Active Hostings</h4>
+                    <a href="createhosting.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Hosting</a>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> Hosting Name </th>
+                            <th> Type </th>
+                            <th> Location </th>
+                            <th> Price Per Night </th>
+                            <th> Closest Destination </th>
+                            <th> Agent </th>
+                            <th> Actions </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                          <?php
+                            $result = mysqli_query($conn,"SELECT * FROM accomodation WHERE active='active' AND AgentID=$agentID");
+                            while($row = mysqli_fetch_array($result)){
+                              $hostID=$row['HostingID'];
+                              $name = $row['Name'];
+                              $dest = $row['DestinationID'];
+                              $type = $row['Type'];
+                              $price = $row['PricePerNight'];
+                              $img = $row['ImageURL'];
+                              $location = $row['Location'];
+                              $Dist = $row['DistFromOrigin'];  //distance from destination
+                              $agent = $row['AgentID'];
 
+                              //Get image of agent 
+                              $agentimg = mysqli_query($conn,"SELECT * FROM  agents  WHERE AgentID=$agent AND Status='active'");
+                              $a_img = mysqli_fetch_array($agentimg);
+                              $image_agent = $a_img['ProfileImg'];
+                              $name_agent = $a_img['CompanyName'];
+
+
+                              //Destination which is closest to the accomodation location
+                              $destination = mysqli_query($conn,"SELECT * FROM  destinations  WHERE DestinationID=$dest AND Status='approved'");
+                              $a_dest = mysqli_fetch_array($destination);
+                              $image_dest = $a_dest['ImageURL'];
+                              $name_dest = $a_dest['Name'];
+
+                              if ($name_agent == ""){
+                                $agentname= "Escape Agency";
+                              }else{
+                                $agentname = $name_agent ;
+                              }
+
+                              print "
+                              
+                                    <td>
+                                      <img src='assets/images/faces/face1.jpg' alt='image' />
+                                      <span class='pl-2'>".$name."</span>
+                                    </td>
+                                    <td>". $type." </td>
+                                    <td> ".$location." </td>
+                                    <td> ". $price." USD</td>
+                                    <td> ".$name_dest."</td>
+                                    <td> ".$agentname."</td>
+                                    <td>
+                                      <div class='badge badge-outline-success'>Active</div>
+                                    </td>
+                                    <td>
+                                      <a href='./viewhosting.php?hostid=". urlencode($hostID) ."' class='btn btn-primary '>View More Details</a>
+                                    </td>
+                                  </tr>";
+
+
+                            }
+                          ?>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <div class="col-lg-12 grid-margin stretch-card" id="travel">
                 <div class="card">
                   <div class="card-body">
@@ -215,88 +296,7 @@
                                     </div>
                                     </div></div></div>
 
-                  <div class="col-12 grid-margin" id="hostings">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Accomodation Information - Active Hostings</h4>
-                    <a href="createhosting.php" type="button" class="btn btn-primary btn-rounded btn-fw">Create new Hosting</a>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th> Hosting Name </th>
-                            <th> Type </th>
-                            <th> Location </th>
-                            <th> Price Per Night </th>
-                            <th> Closest Destination </th>
-                            <th> Agent </th>
-                            <th> Actions </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                          <?php
-                            $result = mysqli_query($conn,"SELECT * FROM accomodation WHERE active='active' AND AgentID=$agentID");
-                            while($row = mysqli_fetch_array($result)){
-                              $hostID=$row['HostingID'];
-                              $name = $row['Name'];
-                              $dest = $row['DestinationID'];
-                              $type = $row['Type'];
-                              $price = $row['PricePerNight'];
-                              $img = $row['ImageURL'];
-                              $location = $row['Location'];
-                              $Dist = $row['DistFromOrigin'];  //distance from destination
-                              $agent = $row['AgentID'];
-
-                              //Get image of agent 
-                              $agentimg = mysqli_query($conn,"SELECT * FROM  agents  WHERE AgentID=$agent AND Status='active'");
-                              $a_img = mysqli_fetch_array($agentimg);
-                              $image_agent = $a_img['ProfileImg'];
-                              $name_agent = $a_img['CompanyName'];
-
-
-                              //Destination which is closest to the accomodation location
-                              $destination = mysqli_query($conn,"SELECT * FROM  destinations  WHERE DestinationID=$dest AND Status='approved'");
-                              $a_dest = mysqli_fetch_array($destination);
-                              $image_dest = $a_dest['ImageURL'];
-                              $name_dest = $a_dest['Name'];
-
-                              if ($name_agent == ""){
-                                $agentname= "Escape Agency";
-                              }else{
-                                $agentname = $name_agent ;
-                              }
-
-                              print "
-                              
-                                    <td>
-                                      <img src='assets/images/faces/face1.jpg' alt='image' />
-                                      <span class='pl-2'>".$name."</span>
-                                    </td>
-                                    <td>". $type." </td>
-                                    <td> ".$location." </td>
-                                    <td> ". $price." USD</td>
-                                    <td> ".$name_dest."</td>
-                                    <td> ".$agentname."</td>
-                                    <td>
-                                      <div class='badge badge-outline-success'>Active</div>
-                                    </td>
-                                    <td>
-                                      <a href='./viewhosting.php?hostid=". urlencode($hostID) ."' class='btn btn-primary '>View More Details</a>
-                                    </td>
-                                  </tr>";
-
-
-                            }
-                          ?>
-                          </tr>
-                          
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
                 </div>
               </div>
 

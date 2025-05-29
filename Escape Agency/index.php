@@ -234,7 +234,7 @@
                         <div class="adventure-info">
                             <h6>Kayaking</h6>
                             <div>
-                                <h7><i class="fa fa-location"></i>India</h7>
+                                <h7><i class="fa fa-location-dot"></i>India</h7>
                                 <p><i class="fa fa-star"></i>4.0</p>
                             </div>
                         </div>
@@ -244,7 +244,7 @@
                         <div class="adventure-info">
                             <h6>Swimming in Open Panama Waters</h6>
                             <div>
-                                <h7><i class="fa fa-location"></i>Panama</h7>
+                                <h7><i class="fa fa-location-dot"></i>Panama</h7>
                                 <p><i class="fa fa-star"></i>4.8</p>
                             </div>
                         </div>
@@ -254,7 +254,7 @@
                         <div class="adventure-info">
                             <h6>Diving in the Water Caves</h6>
                             <div>
-                                <h7><i class="fa fa-location"></i>kenya</h7>
+                                <h7><i class="fa fa-location-dot"></i>kenya</h7>
                                 <p><i class="fa fa-star"></i>5.0</p>
                             </div>
                         </div>
@@ -264,7 +264,7 @@
                         <div class="adventure-info">
                             <h6>Surfing</h6>
                             <div>
-                                <h7><i class="fa fa-location"></i>Brazil</h7>
+                                <h7><i class="fa fa-location-dot"></i>Brazil</h7>
                                 <p><i class="fa fa-star"></i>4.0</p>
                             </div>
                         </div>
@@ -274,7 +274,7 @@
                         <div class="adventure-info">
                             <h6>Waterfall Bathing</h6>
                             <div>
-                                <h7><i class="fa fa-location"></i>China</h7>
+                                <h7><i class="fa fa-location-dot"></i>China</h7>
                                 <p><i class="fa fa-star"></i>4.2</p>
                             </div>
                         </div>
@@ -284,7 +284,7 @@
                         <div class="adventure-info">
                             <h6>Road Trip</h6>
                             <div>
-                                <h7><i class="fa fa-location"></i>Amazon Forest</h7>
+                                <h7><i class="fa fa-location-dot"></i>Amazon Forest</h7>
                                 <p><i class="fa fa-star"></i>4.0</p>
                             </div>
                         </div>
@@ -294,7 +294,7 @@
                         <div class="adventure-info">
                             <h6>Diving in the Water Caves</h6>
                             <div>
-                                <h7><i class="fa fa-location"></i>Australia</h7>
+                                <h7><i class="fa fa-location-dot"></i>Australia</h7>
                                 <p><i class="fa fa-star"></i>3.8</p>
                             </div>
                         </div>
@@ -304,7 +304,7 @@
                         <div class="adventure-info">
                             <h6>Water Dive Caving</h6>
                             <div>
-                                <h7><i class="fa fa-location"></i>Korea</h7>
+                                <h7><i class="fa fa-location-dot"></i>Korea</h7>
                                 <p><i class="fa fa-star"></i>4.5</p>
                             </div>
                         </div>

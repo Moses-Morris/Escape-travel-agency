@@ -1,379 +1,303 @@
 <?php
     include 'base.php';
 ?>
-<!-- partial -->
-<div class="main-panel">
-    <div class="content-wrapper">
-    <h4><i class="mdi mdi-library-books  text-primary ml-auto"></i> Destination Details  </h4>
-        <div class="row">
-        <div class="col-12 grid-margin ">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Horizontal Two column</h4>
-                    <form class="form-sample">
-                      <p class="card-description"> Destination info </p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">First Name</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Last Name</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Gender</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Male</option>
-                                <option>Female</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Date of Birth</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" placeholder="dd/mm/yyyy" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Category</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Category1</option>
-                                <option>Category2</option>
-                                <option>Category3</option>
-                                <option>Category4</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Membership</label>
-                            <div class="col-sm-4">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-5">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <p class="card-description"> Address </p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 1</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">State</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 2</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Postcode</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">City</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Country</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>America</option>
-                                <option>Italy</option>
-                                <option>Russia</option>
-                                <option>Britain</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+<?php
+$agentID = 1;
+$msg = "";
+    //get the id from url and
+    if (isset($_GET['destid']) && filter_var($_GET['destid'], FILTER_VALIDATE_INT)) {
+        $id = $_GET['destid'];
+        //echo "Received ID: " . htmlspecialchars($id);
+    } else {
+        echo "Invalid ID!";
+    }
+?>
 
+<?php
+    //get destination details
+    $result = mysqli_query($conn,"SELECT * FROM Destinations d 
+                                                      JOIN Agents a ON d.AgentID = a.AgentID
+                                                      WHERE a.AgentID = $agentID  AND d.DestinationID = $id");
+                while($row = mysqli_fetch_array($result)){
+                  $ID = $row["DestinationID"];
+                  $Name = $row["Name"];
+                  $location = $row["Location"];
+                  $country = $row["Country"];
+                  $img = $row["ImageURL"];
+                  $desc1 = $row["Description"];
+                  $price = $row["Price"];
+                  $feature = $row["Featured"];
+                  $Agent = $row["AgentID"];
+                  $travel = $row["TravelID"];
+                  $approv = $row["Status"];
+                  $created = $row["Created_at"];
+                  $dist = $row["DistFromOrigin"];
+                  $avg = $row["RatingAVG"];
+                  $destDetails = "$Name -"." $location , "."$country";
+                  //echo "$approv";
+                  // echo "$desc ";
+                  //approved or not
+                  if ($approv == "active"){
+                    $icon = "Approved";
+                    $todobutton = "<button type='submit' class='btn btn-primary btn-rounded btn-fw me-2' name='deactivate'>Deactivate</button>";
+                  }else{
+                    $icon = "Not approved";
+                    $todobutton = "<button type='submit' class='btn btn-primary btn-rounded btn-fw me-2' name='activate'>Activate</button>";
+                  }
+
+
+                  //get the Travel Details details
+                  $travelop = mysqli_query($conn,"SELECT * FROM Traveloptions WHERE TravelID=$travel");
+                  $row6= mysqli_fetch_array($travelop);
+                  $mode = $row6["TravelMode"];
+                  $details = $row6["Details"];
+                  $travelDetails = "($mode) -  "." via a $details";
+
+                  //get the featured details
+                  $feature = mysqli_query($conn,"SELECT * FROM featured WHERE FeatureID=$feature");
+                  $row5= mysqli_fetch_array($feature);
+                  $desc = $row5["Description"];
+                  $discount = $row5["Discount"];
+                  
+                  if(($row5 == " ") OR ($row5 == 0)){
+                      $featureDetails = "Not Featured";
+                  }else{
+                      $featureDetails = "$desc "." of $discount";
+                  }
         
 
+      }
+?>
+<?php
+    // Validate and fetch destination ID from URL
+    if (!isset($_GET['destid']) || !filter_var($_GET['destid'], FILTER_VALIDATE_INT)) {
+      die("Invalid or missing destination ID.");
+    }
+    $id = intval($_GET['destid']);
+    $msg = " ";
+    // Fetch current destination data
+    $stmt = $conn->prepare("SELECT * FROM destinations WHERE DestinationID = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $destination = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
 
-            <div class="row " style="margin-left:2.2rem;">
-              <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+    if (!$destination) {
+      die("Destination not found.");
+    }
+
+    // Handle Form Actions
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+      if (isset($_POST['update'])) {
+          $name = $_POST['destination'];
+          $desc = $_POST['description'];
+          $location = $_POST['location'];
+          $country = $_POST['country'];
+          $travel = $_POST['travel'];
+          $price = $_POST['price'];
+          $dist = $_POST['dist'];
+          /*$image = $_FILES['img'];
+          
+          // Handle optional image upload
+          $imgPath = $destination['ImageURL']; // Default to existing image
+          if (isset($image) && $image['error'] === UPLOAD_ERR_OK) {
+              $allowed = ['image/jpeg', 'image/png', 'image/gif'];
+              if (in_array($image['type'], $allowed)) {
+                  $uniqueName = time() . '_' . basename($image['name']);
+                  $uploadPath = 'uploads/' . $uniqueName;
+                  if (move_uploaded_file($image['tmp_name'], $uploadPath)) {
+                      $imgPath = $uploadPath;
+                  } else {
+                      die("Failed to upload image.");
+                  }
+              } else {
+                  die("Invalid image format.");
+              }
+          }*/
+        $target_file = null;
+
+        if (isset($_FILES['img']) && $_FILES['img']['error'] === 0) {
+            $allowed = ['image/jpeg', 'image/png', 'image/gif'];
+            $filetype = mime_content_type($_FILES['img']['tmp_name']);
+
+            if (!in_array($filetype, $allowed)) {
+                die("<div class='alert alert-warning '>Invalid image format. Use jpg, png, or gif.</div>");
+            }
+
+            $filename = uniqid() . '_' . basename($_FILES['img']['name']);
+            $target_file = "../uploads/" . $filename;
+
+            if (!move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
+                die("<div class='alert alert-warning'>Image upload failed.</div>");
+            }
+        }
+
+
+          // SQL update with or without image
+            if ($target_file) {
+              $stmt = $conn->prepare("UPDATE destinations SET Name=?, Description=?, Location=?, Country=?, Price=?, DistFromOrigin=?, ImageURL=? WHERE DestinationID=? AND AgentID=$agentID");
+              $stmt->bind_param("sssssdsi", $name, $desc, $location, $country, $price, $dist, $target_file, $id);
+          } else {
+              $stmt = $conn->prepare("UPDATE destinations SET Name=?, Description=?, Location=?, Country=?, Price=?, DistFromOrigin=? WHERE DestinationID=? AND AgentID=$agentID");
+              $stmt->bind_param("sssssdi", $name, $desc, $location, $country, $price, $dist, $id);
+          }
+          
+          if ($stmt->execute()) {
+              $msg = "<div class='alert alert-success'>Destination updated successfully.</div>";
+              
+          } else {
+              $msg = "<div class='alert alert-danger'>Update failed: {$stmt->error}</div>";
+          }
+          $stmt->close();
+
+      } elseif (isset($_POST['deactivate'])) {
+          $stmt = $conn->prepare("UPDATE destinations SET Status = 'unapproved' WHERE DestinationID = ?  AND AgentID=$agentID");
+          $stmt->bind_param("i", $id);
+          if ($stmt->execute()) {
+              $msg =  "<div class='alert alert-info'>Destination deactivated.</div>";
+          } else {
+             $msg =   "<div class='alert alert-danger'>Failed to deactivate: " . $stmt->error . "</div>";
+          }
+          $stmt->close();
+      } elseif (isset($_POST['delete'])) {
+          $stmt = $conn->prepare("DELETE FROM destinations WHERE DestinationID = ? AND AgentID=$agentID" );
+          $stmt->bind_param("i", $id);
+          if ($stmt->execute()) {
+              echo "<div class='col-md-6 d-flex '>
+                          Destination Deleted Sucessfully
+                              ";
+
+                              echo "<script>
+                              setTimeout(function() {
+                                  window.location.href = 'destinations.php';
+                              }, 3000);
+                            </script>";
+              exit;
+          } else {
+            $msg =   "<div class='alert alert-danger'>Delete failed: " . $stmt->error . "</div>";
+          }
+          $stmt->close();
+      }
+    }
+
+?>
+
+
+
+
+
+<!-- partial -->
+<div class="main-panel">
+        <div class="content-wrapper">
+        <a href="destinations.php" type="button" class="btn btn-outline-primary btn-rounded btn-fw">Go Back to Destinations</a>
+        <?php
+            echo "<a href='uploadgallerydestination.php?destid=".urlencode($id) ."' type='button' class='btn btn-primary btn-rounded btn-fw' style='float:right;'>Upload Destination Images</a>";
+        ?>
+        <div class="card">
+            <div class="row">
+                 
+            <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Visitors by Countries</h4>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="table-responsive">
-                          <table class="table">
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-us"></i>
-                                </td>
-                                <td>USA</td>
-                                <td class="text-right"> 1500 </td>
-                                <td class="text-right font-weight-medium"> 56.35% </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-de"></i>
-                                </td>
-                                <td>Germany</td>
-                                <td class="text-right"> 800 </td>
-                                <td class="text-right font-weight-medium"> 33.25% </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-au"></i>
-                                </td>
-                                <td>Australia</td>
-                                <td class="text-right"> 760 </td>
-                                <td class="text-right font-weight-medium"> 15.45% </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-gb"></i>
-                                </td>
-                                <td>United Kingdom</td>
-                                <td class="text-right"> 450 </td>
-                                <td class="text-right font-weight-medium"> 25.00% </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-ro"></i>
-                                </td>
-                                <td>Romania</td>
-                                <td class="text-right"> 620 </td>
-                                <td class="text-right font-weight-medium"> 10.25% </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="flag-icon flag-icon-br"></i>
-                                </td>
-                                <td>Brasil</td>
-                                <td class="text-right"> 230 </td>
-                                <td class="text-right font-weight-medium"> 75.00% </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                <h4 class="card-title">Destination Details</h4>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?destid=' . $id; ?>" method="post" enctype="multipart/form-data">
+
+
+                      
+                      <style> 
+                        .form-group input{
+                          font-weight:900;
+                          font-size: medium;
+                        }
+                      </style>
+                      <input type="hidden" name="id" value="<?php echo $id; ?>">
+                      <?php
+                            if ($msg){
+                              echo $msg;
+                            }
+                      ?>
+                      <div class="form-group ">
+                                <label for="">Destination Image</label>
+                                <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>" style="height:20vw; width: 30vw; background-position: center; object-fit:center;">
+                                <input type="file" class="form-control" name="img" >
+                              </div>
+                      <div class="form-group">
+                        <label for="Booked Destination">Destination Name</label>
+                        <input type="text" class="form-control" name="destination" value="<?php echo $Name; ?>">
                       </div>
                       
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-7 col-xl-4 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Gallery  Slide</h4>
-                    <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel" id="owl-carousel-basic">
-                      <div class="item">
-                        <img src="assets/images/dashboard/Rectangle.jpg" alt="">
+                      <div class="form-group">
+                        <label for="">Description</label>
+                        <input type="text" class="form-control" name="description" value="<?php echo $desc1; ?>">
                       </div>
-                      <div class="item">
-                        <img src="assets/images/dashboard/Img_5.jpg" alt="">
+                      <div class="form-group">
+                        <label for="">Location</label>
+                        <input type="text" class="form-control"name="location" value="<?php echo $location; ?> ">
                       </div>
-                      <div class="item">
-                        <img src="assets/images/dashboard/img_6.jpg" alt="">
+                      <div class="form-group">
+                        <label for="">Country</label>
+                        <input type="text" class="form-control" name="country" value="<?php echo $country; ?>">
                       </div>
-                    </div>
-                    <div class="d-flex py-4">
-                      <div class="preview-list w-100">
-                        <div class="preview-item p-0">
-                          <div class="preview-thumbnail">
-                            <img src="assets/images/faces/face12.jpg" class="rounded-circle" alt="">
-                          </div>
-                          <div class="preview-item-content d-flex flex-grow">
-                            <div class="flex-grow">
-                              <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                <h6 class="preview-subject">Agent Name</h6>
-                                <p class="text-muted text-small">4 Days Ago</p>
-                              </div>
-                              <p class="text-muted">Destination Title.</p>
+                      
+                      <div class="form-group">
+                        <label for="">Travel Option</label>
+                        <input type="text" class="form-control" name="travel" placeholder="<?php echo $travelDetails; ?>" value="<?php echo $travelDetails; ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="">Featured</label>
+                        <input type="text" class="form-control" name="feature" value="<?php echo $featureDetails; ?>">
+                      </div>
+                      
+                    
+                    
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                        <div class="col-md-6 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title">.</h4>
+
+                              
+                              <div class="form-group">
+                                <label for="">Approved  By Admin </label>
+                                <input type="text" class="form-control" name="icon" value="<?php echo $icon; ?>">
+                              </div>
+                              <div class="form-group">
+                                <label for="">Price : Total Amount </label>
+                                <input type="text" class="form-control"  name="price" value="<?php echo $price; ?>">
+                              </div>
+                              <div class="form-group">
+                                <label for="">Distance From Location to Destination</label>
+                                <input type="text" class="form-control" name="dist" value="<?php echo $dist; ?> ">
+                              </div>
+                              <div class="form-group">
+                                <label for="">Average Ratings</label>
+                                <input type="text" class="form-control" name="avg" value="<?php echo $avg; ?>">
+                              </div>
+                            
+                              <div class="form-group">
+                                <label for="">Created ON</label>
+                                <input type="text" class="form-control" name="date" value="<?php echo $created; ?>">
+                              </div>
+                              <div class="form-group">
+                                  <p>- You can update the destination details -</p>
+                                  <p>- Deactivate the Destination if you do not wish to proceed with the request -</p>
+                                  <br>
+                                  <button type="submit" name="update" class="btn btn-primary btn-rounded btn-fw me-2">Update</button>
+                                  <button type="submit" name="deactivate" class="btn btn-warning btn-rounded btn-fw me-2">Deactivate</button>
+                                  <button type="submit" name="delete" class="btn btn-danger btn-rounded btn-fw me-2" onclick="return confirm('Are you sure you want to delete this destination?');">Delete</button>
+                                  
+                                </div>
+                     
+                  
                     
-                  </div>
-                </div>
-              </div>
-              
-                 
-            </div>
-            </div>
-
-
-
-
-            <div class="col-12 grid-margin stretch-card">
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$12.34</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Visits</h6>
-                    <h6 class="text-muted font-weight-normal">From June 2025 to Today</h6>
                   </div>
                 </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$17.34</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+11%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Likes</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$12.34</h3>
-                          <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-danger">
-                          <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Active Ongoing Visits</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$12.34</h3>
-                          <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-danger">
-                          <span class="mdi mdi-arrow-bottom-left icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Ratings</h6>
-                    <h6 class="text-muted font-weight-normal">Rated by 40 Users</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </form>
+                          </div>
 
-
-
-
-                <div class="col-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Add images to Destination Gallery</h4>
-                    <form class="forms-sample">
-                      <div class="form-group">
-                        <input type="file" class="form-control" id="exampleInputName1" placeholder="Name">
-                      </div>
-                      <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Image Description. For Example, hiking in Mt Everest">
-                      </div>
-                      
-                      <button type="submit" class="btn btn-primary mr-4 btn-lg">Submit</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-
-
-
-        </div>
-    </div>
-</div>
 
 
 <?php

@@ -1,0 +1,86 @@
+.heart-btn {
+    cursor: pointer;
+    color: #ddd;
+    transition: all 0.3s ease;
+    
+    margin-bottom: 5px;
+}
+
+.heart-btn:hover {
+    color: #ff0000;
+    transform: scale(1.1);
+}
+
+.heart-btn.favorited {
+    color: #ff0015;
+    animation: heartPulse 0.3s ease;
+}
+
+.heart-btn.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+@keyframes heartPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.favorite-count {
+    font-size: 0.9em;
+    color: #666;
+    font-weight: 500;
+}
+
+
+
+.event-info-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+}
+
+.message.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.message.success {
+    background: #27ae60;
+}
+
+.message.error {
+    background: #e74c3c;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    color: #666;
+    font-size: 1.2em;
+}

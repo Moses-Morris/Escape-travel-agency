@@ -186,6 +186,9 @@ $msg = "";
 <div class="main-panel">
         <div class="content-wrapper">
         <a href="destinations.php" type="button" class="btn btn-outline-primary btn-rounded btn-fw">Go Back to Destinations</a>
+        <?php
+            echo "<a href='uploadgallerydestination.php?destid=".urlencode($id) ."' type='button' class='btn btn-primary btn-rounded btn-fw' style='float:right;'>Upload Destination Images</a>";
+        ?>
         <div class="card">
             <div class="row">
                  

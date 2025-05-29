@@ -41,7 +41,7 @@
             <div class="destinations-offer-card">
                 <img src="media/pexels-pierre-blache-651604-3073666.jpg">
                 <div class="destination-offer-details">
-                    <h7><i class="fa fa-location"></i>NewYork</h7>
+                    <h7><i class="fa fa-location-dot"></i> NewYork</h7>
                     <h3>USD 500</h3>
                 </div>
                 <div class="destination-offer-more">
@@ -55,7 +55,7 @@
             <div class="destinations-offer-card">
                 <img src="media/pexels-pixabay-210243.jpg">
                 <div class="destination-offer-details">
-                    <h7><i class="fa fa-location"></i>Tanzania</h7>
+                    <h7><i class="fa fa-location-dot"></i> Tanzania</h7>
                     <h3>USD 900</h3>
                 </div>
                 <div class="destination-offer-more">
@@ -69,7 +69,7 @@
             <div class="destinations-offer-card">
                 <img src="media/pexels-efrain-alonso-1702385-3584283.jpg">
                 <div class="destination-offer-details">
-                    <h7><i class="fa fa-location"></i>Japan</h7>
+                    <h7><i class="fa fa-location-dot"></i> Japan</h7>
                     <h3>USD 1500</h3>
                 </div>
                 <div class="destination-offer-more">
@@ -83,7 +83,7 @@
             <div class="destinations-offer-card">
                 <img src="media/pexels-icon0-209740.jpg">
                 <div class="destination-offer-details">
-                    <h7><i class="fa fa-location"></i>China</h7>
+                    <h7><i class="fa fa-location-dot"></i> China</h7>
                     <h3>USD 500</h3>
                 </div>
                 <div class="destination-offer-more">

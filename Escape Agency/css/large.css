@@ -928,7 +928,92 @@ gap: 1rem;
     border-radius: 3rem;
 }
 
+ /*Hosting info page*/ 
+ .hosting-hero-section{
+    background-color: var(--tertiary);
+    border-bottom: 2px solid var(--secondary);
+}
 
+ .hosting-details-top-info{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.hosting-details-top-info .host-loc{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;   
+}
+.hosting-details-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.hosting-details-all{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;   
+}
+.left-side-hosting{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; 
+    gap: 0.8rem;
+    width: 50%;
+}
+.hosting-small-images{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap:0.5rem;
+}
+.hosting-small-images img{
+    
+    height: 16vh;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.hosting-main-image img{
+    width: 30vw;
+    height:50vh ;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.right-side-hosting{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap:0.8rem;
+    width: 50%;
+}
+.hosting-details-right .jana{
+    margin-top: 2rem;
+}
+.hosting-details-right .hosting-details-top-info{
+    display: flex;
+    border-bottom: 1px solid var(--primary);
+}
+.hosting-details-right div bold{
+    font-weight: 700;
+}
+
+.badge-identity{
+    background-color: black;
+    color: var(--primary);
+    padding: 0.5rem;
+    
+}
+.checkmatespoint{
+    padding-left: 10%;
+}
+.hosting-details-right h1{
+    font-size: medium;
+    
+}
+.host-feat h4{
+    color: var(--primary);
+}
 
 
 
@@ -1884,5 +1969,94 @@ gap: 1rem;
         background-color: var(--primary);
         border-radius: 3rem;
     }
+
+
+    /*Hosting info page*/ 
+ .hosting-hero-section{
+    background-color: var(--tertiary);
+    border-bottom: 2px solid var(--secondary);
+}
+
+ .hosting-details-top-info{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.hosting-details-top-info .host-loc{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;   
+}
+.hosting-details-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.hosting-details-all{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;   
+}
+.left-side-hosting{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; 
+    gap: 0.8rem;
+    width: 50%;
+}
+.hosting-small-images{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap:0.5rem;
+}
+.hosting-small-images img{
+    
+    height: 16vh;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.hosting-main-image img{
+    width: 30vw;
+    height:50vh ;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.right-side-hosting{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap:0.8rem;
+    width: 50%;
+}
+.hosting-details-right .jana{
+    margin-top: 2rem;
+}
+.hosting-details-right .hosting-details-top-info{
+    display: flex;
+    border-bottom: 1px solid var(--primary);
+}
+.hosting-details-right div bold{
+    font-weight: 700;
+}
+
+.badge-identity{
+    background-color: black;
+    color: var(--primary);
+    padding: 0.5rem;
+    
+}
+.checkmatespoint{
+    padding-left: 10%;
+}
+.hosting-details-right h1{
+    font-size: medium;
+    
+}
+.host-feat h4{
+    color: var(--primary);
+}
+
     
 }

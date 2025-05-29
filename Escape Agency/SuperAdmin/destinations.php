@@ -245,7 +245,7 @@
                                                                 <div class='badge badge-outline-success'>Active</div>
                                                               </td>
                                                               <td>
-                                                                <a href='./Viewdestination.php' class='badge badge-outline-success'>View Destination</a>
+                                                                <a href='viewDestination.php?destid=". urlencode($ID) ."' type='button' class='btn btn-primary  btn-rounded btn-fw'>View Destination </a>
                                                               </td>
                                                             </tr>";
                                               
@@ -300,7 +300,7 @@
                                         
 
                                          //get the user who has placed the booking
-                                         $agent_name = mysqli_query($conn,"SELECT * FROM agents WHERE AgentID=$Agent");
+                                         $agent_name = mysqli_query($conn,"SELECT * FROM agents");
                                          $row5 = mysqli_fetch_array($agent_name);
                                          $AgentName = $row5["CompanyName"]; //use email as name
 
@@ -326,7 +326,8 @@
                                                 <div class='badge badge-outline-success'>Active</div>
                                               </td>
                                               <td>
-                                                <a href='./Viewdestination.php' class='badge badge-outline-success'>View Destination</a>
+                                                <a href='viewDestination.php?destid=". urlencode($ID) ."' type='button' class='btn btn-primary  btn-rounded btn-fw'>View </a>
+                                                
                                               </td>
                                             </tr>";
 
@@ -375,7 +376,6 @@
                                         $Agent = $row["AgentID"];
                                         $travel = $row["TravelID"];
                                         
-
                                          //get the user who has placed the booking
                                          $agent_name = mysqli_query($conn,"SELECT * FROM agents WHERE AgentID=$Agent");
                                          $row5 = mysqli_fetch_array($agent_name);
@@ -391,7 +391,7 @@
                                               
                                               
                                               <td>
-                                                <img src='assets/images/faces/face1.jpg' alt='image' />
+                                                <img src='".$img."' alt='image' />
                                                 <span class='pl-2'>".$Name."</span>
                                               </td>
                                               <td> ".$location.", ".$country."</td>
@@ -402,8 +402,8 @@
                                               <td>
                                                 <a href='./approveDestination.php' class='badge badge-outline-success'>Approve</a>
                                               </td>
-                                              <td>
-                                                <a href='./Viewdestination.php' class='badge badge-outline-success'>View Destination</a>
+                                            <td>
+                                                <a href='viewDestination.php?destid=". urlencode($ID) ."' type='button' class='btn btn-primary  btn-rounded btn-fw'>View Destination </a>
                                               </td>
                                             </tr>";
 

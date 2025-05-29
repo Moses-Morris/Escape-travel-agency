@@ -1,7 +1,18 @@
 <?php
     include 'base.php';
 ?>
-        
+        <style>
+            .navbar {
+                    box-shadow:0px 3px 4px rgb(155, 155, 155); ;
+                }
+                .hero{
+                    background: none !important;
+                    background-repeat: no-repeat !important; /* Prevent the image from repeating */
+                    height: 100% !important; /* Use 100vh to ensure the hero section takes the full viewport height */
+                    color: #fff !important;
+                    background-color: var(--tertiary) !important;
+                }
+        </style>
     </section>
 
 

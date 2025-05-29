@@ -178,6 +178,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="main-panel">
         <div class="content-wrapper">
         <a href="listings.php#hostings" type="button" class="btn btn-outline-primary btn-rounded btn-fw">Go Back to Listings</a>
+        <?php
+            echo "<a href='uploadgalleryhostings.php?hostid=".urlencode($id) ."' type='button' class='btn btn-primary btn-rounded btn-fw' style='float:right;'>Upload Hosting Images</a>";
+        ?>
         <div class="card">
             <div class="row">
                  
