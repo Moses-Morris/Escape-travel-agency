@@ -207,6 +207,9 @@
                                               
                                               <td> ".$icon."</td>
                                               <td>
+                                                <a href='./viewblog.php?blogid=". urlencode($id) ."' class='btn btn-primary '>View More Details</a>
+                                              </td>
+                                              <td>
                                                  ".$button."
                                               </td>
                                             </tr>";
@@ -224,7 +227,8 @@
               </div>
             </div>
 
-
+                                    </div>
+                                    
 <?php
     include 'footer.php';
 ?>

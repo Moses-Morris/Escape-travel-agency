@@ -201,9 +201,7 @@
                                               <td> ".$company."</td>
                                               <td> ".$date."</td>
                                               <td> ".$icon."</td>
-                                              <td>
-                                                 ".$button."
-                                              </td>
+                                              
                                             </tr>";
 
 

@@ -199,7 +199,7 @@ include('../User/config/connection.php');
                     </ul>
                 </div>
                 <div class="dash-bot">
-                    <a href="">
+                    <a href="../blogs.php">
                         <i class="fa fa-menu fa-fw"></i>
                         <p>Read Travel Blogs</p>
                     </a>

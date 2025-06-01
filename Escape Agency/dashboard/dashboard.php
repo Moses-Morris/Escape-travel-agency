@@ -9,7 +9,7 @@
                     <form>
                         
                         <div class="dash-input-area">
-                            <i class="fa fa-location"></i>
+                            <i class="fa fa-location-dot"></i>
                             <input class="" type="text" placeholder="Location">
                             <i class="fa arrow-down"></i>
                         </div>
