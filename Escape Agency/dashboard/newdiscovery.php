@@ -4,13 +4,13 @@
          
             <aside class="dashboard-content" style="width:85vw;">
                 <div>
-                    <h5>Featured and New Destinations <i class="fa chevron-right"></i></h5>
+                    <h5>My Destinations <i class="fa chevron-right"></i></h5>
                 </div>
 
                 <!--Content-->
                 <!--------------------------Destinations on Offer Section------------------------------------------------------------>
                 <section class="">
-                    <h4>Destinations on Feature</h4>
+                    <h4>Destinations on offer</h4>
                     <div class="destinations-offer-cards">
                         <div class="destinations-offer-card">
                             <img src="media/pexels-pierre-blache-651604-3073666.jpg">
@@ -74,7 +74,7 @@
 
                 <!--------------------------Destinations on Offer Section------------------------------------------------------------>
                 <section class="">
-                    <h4>Events and Destinations Recently Uploaded</h4>
+                    <h4>Destinations Liked</h4>
                 </section>
 
                 
@@ -89,6 +89,55 @@
 
 
 
-<?php
-    include 'footer.php';
-?>
+<footer class="pad-5">
+    <div class="footer-content">
+        <div>
+            <img src="media/Escape Agency adventures Company Logo.png">
+            <h4>Escape Tours and Travel Agency Limited</h4>
+            <h1>Discover and
+                book your next
+                escape with us.</h1>
+        </div>
+        <div>
+            <h7>Our Offices</h7>
+            <p>- New York, USA</p>
+            <p>- London, UK</p>
+            <p>- Sydney, Australia</p>
+
+            <h7>Contact Information</h7>
+            <p>Email: support@escapeagency.com</p>
+            <p>Phone: +1 (800) 123-4567</p>
+        </div>
+        <div>
+            <div class="footer-newsletter">
+                <h4>Subscribe to our newsletter</h4>
+                <form>
+                    <input type="email" placeholder="travel@gmail.com">
+                </form>
+            </div>
+            <div class="socials">
+                <a href="">
+                    <i></i>
+                </a>
+                <a href="">
+                    <i></i>
+                </a>
+                <a href="">
+                    <i></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+<!---------------------------JS Linking---------------------------------------------->
+<script src="js/index.js"></script>
+<script src="js/nav.js"></script>
+
+<script src="js/gsap.js"></script>
+
+
+
+</body>
+</html>

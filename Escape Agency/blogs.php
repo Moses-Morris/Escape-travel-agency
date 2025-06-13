@@ -56,7 +56,7 @@
                 <div class="blog-container-info">
                     <p>Most popular destinations for
                         photographers.</p>
-                    <a href="" class="readmore-btn">Read More <i></i> </a>
+                    <a href="blogspage.php" class="readmore-btn">Read More <i></i> </a>
                 </div>
             </div>
 

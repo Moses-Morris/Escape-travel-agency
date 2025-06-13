@@ -114,10 +114,10 @@
           <img src="assets/images/faces/face28.jpg" alt="profile" />
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item">
+          <a class="dropdown-item" href="profile.php">
             <i class="ti-settings text-primary"></i> Settings </a>
-          <a class="dropdown-item">
-            <i class="ti-power-off text-primary"></i> Logout </a>
+          <a class="dropdown-item" href="alogout.php">
+            <i class="ti-power-off text-primary"  ></i> Logout </a>
         </div>
       </li>
       <li class="nav-item nav-settings d-none d-lg-flex">
@@ -209,6 +209,12 @@
       <a class="nav-link" href="blogs.php">
         <i class="mdi mdi-chart-bubble menu-icon"></i>
         <span class="menu-title">My Blogs</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="profile.php">
+        <i class="mdi mdi-account-settings menu-icon"></i>
+        <span class="menu-title">Agent Profile</span>
       </a>
     </li>
     

@@ -1,4 +1,5 @@
 <?php
+$msg = "";
     include 'base.php';
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 ?>
@@ -23,6 +24,9 @@
                             <?php
                                 if (isset($_GET['msg'])) {
                                     echo htmlspecialchars($_GET['msg']);
+                                }
+                                if($msg){
+                                    echo $msg;
                                 }
                             ?>
                         </small>

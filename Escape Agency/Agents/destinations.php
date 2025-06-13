@@ -226,7 +226,7 @@
                             <th> Price </th>
                            
                             <th> Travel </th>
-                            <th> Destination Bookings </th>
+                            <th>  Bookings </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -266,6 +266,10 @@
                                         $r2 = mysqli_fetch_row($dest_amt);
                                         $nr2 = $r2[0];
 
+                                        ////Get travel Option Details
+                                        $travel_name = mysqli_query($conn,"SELECT * FROM traveloptions WHERE TravelID=$travel");
+                                         $row6 = mysqli_fetch_array($travel_name);
+                                         $TravelName = $row6["Details"]; //use 
                                      
                                         print "
                                               
@@ -278,7 +282,7 @@
                                               <td> ".$location.", ".$country."</td>
                                               <td> ". $price." USD</td>
                                             
-                                              <td> ".$travel."</td>
+                                              <td> ".$TravelName."</td>
                                               <td> ".$nr2."</td>
                                               <td>
                                                 ".$icon."

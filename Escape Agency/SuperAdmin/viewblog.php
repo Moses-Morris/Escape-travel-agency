@@ -26,7 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $keywords = $_POST["keywords"];
     $icon = $_POST["icon"];
     $created = $_POST["date"];
-    //$agentID = $_SESSION['agent_id']; // Make sure this is set
+
+    $agentID =$_POST["agentID"];; // Make sure this is set
 
     // Handle image upload
     $uploadOk = true;
@@ -78,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         SET Status = ?, BlogTitle = ?, BlogImage = ?, Tagline = ?, 
             Subtitle = ?, PublishedDate = ?, BlogContent = ?, 
             Keywords = ?, Created_at = ?
-        WHERE Role = 'agent' AND AuthorID = ?");
+        WHERE  AuthorID = ?");
 
       if ($stmt === false) {
         die("Prepare failed: " . $conn->error);
@@ -96,14 +97,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
   } elseif (isset($_POST['deactivate'])) {
     //$agentID = $_SESSION['agent_id']; // Ensure this is defined
-    $stmt = $conn->prepare("UPDATE blogs SET Status = 'inactive' , Published=0 WHERE Role = 'agent' AND AuthorID = ?");
+    $stmt = $conn->prepare("UPDATE blogs SET Status = 'inactive' , Published=0 WHERE  AuthorID = ?");
     $stmt->bind_param("i", $agentID);
     $stmt->execute();
     $stmt->close();
     $msg = "<div class='alert alert-warning'>Blog deactivated.</div>";
   }elseif (isset($_POST['activate'])) {
     $today =  date('Y-m-d H:i');
-    $stmt = $conn->prepare("UPDATE blogs SET Status = 'active', PublishedDate='$today' WHERE Role = 'agent' AND AuthorID = ?");
+    $stmt = $conn->prepare("UPDATE blogs SET Status = 'active', PublishedDate='$today' WHERE   AuthorID = ?");
     $stmt->bind_param("i", $agentID);
     if ($stmt->execute()) {
         $msg =  "<div class='alert alert-info'>Blog Activated. It is running Succesfully.</div>";
@@ -202,6 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             $keywords = $row["Keywords"];
                                             $created = $row["Created_at"];
                                             $stat = $row["Status"];
+                                            $author = $row["AuthorID"];
                                             echo "<p class='text-danger'>This Blog is ".$stat."</p>";
                                              //Get destination through destinations
                                             $dest = mysqli_query($conn,"SELECT * FROM destinations WHERE DestinationID=$dest ");
@@ -228,6 +230,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             font-size: medium;
                             }
                       </style>
+                      <input type="number" class="form-control" name="agentID" value="<?php echo $author; ?>" hidden>
                       <div class="form-group">
                         <label for="blog">Blog Image</label><br>
                         <img src="<?php echo $img; ?>" alt="<?php echo $img; ?>" style="height:30vh; width: 30vw; background-position: center; object-fit:center;">

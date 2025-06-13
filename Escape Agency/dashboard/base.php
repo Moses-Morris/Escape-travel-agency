@@ -38,9 +38,11 @@ include('../User/config/connection.php');
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/destination.css">
     <link rel="stylesheet" href="./css/mybooking.css">
-
-
+    <link rel="stylesheet" href="./css/table.css">
+    <link rel="stylesheet" href="./css/myprofile.css">
     
+
+    <link rel="stylesheet" href="./css/mynotification.css">
 
     
 
@@ -159,7 +161,7 @@ include('../User/config/connection.php');
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="myevents.php">
                                 <i class="fa fa-menu fa-fw"></i>
                                 <p>My Trips/Events</p>
                             </a>
@@ -167,31 +169,26 @@ include('../User/config/connection.php');
                         
                         
                         <li>
-                            <a href="">
+                            <a href="mypayments.php">
                                 <i class="fa fa-menu fa-fw"></i>
                             <p> Payments</p>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="myprofile.php">
                                 <i class="fa fa-menu fa-fw"></i>
                             <p> My Profile</p>
                             </a>
                         </li>
+                        
                         <li>
-                            <a href="">
-                                <i class="fa fa-menu fa-fw"></i>
-                                <p>Booking History</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
+                            <a href="mynotifications.php">
                                 <i class="fa fa-menu fa-fw"></i>
                                 <p>Notifications</p>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="newdiscovery.php">
                                 <i class="fa fa-menu fa-fw"></i>
                             <p> New Discovery</p>
                             </a>

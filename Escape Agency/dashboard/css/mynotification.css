@@ -1,0 +1,262 @@
+.notification-message button{
+    background-color: var(--lightyellow);
+    border: none;
+    padding: 0.3rem 1.5rem;
+    border-radius: 5rem;
+    float: right;
+    font-weight: 500;
+}
+/*Extra Small Devices*/
+@media screen and (max-width: 480px ){
+   .notifying-user{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid var(--secondary);
+        width: 80vw;
+    }
+    .notifying-user img{
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+    }
+     .notifying-user-data{
+        margin-left: 1rem;
+        font-weight: 500;
+        font-size: medium;
+     }
+     .notification-message{
+        background-color: var(--lightyellow);
+        height: 80vh;
+        padding: 0.5rem;
+        border-radius: 8px;
+     }
+      .notification-message div{
+        background-color: var(--tertiary);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      .notifying-users-cards .active {
+        background-color: var(--lightyellow);
+      }
+}
+/*mobile*/
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .notifying-user{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid var(--secondary);
+        width: 80vw;
+    }
+    .notifying-user img{
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+    }
+     .notifying-user-data{
+        margin-left: 1rem;
+        font-weight: 500;
+        font-size: medium;
+     }
+     .notification-message{
+        background-color: var(--lightyellow);
+        height: 80vh;
+        padding: 0.5rem;
+        border-radius: 8px;
+     }
+      .notification-message div{
+        background-color: var(--tertiary);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      .notifying-users-cards .active {
+        background-color: var(--lightyellow);
+      }
+}
+
+/*small tablets*/
+@media screen and (min-width: 768px) and (max-width: 991px) { 
+    .notifying-user{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid var(--secondary);
+        width: 80vw;
+    }
+    .notifying-user img{
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+    }
+     .notifying-user-data{
+        margin-left: 1rem;
+        font-weight: 500;
+        font-size: medium;
+     }
+     .notification-message{
+        background-color: var(--lightyellow);
+        height: 80vh;
+        padding: 0.5rem;
+        border-radius: 8px;
+     }
+      .notification-message div{
+        background-color: var(--tertiary);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      .notifying-users-cards .active {
+        background-color: var(--lightyellow);
+      }
+
+}
+
+
+/* Large Tablets Laptops*/
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+   .notifications-card{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+       width: 80vw;
+   }
+   .notifying-users-cards{
+    width: 20vw;
+   }
+   .notification-message{
+     width: 53vw;
+   }
+    .notifying-user{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid var(--secondary);
+        border-top: 1px solid var(--secondary);
+        padding:  0.5rem 0rem;
+    }
+    .notifying-user img{
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+    }
+     .notifying-user-data{
+        margin-left: 1rem;
+        font-weight: 500;
+        font-size: medium;
+     }
+     .notification-message{
+        background-color: var(--lightyellow);
+        height: 50vh;
+        padding: 0.5rem;
+        border-radius: 8px;
+     }
+      .notification-message div{
+        background-color: var(--tertiary);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      .notifying-users-cards .active {
+        background-color: var(--lightyellow);
+      }
+}
+
+
+/*Desktops*/
+@media (min-width:1200px) and (max-width: 1919px) {
+     .notifications-card{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+       width: 76vw;
+       border-top: 1px solid var(--secondary);
+   }
+   .notifying-users-cards{
+    width: 20vw;
+   }
+   .notification-message{
+     width: 53vw;
+   }
+    .notifying-user{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid var(--secondary);
+        border-top: 1px solid var(--secondary);
+        padding:  0.5rem 0rem;
+    }
+    .notifying-user img{
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+    }
+     .notifying-user-data{
+        margin-left: 1rem;
+        font-weight: 500;
+        font-size: medium;
+     }
+     .notification-message{
+        background-color: var(--lightyellow);
+        height: 50vh;
+        padding: 0.5rem;
+        border-radius: 8px;
+     }
+      .notification-message div{
+        background-color: var(--tertiary);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      .notifying-users-cards .active {
+        background-color: var(--lightyellow);
+      }
+}
+
+
+/*Extra Large Screens.*/
+@media (min-width: 1920px) {
+     .notifications-card{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+       width: 76vw;
+       border-top: 1px solid var(--secondary);
+   }
+  .notifying-users-cards{
+    width: 20vw;
+   }
+   .notification-message{
+     width: 53vw;
+   }
+    .notifying-user{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid var(--secondary);
+        border-top: 1px solid var(--secondary);
+        padding:  0.5rem 0rem;
+    }
+    .notifying-user img{
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+    }
+     .notifying-user-data{
+        margin-left: 1rem;
+        font-weight: 500;
+        font-size: medium;
+     }
+     .notification-message{
+        background-color: var(--lightyellow);
+        height: 50vh;
+        padding: 0.5rem;
+        border-radius: 8px;
+     }
+      .notification-message div{
+        background-color: var(--tertiary);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      .notifying-users-cards .active {
+        background-color: var(--lightyellow);
+      }
+}
+

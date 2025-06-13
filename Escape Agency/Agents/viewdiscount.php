@@ -204,7 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                       </div>
                       <div class="form-group">
                         <label for="">Number of Voucher Codes</label>
-                        <input type="number" class="form-control"  name="numv" value="<?php echo $num; ?> ">
+                        <input type="text" class="form-control"  name="numv" value="<?php echo $num; ?> ">
                       </div>
                       
                       <div class="form-group">

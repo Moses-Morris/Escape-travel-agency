@@ -1,0 +1,277 @@
+.profile{
+    padding: 0% 3%;
+}
+
+form .form-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding:1rem 0rem;
+}
+.profile-update-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: var(--secondary);
+    color: var(--black);
+    border: none;
+    text-decoration: none;
+    padding: 0.8rem;
+    border-radius: 1.5rem;
+    font-weight: 500;
+    font-size: medium;
+}
+/*Extra Small Devices*/
+@media screen and (max-width: 480px ){
+ .agonize-items{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+   place-items: center;
+   }
+    .prof-img  img{
+        height: 30vh;
+        width: 40vw;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .profile-update-button{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: var(--secondary);
+        color: var(--black);
+        border: none;
+        text-decoration: none;
+        padding: 0.8rem;
+        border-radius: 1.5rem;
+        font-weight: 500;
+        font-size: medium;
+    }
+    .profile input{
+    outline: none;
+    background-color: var(--lightyellow);
+    border:none;
+    padding: 0.82rem;
+    width: 70vw;
+}
+}
+/*mobile*/
+@media screen and (min-width: 481px) and (max-width: 767px) {
+   .agonize-items{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+   place-items: center;
+   }
+    .prof-img  img{
+        height: 30vh;
+        width: 40vw;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .profile-update-button{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: var(--secondary);
+        color: var(--black);
+        border: none;
+        text-decoration: none;
+        padding: 0.8rem;
+        border-radius: 1.5rem;
+        font-weight: 500;
+        font-size: medium;
+    }
+.profile input{
+    outline: none;
+    background-color: var(--lightyellow);
+    border:none;
+    padding: 0.82rem;
+    width: 70vw;
+}
+
+}
+
+/*small tablets*/
+@media screen and (min-width: 768px) and (max-width: 991px) { 
+ .agonize-items{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+   place-items: center;
+   }
+    .prof-img  img{
+        height: 40vh;
+        width: 40vw;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .profile-update-button{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: var(--secondary);
+        color: var(--black);
+        border: none;
+        text-decoration: none;
+        padding: 0.8rem;
+        border-radius: 1.5rem;
+        font-weight: 500;
+        font-size: medium;
+    }
+    .profile input{
+        outline: none;
+        background-color: var(--lightyellow);
+        border:none;
+        padding: 0.82rem;
+        
+    }
+    .form-alignment{
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        gap: 1rem;
+    }
+
+}
+
+
+/* Large Tablets Laptops*/
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+     .agonize-items{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+   place-items: center;
+   }
+    .prof-img  img{
+        height: 30vh;
+        width: 20vw;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .profile-update-button{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: var(--secondary);
+        color: var(--black);
+        border: none;
+        text-decoration: none;
+        padding: 0.8rem;
+        border-radius: 1.5rem;
+        font-weight: 500;
+        font-size: medium;
+    }
+    .profile input{
+        outline: none;
+        background-color: var(--lightyellow);
+        border:none;
+        padding: 0.82rem;
+        width: 96%;
+    }
+    .form-alignment{
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+        width:70vw;
+        gap: 1rem;
+    }
+}
+
+
+/*Desktops*/
+@media (min-width:1200px) and (max-width: 1919px) {
+      .agonize-items{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        place-items: center;
+        gap: 2rem;
+   }
+    .prof-img  img{
+        height: 40vh;
+        width: 20vw;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .profile-update-button{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: var(--secondary);
+        color: var(--black);
+        border: none;
+        text-decoration: none;
+        padding: 0.8rem;
+        border-radius: 1.5rem;
+        font-weight: 500;
+        font-size: medium;
+        float: right;
+    }
+    .profile input{
+        outline: none;
+        background-color: var(--lightyellow);
+        border:none;
+        padding: 0.82rem;
+        width: 95%;
+    }
+    .form-alignment{
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+        width:50vw;
+        gap: 1rem;
+    }
+}
+
+
+/*Extra Large Screens.*/
+@media (min-width: 1920px) {
+     .agonize-items{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        place-items: center;
+        gap: 2rem;
+   }
+    .prof-img  img{
+        height: 40vh;
+        width: 20vw;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .profile-update-button{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: var(--secondary);
+        color: var(--black);
+        border: none;
+        text-decoration: none;
+        padding: 0.8rem;
+        border-radius: 1.5rem;
+        font-weight: 500;
+        font-size: medium;
+        float: right;
+    }
+    .profile input{
+        outline: none;
+        background-color: var(--lightyellow);
+        border:none;
+        padding: 0.82rem;
+        width: 95%;
+    }
+    .form-alignment{
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+        width:50vw;
+        gap: 1rem;
+    }
+}
+
