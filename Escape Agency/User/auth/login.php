@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($mysqli, $_POST['email']);
     $password = $_POST['pass']; // Don't escape the password before verification
 
-    $query = "SELECT Email, PasswordHash FROM users WHERE Email='$email' AND Role='customer'";
+    $query = "SELECT UserID,Email, PasswordHash FROM users WHERE Email='$email' AND Role='customer'";
     $result = mysqli_query($mysqli, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         // Use password_verify to check if the entered password matches the hash
         if (password_verify($password, $user['PasswordHash'])) {
             $_SESSION['username'] = $user['Email'];
+            $_SESSION['user_id'] = $user['UserID'];
             header("Location: ../../index.php");
             exit();
         } else {

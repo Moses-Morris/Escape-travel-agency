@@ -151,7 +151,7 @@ form .form-info{
    }
     .prof-img  img{
         height: 30vh;
-        width: 20vw;
+        width: 15vw;
         object-fit: cover;
         border-radius: 50%;
     }
@@ -195,7 +195,7 @@ form .form-info{
         gap: 2rem;
    }
     .prof-img  img{
-        height: 40vh;
+        height: 50vh;
         width: 20vw;
         object-fit: cover;
         border-radius: 50%;
@@ -241,7 +241,7 @@ form .form-info{
         gap: 2rem;
    }
     .prof-img  img{
-        height: 40vh;
+        height: 50vh;
         width: 20vw;
         object-fit: cover;
         border-radius: 50%;
