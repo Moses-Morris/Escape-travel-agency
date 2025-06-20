@@ -1,12 +1,12 @@
 
 <?php
 $host = "localhost";
-$user = "root";
+$user1 = "root";
 $password = "";
 $dbname = "escapeagency";
 
 // Create connection
-$mysqli = mysqli_connect($host, $user, $password, $dbname);
+$mysqli = mysqli_connect($host, $user1, $password, $dbname);
 
 // Check connection
 if (!$mysqli) {

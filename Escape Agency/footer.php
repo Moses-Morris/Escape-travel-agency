@@ -41,6 +41,7 @@
         </div>
     </footer>
     <script src="js/likescount.js" ></script>
+    <script src="js/select.js" ></script>
 
     </body>
     </html>

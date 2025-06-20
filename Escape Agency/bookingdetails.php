@@ -1,10 +1,23 @@
-
-
 <?php
 session_start(); // Always start session to access session variables
 include('User/config/connection.php');
 
 //include('User/auth/usersession.php');
+?>
+<?php
+//Get the user data
+$userid = $_SESSION['user_id'];
+//echo $userid;
+$result = mysqli_query($mysqli,"SELECT * FROM users WHERE UserID=$userid ");
+while($row = mysqli_fetch_array($result)){
+        $ID = $row["UserID"];
+        $email = $row["Email"];
+        $name = $row["Name"];
+        $phone = $row["Phone"];
+        $country = $row["Country"];
+        $location = $row["Location"];
+}
+
 ?>
 
 
@@ -149,7 +162,7 @@ include('User/config/connection.php');
                 </aside>
                 <main>
                     <div class="dest-info-form">
-                        <form id="bookingForm" method="POST" action="process_booking.php">
+                        <form id="bookingForm" method="POST" >
                             <div id="step1">
                                 <h3> Travel Account Details</h3>
                                 <div class="splitform">
@@ -157,28 +170,37 @@ include('User/config/connection.php');
                                     <div class="one-side">
                                         
                                         <div>
-                                            <input type="text" placeholder="Full names">
+                                            <input type="text" placeholder="Full names" value="<?php echo $name; ?>">
                                         </div>
                                         <div>
-                                            <input type="text" placeholder="Email">
+                                            <input type="text" placeholder="Email" value="<?php echo $email; ?>">
                                         </div>
                                         
                                         <div class="">
                                             
-                                            <input type="number" placeholder="Country Code and Your Phone number" >
+                                            <input type="number" placeholder="Country Code and Your Phone number" value="<?php echo $phone; ?>">
                                         </div>
             
                                     </div>
                                     <div class="two-side">
                                         
                                         <div>
-                                            <input type="text" placeholder="Type of Travel : Friends, Family, Group, Couple">
+                                            <select >
+                                                <option value="">Type of Travel : Friends, Family, Group, Couple</option>
+                                                <option value="corporate">Corporate</option>
+                                                <option value="business">Business</option>
+                                                <option value="schooltour">School Tour</option>
+                                                <option value="couple">Couple</option>
+                                                <option value="family">Family</option>
+                                                <option value="family">Friends</option>
+                                                <option value="family">Group</option>
+                                            </select>
                                         </div>
                                         <div>
-                                            <input type="text" placeholder="Country">
+                                            <input type="text" placeholder="Country" value="<?php echo $country; ?>">
                                         </div>
                                         <div>
-                                            <input type="text" placeholder="Location">
+                                            <input type="text" placeholder="Location" value="<?php echo $location; ?>">
                                         </div>
                                         
                                         
@@ -217,9 +239,9 @@ include('User/config/connection.php');
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <button>
+                                                            <span class="button">
                                                                 + Add
-                                                            </button>
+                                                            <span>
                                                         </div>
                                                     </div>
     
@@ -245,9 +267,9 @@ include('User/config/connection.php');
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <button>
+                                                            <span class="button">
                                                                 + Add
-                                                            </button>
+                                                            <span>
                                                         </div>
                                                     </div>
     
@@ -274,9 +296,9 @@ include('User/config/connection.php');
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <button>
+                                                            <span class="button">
                                                                 + Add
-                                                            </button>
+                                                            <span>
                                                         </div>
                                                     </div>
     
@@ -338,9 +360,9 @@ include('User/config/connection.php');
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <button>
+                                                            <span class="button">
                                                                 + Reserve
-                                                            </button>
+                                                            <span>
                                                         </div>
                                                     </div>
     
@@ -366,9 +388,9 @@ include('User/config/connection.php');
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <button>
+                                                            <span class="button">
                                                                 + Reserve
-                                                            </button>
+                                                            <span>
                                                         </div>
                                                     </div>
     
@@ -391,9 +413,9 @@ include('User/config/connection.php');
                                                             <p>4.5</p>
                                                         </div>
                                                         <div>
-                                                            <button>
+                                                            <span class="button">
                                                                 + Reserve
-                                                            </button>
+                                                            <span>
                                                         </div>
                                                     </div>
     
@@ -571,6 +593,7 @@ include('User/config/connection.php');
     <script src="dashboard/js/nav.js"></script>
     <script src="js/pagination.js"></script>
     <script src="js/gsap.js"></script>
+     <script src="js/addstep.js"></script>
     <script src="dashboard/js/script.js"></script>
     <script src="dashboard/js/pass.js"></script>
     <script src="dashboard/js/popup.js"></script>

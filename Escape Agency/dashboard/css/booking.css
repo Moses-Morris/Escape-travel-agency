@@ -43,6 +43,9 @@
     justify-content:space-around;
     align-items: center;
 }
+ .activity-bottom div .button{
+    cursor: pointer;
+ }
 
 /*Extra Small Devices*/
 @media screen and (max-width: 480px ){
@@ -128,7 +131,7 @@
         align-items: center;
         gap: 0.5em;
     }
-    .activity-bottom div button{
+    .activity-bottom div .button{
         text-decoration: none;
         color: var(--tertiary);
         font-weight: bold;
@@ -251,7 +254,7 @@
         justify-content: space-between;
         align-items: center;
     }
-    .activity-bottom div button{
+    .activity-bottom div .button{
         text-decoration: none;
         color: var(--tertiary);
         font-weight: bold;
@@ -393,7 +396,7 @@
         justify-content: space-between;
         align-items: center;
     }
-    .activity-bottom div button{
+    .activity-bottom div .button{
         text-decoration: none;
         color: var(--tertiary);
         font-weight: bold;
@@ -725,7 +728,7 @@
         justify-content:space-around;
         align-items: center;
     }
-    .activity-bottom div button{
+    .activity-bottom div .button{
         text-decoration: none;
         color: var(--tertiary);
         font-weight: bold;
