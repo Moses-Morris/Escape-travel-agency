@@ -1141,3 +1141,335 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let selectedItems = [];
+
+// Add event listeners after DOM loads
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".add-button").forEach(button => {
+    button.addEventListener("click", () => {
+      const title = button.dataset.title;
+      const price = parseFloat(button.dataset.price);
+
+      const alreadyExists = selectedItems.find(item => item.title === title);
+      if (!alreadyExists) {
+        selectedItems.push({ title, price });
+        renderSelectedItems();
+      }
+    });
+  });
+});
+
+function renderSelectedItems() {
+  const container = document.getElementById("selectedItems");
+  const totalElement = document.getElementById("totalAmount");
+  const inputHidden = document.getElementById("selectedActivitiesInput");
+
+  container.innerHTML = "";
+  let total = 0;
+
+  selectedItems.forEach((item, index) => {
+    total += item.price;
+    const itemEl = document.createElement("div");
+    itemEl.classList.add("selected-item");
+    itemEl.innerHTML = `
+      <span>${item.title} - $${item.price}</span>
+      <button type="button" onclick="removeItem(${index})">Remove</button>
+    `;
+    container.appendChild(itemEl);
+  });
+
+  if (totalElement) {
+    totalElement.textContent = total;
+  }
+  if (inputHidden) {
+    inputHidden.value = JSON.stringify(selectedItems);
+  }
+}
+
+function removeItem(index) {
+  selectedItems.splice(index, 1);
+  renderSelectedItems();
+}
+
+function nextStep(step) {
+  document.getElementById(`step${step}`).style.display = "none";
+  document.getElementById(`step${step + 1}`).style.display = "block";
+}
+
+function prevStep(step) {
+  document.getElementById(`step${step}`).style.display = "none";
+  document.getElementById(`step${step - 1}`).style.display = "block";
+}
+
+function openPopup(type) {
+  const popup = document.getElementById("popupOverlay");
+  const content = document.getElementById("popupContent");
+  popup.style.display = "block";
+
+  if (type === 'international') {
+    content.innerHTML = `<h3>International Travel Documents</h3><p>Make sure you have a valid passport, visa (if needed), and your travel insurance.</p>`;
+  }
+}
+
+
+<style>
+.selected-item {
+  background: #f4f4f4;
+  margin-bottom: 5px;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+.selected-item button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+</style>
+/*
+    let selectedItems = [];
+    let totalPrice = 0;
+
+    // Utility to update the selected items UI and total
+    function updateSelectedItemsDisplay() {
+        const container = document.getElementById('selectedItems');
+        container.innerHTML = ''; // Clear previous
+
+        if (selectedItems.length === 0) {
+            container.innerHTML = '<p>No items selected yet.</p>';
+        } else {
+            const list = document.createElement('ul');
+            selectedItems.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>${item.title}</strong> - ${item.type} - $${item.price} 
+                    <button onclick="removeItem(${index})" style="margin-left:10px;color:red;">❌</button>
+                `;
+                list.appendChild(li);
+            });
+            container.appendChild(list);
+        }
+
+        document.getElementById('totalAmount').innerText = totalPrice.toFixed(2);
+        document.getElementById('selectedActivitiesInput').value = JSON.stringify(selectedItems);
+    }
+
+    // Remove an item
+    function removeItem(index) {
+        if (index >= 0 && index < selectedItems.length) {
+            totalPrice -= selectedItems[index].price;
+            selectedItems.splice(index, 1);
+            updateSelectedItemsDisplay();
+        }
+    }
+
+    // Add Item button listener
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.add-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const type = button.getAttribute('data-type');
+                const title = button.getAttribute('data-title');
+                const price = parseFloat(button.getAttribute('data-price'));
+
+                // Prevent duplicates
+                if (selectedItems.some(item => item.title === title && item.type === type)) {
+                    alert(`${title} already added.`);
+                    return;
+                }
+
+                selectedItems.push({ type, title, price });
+                totalPrice += price;
+                updateSelectedItemsDisplay();
+            });
+        });
+
+        // Set initial total and list
+        updateSelectedItemsDisplay();
+    });
+
+    // Navigation functions
+    function nextStep(step) {
+        document.getElementById(`step${step}`).style.display = 'none';
+        document.getElementById(`step${step + 1}`).style.display = 'block';
+
+        // Optional: update summary on step 5
+        if (step + 1 === 5) {
+            document.getElementById('totalAmount').innerText = totalPrice.toFixed(2);
+        }
+    }
+
+    function prevStep(step) {
+        document.getElementById(`step${step}`).style.display = 'none';
+        document.getElementById(`step${step - 1}`).style.display = 'block';
+    };
+
+    */
+
+    /* Master JS for Activities + Hosting + Total Price
+let selectedActivities = [];
+let selectedHosting = [];
+let total = 0;
+
+
+function updateSelectedItemsDisplay() {
+    const containers = document.querySelectorAll('#selectedItems');
+    containers.forEach(container => {
+        container.innerHTML = '';
+        if (selectedItems.length === 0) {
+            container.innerHTML = '<p>No items selected yet.</p>';
+        } else {
+            const list = document.createElement('ul');
+            selectedItems.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>${item.title}</strong> - ${item.type} - $${item.price}
+                    <button onclick="removeItem(${index})" style="margin-left:10px;color:red;">❌</button>
+                `;
+                list.appendChild(li);
+            });
+            container.appendChild(list);
+        }
+    });
+
+    document.getElementById('totalAmount').innerText = totalPrice.toFixed(2);
+    document.getElementById('selectedActivitiesInput').value = JSON.stringify(selectedItems.filter(item => item.type === 'activity'));
+    document.getElementById('selectedHostingInput').value = JSON.stringify(selectedItems.filter(item => item.type === 'hosting'));
+}
+
+function removeItem(index) {
+    if (index >= 0 && index < selectedItems.length) {
+        totalPrice -= selectedItems[index].price;
+        selectedItems.splice(index, 1);
+        updateSelectedItemsDisplay();
+    }
+}
+/*
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.add-button');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const type = button.getAttribute('data-type');
+            const title = button.getAttribute('data-title');
+            const price = parseFloat(button.getAttribute('data-price'));
+
+            if (selectedItems.some(item => item.title === title && item.type === type)) {
+                alert(`${title} already added.`);
+                return;
+            }
+
+            selectedItems.push({ type, title, price });
+            totalPrice += price;
+            updateSelectedItemsDisplay();
+        });
+    });
+
+    updateSelectedItemsDisplay();
+});
+*
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('add-button')) {
+        const title = e.target.getAttribute('data-title');
+        const price = parseFloat(e.target.getAttribute('data-price'));
+        const type = e.target.getAttribute('data-type');
+
+        if (type === 'activity') {
+            if (!selectedActivities.some(item => item.title === title)) {
+                selectedActivities.push({ title, price });
+                total += price;
+                updateSelectedDisplay('activity');
+            }
+        }
+
+        if (type === 'hosting') {
+            if (!selectedHosting.some(item => item.title === title)) {
+                selectedHosting.push({ title, price });
+                total += price;
+                updateSelectedDisplay('hosting');
+            }
+        }
+
+        updateTotal();
+    }
+});
+
+
+function updateSelectedDisplay(type) {
+    let container, data;
+
+    if (type === 'activity') {
+        container = document.getElementById('selectedActivitiesDisplay');
+        data = selectedActivities;
+    } else if (type === 'hosting') {
+        container = document.getElementById('selectedHostingDisplay');
+        data = selectedHosting;
+    }
+
+    container.innerHTML = '';
+    data.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.innerHTML = `
+            <span>${item.title} - $${item.price}</span>
+            <button type="button" onclick="removeItem('${type}', ${index})">Remove</button>
+        `;
+        container.appendChild(div);
+    });
+
+    // Also update hidden inputs
+    if (type === 'activity') {
+        document.getElementById('selectedActivitiesInput').value = JSON.stringify(selectedActivities);
+    } else if (type === 'hosting') {
+        document.getElementById('selectedHostingInput').value = JSON.stringify(selectedHosting);
+    }
+}
+function removeItem(type, index) {
+    if (type === 'activity') {
+        total -= selectedActivities[index].price;
+        selectedActivities.splice(index, 1);
+        updateSelectedDisplay('activity');
+    } else if (type === 'hosting') {
+        total -= selectedHosting[index].price;
+        selectedHosting.splice(index, 1);
+        updateSelectedDisplay('hosting');
+    }
+
+    updateTotal();
+}
+function updateTotal() {
+    document.querySelectorAll('#totalAmount').forEach(span => {
+        span.innerText = total.toFixed(2);
+    });
+}
+
+function nextStep(step) {
+    document.getElementById(`step${step}`).style.display = 'none';
+    document.getElementById(`step${step + 1}`).style.display = 'block';
+
+    if (step + 1 === 5) {
+        document.getElementById('totalAmount').innerText = totalPrice.toFixed(2);
+    }
+}
+
+function prevStep(step) {
+    document.getElementById(`step${step}`).style.display = 'none';
+    document.getElementById(`step${step - 1}`).style.display = 'block';
+}
+*/

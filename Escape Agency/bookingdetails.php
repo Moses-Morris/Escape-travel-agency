@@ -239,9 +239,9 @@ while($row = mysqli_fetch_array($result)){
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <span class="button">
+                                                            <span type="button" class="add-button button" data-type="activity" data-title="Hiking at top of mountain" data-price="200">
                                                                 + Add
-                                                            <span>
+                                                            </span>
                                                         </div>
                                                     </div>
     
@@ -267,9 +267,9 @@ while($row = mysqli_fetch_array($result)){
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <span class="button">
+                                                            <span type="button" class="add-button button" data-type="activity" data-title="Hiking at top" data-price="200">
                                                                 + Add
-                                                            <span>
+                                                            </span>
                                                         </div>
                                                     </div>
     
@@ -296,9 +296,9 @@ while($row = mysqli_fetch_array($result)){
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <span class="button">
+                                                            <span type="button" class="add-button button" data-type="activity" data-title="Hiking at top" data-price="200">
                                                                 + Add
-                                                            <span>
+                                                            </span>
                                                         </div>
                                                     </div>
     
@@ -309,12 +309,16 @@ while($row = mysqli_fetch_array($result)){
     
     
                                         </div>
+                                        <!-- Insert this inside the div with class="one-side" below the Activity input -->
+                                   
                                     </div>
                                     <div class="jj">
                                         <div class="one-side">
                                             
                                             <div>
                                                 <input type="text" placeholder="Activity">
+                                                <div id="selectedActivitiesDisplay" style="margin-top:20px;"></div>
+                                                <input type="hidden" name="selected_activities" id="selectedActivitiesInput">
                                             </div>
                                             <div class="checkout-btn">
                                                 <button  type="button" onclick="prevStep(2)">
@@ -360,9 +364,9 @@ while($row = mysqli_fetch_array($result)){
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <span class="button">
+                                                            <span type="button" class="add-button button" data-type="hosting" data-title="Zulu house" data-price="200">
                                                                 + Reserve
-                                                            <span>
+                                                            </span>
                                                         </div>
                                                     </div>
     
@@ -388,9 +392,9 @@ while($row = mysqli_fetch_array($result)){
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <span class="button">
+                                                            <span type="button" class="add-button button" data-type="hosting" data-title="Maskani" data-price="200">
                                                                 + Reserve
-                                                            <span>
+                                                            </span>
                                                         </div>
                                                     </div>
     
@@ -413,9 +417,9 @@ while($row = mysqli_fetch_array($result)){
                                                             <p>4.5</p>
                                                         </div>
                                                         <div>
-                                                            <span class="button">
+                                                            <span type="button" class="add-button button" data-type="hosting" data-title="Top Villa" data-price="200">
                                                                 + Reserve
-                                                            <span>
+                                                            </span>
                                                         </div>
                                                     </div>
     
@@ -439,6 +443,11 @@ while($row = mysqli_fetch_array($result)){
                                                 <div>
                                                     <input type="date" placeholder="Check Out On">
                                                 </div>
+                                                 <div>
+                                                    <div id="selectedHostingDisplay" style="margin-top:20px;"></div>
+                                                    <input type="hidden" name="selected_hosting" id="selectedHostingInput">
+
+                                                 </div>
                                                 <div>
                                                     <div class="checkout-btn">
                                                         <button  type="button" onclick="prevStep(3)">
@@ -452,7 +461,9 @@ while($row = mysqli_fetch_array($result)){
                 
                                                     </div>
                                                 </div>
-                                        
+                                                <!-- Insert this inside the div with class="one-side" below the Activity input -->
+                                            <div id="selectedItems"></div>
+
                                             </div>
                                     </div>
                                     
@@ -498,6 +509,9 @@ while($row = mysqli_fetch_array($result)){
                             <!-- Step 5: Review and Confirm -->
                             <div id="step5" style="display:none;">
                                 <h3>Review Your Booking :Payment Summary</h3>
+                                <p><strong>Total Amount:</strong> $<span id="totalAmount"><?= $_SESSION['booking']['total'] ?></span></p>
+                                <p><strong>Total Amount:</strong> $<span id="totalAmount">0</span></p>
+
                                 <p><strong>Destination:</strong> <?= $_SESSION['booking']['destination'] ?></p>
                                 <p><strong>Activities:</strong> <?= implode(", ", $_SESSION['booking']['activities']) ?></p>
                                 <p><strong>Hosting:</strong> <?= $_SESSION['booking']['hosting'] ?></p>
