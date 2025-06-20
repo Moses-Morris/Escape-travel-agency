@@ -520,7 +520,7 @@ function proceedToCheckout() {
 let selectedActivities = [];
 let selectedHostings = [];
 let selectedTravel = null;
-let currentStep = 1;
+let currentStep5 = 1;
 let totalAmount = 0;
 
 // Cache object to store all booking data
@@ -1226,24 +1226,6 @@ function openPopup(type) {
 }
 
 
-<style>
-.selected-item {
-  background: #f4f4f4;
-  margin-bottom: 5px;
-  padding: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
-}
-.selected-item button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-</style>
 /*
     let selectedItems = [];
     let totalPrice = 0;

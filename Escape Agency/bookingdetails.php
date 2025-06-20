@@ -157,13 +157,13 @@ while($row = mysqli_fetch_array($result)){
                         <img src="media/pexels-robshumski-6129457.jpg" alt="destination image">
                         <h5>Lemosho , Tanzania</h5>
                         <!-- Somewhere in your HTML -->
-                    <h4>USD <span id="destinationPrice">900</span></h4>
+                        <h4>USD <span id="destinationPrice">900</span></h4>
                     </div>
 
                 </aside>
                 <main>
                     <div class="dest-info-form">
-                        <form id="bookingForm" method="POST" >
+                        <form id="bookingForm" method="POST" action="bookingsummary.php">
                             <div id="step1">
                                 <h3> Travel Account Details</h3>
                                 <div class="splitform">
@@ -484,8 +484,11 @@ while($row = mysqli_fetch_array($result)){
                                     </div>
                                     <div>
                                         <div>
-                                            <select type="text" placeholder="Check Out On" name="travel" id="travel" onchange="updateTotal()">
-                                                <option value="" data-price="200">sdfghjk</option>
+                                            
+                                            <select id="travel">
+                                                <option value="" data-price="0">-- Select Option --</option>
+                                                <option value="flight" data-price="300">Flight</option>
+                                                <option value="bus" data-price="100">Bus</option>
                                             </select>
                                         </div>
                                         <div class="checkout-btn">
@@ -516,11 +519,7 @@ while($row = mysqli_fetch_array($result)){
                                 <p id="hostingReview"></p>
                                 <p id="travelReview"></p>
                                 <hr>
-                                <p><strong>Total Amount:</strong> $<span id="totalAmount"><?= $_SESSION['booking']['total'] ?></span></p>
                                 <p><strong>Total Amount:</strong> $<span id="totalAmount">0</span></p>
-                                
-                                
-                                <p><strong>Total Amount:</strong> $<span id="totalAmount"><?= $_SESSION['booking']['total'] ?></span></p>
                                 <!--button type="button" onclick="prevStep(5)">Previous</button-->
                                 <p href="" onclick="openPopup('international')">Remember to read this guide on recommended documents : </p>
                                 <div class="links-container">
@@ -532,7 +531,7 @@ while($row = mysqli_fetch_array($result)){
                                         <i class="fa fa-arrow-left"></i>
                                         Previous
                                     </button>
-                                    <button  type="button" >
+                                    <button  type="submit" name="submit_booking">
                                         Proceed to checkout
                                         <i class="fa fa-arrow-right"></i>
                                     </button>
