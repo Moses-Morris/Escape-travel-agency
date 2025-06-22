@@ -32,51 +32,10 @@ while ($row = mysqli_fetch_assoc($hostingsQuery)) {
 }
 ?>
 
-    <style>
-       
-        .booking-summary {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: auto;
-            color: #000 !important;
-        }
-        .booking-summary h2, .booking-summary h3 {
-            text-align: center;
-        }
-        .booking-summary p {
-            margin: 8px 0;
-        }
-        .actions {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .actions button {
-            margin: 5px;
-            padding: 10px 15px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .print-btn { background-color: #4CAF50; color: white; }
-        .download-btn { background-color: #2196F3; color: white; }
-        .cancel-btn { background-color: #f44336; color: white; }
-        .rebook-btn { background-color: #FF9800; color: white; }
-        .qr-container {
-            text-align: center;
-            margin-top: 15px;
-        }
-        .qr-container img {
-            width: 150px;
-            height: 150px;
-        }
-    </style>
-</head>
-<body>
-    <section class="booking-summary" id="invoice">
+   
+
+<div class="booking">
+    <section class="booking-summary" id="invoice" >
         <h2>✅ Booking Confirmation</h2>
         <p><strong>Booking ID:</strong> #BKG-123456</p>
         <p><strong>Destination:</strong> Mt Kilimanjaro - Lemosho</p>
@@ -93,15 +52,38 @@ while ($row = mysqli_fetch_assoc($hostingsQuery)) {
         <h3>Total Price: <span style="color:green;">$1500.00</span></h3>
 
         <div class="qr-container">
-            <p>Scan for confirmation:</p>
+            <p>Scan for Payment Order Request</p>
             <img src="https://api.qrserver.com/v1/create-qr-code/?data=BookingID123456&size=150x150" alt="QR Code">
         </div>
 
-        <div class="actions">
+        <!--div class="actions">
             <button class="print-btn" onclick="window.print()">Print Invoice</button>
             <button class="download-btn" onclick="downloadInvoice()">Download Invoice</button>
             <button class="cancel-btn" onclick="cancelBooking()">Cancel Booking</button>
             <button class="rebook-btn" onclick="rebook()">Rebook</button>
+        </div-->
+        <h4>Choose Payment Method To Proceed</h4>
+        <div class="actions">
+            <div>
+                <a href="visacheckout.php">
+                    <img src="media/payments logos/Screenshot (2606).png" alt="visa logo">
+                </a>
+            </div>
+            <div>
+                <a href="stripecheckout.php">
+                    <img src="media/payments logos/Stripe wordmark - blurple (small).png" alt="stripe logo">
+                </a>
+            </div>
+            <div>
+                <a href="mpesacheckout.php">
+                    <img src="media/payments logos/mpesalogo.png" alt="mpesa logo">
+                </a>
+            </div>
+            <div>
+                <a href="paypalcheckout.php">
+                    <img src="media/payments logos/Screenshot (2605).png" alt="paypal logo">
+                </a>
+            </div>
         </div>
     </section>
 
@@ -129,5 +111,8 @@ while ($row = mysqli_fetch_assoc($hostingsQuery)) {
             window.location.href = "rebook.php?booking_id=123456"; // Replace with actual logic
         }
     </script>
-</body>
-</html>
+
+    </div>
+<?php
+    include 'footer.php';
+?>

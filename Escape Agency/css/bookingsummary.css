@@ -1,0 +1,59 @@
+.booking{
+    padding:0.5rem ;
+}
+.booking-summary {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin:  auto;
+    color: #000 !important;
+   
+}
+.booking-summary h2, .booking-summary h3 {
+    text-align: center;
+}
+.booking-summary p {
+    margin: 8px 0;
+}
+.actions {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.6rem;
+    
+    border-radius: 5px;
+}
+.actions button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.print-btn { background-color: #4CAF50; color: white; }
+.download-btn { background-color: #2196F3; color: white; }
+.cancel-btn { background-color: #f44336; color: white; }
+.rebook-btn { background-color: #FF9800; color: white; }
+.qr-container {
+    text-align: center;
+    margin-top: 15px;
+}
+.qr-container img {
+    width: 150px;
+    height: 150px;
+}
+.actions a{
+    text-decoration: none;
+    color: none;
+    background-color: #fff;
+    height: 2.5rem;
+}
+.actions div a img{
+    height: 2rem !important;
+    width: auto !important;
+}
