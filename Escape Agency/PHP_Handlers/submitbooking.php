@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_booking'])) {
         ");
     }
 
-    echo "<script>alert('Booking successfully placed!'); window.location='bookingsummary.php';</script>";
+    echo "<script>alert('Booking successfully placed!'); window.location='bookingsummary.php?';</script>";
     exit();
 }
 ?>
