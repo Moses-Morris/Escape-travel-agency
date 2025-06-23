@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_booking'])) {
         $travelTitle = mysqli_real_escape_string($mysqli, $travel['title']);
         $travelPrice = (float)$travel['price'];
         mysqli_query($mysqli, "
-            INSERT INTO booking_items (BookingID, ItemType, Title, Price)
+            INSERT INTO booking_items (BookingID, ItemType, Title22, Price)
             VALUES ('$bookingID', 'travel', '$travelTitle', '$travelPrice')
         ");
     }
