@@ -5,3 +5,4 @@ This is a travel agency app built for Travel agency company called Escape Tours 
 ##Started working on user on May
 ##Encountered Design structure issues of the api.
 ##Check while deploying issues.
+##Create a way to deploy database using the schema.
