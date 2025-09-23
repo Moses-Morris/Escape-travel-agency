@@ -6,9 +6,9 @@ include('User/config/connection.php');
 ?>
 <?php
 //Get the user data
-$userid = $_SESSION['user_id'];
-//echo $userid;
-$result = mysqli_query($mysqli,"SELECT * FROM users WHERE UserID=$userid ");
+$username = $_SESSION['username'];
+//echo $username;
+$result = mysqli_query($mysqli,"SELECT * FROM users WHERE Email='$username' ");
 while($row = mysqli_fetch_array($result)){
         $ID = $row["UserID"];
         $email = $row["Email"];

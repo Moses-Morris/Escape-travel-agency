@@ -111,6 +111,7 @@ while ($row = mysqli_fetch_assoc($hostingsQuery)) {
             window.location.href = "rebook.php?booking_id=123456"; // Replace with actual logic
         }
     </script>
+    <script src="dashboard/js/popup.js"></script>
 
     </div>
 <?php
