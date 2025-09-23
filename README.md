@@ -7,3 +7,5 @@ The project is built on pure php. There is the user, the superadmin and the Agen
 ##Encountered Design structure issues of the api.
 ##Check while deploying issues.
 ##Create a way to deploy database using the schema.
+
+##Debugging and Finalising on July
