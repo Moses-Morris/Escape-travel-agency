@@ -11,34 +11,35 @@
                 <br>Discover and book your next Escape with Us.
             </h3>
                 
-                <form class="background-color-type">
+                <form class="background-color-type" action="tours.php" method="get">
                     <div>
                         <input list="locations" id="location" name="location" placeholder="Location">
                         <datalist id="locations">
-                          <option value="Maldives"></option>
-                          <option value="Paris"></option>
-                          <option value="Hawaii"></option>
-                          <option value="Bali"></option>
-                          <option value="Santorini"></option>
+                            <option value="Maldives"></option>
+                            <option value="Paris"></option>
+                            <option value="Hawaii"></option>
+                            <option value="Bali"></option>
+                            <option value="Santorini"></option>
                         </datalist>
                     </div>
                     <div>
                         <input list="activities" id="activities" name="activities" placeholder="Activities">
-                        <datalist id="locations">
-                          <option value="Camping"></option>
-                          <option value="swimming"></option>
-                          <option value="Surfing"></option>
-                          <option value="Kayakin"></option>
-                          <option value="Gliding"></option>
+                        <datalist id="activities">
+                            <option value="Camping"></option>
+                            <option value="Swimming"></option>
+                            <option value="Surfing"></option>
+                            <option value="Kayaking"></option>
+                            <option value="Gliding"></option>
                         </datalist>
                     </div>
                     <div>
-                        <button>
+                        <button type="submit">
                             <i class="fa fa-search"></i>
                             Discover Places
                         </button>
                     </div>
                 </form>
+
             </main>
             <aside>
 
@@ -60,7 +61,7 @@
                   <!-- main content goes here -->
                   <h3>Popular Destinations</h3>
                   <p>Join us on meticulously planned tours designed to create unforgettable memories. Whether you’re looking for solo adventures, romantic getaways, or family trips, we have something for everyone.</p>
-                  <a href="">Tours and Destinations</a>
+                  <a href="tours.php">Tours and Destinations</a>
                 </main>
                 <aside>
                   <!-- aside content goes here -->

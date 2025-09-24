@@ -40,7 +40,60 @@
 
 
      <!--------------------------Events Section------------------------------------------------------------>
-     <section class="Events">
+     <?php
+        //$conn = mysqli_connect("localhost", "root", "", "escape_agency");
+        if (!$conn) {
+            die("DB connection failed: " . mysqli_connect_error());
+        }
+
+        $sql = "SELECT EventID, Name, Location, StartDate, EndDate, ImageURL, LikesAVG, Description 
+                FROM events 
+                ORDER BY Created_at DESC 
+                LIMIT 3"; 
+        $result = mysqli_query($conn, $sql);
+        ?>
+
+        <section class="Events">
+        <h4>Upcoming Events</h4>
+        <div class="Events-container">
+
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <div class="event">
+                <div class="event-images">
+                <img src="<?php echo htmlspecialchars($row['ImageURL']); ?>">
+                </div>
+                <div class="event-info">
+                <div class="event-info-top">
+                    <h3><?php echo htmlspecialchars($row['Name']); ?></h3>
+                    <div style="text-align:center;">
+                    <i class="fa fa-heart fa-2xl heart-btn" data-event-id="<?php echo $row['EventID']; ?>"></i>
+                    
+                    <span class="favorite-count" id="count-<?php echo $row['EventID']; ?>">
+                        <?php echo htmlspecialchars((int)$row['LikesAVG']); ?>
+                    </span>
+                    </div>
+                </div>
+                <div>
+                    <p><?php echo htmlspecialchars($row['Description']); ?></p>
+                </div>
+                <div class="event-info-bottom">
+                        <div class="voice-out">
+                            <div>
+                                <p><i class="fa fa-location"></i> Maasai Mara, Kenya</p>
+                            </div>
+                            <div>
+                                <p><i class="fa fa-calendar"></i>July September</p>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+
+        </div>
+        </section>
+     <!--section class="Events">
         <h4>Upcoming Events</h4>
         <div class="Events-container">
             <div class="event">
@@ -84,7 +137,7 @@
                         <h3>Aurora Borealis Viewing
                             Experience</h3>
                             <div style="text-align:center;">
-                                <i class="fa fa-heart fa-2xl heart-btn" data-event-id="1"></i>
+                                <i class="fa fa-heart fa-2xl heart-btn" data-event-id="2"></i>
                                 <span class="favorite-count" id="count-2">0</span>
                             </div>
                     </div>
@@ -116,7 +169,7 @@
                     <div class="event-info-top">
                         <h3>Venice Carnival</h3>
                         <div style="text-align:center;">
-                                <i class="fa fa-heart fa-2xl heart-btn" data-event-id="1"></i>
+                                <i class="fa fa-heart fa-2xl heart-btn" data-event-id="3"></i>
                                 <span class="favorite-count" id="count-3">0</span>
                             </div>
                     </div>
@@ -144,7 +197,7 @@
             
 
         </div>
-    </section>
+    </section -->
 
 
 

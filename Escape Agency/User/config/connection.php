@@ -7,7 +7,7 @@ $dbname = "escapeagency";
 
 // Create connection
 $mysqli = mysqli_connect($host, $user1, $password, $dbname);
-//$conn = mysqli_connect($host, $user1, $password, $dbname);
+$conn = mysqli_connect($host, $user1, $password, $dbname);
 // Check connection
 if (!$mysqli) {
     die("Connection failed: " . mysqli_connect_error());
