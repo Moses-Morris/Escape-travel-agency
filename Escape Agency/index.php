@@ -94,7 +94,7 @@
 
                                                             ?>
 
-                                                            <a href="destinationinfo.php?id=<?php echo $destId; ?>"> <i class="fa fa-arrow-right"></i></a>
+                                                            <a href="destinationinfo.php?id=<?php echo $destId; ?>" style="text-decoration:none !important; margin:0 !important; padding: 0 !important; background-color: none !important; font-size: large !important;"> <i class="fa fa-arrow-right fa-2xl" style="background-color: none !important;"></i></a>
 
                                                             <?php echo "
                                                         </div>

@@ -146,6 +146,56 @@ include('User/config/connection.php');
 
     <main class="destination-page-main">
         <!--destination images-->
+        <?php
+
+                        //Destination details
+                         if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
+                                $Desid = $_GET['id'];
+                                //echo "Received ID: " . htmlspecialchars($id);
+                            } else {
+                                echo "Invalid ID!";
+                            }
+                        $result = mysqli_query($conn,"SELECT * FROM destinations WHERE Status!='approved' AND DestinationID=$Desid");
+                        while($row = mysqli_fetch_array($result)){
+                            $ID = $row["DestinationID"];
+                            $Name = $row["Name"];
+                            $location = $row["Location"];
+                            $country = $row["Country"];
+                            $img = $row["ImageURL"];
+                            $price = $row["Price"];
+                            $Agent = $row["AgentID"];
+                            $travel = $row["TravelID"];
+                            $rating = $row["RatingAVG"];
+
+                            //get the Activity details
+                            $activities = mysqli_query($conn,"SELECT * FROM activities WHERE DestinationID=$ID LIMIT 4");
+                            $row5= mysqli_fetch_array($activities);
+
+                            //get all the Hostings associated with it
+                            $hosting = mysqli_query($conn,"SELECT * FROM accomodation WHERE DestinationID=$ID LIMIT 4");
+                            $row6= mysqli_fetch_array($hosting);
+
+                            //get all the reviews associated with it
+                            $reviews = mysqli_query($conn,"SELECT * FROM reviews WHERE DestinationID=$ID LIMIT 2");
+                            $row7= mysqli_fetch_array($reviews);
+
+                            //get all the Images associated with it
+                            $gallery = mysqli_query($conn,"SELECT * FROM destinationgallery WHERE DestinationID=$ID LIMIT 4");
+                            $row8= mysqli_fetch_array($gallery);
+
+                            
+
+
+                
+    
+
+
+                        }
+                        
+                           
+
+                       
+        ?>
         <div class="dest-detail-info">
             <h3><i class="fa fa-location-dot"></i> Mt Kilimanjaro</h3>
         </div>
