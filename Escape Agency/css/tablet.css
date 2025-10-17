@@ -16,7 +16,7 @@
         font-size: larger;
         font-weight: bold;
         color: var(--primary);
-        text-decoration: underline;
+        text-decoration: none;
     }
     .hero-data form{
         width: 80vw;
@@ -989,7 +989,7 @@
         font-size: larger;
         font-weight: bold;
         color: var(--primary);
-        text-decoration: underline;
+        text-decoration: none;
     }
     .hero-data form{
         width: 80vw;

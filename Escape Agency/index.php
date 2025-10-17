@@ -57,75 +57,57 @@
         <!--------------------------Destinations and Explore Section------------------------------------------------------------>
         <section>
             <article class="destinations">
-                <main>
+                <main class="direct">
                   <!-- main content goes here -->
                   <h3>Popular Destinations</h3>
                   <p>Join us on meticulously planned tours designed to create unforgettable memories. Whether you’re looking for solo adventures, romantic getaways, or family trips, we have something for everyone.</p>
-                  <a href="tours.php">Tours and Destinations</a>
+                  <a href="tours.php" >Tours and Destinations</a>
                 </main>
                 <aside>
+                <div class="destination-cards">
                   <!-- aside content goes here -->
-                  <div class="destination-cards">
-                    <div class="dest-1">
-                        <div class="dest-image">
-                            <img src="media/pexels-darina-belonogova-9159898.jpg" alt="Mt Everest">
-                        </div>
-                        <div class="dest-info">
-                            <div class="dest-data">
-                                <h4>Getting to the Pinnacle of Mt Everest</h4>
-                                <p><i class="fa fa-star"></i> 4.0</p>
-                            </div>
-                            <div class="dest-more">
-                                <i class="fa fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
+                   <?php 
+                   //SELECT POPULAR DESTINATIONS.
+                        $dest = mysqli_query($conn,"SELECT * FROM destinations WHERE status='approved' AND featured=1 LIMIT 4");
+                        while($row = mysqli_fetch_array($dest)){
+                            $destId = $row['DestinationID'];
+                            $desc = $row['Description'];
+                            $rating = $row['RatingAVG'];
+                            $image = $row['ImageURL'];
+                            
+                            echo "
+                                            <div class='dest-1'>
+                                                    <div class='dest-image'>
+                                                        "; 
+                                                        ?>
+                            <img src="media/<?php echo $image; ?>" alt="<?php  echo $desc; ?> ">
+                            <?php
+                            echo "
+                                                    </div>
+                                                    <div class='dest-info'>
+                                                        <div class='dest-data'>
+                                                            <h4>".$desc."</h4>
+                                                            <p><i class='fa fa-star'></i> ".$rating."</p>
+                                                        </div>
+                                                        
+                                                        <div class='dest-more'>;"
 
-                    <div class="dest-1">
-                        <div class="dest-image">
-                            <img src="media/pexels-quang-nguyen-vinh-222549-12387911.jpg" alt="Mt Everest">
-                        </div>
-                        <div class="dest-info">
-                            <div class="dest-data">
-                                <h4>Palmas Beach Resort</h4>
-                                <p><i class="fa fa-star"></i> 4.0</p>
-                            </div>
-                            <div class="dest-more">
-                                <i class="fa fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
+                                                            ?>
 
-                    <div class="dest-1">
-                        <div class="dest-image">
-                            <img src="media/pexels-icon0-209740.jpg" alt="Mt Everest">
-                        </div>
-                        <div class="dest-info">
-                            <div class="dest-data">
-                                <h4>China</h4>
-                                <p><i class="fa fa-star"></i> 4.6</p>
-                            </div>
-                            <div class="dest-more">
-                                <i class="fa fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
+                                                            <a href="destinationinfo.php?id=<?php echo $destId; ?>"> <i class="fa fa-arrow-right"></i></a>
 
+                                                            <?php echo "
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                ";
+                                               
+                        }
+                   ?>
+                  
+                    
 
-                    <div class="dest-1">
-                        <div class="dest-image">
-                            <img src="media/pexels-pierre-blache-651604-3073666.jpg" alt="Mt Everest">
-                        </div>
-                        <div class="dest-info">
-                            <div class="dest-data">
-                                <h4>Italy</h4>
-                                <p><i class="fa fa-star"></i> 4.8</p>
-                            </div>
-                            <div class="dest-more">
-                                <i class="fa fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
+                   
                 
 
                     
@@ -151,6 +133,7 @@
                         We are here for you and here is our unlimited services</h3>
 
                     <div class="activities">
+                        
                         <div class="activities-card">
                             <i class="fa-solid fa-user-group fa-2xl"></i>
                             <p>Group Tours</p>
@@ -230,86 +213,41 @@
                     </div>
                 </div>
                 <div class="adventures-api-cards">
-                    <div class="adventures-activity">
-                        <img src="media/pexels-yaroslav-shuraev-8918212.jpg">
-                        <div class="adventure-info">
-                            <h6>Kayaking</h6>
-                            <div>
-                                <h7><i class="fa fa-location-dot"></i>India</h7>
-                                <p><i class="fa fa-star"></i>4.0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="adventures-activity">
-                        <img src="media/Screenshot (2277).png">
-                        <div class="adventure-info">
-                            <h6>Swimming in Open Panama Waters</h6>
-                            <div>
-                                <h7><i class="fa fa-location-dot"></i>Panama</h7>
-                                <p><i class="fa fa-star"></i>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="adventures-activity">
-                        <img src="media/Screenshot (2278).png">
-                        <div class="adventure-info">
-                            <h6>Diving in the Water Caves</h6>
-                            <div>
-                                <h7><i class="fa fa-location-dot"></i>kenya</h7>
-                                <p><i class="fa fa-star"></i>5.0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="adventures-activity">
-                        <img src="media/Screenshot (2279).png">
-                        <div class="adventure-info">
-                            <h6>Surfing</h6>
-                            <div>
-                                <h7><i class="fa fa-location-dot"></i>Brazil</h7>
-                                <p><i class="fa fa-star"></i>4.0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="adventures-activity">
-                        <img src="media/Screenshot (2278).png">
-                        <div class="adventure-info">
-                            <h6>Waterfall Bathing</h6>
-                            <div>
-                                <h7><i class="fa fa-location-dot"></i>China</h7>
-                                <p><i class="fa fa-star"></i>4.2</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="adventures-activity">
-                        <img src="media/Screenshot (2315).png">
-                        <div class="adventure-info">
-                            <h6>Road Trip</h6>
-                            <div>
-                                <h7><i class="fa fa-location-dot"></i>Amazon Forest</h7>
-                                <p><i class="fa fa-star"></i>4.0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="adventures-activity">
-                        <img src="media/Screenshot (2313).png">
-                        <div class="adventure-info">
-                            <h6>Diving in the Water Caves</h6>
-                            <div>
-                                <h7><i class="fa fa-location-dot"></i>Australia</h7>
-                                <p><i class="fa fa-star"></i>3.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="adventures-activity">
-                        <img src="media/Screenshot (2277).png">
-                        <div class="adventure-info">
-                            <h6>Water Dive Caving</h6>
-                            <div>
-                                <h7><i class="fa fa-location-dot"></i>Korea</h7>
-                                <p><i class="fa fa-star"></i>4.5</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                            $act = mysqli_query($conn,"SELECT * FROM activities WHERE status='approved' || status='active'  LIMIT 8 ");
+                            while($row = mysqli_fetch_array($act)){
+                                $actimages = $row['ImageURL'];
+                                $actname = $row['Name'];
+                                $ratavg = $row['RatingAVG'];
+                                $destID = $row['DestinationID']; //make sure the destid variable is differnent
+
+                                $destDetails = mysqli_query($conn,"SELECT country FROM  destinations WHERE DestinationID=$destID ");
+                                $r = mysqli_fetch_row($destDetails);
+                                $nr = $r[0];
+                                
+                                echo "
+                                    <div class='adventures-activity'> "; 
+                                    ?>
+
+                                        <img src='media/<?php echo $actimages; ?>'>
+                                        <?php echo "
+                                        <div class='adventure-info'>
+                                            <h6>".$actname."</h6>
+                                            <div>
+                                                <h7><i class='fa fa-location-dot'></i>".$nr."</h7>
+                                                <p><i class='fa fa-star'></i>".$ratavg."</p>
+                                            </div>
+                                            <div>
+                                                <a href='destinationinfo.php?id=".$destID."'>View activity</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ";
+
+                            }
+                        ?>
+                    
+                    
 
                 </div>
             </div>

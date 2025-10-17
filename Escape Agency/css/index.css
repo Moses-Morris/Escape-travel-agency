@@ -72,7 +72,7 @@ input{
     color: var(--primary);
     font-weight: 900;
 }
-.destinations a{
+.destinations .direct  a{
     padding: 0.6rem 3rem;
     background-color: var(--primary);
     text-decoration: none;

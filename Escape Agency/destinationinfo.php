@@ -5,6 +5,9 @@ include('User/config/connection.php');
 
 //include('User/auth/usersession.php');
 ?>
+<?php
+//Get the details if the destination
+?>
 
 <!DOCTYPE html>
 <html prefix="og: https://ogp.me/ns#" lang="en">

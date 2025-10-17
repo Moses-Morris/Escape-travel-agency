@@ -11,22 +11,22 @@ $results = [];
 
 if ($location !== '' || $price !== '' || $activity !== '') {
     // --- Build SQL dynamically ---
-    $sql = "SELECT * FROM destinations WHERE 1=1";
+    $sql = "SELECT * FROM destinations WHERE 1=1 AND status='approved'";
     $params = [];
     $types = "";
 
     if ($location !== '') {
-        $sql .= " AND location LIKE CONCAT('%', ?, '%')";
+        $sql .= " AND Location LIKE CONCAT('%', ?, '%')";
         $params[] = $location;
         $types .= "s";
     }
     if ($price !== '' && is_numeric($price)) {
-        $sql .= " AND price <= ?";
+        $sql .= " AND Price <= ?";
         $params[] = $price;
         $types .= "d";
     }
     if ($activity !== '') {
-        $sql .= " AND activities LIKE CONCAT('%', ?, '%')";
+        $sql .= " AND Activities LIKE CONCAT('%', ?, '%')";
         $params[] = $activity;
         $types .= "s";
     }
@@ -73,22 +73,22 @@ if ($location !== '' || $price !== '' || $activity !== '') {
 
                 if ($location !== '' || $price !== '' || $activity !== '') {
                     // --- Build SQL dynamically ---
-                    $sql = "SELECT * FROM destinations WHERE 1=1";
+                    $sql = "SELECT * FROM destinations WHERE 1=1 AND status='approved'";
                     $params = [];
                     $types = "";
 
                     if ($location !== '') {
-                        $sql .= " AND location LIKE CONCAT('%', ?, '%')";
+                        $sql .= " AND Location LIKE CONCAT('%', ?, '%')";
                         $params[] = $location;
                         $types .= "s";
                     }
                     if ($price !== '' && is_numeric($price)) {
-                        $sql .= " AND price <= ?";
+                        $sql .= " AND Price <= ?";
                         $params[] = $price;
                         $types .= "d";
                     }
                     if ($activity !== '') {
-                        $sql .= " AND activities LIKE CONCAT('%', ?, '%')";
+                        $sql .= " AND Activities LIKE CONCAT('%', ?, '%')";
                         $params[] = $activity;
                         $types .= "s";
                     }
@@ -149,7 +149,7 @@ if ($location !== '' || $price !== '' || $activity !== '') {
     </section>
             <!-- Results Section -->
             <section class="destinations-offer" id="dest-id">
-                <h4>Discounted Destinations </h4>
+                <h4>Discounted Destinations | Searched Destinations</h4>
                 <?php if ($location || $price || $activity): ?>
                     <p>Showing results for: 
                     <?php echo htmlspecialchars($location ?: ''); ?>
@@ -162,6 +162,7 @@ if ($location !== '' || $price !== '' || $activity !== '') {
                     <?php if (!empty($results)): ?>
                         <?php foreach ($results as $row): ?>
                             <div class="destinations-offer-card">
+                                
                                 <img src="<?php echo htmlspecialchars($row['ImageURL']); ?>" alt="Destination">
                                 <div class="destination-offer-details">
                                     <h7><i class="fa fa-location-dot"></i> <?php echo htmlspecialchars($row['Location']); ?></h7>
@@ -193,7 +194,7 @@ if ($location !== '' || $price !== '' || $activity !== '') {
             //echo "<h2>Search Results for: " . htmlspecialchars($location) . " " . htmlspecialchars($activity) . "</h2>";
 
             // Prepare base query
-            $sql = "SELECT * FROM destinations WHERE 1=1";
+            $sql = "SELECT * FROM destinations WHERE 1=1 AND status='approved'";
             
             $stmt = $conn->prepare($sql);
         
@@ -205,7 +206,7 @@ if ($location !== '' || $price !== '' || $activity !== '') {
                 while ($row = $result->fetch_assoc()) {
                     ?>
                     <div class="destinations-offer-card">
-                        <img src="<?php echo $row['ImageURL']; ?>" alt="<?php echo $row['ImageURL']; ?>">
+                        <img src="media/<?php echo $row['ImageURL']; ?>" alt="<?php echo $row['ImageURL']; ?>">
                         <div class="destination-offer-details">
                             <h7><i class="fa fa-location-dot"></i> <?php echo htmlspecialchars($row['Name']); ?></h7>
                             <h3>USD <?php echo htmlspecialchars($row['Price']); ?></h3>

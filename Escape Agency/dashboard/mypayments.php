@@ -29,7 +29,8 @@
                           <tr>
                   <?php
                   $result = mysqli_query($conn,"SELECT * FROM Payments WHERE  UserID=$userid ");
-                                        while($row = mysqli_fetch_array($result)){
+                                        if($result){
+                                          while($row = mysqli_fetch_array($result)){
                                             $payid=$row['PaymentID'];
                                             $ID = $row["OrderNo"];
                                             $Name = $row["Name"];
@@ -77,6 +78,9 @@
                                                 <td> ".$summary."</td>
                                                 <td> Cleared</td>
                                                 ";
+                                        }else{
+                                          echo "No Recent Payments made.";
+                                        }
 
                   ?>
                     

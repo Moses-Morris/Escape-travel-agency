@@ -46,8 +46,8 @@
 
                                        $result = mysqli_query($conn,"SELECT * FROM Discounts
                                                                                                 WHERE AgentID = $agentID AND Deleted=0 ");
-                                        
-                                        while($row = mysqli_fetch_array($result)){
+                                        if($result){
+                                          while($row = mysqli_fetch_array($result)){
                                            $ID = $row["DiscountID"];
                                             $name = $row["DiscountName"];
                                             $dest = $row["DestinationID"];
@@ -97,7 +97,11 @@
 
 
 
-                                      };
+                                          };
+                                        }else{
+                                          echo "      You Dont Have any Discounts or ADS";
+                                        }
+                                        
 
                                     ?>
                         </tbody>

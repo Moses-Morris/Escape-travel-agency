@@ -1,7 +1,12 @@
 <?php
     include 'base.php';
-
     include 'config/connection.php';
+    if(!isset($_SESSION['email'])){
+      print "
+            <script language='javascript'>
+                window.location = 'login.php?';
+            </script>";
+    }
 ?>
 
 
