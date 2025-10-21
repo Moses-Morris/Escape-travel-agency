@@ -152,12 +152,39 @@ while($row = mysqli_fetch_array($result)){
         <section>
             <article class="destination-booking">
                 <aside>
+                    <?php
+                         //Destination details
+                         if (isset($_GET['dest']) && filter_var($_GET['dest'], FILTER_VALIDATE_INT)) {
+                                $Desid = $_GET['dest'];
+                                //echo "Received ID: " . htmlspecialchars($id);
+                            } else {
+                                echo "Invalid ID!";
+                            }
+
+                            // ✅ Destination details
+                        $result = mysqli_query($conn, "SELECT * FROM destinations WHERE Status='approved' AND DestinationID=$Desid");
+
+                        if (mysqli_num_rows($result) > 0) {
+                            $row = mysqli_fetch_assoc($result);
+                            $ID = $row["DestinationID"];
+                            $destDesc = $row["Description"];
+                            $Name = htmlspecialchars($row["Name"]);
+                            $location = htmlspecialchars($row["Location"]);
+                            $country = htmlspecialchars($row["Country"]);
+                            $img = $row["ImageURL"];
+                            $price = $row["Price"];
+
+                            
+                        } else {
+                            echo "Unapproved and unverified destination. Go Back";
+                        }
+                    ?>
                     <div class="dest-location">
-                        <h4>Destination : Mt Kilimanjaro</h4>
-                        <img src="media/pexels-robshumski-6129457.jpg" alt="destination image">
-                        <h5>Lemosho , Tanzania</h5>
+                        <h4>Destination : <?php echo $Name; ?></h4>
+                        <img src="media/<?php echo $img; ?>" alt="destination image">
+                        <h5><?php echo  $location ."," .$country; ?></h5>
                         <!-- Somewhere in your HTML -->
-                        <h4>USD <span id="destinationPrice">900</span></h4>
+                        <h4>USD <span id="destinationPrice"><?php echo $price; ?></span></h4>
                     </div>
 
                 </aside>

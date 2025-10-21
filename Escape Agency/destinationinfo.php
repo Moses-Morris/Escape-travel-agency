@@ -155,64 +155,59 @@ include('User/config/connection.php');
                             } else {
                                 echo "Invalid ID!";
                             }
-                        $result = mysqli_query($conn,"SELECT * FROM destinations WHERE Status!='approved' AND DestinationID=$Desid");
-                        while($row = mysqli_fetch_array($result)){
+                        // ✅ Destination details
+                        $result = mysqli_query($conn, "SELECT * FROM destinations WHERE Status='approved' AND DestinationID=$Desid");
+
+                        if (mysqli_num_rows($result) > 0) {
+                            $row = mysqli_fetch_assoc($result);
                             $ID = $row["DestinationID"];
-                            $Name = $row["Name"];
-                            $location = $row["Location"];
-                            $country = $row["Country"];
+                            $destDesc = $row["Description"];
+                            $Name = htmlspecialchars($row["Name"]);
+                            $location = htmlspecialchars($row["Location"]);
+                            $country = htmlspecialchars($row["Country"]);
                             $img = $row["ImageURL"];
                             $price = $row["Price"];
+                            $rating = $row["RatingAVG"];
                             $Agent = $row["AgentID"];
                             $travel = $row["TravelID"];
-                            $rating = $row["RatingAVG"];
-
-                            //get the Activity details
-                            $activities = mysqli_query($conn,"SELECT * FROM activities WHERE DestinationID=$ID LIMIT 4");
-                            $row5= mysqli_fetch_array($activities);
-
-                            //get all the Hostings associated with it
-                            $hosting = mysqli_query($conn,"SELECT * FROM accomodation WHERE DestinationID=$ID LIMIT 4");
-                            $row6= mysqli_fetch_array($hosting);
-
-                            //get all the reviews associated with it
-                            $reviews = mysqli_query($conn,"SELECT * FROM reviews WHERE DestinationID=$ID LIMIT 2");
-                            $row7= mysqli_fetch_array($reviews);
-
-                            //get all the Images associated with it
-                            $gallery = mysqli_query($conn,"SELECT * FROM destinationgallery WHERE DestinationID=$ID LIMIT 4");
-                            $row8= mysqli_fetch_array($gallery);
-
-                            
-
-
-                
-    
-
-
+                        } else {
+                            echo "Unapproved and unverified destination. Go Back";
                         }
-                        
-                           
-
                        
         ?>
         <div class="dest-detail-info">
-            <h3><i class="fa fa-location-dot"></i> Mt Kilimanjaro</h3>
+            <h3><i class="fa fa-location-dot"></i> <?php echo $Name; ?></h3>
         </div>
         <section class="destination-images">
             <div class="dest-info-images">
-                <div class="disp-one main-image">
-                    <img src="media/pexels-marius-nacu-376246-11342444.jpg">
+                <div class="disp-one main-image gallery">
+                    <img src="media/<?php echo $img; ?>" class="gallery-img">
                 </div>
                 <div class="gallery-images">
-                    <div class="disp-two">
-                        <img src="media/pexels-mikhail-nilov-7706438.jpg">
+                    <?php
+                        $gallery = mysqli_query($conn, "SELECT * FROM destinationgallery WHERE DestinationID=$ID ");
+                        if (mysqli_num_rows($gallery) > 0) {
+                            $row = mysqli_fetch_assoc($gallery);
+                            $desc = $row['Description'];
+                            $image1 = $row['Image1'];
+                            $image2 = $row['Image2'];
+                            $image3 = $row['Image3'];
+                            $image4 = $row['Image4'];
+                            
+
+                        }else{
+                            echo "No destination images;";
+                        }
+                        
+                    ?>
+                    <div class="disp-two gallery">
+                        <img src="media/<?php echo $image2; ?>" alt="<?php echo $desc; ?>" class="gallery-img">
                     </div>
-                    <div class="disp-three">
-                        <img src="media/pexels-zachary-gudakov-2063605-4243684.jpg">
+                    <div class="disp-three gallery">
+                        <img src="media/<?php echo $image3; ?>" alt="<?php echo $desc; ?>" class="gallery-img">
                     </div>
-                    <div class="disp-four">
-                        <img src="media/pexels-pixabay-262978.jpg">
+                    <div class="disp-four gallery">
+                        <img src="media/<?php echo $image4; ?>" alt="<?php echo $desc; ?>" class="gallery-img">
                     </div>
                 </div>
 
@@ -225,17 +220,19 @@ include('User/config/connection.php');
                 <main>
                     <div class="dest-detail-data">
                         <div class="dest-detail-info">
-                            <h3><i class="fa fa-"></i>Mt Kilimanjaro</h3>
-                            <p><i class="fa fa-star"></i>4.8</p>
+                            <h3><i class="fa fa-location"></i>     <?php echo $Name;?></h3>
+                            <p><i class="fa fa-star" style="color: orange;"></i>        <?php echo $rating;?> star ratings</p>
                         </div>
                         <div>
-                            <h2>USD 900</h2>
+                            <h2>USD <?php echo $price;?></h2>
                         </div>
                     </div>
                     <div class="dest-description">
+                        <h4><?php echo $destDesc; ?></h4>
+                        <br>
                         <p>Wait for confirmation on the Dashboard. Escape Agency also provides a list of documents needed
                             For the adventure and everything needed for the trip. It listed on the Dashboard</p>
-                        <a href="bookingdetails.php">
+                        <a href="bookingdetails.php?dest=<?php echo $ID; ?>">
                             Book Now
                             <i class="fa fa-arrow-right"></i>
                         </a>
@@ -257,24 +254,21 @@ include('User/config/connection.php');
                 <main>
                     <h4>Activities Available</h4>
                     <div class="dest-activities-info">
-                        <div>
-                            <p>Swimming</p>
-                        </div>
-                        <div>
-                            <p>Hiking</p>
-                        </div>
-                        <div>
-                            <p>Sports</p>
-                        </div>
-                        <div>
-                            <p>Team-Building</p>
-                        </div>
-                        <div>
-                            <p>Camping</p>
-                        </div>
-                        <div>
-                            <p>Rafting</p>
-                        </div>
+                        <?php
+                            $activities = mysqli_query($conn, "SELECT * FROM activities WHERE DestinationID=$ID LIMIT 4");
+                            if (mysqli_num_rows($activities) > 0) {
+                                 while ($act = mysqli_fetch_assoc($activities)) {
+                                        $aName = htmlspecialchars($act['Name']);
+                                        echo "  <div>
+                                                        <p>". $aName."</p>
+                                                    </div>";
+                                    }
+                            }else{
+                                echo "No available activities for this destination";
+                            }
+
+                        ?>
+                        
 
                     </div>
                 </main>
@@ -304,99 +298,91 @@ include('User/config/connection.php');
                 <main>
                     <h4>Customer Reviews</h4>
                     <div class="dest-client-reviews">
-                        <div class="review-card">
-                            <div class="client-data">
-                                <img src="" alt="client profile image"> 
-                                <p>Client Name</p>
-                            </div>
-                            <div>
-                                <p>Mt Kilimanjaro has been the best experience .
-                                    Since I went there I keep feeling the urge to go
-                                    back
-                                </p>
-                            </div>
-                        </div>
-                        <div class="review-card">
-                            <div class="client-data">
-                                <img src="" alt="client profile image"> 
-                                <p>Client Name</p>
-                            </div>
-                            <div>
-                                <p>Mt Kilimanjaro has been the best experience .
-                                    Since I went there I keep feeling the urge to go
-                                    back
-                                </p>
-                            </div>
-                        </div>
+                        <?php
+                                $reviews = mysqli_query($conn, "SELECT * FROM reviews WHERE DestinationID=$ID LIMIT 4");
+                                 if (mysqli_num_rows($reviews) > 0) {
+                                    while ($r = mysqli_fetch_assoc($reviews)) {
+                                        $user = htmlspecialchars($r['UserID']);
+                                        $comment = htmlspecialchars($r['ReviewComment']);
+                                        $stars = $r['RatingAVG'];
+                                          //get the user who has placed the booking
+                                        $user_name = mysqli_query($conn,"SELECT * FROM users WHERE UserID=$user");
+                                        $row4 = mysqli_fetch_array($user_name);
+                                        $UserName = $row4["Email"]; //use email as name
+                                        $userDetail = $row4["Name"]; 
+                                        $userImage = $row4["ProfileImg"];
+                                        echo "<div class='review-card' style='width: 100% !important;'>
+                                                        <div class='client-data'>
+                                                            <img src='media/".$userImage."' alt='client profile image' style='border-radius: 50%;'> 
+                                                            <p>".$userDetail."</p>
+                                                        </div>
+                                                        <div>
+                                                            <p>
+                                                                ".$comment."
+                                                            </p>
+                                                        </div>
+                                                    </div>";
+
+                                       
+                                    }
+                                } else {
+                                    echo "<p>No reviews yet.</p>";
+                                }
+                        ?>
+                        
+                        
                     </div>
                 </main>
                 <aside class="hostings">
                     <h4>Local Hostings</h4>
                     <div class="hostings-cards">
-                        <div class="hosting-place-card">
-                            <div class="hosting-name-more">
-                                <div>
-                                    <h5>Prime Luxury Suites</h5>
-                                    <p><i class="fa fa-star"></i>1400 reviews</p>
-                                </div>
-                                <div>
-                                    <a href="" class="more-details">More </a>
-                                </div>
-                            </div>
-                            <div class="hostings-info">
-                                <div>
-                                    <p>Business hotel in Tanzania</p>
-                                    <p>$100–$400 per night</p>
-                                </div>
-                                <div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
+                        <?php 
+                             $hosting = mysqli_query($conn, "SELECT * FROM accomodation WHERE DestinationID=$ID ");
+                                if (mysqli_num_rows($hosting) > 0) {
+                                    while ($h = mysqli_fetch_assoc($hosting)) {
+                                        $hostID = $h['HostingID'];
+                                        $hName = htmlspecialchars($h['Name']);
+                                        $hDesc = htmlspecialchars($h['Description']);
+                                        $hPrice = $h['PricePerNight'];
+                                        $hImg = $h['ImageURL'];
+                                        $hRating = $h['RatingAVG'];
+                                        $hImgPath = "accomodation/" . $hImg;
+                                        if (!file_exists($hImgPath) || empty($hImg)) {
+                                            $hImgPath = "media/default-hosting.jpg";
+                                        }
 
-                        </div>
-                        <div class="hosting-place-card">
-                            <div class="hosting-name-more">
-                                <div>
-                                    <h5>Prime Luxury Suites</h5>
-                                    <p><i class="fa fa-star"></i>1400 reviews</p>
-                                </div>
-                                <div>
-                                    <a href="" class="more-details">More </a>
-                                </div>
-                            </div>
-                            <div class="hostings-info">
-                                <div>
-                                    <p>Business hotel in Tanzania</p>
-                                    <p>$100–$400 per night</p>
-                                </div>
-                                <div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
+                                        echo "
+                                                    <div class='hosting-place-card'>
+                                                        <div class='hosting-name-more'>
+                                                            <div>
+                                                                <h3>".$hName."</h3>
+                                                                <p><i class='fa fa-star'></i>   ".$hRating." reviews</p>
+                                                            </div>
+                                                            <div>
+                                                                <a href='hostinginfo.php?host=".$hostID." class='more-details'>More </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class='hostings-info'>
+                                                            <div>
+                                                                <p>".$hDesc."</p>
+                                                                <p>Estimated Price Per Night : $".$hPrice."  </p>
+                                                            </div>
+                                                            <div>
+                                                                <i class='fa fa-chevron-right'></i>
+                                                            </div>
+                                                        </div>
 
-                        </div>
+                                                    </div>
+                                        ";
+                                    }
+                                }else{
+                                    echo "No hostings created for this Destination.";
+                                }
+                            ?>
+                        
+                        
 
-                        <div class="hosting-place-card">
-                            <div class="hosting-name-more">
-                                <div>
-                                    <h5>Prime Luxury Suites</h5>
-                                    <p><i class="fa fa-star"></i>1400 reviews</p>
-                                </div>
-                                <div>
-                                    <a href="" class="more-details">More </a>
-                                </div>
-                            </div>
-                            <div class="hostings-info">
-                                <div>
-                                    <p>Business hotel in Tanzania</p>
-                                    <p>$100–$400 per night</p>
-                                </div>
-                                <div>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                            </div>
-
-                        </div>
+                       
                     </div>
                 </aside>
             </article>
@@ -407,24 +393,162 @@ include('User/config/connection.php');
         <section>
             <h4>Destination Gallery</h4>
             <div class="destination-imgs">
+                <?php 
+                        $gallery = mysqli_query($conn, "SELECT * FROM destinationgallery WHERE DestinationID=$ID ");
+                        if (mysqli_num_rows($gallery) > 0) {
+                            $row = mysqli_fetch_assoc($gallery);
+                            $desc = $row['Description'];
+                            $image1 = $row['Image1'];
+                            $image2 = $row['Image2'];
+                            $image3 = $row['Image3'];
+                            $image4 = $row['Image4'];
+                            
+
+                        }else{
+                            echo "No destination images in the Destination Gallery;";
+                        }
+                ?>
                 <div>
-                    <img src="media/pexels-marius-nacu-376246-11342444.jpg">
+                    <img src="media/<?php echo $image1; ?>" alt="<?php echo $desc; ?>">
                 </div>
                 <div>
-                    <img src="media/pexels-quang-nguyen-vinh-222549-4078053.jpg">
+                    <img src="media/<?php echo $image2; ?>" alt="<?php echo $desc; ?>">
                 </div>
                 <div>
-                    <img src="media/pexels-valdemaras-d-784301-3871773.jpg">
+                    <img src="media/<?php echo $image3; ?>" alt="<?php echo $desc; ?>">
                 </div>
                 <div>
-                    <img src="media/pexels-pixabay-260922.jpg">
+                    <img src="media/<?php echo $image4; ?>" alt="<?php echo $desc; ?>">
                 </div>
             </div>
         </section>
 
     </main>
 
+                        <!-- Popup Overlay -->
+<div id="imagePopup" class="image-popup fade">
+  <span class="close-popup">&times;</span>
+  <img class="popup-content" id="popupImage" alt="Popup Image" />
+</div>
 
+<style>
+  /* ===== GALLERY GRID ===== */
+  
+
+  .gallery-img {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gallery-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ===== POPUP OVERLAY ===== */
+  .image-popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.35s ease;
+  }
+
+  .popup-content {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    transform: scale(0.8);
+    opacity: 0;
+    transition: all 0.35s ease;
+  }
+
+  .image-popup.show {
+    display: flex;
+    opacity: 1;
+  }
+
+  .image-popup.show .popup-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  /* ===== CLOSE BUTTON ===== */
+  .close-popup {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: #fff;
+    font-size: 38px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+  }
+
+  .close-popup:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+
+  /* Optional Fade Animation */
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  @keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+</style>
+
+<script>
+  const popup = document.getElementById('imagePopup');
+  const popupImg = document.getElementById('popupImage');
+  const closeBtn = document.querySelector('.close-popup');
+  const body = document.body;
+
+  // Open popup
+  document.querySelectorAll('.gallery-img').forEach(img => {
+    img.addEventListener('click', () => {
+      popupImg.src = img.src;
+      popup.classList.add('show');
+      body.style.overflow = 'hidden'; // disable page scroll
+    });
+  });
+
+  // Close popup
+  function closePopup() {
+    popup.classList.remove('show');
+    setTimeout(() => {
+      popup.style.display = 'none';
+      body.style.overflow = ''; // re-enable scroll
+    }, 300);
+  }
+
+  closeBtn.addEventListener('click', closePopup);
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) closePopup();
+  });
+
+  // Automatically show display:flex before fade-in
+  const observer = new MutationObserver(() => {
+    if (popup.classList.contains('show')) {
+      popup.style.display = 'flex';
+    }
+  });
+  observer.observe(popup, { attributes: true });
+</script>
 
     <footer class="pad-5">
         <div class="footer-content">
